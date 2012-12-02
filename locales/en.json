@@ -1,0 +1,36 @@
+{
+  "app": {
+
+  	"common": {
+
+  	},
+
+    "header": {
+    	"start": "Start",
+    	"change_language": "Change language"
+    },
+
+    "welcome": {
+    	"headline": "Welcome to privacy checker.",
+    	"description": "To start the test you need to login at Facebook first. The script will then load the required data from Facebook on <strong>your</strong> computer.",
+    	"notstoring":  "We are not storing your facebook credentials neither any extracted data like photos or posts.",
+    	"change_and_go": "Login as another user and proceed",
+    	"go_as_current_user": "Proceed as __user__",
+    	"login_and_go": "Login and proceed",
+        "checking_profile_status": "Checking if you already authorized privacy checker"
+    },
+
+    "collect": {
+    	"headline": "Examining your facebook profile",
+    	"description": "Before you can test your privacy settings we need to collect some data such as your friends, your pictures, your wall posts and several other things.",
+    	"items": {
+    		"friends": "Reading your friends..",
+            "lists": "Reading your friendlists..",
+    		"pictures": "Reading your pictures..",
+    		"posts": "Reading your wall posts..",
+    		"privacy_settings": "Reading your privacy settings"
+    	}
+    }
+
+  }
+}

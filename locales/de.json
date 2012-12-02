@@ -1,0 +1,10 @@
+{
+	"app": {
+		"welcome": "Willkommen beim Privacy Checker",
+		"login_and_go": "Login and proceed",
+		"info": {
+			"description": "Um den Test zu beginnen muss du dich zunächst bei Facebook einloggen. Das Script lädt anschließend alle benötigten Daten von Facebook auf <strong>deinen</strong> Computer.",
+			"notstoring": "Wir speichern weder deine Facebook Zugangsdaten noch irgendwelche anderen Daten deines Facebook Profils (Fotos, ..)."
+		}
+	}
+}
