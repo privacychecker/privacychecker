@@ -61,6 +61,8 @@ div#item-compare {
 	width: 625px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 10px;
+	height: 250px;
 }
 
 div#item1 {
@@ -68,8 +70,8 @@ div#item1 {
 }
 
 div.select-items {
-	display: inline;
 	cursor: pointer;
+	float: left;
 }
 
 div.select-items > img {

@@ -12,7 +12,7 @@ var HomeView = Backbone.View.extend({
 	},
 
 	initialize: function() {
-		console.log("Init: HomeView");
+		console.log("[HomeView] Init: HomeView");
 		this.template = Handlebars.compile(tpl.get("home"));
 
 		this.player = FacebookPlayer.getInstance();
@@ -50,14 +50,14 @@ var HomeView = Backbone.View.extend({
 	},
 
 	fbLoginClickCb: function() {
-		console.log("fbLoginClickCb - triggering login");
+		console.log("[HomeView] fbLoginClickCb - triggering login");
 		this.player.login();
 
 		return false;
 	},
 
 	fbResetClickCb: function() {
-		console.log("fbResetClickCb - triggering logout");
+		console.log("[HomeView] fbResetClickCb - triggering logout");
 		this.player.logout();
 
 		return false;
@@ -69,7 +69,7 @@ var HomeView = Backbone.View.extend({
 	},
 
 	fbLoginChangeCb: function(status) {
-		console.log("FbLoginChange - updating view", this.player.loggedin);
+		console.log("[HomeView] FbLoginChange - updating view", this.player.loggedin);
 
 		if (this.player.loggedin && this.player.get("name") == undefined) {
 			this.player.on("profile:loaded", _.bind(this.fbProfileLoadedCb, this));

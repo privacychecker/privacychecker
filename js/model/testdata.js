@@ -23,13 +23,14 @@ var TestData = Backbone.Model.extend({
 		this.allreadyComparedTuples = [];
 		this.ratePtr = 0;
 		this.elo = new EloRating();
+		this.remainingRates = this.MAX_INIT_ITEMS;
 	},
 
 	getRateTupple: function() {
 
 		var pictures = this.get('pictures');
 
-		if (--this.TEST_ROUNDS < 0) {
+		if (--this.remainingRates < 0) {
 			console.debug('[TestData] Rating done: ', this.rateTupples);
 			return undefined;
 		}
@@ -68,6 +69,10 @@ var TestData = Backbone.Model.extend({
 
 		console.log('[TestData] New scores: ', res.a, res.b);
 
+	},
+
+	getCurrentProgress: function() {
+		return (this.MAX_INIT_ITEMS - this.remainingRates) / this.MAX_INIT_ITEMS * 100;
 	},
 
 	_collectPictures: function() {

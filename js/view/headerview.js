@@ -4,7 +4,7 @@ var HeaderView = Backbone.View.extend({
 	FACEBOOK_BASE_URL: "https://facebook.com/",
 
 	initialize: function() {
-		console.log("Init: HeaderView");
+		console.log("[HeaderView] Init: HeaderView");
 		this.template = Handlebars.compile(tpl.get("header"));
 
 		FacebookPlayer.getInstance().on("profile:loaded", _.bind(this.fbPlayerProfileLoadedCb, this));
@@ -17,7 +17,7 @@ var HeaderView = Backbone.View.extend({
 	},
 
 	fbPlayerProfileLoadedCb: function() {
-		console.log("fbPlayerProfileLoadedCb - updating view");
+		console.log("[HeaderView] fbPlayerProfileLoadedCb - updating view");
 
 		var player = FacebookPlayer.getInstance();
 		var el = $(this.el).find(this.PLAYER_CONTAINER_ID);
