@@ -14,10 +14,12 @@ var AppRouter = Backbone.Router.extend({
 
 		this.homeView = new HomeView();
 		this.collectView = new CollectView();
+		this.selectView = new SelectView();
 
 		this.player = FacebookPlayer.getInstance();
 		this.player.on("profile:loaded", _.bind(this.profileLoadedCb, this));
 		this.homeView.on("click:proceed", _.bind(this.startCollectCb, this));
+		this.collectView.on("collect:done", _.bind(this.selectEntitiesCb, this));
 	},
 
 	home: function() {
@@ -33,11 +35,16 @@ var AppRouter = Backbone.Router.extend({
 
 	startCollectCb: function() {
 		this.player.getFriends();
+	},
+
+	selectEntitiesCb: function() {
+		this.selectView.render();
+		$("#select").html(this.selectView.el);
 	}
 
 });
 
-tpl.loadTemplates(['home', 'collect', 'header'],
+tpl.loadTemplates(['home', 'collect', 'select', 'header'],
 function () {
 	$("section.container").each(function(idx) {
 		$(this).width($(window).width());
