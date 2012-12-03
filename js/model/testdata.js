@@ -5,6 +5,7 @@ var TestData = Backbone.Model.extend({
 	MAX_INIT_ITEMS: 12,
 	TEST_ROUNDS: 20,
 	INITIAL_SCORE: 1000,
+	TEST_DATA_SIZE: 5,
 
 	/* attributes
 	* pictures
@@ -15,6 +16,7 @@ var TestData = Backbone.Model.extend({
 		this.player = FacebookPlayer.getInstance();
 		this.set('pictures', undefined);
 		this.set('posts', undefined);
+		this.set('data', undefined);
 
 		if (this.USE_PICTURES)
 			this._collectPictures();
@@ -32,6 +34,7 @@ var TestData = Backbone.Model.extend({
 
 		if (--this.remainingRates < 0) {
 			console.debug('[TestData] Rating done: ', this.rateTupples);
+			this._extractTestData();
 			return undefined;
 		}
 
@@ -50,7 +53,6 @@ var TestData = Backbone.Model.extend({
 		this.allreadyComparedTuples.push(one.id+two.id);
 
 		console.debug('[TestData] Pair is ', one, ' and ', two);
-
 
 		return [one, two];
 
@@ -92,6 +94,28 @@ var TestData = Backbone.Model.extend({
 
 		this.set('pictures', pickedPics);
 		console.info('[TestData] Using the following ' + this.MAX_INIT_ITEMS + ' pictures for test:', this.get('pictures'));
+	},
+
+	_extractTestData: function() {
+
+		var i = this.TEST_DATA_SIZE;
+		var data = [];
+
+		while (--i >=  0) {
+			var highest = null;
+			_.each(_.keys(this.rateTupples), _.bind(function(id) {
+				if (highest === null || highest <= this.rateTupples[id])
+					highest = id;
+			}, this));
+
+			delete this.rateTupples[highest];
+
+			data.push(this.get('pictures').get(highest));
+		}
+
+		this.set('data', data);
+		console.log('[TestData] The following data is select to test: ', data);
+
 	}
 
 }, {
