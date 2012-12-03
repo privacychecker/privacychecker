@@ -74,5 +74,6 @@ div.select-items {
 
 div.select-items > img {
 	width: 300px;
-	overflow: hidden;
+ 	height: auto;
+	max-height: 225px;
 }

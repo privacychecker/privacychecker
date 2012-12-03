@@ -2,8 +2,8 @@ var TestData = Backbone.Model.extend({
 
 	USE_PICTURES: true,
 	USE_POSTS: false,
-	MAX_INIT_ITEMS: 15,
-	ITEMS_TO_TEST: 3,
+	MAX_INIT_ITEMS: 12,
+	TEST_ROUNDS: 20,
 	INITIAL_SCORE: 1000,
 
 	/* attributes
@@ -21,21 +21,35 @@ var TestData = Backbone.Model.extend({
 
 		this.rateTupples = {};
 		this.allreadyComparedTuples = [];
-		this.ratePointer = 0;
+		this.ratePtr = 0;
 		this.elo = new EloRating();
 	},
 
 	getRateTupple: function() {
 
-		var ptr = this.ratePointer;
+		var pictures = this.get('pictures');
 
-		if (ptr >= this.get('pictures').length) return undefined;
+		if (--this.TEST_ROUNDS < 0) {
+			console.debug('[TestData] Rating done: ', this.rateTupples);
+			return undefined;
+		}
 
-		var one = this.get('pictures').at(ptr++);
-		var two = this.get('pictures').at(ptr++);
+		this.ratePtr = this.ratePtr % pictures.length;
 
-		this.ratePointer = ptr;
+		var one = pictures.at(this.ratePtr++);
+		var two = null;
+
+		var alreadyseen = true;
+		while (alreadyseen || one === two) {
+			two = pictures.at($.randomBetween(0, pictures.length));
+			if (two === undefined) continue;
+			alreadyseen = _.contains(this.allreadyComparedTuples, one.id+two.id);
+		}
+
+		this.allreadyComparedTuples.push(one.id+two.id);
+
 		console.debug('[TestData] Pair is ', one, ' and ', two);
+
 
 		return [one, two];
 
