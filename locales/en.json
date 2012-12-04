@@ -30,6 +30,11 @@
     		"posts": "Reading your wall posts..",
     		"privacy_settings": "Reading your privacy settings"
     	}
+    },
+
+    "select": {
+        "headline": "Collecting test data",
+        "description": "Please select the picture/post which is more private to you"
     }
 
   }

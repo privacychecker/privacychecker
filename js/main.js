@@ -14,10 +14,13 @@ var AppRouter = Backbone.Router.extend({
 
 		this.homeView = new HomeView();
 		this.collectView = new CollectView();
+		this.selectView = new SelectView();
 
 		this.player = FacebookPlayer.getInstance();
 		this.player.on("profile:loaded", _.bind(this.profileLoadedCb, this));
 		this.homeView.on("click:proceed", _.bind(this.startCollectCb, this));
+		this.collectView.on("collect:done", _.bind(this.selectEntitiesCb, this));
+		this.selectView.on("select:done", _.bind(this.guessListSizeCb, this));
 	},
 
 	home: function() {
@@ -26,18 +29,29 @@ var AppRouter = Backbone.Router.extend({
 	},
 
 	profileLoadedCb: function() {
-		console.log("Facebook Player is ready, enabling collect view");
+		console.log("[Controller] Facebook Player is ready, enabling collect view");
 		this.collectView.render();
 		$("#collect").html(this.collectView.el);
 	},
 
 	startCollectCb: function() {
+		console.log('[Controller] Starting to collect data');
 		this.player.getFriends();
+	},
+
+	selectEntitiesCb: function() {
+		console.log('[Controller] Starting Setup: Select most sensible entities');
+		this.selectView.render();
+		$("#select").html(this.selectView.el);
+	}, 
+
+	guessListSizeCb: function() {
+		console.log('[Controller] Starting Game #1: List Size Guess');
 	}
 
 });
 
-tpl.loadTemplates(['home', 'collect', 'header'],
+tpl.loadTemplates(['home', 'collect', 'select', 'header'],
 function () {
 	$("section.container").each(function(idx) {
 		$(this).width($(window).width());

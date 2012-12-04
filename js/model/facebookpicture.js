@@ -45,7 +45,9 @@ var PrivacyDefinition = Backbone.Model.extend({
 	}
 
 }, {
-	Level: ["ALL", "FOF", "FRIENDS", "ME"]
+	Level: {
+		"ALL": 0, "FOF": 1, "FRIENDS": 2, "ME":3
+	}
 });
 
 var FacebookPicture = Backbone.Model.extend({
@@ -97,7 +99,7 @@ var FacebookPicture = Backbone.Model.extend({
 					console.error("No privacy setting for picture " + this.get("id"));
 					return;
 				}
-
+				
 				// global visibilty
 				var level;
 				switch(response[0].value) {
@@ -139,7 +141,7 @@ var FacebookPicture = Backbone.Model.extend({
 	FB_FQL_VALUE_ALL: "ALL",
 	FB_FQL_VALUE_FOF: "FRIENDS_OF_FRIENDS",
 	FB_FQL_VALUE_FRIENDS: "ALL_FRIENDS",
-	FB_FQL_VALUE_ME: "ME",
+	FB_FQL_VALUE_ME: "SELF",
 	FB_FQL_ID_SEPERATOR: ", "
 });
 

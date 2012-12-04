@@ -238,7 +238,7 @@ var FacebookPlayer = Backbone.Model.extend({
 							});
 							pic.on('privacy', _.bind(function() {
 								if (--picturesNum === 0) {
-									console.log("[FacebookPlayer] Pictures of " + this.get("id") + ": ", this._pictures);
+									console.log("[FacebookPlayer] " + this._pictures.length + " Pictures of " + this.get("id") + ": ", this._pictures);
 									this.trigger("pictures:finished");
 								}
 							}, this));
