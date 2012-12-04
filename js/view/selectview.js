@@ -15,6 +15,7 @@ var SelectView = Backbone.View.extend({
 		$(this.el).html(this.template());
 
 		this.testData = TestData.getInstance();
+		$(this.el).find(this.PROGRESS_ID).html(this.testData.getCurrentRound() + '/' + this.testData.getMaxRounds());
 		this.next();
 
 		return this;
@@ -43,7 +44,8 @@ var SelectView = Backbone.View.extend({
 		if (this.currentPair !== undefined) {
 			console.log('[SelectView] Last comparision\'s winner was ', winner);
 			this.testData.setWinner(this.currentPair[0], this.currentPair[1], winner);
-			$(this.el).find(this.PROGRESS_ID).css("width", this.testData.getCurrentProgress() + "%");
+			$(this.el).find(this.PROGRESS_ID).css("width", this.testData.getCurrentRound() / this.testData.getMaxRounds() * 100 + "%");
+			$(this.el).find(this.PROGRESS_ID).html(this.testData.getCurrentRound() + '/' + this.testData.getMaxRounds());
 		}
 
 		this.currentPair = this.testData.getRateTupple();
@@ -61,6 +63,7 @@ var SelectView = Backbone.View.extend({
 
 		}
 		else {
+			$(this.el).find(this.PROGRESS_ID).first().parent().removeClass('active');
 			console.log('[SelectView] Selection done');
 			this.trigger('select:done');
 		}
