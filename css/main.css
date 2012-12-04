@@ -79,3 +79,36 @@ div.select-items > img {
  	height: auto;
 	max-height: 225px;
 }
+
+#guess1 > div > #question > p{
+	font-size: 18px;
+	display: inline;
+	color: rgb(80,80,80);
+}
+#guess1 > div > #question > p:before {
+	content: "\"";
+	color: rgb(180,180,180);
+	font-size: 30px;
+	font-family: 'IM Fell English', serif;
+}
+#guess1 > div > #question > p:after {
+	content: "\"";
+	color: rgb(180,180,180);
+	font-size: 30px;
+	font-family: 'IM Fell English', serif;
+}
+
+#guess1 > div > #question {
+	margin-bottom: 10px;
+}
+
+#guess1 > div > #response {
+	margin-bottom: 20px;
+	border: 0;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+
+

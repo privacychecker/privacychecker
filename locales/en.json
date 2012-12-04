@@ -35,6 +35,17 @@
     "select": {
         "headline": "Collecting test data",
         "description": "Please select the picture/post which is more private to you"
+    },
+
+    "listguess": {
+        "headline": "Time to guess!",
+        "question_friends": "How many friends do you have?",
+        "question_list": "How many members are in __listname__?",
+        "guess_results" : {
+            "high": "Too high",
+            "low": "Too low",
+            "correct": "Yeah correct"
+        }
     }
 
   }

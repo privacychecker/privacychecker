@@ -15,6 +15,7 @@ var AppRouter = Backbone.Router.extend({
 		this.homeView = new HomeView();
 		this.collectView = new CollectView();
 		this.selectView = new SelectView();
+		this.listGuessView = new ListGuessView();
 
 		this.player = FacebookPlayer.getInstance();
 		this.player.on("profile:loaded", _.bind(this.profileLoadedCb, this));
@@ -47,11 +48,13 @@ var AppRouter = Backbone.Router.extend({
 
 	guessListSizeCb: function() {
 		console.log('[Controller] Starting Game #1: List Size Guess');
+		this.listGuessView.render();
+		$('#guess1').html(this.listGuessView.el);
 	}
 
 });
 
-tpl.loadTemplates(['home', 'collect', 'select', 'header'],
+tpl.loadTemplates(['home', 'collect', 'select', 'listguess', 'header'],
 function () {
 	$("section.container").each(function(idx) {
 		$(this).width($(window).width());
