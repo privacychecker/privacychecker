@@ -4,10 +4,13 @@ var FacebookList = Backbone.Model.extend({
 		name: undefined,
 		id: undefined,
 		type: undefined,
-        members: undefined
-	},
+		members: undefined
+	}
 
-    initialize: function() {
-    }
+});
 
-})
+var FacebookListCollection = Backbone.Collection.extend({
+	
+	model: FacebookList
+	
+});

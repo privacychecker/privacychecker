@@ -60,8 +60,8 @@ var CollectView = Backbone.View.extend({
 
 			this.readPrivacySettings({
 				success: _.bind(function() {
-					this.PROGRESS_ID.first().parent().removeClass('active');
 					this.PROGRESS_ID.css("width", "100%");
+					this.PROGRESS_ID.first().parent().removeClass('active');
 					console.log("[CollectView] All done");
 					this.trigger("collect:done");
 				}, this)

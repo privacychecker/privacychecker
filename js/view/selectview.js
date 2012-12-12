@@ -28,7 +28,7 @@ var SelectView = Backbone.View.extend({
 			return $('<img>', {
 				src: item.get('source'),
 				title: item.get('name'),
-				class: 'img-rounded'
+				'class': 'img-rounded'
 			}).click(_.bind(function() {
 				this.next(item);
 			}, this));

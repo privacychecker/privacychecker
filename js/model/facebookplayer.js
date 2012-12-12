@@ -26,7 +26,7 @@ var FacebookPlayer = Backbone.Model.extend({
 	},
 
 	initialize: function() {
-		console.log("New FacebookPlayer");
+		console.log("[FacebookPlayer] New FacebookPlayer");
 
 		FB.Event.subscribe('auth.authResponseChange', _.bind(this._authResponseChangeCb, this));
 
@@ -37,6 +37,7 @@ var FacebookPlayer = Backbone.Model.extend({
 		});
 
 		this._initEventFired = false;
+		this.set('results', new TestResultCollection());
 
 		setTimeout(_.bind(function() {
 			if (!this._initEventFired) {
@@ -168,7 +169,7 @@ var FacebookPlayer = Backbone.Model.extend({
 			}
 
 			// parse all friends
-			this._friendlists = new FacebookUserCollection(_.map(response.data, _.bind(function(list) {
+			this._friendlists = new FacebookListCollection(_.map(response.data, _.bind(function(list) {
 				var lid = list.id;
 				//console.debug("Parsing friendlist", lid, list);
 
