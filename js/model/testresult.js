@@ -15,7 +15,7 @@ var TestResult = Backbone.Model.extend({
 
 }, {
 	Type: {
-		UNKNOWN: 0, LISTGUESS: 1, ITEMGUESS: 2, HANGMAN: 3
+		UNKNOWN: 0, LISTGUESS: 1, ENTITYUESS: 2, HANGMAN: 3
 	}
 });
 

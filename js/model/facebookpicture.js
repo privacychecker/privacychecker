@@ -46,7 +46,7 @@ var PrivacyDefinition = Backbone.Model.extend({
 
 }, {
 	Level: {
-		"ALL": 0, "FOF": 1, "FRIENDS": 2, "ME":3
+		"ALL": 0, "FOF": 1, "FRIENDS": 2, "ME": 3, "NOBODY": 4
 	}
 });
 
@@ -115,6 +115,9 @@ var FacebookPicture = Backbone.Model.extend({
 					case FacebookPicture.FB_FQL_VALUE_ME:
 						level = PrivacyDefinition.Level.ME;
 						break;
+					case FacebookPicture.FB_FQL_VALUE_NOBODY:
+						level = PrivacyDefinition.Level.NOBODY;
+						break;
 				}
 
 				this.get("privacy").set("level", level);
@@ -142,6 +145,7 @@ var FacebookPicture = Backbone.Model.extend({
 	FB_FQL_VALUE_FOF: "FRIENDS_OF_FRIENDS",
 	FB_FQL_VALUE_FRIENDS: "ALL_FRIENDS",
 	FB_FQL_VALUE_ME: "SELF",
+	FB_FQL_VALUE_NOBODY: "NOBODY",
 	FB_FQL_ID_SEPERATOR: ", "
 });
 

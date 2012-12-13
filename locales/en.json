@@ -46,6 +46,14 @@
             "low": "Too low",
             "correct": "Yeah correct"
         }
+    },
+
+    "entityguess": {
+        "headline": "What do you think? How many person can see the following item?",
+        "guess_results" : {
+            "wrong": "Nope, that's wrong",
+            "correct": "Yeah correct"
+        }
     }
 
   }
