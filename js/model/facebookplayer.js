@@ -1,7 +1,7 @@
 var FacebookPlayer = Backbone.Model.extend({
 
 	STATUS_LOGGED_IN: "connected",
-	FB_SCOPE: "email, user_likes, user_photos, user_relationships, user_status, user_videos, read_friendlists, read_stream, friends_about_me",
+	FB_SCOPE: "email, user_groups, user_events, user_likes, user_photos, user_relationships, user_status, user_videos, read_friendlists, read_stream, friends_about_me",
 	FB_ME_URL: "/me?fields=id,name,gender,locale",
 	FB_FRIENDS_URL: "/me/friends?fields=id,name",
 	FB_FRIENDLIST_URL: "/me/friendlists/?fields=members.fields(id),id,name",
@@ -137,6 +137,26 @@ var FacebookPlayer = Backbone.Model.extend({
 			this.trigger("friends:finished");
 
 		}, this));
+	},
+
+	getForeigners: function() {
+		if (this._foreigners === undefined) {
+			this._loadForeigners();
+			return undefined;
+		}
+
+		return this._foreigners;
+	},
+
+	_loadForeigners: function() {
+		var frc = FacebookRandomCollector.getInstance();
+		this.trigger("random:start");
+		frc.on('frc:done', _.bind(function(users) {
+			this._foreigners = users;
+			console.log("[FacebookPlayer] Foreigners of " + this.get("id") + ": ", this._foreigners);
+			this.trigger("random:finished");
+		}, this));
+		frc.collect();
 	},
 
 	getFriendLists: function() {

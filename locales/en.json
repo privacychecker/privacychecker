@@ -28,6 +28,7 @@
             "lists": "Reading your friendlists..",
     		"pictures": "Reading your pictures..",
     		"posts": "Reading your wall posts..",
+            "foreigners": "Searching some foreigners..",
     		"privacy_settings": "Reading your privacy settings"
     	}
     },

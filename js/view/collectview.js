@@ -2,6 +2,7 @@ var CollectView = Backbone.View.extend({
 
 	FRIENDS_ID: "#collect-friends",
 	LISTS_ID: "#collect-lists",
+	FOREIGNER_ID: "#collect-foreigners",
 	PICTURES_ID: "#collect-pictures",
 	POSTS_ID: "#collect-posts",
 	SETTINGS_ID: "#collect-settings",
@@ -12,7 +13,7 @@ var CollectView = Backbone.View.extend({
 	ERROR_CONTENT: "<i class=\"icon-remove\"></i>",
 
 	collected: [],
-	_tocollect: 5,
+	_tocollect: 6,
 
 	initialize: function() {
 		console.log("Init: CollectView");
@@ -26,6 +27,10 @@ var CollectView = Backbone.View.extend({
 		this.player.on("friends:start", _.bind(this.fbLoadFriendsStartCb, this));
 		this.player.on("friends:error", _.bind(this.fbLoadFriendsErrorCb, this));
 		this.player.on("friends:finished", _.bind(this.fbLoadFriendsFinishedCb, this));
+
+		this.player.on("random:start", _.bind(this.fbLoadRandomStartCb, this));
+		this.player.on("random:error", _.bind(this.fbLoadRandomErrorCb, this));
+		this.player.on("random:finished", _.bind(this.fbLoadRandomFinishedCb, this));
 
 		this.player.on("friendlist:start", _.bind(this.fbLoadFriendlistStartCb, this));
 		this.player.on("friendlist:error", _.bind(this.fbLoadFriendlistErrorCb, this));
@@ -49,12 +54,13 @@ var CollectView = Backbone.View.extend({
 		this.POSTS_ID = $(this.el).find(this.POSTS_ID);
 		this.SETTINGS_ID = $(this.el).find(this.SETTINGS_ID);
 		this.PROGRESS_ID = $(this.el).find(this.PROGRESS_ID);
+		this.FOREIGNER_ID = $(this.el).find(this.FOREIGNER_ID);
 
 		return this;
 	},
 
 	validateCollectionDb: function() {
-		if (_.contains(this.collected, "friends") && _.contains(this.collected, "lists")
+		if (_.contains(this.collected, "friends") && _.contains(this.collected, "lists") && _.contains(this.collected, "foreigners")
 			&& _.contains(this.collected, "pictures") && _.contains(this.collected, "posts")) {
 			console.log("[CollectView] All data collected", this.collected);
 
@@ -104,6 +110,22 @@ var CollectView = Backbone.View.extend({
 		this.player.getFriendLists();
 		this.player.getPictures();
 		this.player.getPosts();
+		this.player.getForeigners();
+	},
+
+	fbLoadRandomStartCb: function() {
+		this.FOREIGNER_ID.append(this.WORKING_CONTENT);
+	},
+
+	fbLoadRandomErrorCb: function() {
+		this.FOREIGNER_ID.append(this.ERROR_CONTENT);
+	},
+
+	fbLoadRandomFinishedCb: function() {
+		this.collected.push("foreigners");
+		this.FOREIGNER_ID.append(this.DONE_CONTENT);
+		this.trigger("collected:new");
+		this.PROGRESS_ID.css("width", this.collected.length / this._tocollect * 100 + "%");
 	},
 
 	fbLoadFriendlistStartCb: function() {
