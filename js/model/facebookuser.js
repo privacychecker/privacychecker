@@ -10,10 +10,16 @@ var FacebookUser = Backbone.Model.extend({
 			throw new Exception("Invalid user (id or name missing)");
 		}
 
+		if (!friend.type) this.set("type", FacebookUser.Type.FRIEND);
+
 		this.set("id", friend.id);
 		this.set("name", friend.name);
 	}
 
+}, {
+	Type: {
+		FRIEND: 0, FOREIGNER: 1
+	}
 });
 
 var FacebookUserCollection = Backbone.Collection.extend({

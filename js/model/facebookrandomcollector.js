@@ -51,7 +51,7 @@ var FacebookRandomCollector = Backbone.Model.extend({
 				if (group.members.data && group.members.data.length > 0) {
 					_.each(group.members.data, function(member) {
 						if (player.getFriends().get(member.id) === undefined) {
-							cb.users.add({name: member.name, id: member.id});
+							cb.users.add({name: member.name, id: member.id, type: FacebookUser.Type.FOREIGNER});
 						}
 					});
 				}
@@ -84,7 +84,7 @@ var FacebookRandomCollector = Backbone.Model.extend({
 					_.each(event.attending.data, function(attendee) {
 
 						if (player.getFriends().get(attendee.id) === undefined)
-							cb.users.add({name: attendee.name, id: attendee.id});
+							cb.users.add({name: attendee.name, id: attendee.id, type: FacebookUser.Type.FOREIGNER});
 					});
 				}
 
@@ -93,7 +93,7 @@ var FacebookRandomCollector = Backbone.Model.extend({
 						_.each(event.maybe.data, function(maybee) {
 
 							if (player.getFriends().get(maybee.id) === undefined)
-								cb.users.add({name: maybee.name, id: maybee.id});
+								cb.users.add({name: maybee.name, id: maybee.id, type: FacebookUser.Type.FOREIGNER});
 						});
 					}
 				}
@@ -103,7 +103,7 @@ var FacebookRandomCollector = Backbone.Model.extend({
 						_.each(event.invited.data, function(invitee) {
 
 							if (player.getFriends().get(invitee.id) === undefined)
-								cb.users.add({name: invitee.name, id: invitee.id});
+								cb.users.add({name: invitee.name, id: invitee.id, type: FacebookUser.Type.FOREIGNER});
 						});
 					}
 				}
@@ -113,7 +113,7 @@ var FacebookRandomCollector = Backbone.Model.extend({
 						_.each(event.declined.data, function(declinee) {
 
 							if (player.getFriends().get(declinee.id) === undefined)
-								cb.users.add({name: declinee.name, id: declinee.id});
+								cb.users.add({name: declinee.name, id: declinee.id, type: FacebookUser.Type.FOREIGNER});
 						});
 					}
 				}

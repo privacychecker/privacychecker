@@ -17,6 +17,7 @@ var AppRouter = Backbone.Router.extend({
 		this.selectView = new SelectView();
 		this.listGuessView = new ListGuessView();
 		this.entityGuessView = new EntityGuessView();
+		this.hangmanView = new HangmanView();
 
 		this.player = FacebookPlayer.getInstance();
 		this.player.on("profile:loaded", _.bind(this.profileLoadedCb, this));
@@ -24,6 +25,7 @@ var AppRouter = Backbone.Router.extend({
 		this.collectView.on("collect:done", _.bind(this.selectEntitiesCb, this));
 		this.selectView.on("select:done", _.bind(this.guessListSizeCb, this));
 		this.listGuessView.on("listguessview:done", _.bind(this.guessEntitySizeCb, this));
+		this.entityGuessView.on("entityguessview:done", _.bind(this.hangmanStartCb, this));
 	},
 
 	home: function() {
@@ -58,11 +60,17 @@ var AppRouter = Backbone.Router.extend({
 		console.log('[Controller] Starting Game #2: Entity Size Guess');
 		this.entityGuessView.render();
 		$('#guess2').html(this.entityGuessView.el);
+	},
+
+	hangmanStartCb: function() {
+		console.log('[Controller] Starting Game #3: Hangman');
+		this.hangmanView.render();
+		$('#hangman').html(this.hangmanView.el);
 	}
 
 });
 
-tpl.loadTemplates(['home', 'collect', 'select', 'listguess', 'entityguess', 'header'],
+tpl.loadTemplates(['home', 'collect', 'select', 'listguess', 'entityguess', 'hangman', 'header'],
 function () {
 	$("section.container").each(function(idx) {
 		$(this).width($(window).width());

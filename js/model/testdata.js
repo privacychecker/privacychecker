@@ -91,8 +91,10 @@ var TestData = Backbone.Model.extend({
 
 		while (i-- > 0) {
 			var pic = availablePics.at($.randomBetween(0, availablePics.length));
+			if (pic === undefined);
 
-			if (!_.contains(pickedPics, pic)) pickedPics.push(pic);
+			if (pic !== undefined && pic.get('privacy').get('level') !== PrivacyDefinition.Level.NOBODY &&
+				!pickedPics.contains(pic)) pickedPics.push(pic);
 			else ++i;
 		}
 

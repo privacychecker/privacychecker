@@ -2,7 +2,7 @@ var PrivacyDefinition = Backbone.Model.extend({
 
 	defaults: {
 		level: undefined,
-		exclude: [], //id
+		exclude: [], // simple id array
 		include: []
 	},
 
@@ -32,16 +32,17 @@ var PrivacyDefinition = Backbone.Model.extend({
 			}, this));
 		}
 
-		//console.debug('[PrivacyDefinition] After: ', this.get('exclude'), this.get('include'));
+		var plainExclude = this.get('exclude');
+		var plainInclude = this.get('include');
 
-	},
+		var includeCollection = new FacebookUserCollection(plainInclude);
+		var excludeCollection = new FacebookUserCollection(plainExclude);
 
-	isAllowed: function(id) {
-		return _.contains(this.get('include'), id);
-	},
+		this.set('exclude', excludeCollection);
+		this.set('include', includeCollection);
 
-	isDenied: function(id) {
-		return _.contains(this.get('exclude'), id);
+		//console.debug('[PrivacyDefinition] Definition for item: ', this.get('exclude'), this.get('include'));
+
 	}
 
 }, {

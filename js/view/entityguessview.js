@@ -198,6 +198,8 @@ var EntityGuessView = Backbone.View.extend({
 			case PrivacyDefinition.Level.NOBODY:
 				upper = 0;
 				lower = 0;
+				
+				break;
 
 			default:
 				throw new Error({message: "Invalid privacy type: " + privacy.get('level')});
