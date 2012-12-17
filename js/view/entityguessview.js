@@ -103,20 +103,17 @@ var EntityGuessView = Backbone.View.extend({
 
 		var response = $(this.el).find(this.RESPONSE_FIELD_ID).val();
 		var correctV = this.currentQuestion.is;
+		var item = this.currentQuestion.item;
 
 		if (!$.isNumeric(response)) return false;
 
 		var responseI = parseInt(response);
 
-		var message;
-		if (this.currentQuestion.range.inRange(responseI)) message = i18n.t(this.LANG_GUESS_CORRECT);
-		else message = i18n.t(this.LANG_GUESS_WRONG);
-
 		var result = new TestResult({
 			is: responseI,
 			was: this.currentQuestion.range,
 			type: TestResult.Type.ENTITYGUESS,
-			message: message
+			item: item
 		});
 
 		console.debug('[ListGuessView] Question result was ', result);

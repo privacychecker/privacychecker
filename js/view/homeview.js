@@ -37,7 +37,7 @@ var HomeView = Backbone.View.extend({
 			$(this.el).find(this.PROCEED_ID).hide();
 			$(this.el).find(this.RESET_ID).hide();
 			$(this.el).find(this.LOGIN_ID).show();
-			$(this.el).find(this.LOADING_ID).hide();			
+			$(this.el).find(this.LOADING_ID).hide();
 		}
 		else {
 			$(this.el).find(this.PROCEED_ID).hide();
@@ -65,7 +65,7 @@ var HomeView = Backbone.View.extend({
 
 	fbProceedClickDb: function() {
 		this.trigger("click:proceed");
-		$('#collect')[0].scrollIntoView(true);
+		//$('#collect')[0].scrollIntoView(true);
 	},
 
 	fbLoginChangeCb: function(status) {

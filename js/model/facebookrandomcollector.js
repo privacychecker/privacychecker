@@ -50,7 +50,7 @@ var FacebookRandomCollector = Backbone.Model.extend({
 			_.each(response.data, function(group) {
 				if (group.members.data && group.members.data.length > 0) {
 					_.each(group.members.data, function(member) {
-						if (player.getFriends().get(member.id) === undefined) {
+						if (player.id !== member.id && player.getFriends().get(member.id) === undefined) {
 							cb.users.add({name: member.name, id: member.id, type: FacebookUser.Type.FOREIGNER});
 						}
 					});

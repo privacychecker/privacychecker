@@ -1,13 +1,14 @@
 var HangmanView = Backbone.View.extend({
 
 	ITEM_PLACEHOLDER_ID: "div#entity",
+	LIST_PLACEHOLDER_ID: "div#userlist",
 	PROGRESS_ID: "div#hangman-progress",
 
 	FB_IMAGE_BASE_URL: "https://graph.facebook.com/<%- uid %>/picture?type=square",
 
 	MAX_WRONG_ITEMS: 7,
-	WRONG_ITEMS: 10,
-	CORRECT_ITEMS: 10,
+	WRONG_ITEMS: 15,
+	CORRECT_ITEMS: 15,
 
 	initialize: function() {
 		console.log("[HangmanView] Init: HangmanView");
@@ -102,6 +103,7 @@ var HangmanView = Backbone.View.extend({
 			selectable.add(user);
 
 			var uimg = _.template(this.FB_IMAGE_BASE_URL)({uid: user.id});
+			var qItem = this.currentQuestion.item;
 
 			var that = this;
 			var userLi = $('<li>').data({
@@ -120,11 +122,12 @@ var HangmanView = Backbone.View.extend({
 					$this.addClass('wrong');
 					selectedWrong.add(user);
 
-					if (that.MAX_WRONG_ITEMS < selectedWrong.length) {
+					if (that.MAX_WRONG_ITEMS <= selectedWrong.length) {
 						var result = new TestResult({
 							is: [selectedWrong, selectedCorrect],
 							was: selectable,
-							type: TestResult.Type.HANGMAN
+							type: TestResult.Type.HANGMAN,
+							item: qItem
 						});
 
 						FacebookPlayer.getInstance().get('results').add(result);
@@ -141,7 +144,8 @@ var HangmanView = Backbone.View.extend({
 					var result = new TestResult({
 						is: [selectedWrong, selectedCorrect],
 						was: selectable,
-						type: TestResult.Type.HANGMAN
+						type: TestResult.Type.HANGMAN,
+						item: qItem
 					});
 
 					FacebookPlayer.getInstance().get('results').add(result);
@@ -155,7 +159,7 @@ var HangmanView = Backbone.View.extend({
 			var userImg = $('<img>', {
 				src: uimg
 			});
-			var userSpan = $('<span>', {
+			var userSpan = $('<div>', {
 				html: user.get('name')
 			});
 
@@ -171,8 +175,10 @@ var HangmanView = Backbone.View.extend({
 			.css("width", this.askedQuestions / this.questionsLength * 100 + "%")
 			.html(this.askedQuestions + '/' + this.questionsLength);
 
+		$(this.el).find(this.LIST_PLACEHOLDER_ID).fadeOut('fast');
 		$(this.el).find(this.ITEM_PLACEHOLDER_ID).fadeOut('fast', _.bind(function() {
 			$(this.el).find(this.ITEM_PLACEHOLDER_ID).empty().append(item).fadeIn('fast');
+			$(this.el).find(this.LIST_PLACEHOLDER_ID).empty().append(userUl).fadeIn('fast');
 			this.askedQuestions++;
 		}, this));
 
@@ -200,7 +206,6 @@ var HangmanView = Backbone.View.extend({
 	_getWrongUsers: function(item) {
 
 		var list = new FacebookUserCollection();
-		var i = 0;
 
 		var privacy = item.get('privacy');
 		var level = privacy.get('level');
@@ -214,7 +219,7 @@ var HangmanView = Backbone.View.extend({
 			case PrivacyDefinition.Level.FRIENDS:
 			case PrivacyDefinition.Level.ME:
 
-				while(i < this.WRONG_ITEMS) {
+				while(list.length < this.WRONG_ITEMS) {
 					var user = undefined;
 					if (exclude.length > 0 && $.randomBetween(0,1) === 0) {
 						user = exclude.at($.randomBetween(0, exclude.length));
@@ -226,6 +231,24 @@ var HangmanView = Backbone.View.extend({
 					if (user === undefined || (list.contains(user) && include.contains(user))) continue;
 
 					list.add(user);
+				}
+
+			break;
+
+			case PrivacyDefinition.Level.CUSTOM:
+
+				var i = 0;
+				while(list.length < this.CORRECT_ITEMS) {
+					var user = undefined;
+					if (exclude.length > 0) {
+						user = exclude.at($.randomBetween(0, include.length));
+					}
+
+					if (exclude.length <= i) break;
+					
+					if (user === undefined || (list.contains(user) && include.contains(user))) continue;
+
+					list.add(user);
 					i++;
 				}
 
@@ -233,13 +256,12 @@ var HangmanView = Backbone.View.extend({
 
 			case PrivacyDefinition.Level.ALL:
 
-				while(i < this.WRONG_ITEMS && exclude.length > i) {
+				while(list.length < this.WRONG_ITEMS && exclude.length > list.length) {
 					var user = exclude.at($.randomBetween(0, exclude.length));
 
 					if (user === undefined || (list.contains(user) && include.contains(user))) continue;
 
 					list.add(user);
-					i++;
 				}
 
 			break;
@@ -255,7 +277,6 @@ var HangmanView = Backbone.View.extend({
 	_getCorrectUsers: function(item) {
 
 		var list = new FacebookUserCollection();
-		var i = 0;
 
 		var privacy = item.get('privacy');
 		var level = privacy.get('level');
@@ -270,7 +291,7 @@ var HangmanView = Backbone.View.extend({
 			case PrivacyDefinition.Level.FOF:
 			case PrivacyDefinition.Level.ME:
 
-				while(i < this.CORRECT_ITEMS) {
+				while(list.length < this.CORRECT_ITEMS) {
 					var user = undefined;
 					if (include.length > 0 && $.randomBetween(0,1) === 0) {
 						user = include.at($.randomBetween(0, include.length));
@@ -282,6 +303,24 @@ var HangmanView = Backbone.View.extend({
 					if (user === undefined || (list.contains(user) && exclude.contains(user))) continue;
 
 					list.add(user);
+				}
+
+			break;
+
+			case PrivacyDefinition.Level.CUSTOM:
+
+				var i = 0;
+				while(list.length < this.CORRECT_ITEMS) {
+					var user = undefined;
+					if (include.length > 0) {
+						user = include.at($.randomBetween(0, include.length));
+					}
+
+					if (include.length <= i) break;
+					
+					if (user === undefined || (list.contains(user) && exclude.contains(user))) continue;
+
+					list.add(user);
 					i++;
 				}
 
@@ -289,7 +328,7 @@ var HangmanView = Backbone.View.extend({
 
 			case PrivacyDefinition.Level.ALL:
 
-				while(i < this.CORRECT_ITEMS) {
+				while(list.length < this.CORRECT_ITEMS) {
 					var user = undefined;
 					var coinflip = $.randomBetween(0,2);
 					if (include.length > 0 && coinflip === 0) {
@@ -305,7 +344,6 @@ var HangmanView = Backbone.View.extend({
 					if (user === undefined || (list.contains(user) && exclude.contains(user))) continue;
 
 					list.add(user);
-					i++;
 				}
 
 			break;
