@@ -58,7 +58,7 @@
     },
 
     "hangman": {
-        "headline": "Please select the people which can see the following items."
+        "headline": "Who can see the following item?"
     },
 
     "result": {
