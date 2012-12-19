@@ -84,7 +84,7 @@ var CollectView = Backbone.View.extend({
 		this.player.getPictures().each(_.bind(function(picture) {
 
 			//console.debug("[CollectView] Finalizing privacy settings for picture: ", picture);
-			picture.validatePrivacy(this.player.getFriendLists());
+			picture.validatePrivacy(this.player.getFriends(), this.player.getFriendLists());
 
 		}, this));
 

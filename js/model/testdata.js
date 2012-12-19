@@ -87,14 +87,15 @@ var TestData = Backbone.Model.extend({
 
 		var availablePics = this.player.getPictures();
 		var pickedPics = new FacebookPictureCollection();
-		var i = this.MAX_INIT_ITEMS;
+		var i = availablePics.length < this.MAX_INIT_ITEMS ? availablePics.length : this.MAX_INIT_ITEMS;
+
+		console.debug('[TestData] availablePics ' + availablePics.length + ' to pick ' + i);
 
 		while (i-- > 0) {
-			var pic = availablePics.at($.randomBetween(0, availablePics.length));
-			if (pic === undefined);
+			var pic = availablePics.at($.randomBetween(0, availablePics.length-1));
 
 			if (pic !== undefined && pic.get('privacy').get('level') !== PrivacyDefinition.Level.NOBODY &&
-				!pickedPics.contains(pic)) pickedPics.push(pic);
+				!pickedPics.contains(pic)) pickedPics.add(pic);
 			else ++i;
 		}
 

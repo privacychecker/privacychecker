@@ -2,46 +2,58 @@ var PrivacyDefinition = Backbone.Model.extend({
 
 	defaults: {
 		level: undefined,
+		excludeList: [],
+		includeList: [],
 		exclude: [], // simple id array
 		include: []
 	},
 
-	flattenLists: function(lists) {
+	flattenLists: function(friends, lists) {
 		//console.debug('[PrivacyDefinition] Flattening lists with ', lists);
 
 		//console.debug('[PrivacyDefinition] Before: ', this.get('exclude'), this.get('include'));
+		//
+		console.debug('[PrivacyDefinition] plain lists are: ', this.get('excludeList'), this.get('includeList'));
 
-		if (this.get('exclude').length > 0 || this.get('include').length > 0) {
+		this.set('exclude', new FacebookUserCollection());
+		this.set('include', new FacebookUserCollection());
+
+		if (this.get('excludeList').length > 0 || this.get('includeList').length > 0) {
 			lists.each(_.bind(function(list) {
 
-				var listid = list.get('id');
-				// enabling this output slows down the browser massivly!
-				// console.debug('[PrivacyDefinition] list #' + listid + '(Models: ', list.get('members').models, ')');
+				var listname = list.get('name');
 
-				if (_.contains(this.get('exclude'), listid)) {
-					console.log('[PrivacyDefinition] Exclude list contains this list, replacing with listmembers');
-					this.set('exclude', _.without(this.get('exclude'), listid));
-					this.set('exclude', _.union(this.get('exclude'), list.get('members').models));
+				// enabling this output slows down the browser massivly!
+				//console.debug('[PrivacyDefinition] list ' + listname, _.contains(this.get('excludeList'), listname), _.contains(this.get('includeList'), listname));
+
+				if (_.contains(this.get('excludeList'), listname)) {
+					console.log('[PrivacyDefinition] Exclude id contains this list, replacing with listmembers');
+					this.get('exclude').add(list.get('members').models);
 				}
 
-				if (_.contains(this.get('include'), listid)) {
-					console.log('[PrivacyDefinition] Include list contains this list, replacing with listmembers');
-					this.set('include', _.without(this.get('include'), listid));
-					this.set('include', _.union(this.get('include'), list.get('members').models));
+				if (_.contains(this.get('includeList'), listname)) {
+					console.log('[PrivacyDefinition] Include id contains this list, replacing with listmembers');
+					this.get('include').add(list.get('members').models);
+				}
+			}, this));
+
+			friends.each(_.bind(function(friend) {
+
+				var friendname = friend.get('name');
+
+				if (_.contains(this.get('excludeList'), friendname)) {
+					console.log('[PrivacyDefinition] Exclude id contains friend, replacing.');
+					this.get('exclude').add(friend);
+				}
+
+				if (_.contains(this.get('includeList'), friendname)) {
+					console.log('[PrivacyDefinition] Include id contains friend, replacing.');
+					this.get('include').add(friend);
 				}
 			}, this));
 		}
 
-		var plainExclude = this.get('exclude');
-		var plainInclude = this.get('include');
-
-		var includeCollection = new FacebookUserCollection(plainInclude);
-		var excludeCollection = new FacebookUserCollection(plainExclude);
-
-		this.set('exclude', excludeCollection);
-		this.set('include', includeCollection);
-
-		//console.debug('[PrivacyDefinition] Definition for item: ', this.get('exclude'), this.get('include'));
+		console.debug('[PrivacyDefinition] Definition for item: ', this.get('exclude'), this.get('include'));
 
 	}
 
@@ -75,8 +87,8 @@ var FacebookPicture = Backbone.Model.extend({
 	},
 
 	// we need to convert all list ids to friend ids
-	validatePrivacy: function(friendlists) {
-		this.get('privacy').flattenLists(friendlists);
+	validatePrivacy: function(friends, friendlists) {
+		this.get('privacy').flattenLists(friends, friendlists);
 	},
 
 	_getPrivacy: function() {
@@ -128,12 +140,30 @@ var FacebookPicture = Backbone.Model.extend({
 
 				this.get("privacy").set("level", level);
 
-				if (!_.isNull(response[0].allow)) {
-					this.get("privacy").set("include", response[0].allow.split(FacebookPicture.FB_FQL_ID_SEPERATOR));
-				}
+				var description = response[0].description;
+				if (!_.isNull(description)) {
 
-				if (!_.isNull(response[0].deny)) {
-					this.get("privacy").set("exclude", response[0].deny.split(FacebookPicture.FB_FQL_ID_SEPERATOR));
+					var excludeList = [], includeList = [], split;
+
+					if (description.match(FacebookPicture.FB_FQL_TWOLIST_SEPERATOR)) {
+						split = description.split(FacebookPicture.FB_FQL_TWOLIST_SEPERATOR);
+						includeList = split[0].split(FacebookPicture.FB_FQL_NAME_SEPERATOR);
+						excludeList = split[1].split(FacebookPicture.FB_FQL_NAME_SEPERATOR);
+					}
+
+					else if (description.match(FacebookPicture.FB_FQL_EXCEPT_SEPERATOR)) {
+						excludeList =
+							description.replace(FacebookPicture.B_FQL_EXCEPT_SEPERATOR, '').split(FacebookPicture.FB_FQL_NAME_SEPERATOR);
+					}
+
+					else {
+						includeList =
+							description.split(FacebookPicture.FB_FQL_NAME_SEPERATOR);
+					}
+
+					this.get("privacy").set("excludeList", excludeList);
+					this.get("privacy").set("includeList", includeList);
+
 				}
 
 				this.trigger('privacy');
@@ -146,14 +176,16 @@ var FacebookPicture = Backbone.Model.extend({
 	}
 
 }, {
-	FB_FQL_QUERY: "SELECT value,allow,deny,owner_id,friends FROM privacy WHERE id = ",
+	FB_FQL_QUERY: "SELECT value,description,owner_id,friends FROM privacy WHERE id = ",
 	FB_FQL_VALUE_ALL: "ALL",
 	FB_FQL_VALUE_FOF: "FRIENDS_OF_FRIENDS",
 	FB_FQL_VALUE_FRIENDS: "ALL_FRIENDS",
 	FB_FQL_VALUE_ME: "SELF",
 	FB_FQL_VALUE_NOBODY: "NOBODY",
 	FB_FQL_VALUE_CUSTOM: "CUSTOM",
-	FB_FQL_ID_SEPERATOR: ", "
+	FB_FQL_NAME_SEPERATOR: ", ",
+	FB_FQL_TWOLIST_SEPERATOR: /; Except: /,
+	FB_FQL_EXCEPT_SEPERATOR: /Except: /
 });
 
 var FacebookPictureCollection = Backbone.Collection.extend({
