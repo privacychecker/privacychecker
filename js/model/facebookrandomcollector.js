@@ -23,7 +23,7 @@ var FacebookRandomCollector = Backbone.Model.extend({
 					min: min,
 
 					done: _.bind(function(users) {
-						this.trigger('frc:done', [users]);
+						this.trigger('frc:done', users);
 					}, this),
 
 					more: _.bind(function(users) {
@@ -34,7 +34,7 @@ var FacebookRandomCollector = Backbone.Model.extend({
 							min: min,
 
 							done: _.bind(function(users) {
-								this.trigger('frc:done', [users]);
+								this.trigger('frc:done', users);
 							}, this),
 
 							more: _.bind(function(users) {
