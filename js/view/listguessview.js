@@ -27,16 +27,27 @@ var ListGuessView = Backbone.View.extend({
 
 		this.questions.push({
 			type: ListGuessView.QuestionType.ALL,
-			is: this.player.getFriends().length
+			is: this.player.getFriends().length,
+			name: 'Freunde'
 		});
 
-		this.player.getFriendLists().each(_.bind(function(list) {
-			if (this.questions.length + 1 > this.MAX_QUESTIONS) return;
+		var i = 1;
+		var lists = this.player.getFriendLists();
+
+		while (i <= this.MAX_QUESTIONS) {
+			var list = lists.at($.randomBetween(0, lists.length));
+			if (list === undefined) continue;
+
 			this.questions.push({
 				type: ListGuessView.QuestionType.LIST,
 				is: list.get('members').length,
 				name: list.get('name')
 			});
+			i++;
+		}
+		this.player.getFriendLists().each(_.bind(function(list) {
+			if (this.questions.length + 1 > this.MAX_QUESTIONS) return;
+			
 		}, this));
 
 		this.questionsLength = this.questions.length;
@@ -109,21 +120,22 @@ var ListGuessView = Backbone.View.extend({
 
 		var response = $(this.el).find(this.RESPONSE_FIELD_ID).val();
 		var correctV = this.currentQuestion.is;
+		var listname = this.currentQuestion.name;
 
 		if (!$.isNumeric(response)) return false;
 
 		var responseI = parseInt(response);
 
-		var message;
-		if (responseI > correctV) message = i18n.t(this.LANG_GUESS_HIGH);
-		else if (responseI == correctV) message = i18n.t(this.LANG_GUESS_CORRECT);
-		else if (responseI < correctV) message = i18n.t(this.LANG_GUESS_LOW);
+		// var message;
+		// if (responseI > correctV) message = i18n.t(this.LANG_GUESS_HIGH);
+		// else if (responseI == correctV) message = i18n.t(this.LANG_GUESS_CORRECT);
+		// else if (responseI < correctV) message = i18n.t(this.LANG_GUESS_LOW);
 
 		var result = new TestResult({
 			is: responseI,
 			was: correctV,
 			type: TestResult.Type.LISTGUESS,
-			message: message
+			message: listname
 		});
 
 		console.debug('[ListGuessView] Question result was ', result);

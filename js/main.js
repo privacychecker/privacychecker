@@ -18,6 +18,7 @@ var AppRouter = Backbone.Router.extend({
 		this.listGuessView = new ListGuessView();
 		this.entityGuessView = new EntityGuessView();
 		this.hangmanView = new HangmanView();
+		this.resultView = new ResultView();
 
 		this.player = FacebookPlayer.getInstance();
 		this.player.on("profile:loaded", _.bind(this.profileLoadedCb, this));
@@ -26,51 +27,59 @@ var AppRouter = Backbone.Router.extend({
 		this.selectView.on("select:done", _.bind(this.guessListSizeCb, this));
 		this.listGuessView.on("listguessview:done", _.bind(this.guessEntitySizeCb, this));
 		this.entityGuessView.on("entityguessview:done", _.bind(this.hangmanStartCb, this));
+		this.hangmanView.on("hangmanview:done", _.bind(this.showResultsCb, this));
 	},
 
 	home: function() {
 		this.homeView.render();
-		$("#welcome").html(this.homeView.el);
+		$("#work").html(this.homeView.el);
 	},
 
 	profileLoadedCb: function() {
 		console.log("[Controller] Facebook Player is ready, enabling collect view");
-		this.collectView.render();
-		$("#collect").html(this.collectView.el);
 	},
 
 	startCollectCb: function() {
 		console.log('[Controller] Starting to collect data');
+		this.collectView.render();
+		$("#work").html(this.collectView.el);
 		this.player.getFriends();
 	},
 
 	selectEntitiesCb: function() {
 		console.log('[Controller] Starting Setup: Select most sensible entities');
 		this.selectView.render();
-		$("#select").html(this.selectView.el);
-	}, 
+		$("#work").html(this.selectView.el);
+	},
 
 	guessListSizeCb: function() {
 		console.log('[Controller] Starting Game #1: List Size Guess');
 		this.listGuessView.render();
-		$('#guess1').html(this.listGuessView.el);
+		$('#work').html(this.listGuessView.el);
 	},
 
 	guessEntitySizeCb: function() {
 		console.log('[Controller] Starting Game #2: Entity Size Guess');
 		this.entityGuessView.render();
-		$('#guess2').html(this.entityGuessView.el);
+		$('#work').html(this.entityGuessView.el);
 	},
 
 	hangmanStartCb: function() {
 		console.log('[Controller] Starting Game #3: Hangman');
 		this.hangmanView.render();
-		$('#hangman').html(this.hangmanView.el);
+		$('#work').html(this.hangmanView.el);
+	},
+
+	showResultsCb: function() {
+		console.log('[Controller] Showing results');
+		this.resultView.render();
+		$('#work').html(this.resultView.el);
+		this.resultView.renderResults();
 	}
 
 });
 
-tpl.loadTemplates(['home', 'collect', 'select', 'listguess', 'entityguess', 'hangman', 'header'],
+tpl.loadTemplates(['home', 'collect', 'select', 'listguess', 'entityguess', 'hangman', 'result', 'header'],
 function () {
 	$("section.container").each(function(idx) {
 		$(this).width($(window).width());

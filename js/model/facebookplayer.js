@@ -257,13 +257,22 @@ var FacebookPlayer = Backbone.Model.extend({
 								width: photo.width,
 								height: photo.height
 							});
+							var err = false;
 							pic.on('privacy', _.bind(function() {
 								if (--picturesNum === 0) {
 									console.log("[FacebookPlayer] " + this._pictures.length + " Pictures of " + this.get("id") + ": ", this._pictures);
 									this.trigger("pictures:finished");
 								}
 							}, this));
-							return pic;
+							pic.on('privacy-error', _.bind(function() {
+								if (--picturesNum === 0) {
+									console.log("[FacebookPlayer] " + this._pictures.length + " Pictures of " + this.get("id") + ": ", this._pictures);
+									this.trigger("pictures:finished");
+								}
+								err = true;
+							}, this));
+							
+							if (!err) return pic;
 						}
 						catch(e) {
 							console.error("[FacebookPlayer] Error creating FacebookPicture: ", e);

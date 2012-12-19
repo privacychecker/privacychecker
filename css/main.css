@@ -16,10 +16,6 @@ footer {
 	left: 1px;
 }
 
-p {
-	width: 70%;
-}
-
 div.navbar-inner > div.container {
 	width: 800px;
 }
@@ -80,36 +76,44 @@ div.select-items > img {
 	max-height: 225px;
 }
 
-#guess1 > div {
+#work > div {
 	width: 100%;
 }
 
-#guess1 > div > #question > p{
+#work > div > #question > p{
 	font-size: 20px;
 	display: inline;
 	color: rgb(80,80,80);
 	font-family: 'IM Fell English', serif;
 }
-#guess1 > div > #question > p:before {
+#work > div > #question > p:before {
 	content: "\"";
 	color: rgb(180,180,180);
 	font-size: 30px;
 	font-family: 'IM Fell English', serif;
 }
-#guess1 > div > #question > p:after {
+#work > div > #question > p:after {
 	content: "\"";
 	color: rgb(180,180,180);
 	font-size: 30px;
 	font-family: 'IM Fell English', serif;
 }
 
-#guess1 > div > #question {
+#work > div > #question {
 	margin-bottom: 10px;
 	float: left;
 	margin-right: 30px;
 }
 
-#guess1 > div > #response {
+.object-centered {
+	max-width: 600px;
+	max-height: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+}
+
+input.response {
 	margin-bottom: 20px;
 	border: 0;
 	-webkit-border-radius: 5px;
@@ -122,5 +126,51 @@ div.select-items > img {
 	text-align: center;
 }
 
+div#userlist > ul {
+	margin-top: 15px;
+	list-style-type: none;
+}
 
+div#userlist > ul > li {
+	float: left;
+	width: 200px;
+	margin: 5px;
+	background-color: rgb(255,255,255);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 5px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+li.correct {
+	background-color: #0f0 !important;
+	cursor: normal !important;
+}
+
+li.wrong {
+	background-color: #f00 !important;
+	cursor: normal !important;
+}
+
+div#userlist > ul > li > img {
+}
+
+div#userlist > ul > li > div {
+	text-overflow: ellipsis;
+	width: 140px;
+	white-space: nowrap;
+	overflow:hidden; 
+	float: right;
+	margin-top: 17px;
+}
+
+/* hangman */
+div#userlist {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 720px;
+}
 

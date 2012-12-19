@@ -2,7 +2,7 @@
   "app": {
 
   	"common": {
-
+        "nameless_item": "Nameless Item"
   	},
 
     "header": {
@@ -58,7 +58,23 @@
     },
 
     "hangman": {
-        "headline": "Please select the people which can see the following items."
+        "headline": "Who can see the following item?"
+    },
+
+    "result": {
+        "headline": "Your results:",
+        "result1": {
+            "headline": "Game #1: __listspercent__% were correct!",
+            "advice": "Try to reorganize your lists or delete some friends if you have too many"
+        },
+        "result2": {
+            "headline": "Game #2: __listspercent__% were correct!",
+            "advice": "Try to make smaller groups or delete some friends if you have too many"
+        },
+        "result3": {
+            "headline": "Game #3: You won __numwon__ of __numgames__!",
+            "wrong_users_prefix": "Wrong users were: "
+        }
     }
 
   }

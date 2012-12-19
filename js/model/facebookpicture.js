@@ -47,7 +47,7 @@ var PrivacyDefinition = Backbone.Model.extend({
 
 }, {
 	Level: {
-		"ALL": 0, "FOF": 1, "FRIENDS": 2, "ME": 3, "NOBODY": 4
+		"ALL": 0, "FOF": 1, "FRIENDS": 2, "ME": 3, "NOBODY": 4, "CUSTOM": 5
 	}
 });
 
@@ -92,12 +92,14 @@ var FacebookPicture = Backbone.Model.extend({
 				if (!response || response.length != 1) {
 					this.set("privacy", false);
 					console.error("Unable to get privacy settings for picture " + this.get("id"));
+					this.trigger('privacy-error');
 					return;
 				}
 
 				if (!response[0].value) {
 					this.set("privacy", false);
 					console.error("No privacy setting for picture " + this.get("id"));
+					this.trigger('privacy-error');
 					return;
 				}
 				
@@ -118,6 +120,9 @@ var FacebookPicture = Backbone.Model.extend({
 						break;
 					case FacebookPicture.FB_FQL_VALUE_NOBODY:
 						level = PrivacyDefinition.Level.NOBODY;
+						break;
+					case FacebookPicture.FB_FQL_VALUE_CUSTOM:
+						level = PrivacyDefinition.Level.CUSTOM;
 						break;
 				}
 
@@ -147,6 +152,7 @@ var FacebookPicture = Backbone.Model.extend({
 	FB_FQL_VALUE_FRIENDS: "ALL_FRIENDS",
 	FB_FQL_VALUE_ME: "SELF",
 	FB_FQL_VALUE_NOBODY: "NOBODY",
+	FB_FQL_VALUE_CUSTOM: "CUSTOM",
 	FB_FQL_ID_SEPERATOR: ", "
 });
 
