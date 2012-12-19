@@ -186,7 +186,9 @@ var FacebookRandomCollector = Backbone.Model.extend({
 	FB_FRIEND_FEED_URL: '/?fields=feed.limit(100).fields(likes.fields(id,name),comments.fields(from))', // ID as first
 	FB_SEARCH_URL: '/search?type=user&limit=10&q=',
 
-	USER_TO_SEARCH: ['hans', 'michael', 'christian', 'fritz', 'max', 'simon', 'paul', 'nina', 'anna', 'nicole', 'claudia', 'lisa'],
+	USER_TO_SEARCH: ['hans', 'michael', 'christian', 'fritz', 'max', 'simon', 'paul', 'nina', 'anna', 'nicole', 'claudia', 'lisa',
+					'miriam', 'franz', 'sophie', 'stefan', 'hannes', 'malte', 'klaus', 'yvonne', 'kathrin', 'katharina', 'rainer',
+					'mark', 'dieter', 'horst', 'josef', 'magda', 'sarah'],
 
 	DEFAULT_MIN: 200,
 
