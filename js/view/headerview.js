@@ -1,18 +1,12 @@
 var HeaderView = Backbone.View.extend({
 
-	PLAYER_CONTAINER_ID: "li#header-player",
-	FACEBOOK_BASE_URL: "https://facebook.com/",
-
 	initialize: function() {
 		console.log("[HeaderView] Init: HeaderView");
-		this.template = Handlebars.compile(tpl.get("header"));
 
 		FacebookPlayer.getInstance().on("profile:loaded", _.bind(this.fbPlayerProfileLoadedCb, this));
 	},
 
 	render: function(eventName) {
-		$(this.el).html(this.template());
-		$(this.el).find(this.PLAYER_CONTAINER_ID).hide();
 		return this;
 	},
 
@@ -20,13 +14,23 @@ var HeaderView = Backbone.View.extend({
 		console.log("[HeaderView] fbPlayerProfileLoadedCb - updating view");
 
 		var player = FacebookPlayer.getInstance();
-		var el = $(this.el).find(this.PLAYER_CONTAINER_ID);
+		var container = $(document).find(HeaderView.PLAYER_INFO_SELECTOR);
 
-		el.find("a").html(player.get("name"));
-		el.find("a").attr("href", this.FACEBOOK_BASE_URL + player.get("id"));
-		el.find("a").css("background-image", "url(" + player.get("picture") + ")");
+		var name = player.get("name");
+		var image = HeaderView.PLAYER_IMAGE_SRC({uid: player.get("id")});
 
-		$(this.el).find(this.PLAYER_CONTAINER_ID).fadeIn(800);
+		var inject = $('<span>', {
+			"html": name
+		});
+
+		container.fadeOut('fast', function() {
+			container.remove('span').append(inject).fadeIn('fast');
+		});
 	}
+
+}, {
+
+	PLAYER_INFO_SELECTOR: ".player",
+	PLAYER_IMAGE_SRC: _.template("https://graph.facebook.com/<%= uid %>/picture")
 
 });

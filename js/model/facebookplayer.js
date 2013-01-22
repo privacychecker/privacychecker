@@ -74,7 +74,7 @@ var FacebookPlayer = Backbone.Model.extend({
 	_authResponseChangeCb: function(resp) {
 		var oldLoggedIn = this.loggedin;
 
-		if (!resp.status) return;
+		if (resp === undefined || !resp.status) return;
 
 		if (resp.status == this.STATUS_LOGGED_IN) this.loggedin = true;
 		else this.loggedin = false;

@@ -1,17 +1,5 @@
 var CollectView = Backbone.View.extend({
 
-	FRIENDS_ID: "#collect-friends",
-	LISTS_ID: "#collect-lists",
-	FOREIGNER_ID: "#collect-foreigners",
-	PICTURES_ID: "#collect-pictures",
-	POSTS_ID: "#collect-posts",
-	SETTINGS_ID: "#collect-settings",
-	PROGRESS_ID: "#collect-progress",
-
-	WORKING_CONTENT: "<i class=\"icon-time\"></i>",
-	DONE_CONTENT: "<i class=\"icon-ok\"></i>",
-	ERROR_CONTENT: "<i class=\"icon-remove\"></i>",
-
 	collected: [],
 	_tocollect: 6,
 
@@ -48,26 +36,28 @@ var CollectView = Backbone.View.extend({
 	render: function(eventName) {
 		$(this.el).html(this.template());
 
-		this.FRIENDS_ID = $(this.el).find(this.FRIENDS_ID);
-		this.LISTS_ID = $(this.el).find(this.LISTS_ID);
-		this.PICTURES_ID = $(this.el).find(this.PICTURES_ID);
-		this.POSTS_ID = $(this.el).find(this.POSTS_ID);
-		this.SETTINGS_ID = $(this.el).find(this.SETTINGS_ID);
-		this.PROGRESS_ID = $(this.el).find(this.PROGRESS_ID);
-		this.FOREIGNER_ID = $(this.el).find(this.FOREIGNER_ID);
+		$(this.el).find(CollectView.COLLECT_BTN_ID).click(_.bind(this.startCollectCb, this));
 
 		return this;
 	},
 
+	startCollectCb: function() {
+		console.log('[CollectView] Starting to collect users data');
+
+		// set button loading and start collecting friends
+		$(this.el).find(CollectView.COLLECT_BTN_ID).button('loading').html(i18n.t(CollectView.LANG_BTN_LOADING)).prop('disabled', true);
+		this.player.getFriends();
+	},
+
 	validateCollectionDb: function() {
+		ProgressBar.getInstance().subto(this.collected.length, this._tocollect);
+
 		if (_.contains(this.collected, "friends") && _.contains(this.collected, "lists") && _.contains(this.collected, "foreigners")
 			&& _.contains(this.collected, "pictures") && _.contains(this.collected, "posts")) {
 			console.log("[CollectView] All data collected", this.collected);
 
 			this.readPrivacySettings({
 				success: _.bind(function() {
-					this.PROGRESS_ID.css("width", "100%");
-					this.PROGRESS_ID.first().parent().removeClass('active');
 					console.log("[CollectView] All done");
 					this.trigger("collect:done");
 				}, this)
@@ -78,7 +68,6 @@ var CollectView = Backbone.View.extend({
 	},
 
 	readPrivacySettings: function(cb) {
-		this.SETTINGS_ID.append(this.WORKING_CONTENT);
 
 		console.log("[CollectView] Transforming privacy ids from pictures to user ids");
 		this.player.getPictures().each(_.bind(function(picture) {
@@ -88,24 +77,18 @@ var CollectView = Backbone.View.extend({
 
 		}, this));
 
-		this.SETTINGS_ID.append(this.DONE_CONTENT);
-
 		cb.success();
 	},
 
 	fbLoadFriendsStartCb: function() {
-		this.FRIENDS_ID.append(this.WORKING_CONTENT);
 	},
 
 	fbLoadFriendsErrorCb: function() {
-		this.FRIENDS_ID.append(this.ERROR_CONTENT);
 	},
 
 	fbLoadFriendsFinishedCb: function() {
 		this.collected.push("friends");
-		this.FRIENDS_ID.append(this.DONE_CONTENT);
 		this.trigger("collected:new");
-		this.PROGRESS_ID.css("width", this.collected.length / this._tocollect * 100 + "%");
 
 		this.player.getFriendLists();
 		this.player.getPictures();
@@ -114,63 +97,53 @@ var CollectView = Backbone.View.extend({
 	},
 
 	fbLoadRandomStartCb: function() {
-		this.FOREIGNER_ID.append(this.WORKING_CONTENT);
 	},
 
 	fbLoadRandomErrorCb: function() {
-		this.FOREIGNER_ID.append(this.ERROR_CONTENT);
 	},
 
 	fbLoadRandomFinishedCb: function() {
 		this.collected.push("foreigners");
-		this.FOREIGNER_ID.append(this.DONE_CONTENT);
 		this.trigger("collected:new");
-		this.PROGRESS_ID.css("width", this.collected.length / this._tocollect * 100 + "%");
 	},
 
 	fbLoadFriendlistStartCb: function() {
-		this.LISTS_ID.append(this.WORKING_CONTENT);
 	},
 
 	fbLoadFriendlistErrorCb: function() {
-		this.LISTS_ID.append(this.ERROR_CONTENT);
 	},
 
 	fbLoadFriendlistFinishedCb: function() {
 		this.collected.push("lists");
-		this.LISTS_ID.append(this.DONE_CONTENT);
 		this.trigger("collected:new");
-		this.PROGRESS_ID.css("width", this.collected.length / this._tocollect * 100 + "%");
 	},
 
 	fbLoadPicturesStartCb: function() {
-		this.PICTURES_ID.append(this.WORKING_CONTENT);
 	},
 
 	fbLoadPicturesErrorCb: function() {
-		this.PICTURES_ID.append(this.ERROR_CONTENT);
 	},
 
 	fbLoadPicturesFinishedCb: function() {
 		this.collected.push("pictures");
-		this.PICTURES_ID.append(this.DONE_CONTENT);
 		this.trigger("collected:new");
-		this.PROGRESS_ID.css("width", this.collected.length / this._tocollect * 100 + "%");
 	},
 
 	fbLoadPostsStartCb: function() {
-		this.POSTS_ID.append(this.WORKING_CONTENT);
 	},
 
 	fbLoadPostsErrorCb: function() {
-		this.POSTS_ID.append(this.ERROR_CONTENT);
 	},
 
 	fbLoadPostsFinishedCb: function() {
 		this.collected.push("posts");
-		this.POSTS_ID.append(this.DONE_CONTENT);
 		this.trigger("collected:new");
-		this.PROGRESS_ID.css("width", this.collected.length / this._tocollect * 100 + "%");
 	}
+
+}, {
+
+	COLLECT_BTN_ID: 'button.trigger-collect',
+
+	LANG_BTN_LOADING: 'app.collect.next_button_loading'
 
 });

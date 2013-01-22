@@ -94,7 +94,7 @@ var FacebookRandomCollector = Backbone.Model.extend({
 
 			_.each(response.data, function(event) {
 
-				if (event.attending.data && event.attending.data.length > 0) {
+				if (event.attending && event.attending.data && event.attending.data.length > 0) {
 					_.each(event.attending.data, function(attendee) {
 
 						if (player.getFriends().get(attendee.id) === undefined)
@@ -103,7 +103,7 @@ var FacebookRandomCollector = Backbone.Model.extend({
 				}
 
 				if (cb.users.length < cb.min) {
-					if (event.maybe.data && event.maybe.data.length > 0) {
+					if (event.maybe && event.maybe.data && event.maybe.data.length > 0) {
 						_.each(event.maybe.data, function(maybee) {
 
 							if (player.getFriends().get(maybee.id) === undefined)
@@ -113,7 +113,7 @@ var FacebookRandomCollector = Backbone.Model.extend({
 				}
 
 				if (cb.users.length < cb.min) {
-					if (event.invited.data && event.invited.data.length > 0) {
+					if (event.invited && event.invited.data && event.invited.data.length > 0) {
 						_.each(event.invited.data, function(invitee) {
 
 							if (player.getFriends().get(invitee.id) === undefined)
@@ -123,7 +123,7 @@ var FacebookRandomCollector = Backbone.Model.extend({
 				}
 
 				if (cb.users.length < cb.min) {
-					if (event.declined.data && event.declined.data.length > 0) {
+					if (event.declined && event.declined.data && event.declined.data.length > 0) {
 						_.each(event.declined.data, function(declinee) {
 
 							if (player.getFriends().get(declinee.id) === undefined)

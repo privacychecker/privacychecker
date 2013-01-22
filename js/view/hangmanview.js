@@ -1,11 +1,5 @@
 var HangmanView = Backbone.View.extend({
 
-	ITEM_PLACEHOLDER_ID: "div#entity",
-	LIST_PLACEHOLDER_ID: "div#userlist",
-	PROGRESS_ID: "div#hangman-progress",
-
-	FB_IMAGE_BASE_URL: "https://graph.facebook.com/<%- uid %>/picture?type=square",
-
 	MAX_WRONG_ITEMS: 7,
 	WRONG_ITEMS: 15,
 	CORRECT_ITEMS: 15,
@@ -14,10 +8,25 @@ var HangmanView = Backbone.View.extend({
 		console.log("[HangmanView] Init: HangmanView");
 		this.template = Handlebars.compile(tpl.get("hangman"));
 		this.currentQuestion = undefined;
+
+		this.on('next', _.bind(this.nextCb, this));
+		this.on('died', _.bind(this.diedCb, this));
 	},
 
 	render: function(eventName) {
 		$(this.el).html(this.template());
+
+		// container for preloading the image
+		this.container = $('<img>', {
+			src: 'img/loader.gif',
+			crossOrigin: ''
+		}).css({
+			display: 'none',
+			position: 'absolute',
+			left: '0px',
+			top: '0px'
+		});
+		$('body').append(this.container);
 
 		this.player = FacebookPlayer.getInstance();
 
@@ -26,18 +35,15 @@ var HangmanView = Backbone.View.extend({
 		_.each(TestData.getInstance().get('data'), _.bind(function(item) {
 
 			if (item instanceof FacebookPicture) {
-				//try {
-					var wrong = this._getWrongUsers(item);
-					var correct = this._getCorrectUsers(item);
-					this.questions.push({
-						correct: correct,
-						wrong: wrong,
-						item: item
-					});
-				//}
-				//catch(e) {
-				//	console.error("Caught exception while creating item: ", e);
-				//}
+				var wrong = this._getWrongUsers(item);
+				var correct = this._getCorrectUsers(item);
+				this.questions.push({
+					correct: correct,
+					wrong: wrong,
+					item: item,
+					selectedWrong: new FacebookUserCollection(),
+					selectedCorrect: new FacebookUserCollection()
+				});
 			}
 			else {
 				console.error("Unknown item for guess game");
@@ -56,14 +62,48 @@ var HangmanView = Backbone.View.extend({
 		return this;
 	},
 
+	nextCb: function() {
+		console.debug('next triggered');
+
+		var result = new TestResult({
+			is: this.currentQuestion,
+			was: HangmanView.RESULT.WON,
+			type: TestResult.Type.HANGMAN
+		});
+
+		console.debug('[HangmanView] Question result was ', result);
+		this.player.get('results').add(result);
+
+		new OverlayInfo({
+			text: i18n.t(HangmanView.LANG_GAME_WON),
+			click: _.bind(this.next, this)
+		}).show();
+
+	},
+
+	diedCb: function() {
+		console.debug('died triggered');
+
+		var result = new TestResult({
+			is: this.currentQuestion,
+			was: HangmanView.RESULT.LOST,
+			type: TestResult.Type.HANGMAN
+		});
+
+		console.debug('[HangmanView] Question result was ', result);
+		this.player.get('results').add(result);
+
+		new OverlayInfo({
+			text: i18n.t(HangmanView.LANG_GAME_LOST),
+			click: _.bind(this.next, this)
+		}).show();
+	},
+
 	next: function() {
 
 		this.currentQuestion = this.questions.shift();
 
 		if (this.currentQuestion === undefined) {
-
-			$(this.el).find(this.PROGRESS_ID).css("width", "100%").html(this.askedQuestions + '/' + this.questionsLength);
-			$(this.el).find(this.PROGRESS_ID).first().parent().removeClass('active');
 
 			console.debug('[HangmanView] Game finished');
 			this.trigger('hangmanview:done');
@@ -72,134 +112,150 @@ var HangmanView = Backbone.View.extend({
 		
 		console.debug('[HangmanView] Current entity: ', this.currentQuestion);
 
-		var item = this._createObject(this.currentQuestion);
+		// question answered do progress
+		ProgressBar.getInstance().subto(this.askedQuestions, this.questionsLength);
 
-		var userUl = $('<ul>');
-		item.after(userUl);
+		var item = this.currentQuestion.item;
 
-		var remaining = this.CORRECT_ITEMS;
-		var selectedWrong = new FacebookUserCollection();
-		var selectedCorrect = new FacebookUserCollection();
-		var selectable = new FacebookUserCollection();
+		$(this.el).find(HangmanView.USERLIST_CONTAINER_ID).fadeOut('fast');
+		$(this.el).find(HangmanView.IMAGE_CONTAINER).unbind('click').fadeOut('fast', _.bind(function() {
 
-		while(true) {
+			$(this.el).find(HangmanView.IMAGE_CONTAINER).css('background-image', 'url(' + EstimateView.LOADER_GIF_SRC + ')').fadeIn('fast');
 
-			var user = undefined;
-			var correct = true;
-			if ($.randomBetween(0,1) === 0 && this.currentQuestion.wrong.length > 0) {
-				user = this.currentQuestion.wrong.shift();
-				correct = false;
-			}
-			else if (this.currentQuestion.correct.length > 0) {
-				user = this.currentQuestion.correct.shift();
-			}
+			var dominantColor = HangmanView.DEFAULT_COLOR,
+				loaded = [];
 
-			if (user === undefined) {
-				user = this.currentQuestion.wrong.shift();
-				correct = false;
-			}
-			if (user === undefined) user = this.currentQuestion.correct.shift();
+			$(this.container).attr('src', item.get('source')).bind('load', _.bind(function(event) {
 
-			selectable.add(user);
-
-			var uimg = _.template(this.FB_IMAGE_BASE_URL)({uid: user.id});
-			var qItem = this.currentQuestion.item;
-
-			var that = this;
-			var userLi = $('<li>').data({
-				user: user,
-				correct: correct
-			}).click(function () {
-				var $this = $(this);
-				var correct = $this.data('correct');
-				var user = $this.data('user');
-
-				console.log('[HangmanView] Player selected', (correct ? 'correct' : 'wrong'), 'user: ', user);
-				$this.fadeTo('fast', 0.4);
-				$this.unbind('click');
-
-				if (!correct) {
-					$this.addClass('wrong');
-					selectedWrong.add(user);
-
-					if (that.MAX_WRONG_ITEMS <= selectedWrong.length) {
-						var result = new TestResult({
-							is: [selectedWrong, selectedCorrect],
-							was: selectable,
-							type: TestResult.Type.HANGMAN,
-							item: qItem
-						});
-
-						FacebookPlayer.getInstance().get('results').add(result);
-						console.log('[HangmanView] Player died:', result);
-						that.next();
-					}
-					return;
+				// get dominant color and hope that it works (webkit based browser rndly fail)
+				try {
+						dominantColor = getDominantColor(event.target);
+				}
+				catch(e) {
+					console.error('[HangmanView] Error getting dominant color, using default:', e);
 				}
 
-				$this.addClass('correct');
-				selectedCorrect.add(user);
+				// remove load event
+				$(this.container).unbind();
 
-				if (--remaining === 0) {
-					var result = new TestResult({
-						is: [selectedWrong, selectedCorrect],
-						was: selectable,
-						type: TestResult.Type.HANGMAN,
-						item: qItem
+				// image is now loaded, replace and add events
+				$(this.el).find(HangmanView.IMAGE_CONTAINER).unbind('click').fadeOut('fast', _.bind(function() {
+
+					// clear container and set name
+					$(this.el).find(HangmanView.IMAGE_CONTAINER + ' ' + HangmanView.INFO_CONTAINER)
+						.empty()
+						.html(item.get('name'))
+						.fadeIn('fast');
+		
+					// finally change image to correct one
+					$(this.el).find(HangmanView.IMAGE_CONTAINER).
+						css('background-image', 'url(' + item.get('source') + ')')
+						.fadeIn('fast');
+
+					// fancy background animation
+					$(HangmanView.BACKGROUND_SELECTOR).transition({
+						"background-color": 'rgb(' + dominantColor.join(',') + ')'
 					});
 
-					FacebookPlayer.getInstance().get('results').add(result);
-					console.log('[HangmanView] Game done, next hangman:', result);
-					that.next();
-				}
-				else
-					console.debug('[HangmanView] Remaining correct items: ', remaining);
-			});
+					// create userlist
+					this._creatUserList(this.currentQuestion);
 
-			var userImg = $('<img>', {
-				src: uimg
-			});
-			var userSpan = $('<div>', {
-				html: user.get('name')
-			});
-
-			userUl.append(userLi.append(userImg).append(userSpan));
-
-			if (this.currentQuestion.wrong.length <= 0 && this.currentQuestion.correct.length <= 0) break;
-
-		}
-
-		console.debug('[HangmanView] Created object: ', item);
-
-		$(this.el).find(this.PROGRESS_ID)
-			.css("width", this.askedQuestions / this.questionsLength * 100 + "%")
-			.html(this.askedQuestions + '/' + this.questionsLength);
-
-		$(this.el).find(this.LIST_PLACEHOLDER_ID).fadeOut('fast');
-		$(this.el).find(this.ITEM_PLACEHOLDER_ID).fadeOut('fast', _.bind(function() {
-			$(this.el).find(this.ITEM_PLACEHOLDER_ID).empty().append(item).fadeIn('fast');
-			$(this.el).find(this.LIST_PLACEHOLDER_ID).empty().append(userUl).fadeIn('fast');
-			this.askedQuestions++;
+					// we have successfully asked this question
+					this.askedQuestions++;
+				}, this));
+			}, this));
 		}, this));
 
 	},
 
-	_createObject: function(question) {
+	_creatUserList: function(question) {
 
-		var item = question.item;
+		var container = $(this.el).find(HangmanView.USERLIST_CONTAINER_ID).empty().fadeIn('fast');
+		var correct = question.correct;
+		var wrong = question.wrong;
 
-		if (item instanceof FacebookPicture) {
+		console.debug('[HangmanView] Creating userlist for item', question);
+		var numWrongs = 0;
 
-			return $('<img>', {
-				src: item.get('source'),
-				title: item.get('name'),
-				'class': 'img-rounded'
+		for(var i = 0; i < HangmanView.MAX_USERS; ++i) {
+
+			var user, itemType;
+			// 1 = get wrong user unless wrong user threeshold reached AND there are correct users left
+			if ($.randomBetween(0,1) && (correct.length !== 0 && numWrongs * HangmanView.MAX_WRONG_PERCENTAGE < HangmanView.MAX_USERS)) {
+				user = wrong.shift();
+				numWrongs++;
+				itemType = false;
+			}
+			else {
+				// we can only find correct user if there are some
+				user = correct.shift();
+				itemType = true;
+			}
+
+			console.debug("[HangmanView] Selected user", user);
+
+			var userLi = $('<li>').hide(),
+				that = this;
+			userLi.addClass('user');
+			// attach data to element
+			userLi.data({
+				user: user,
+				correct: itemType
 			});
+			userLi.tooltip({
+				title: user.get('name'),
+				placement: 'right'
+			});
+			userLi.click(function() {
+				that._validateclick(this);
+			});
+			userLi.css('background-image', 'url(' + _.template(HangmanView.FB_IMAGE_BASE_URL)({uid: user.id}) + ')');
+
+			container.append(userLi);
+			userLi.delay(i * HangmanView.USERLIST_DELAY_MODIFIER).fadeIn('slow');
 
 		}
-		else if (item instanceof FacebookPost) {
 
+		console.debug('[HangmanView] Userlist created');
+
+	},
+
+	_validateclick: function(item) {
+
+		var $item = $(item);
+		var container = $(this.el).find(HangmanView.USERLIST_CONTAINER_ID);
+
+		var correct = $item.data('correct');
+		var user = $item.data('user');
+
+		console.log('[HangmanView] Player selected ', user, ' which is ', correct);
+
+		var statusEl = $('<div>');
+		$item.addClass('done').append(statusEl);
+
+		if (correct) {
+			statusEl.addClass('correct');
 		}
+		// user select wrong item hangman +1
+		else {
+			statusEl.addClass('wrong');
+			if (this.currentQuestion.selectedWrong.add(user).length > HangmanView.DIE_AFTER_NUM) {
+				this.trigger('died');
+				return;
+			}
+		}
+
+		$item.unbind('click');
+
+		// try to find remaing items
+		var notdone = false;
+		container.children('li:not(.done)').each(function(idx, el) {
+			var $el = $(el);
+			if (!$el.hasClass('done') && $el.data('correct')) notdone = true;
+		});
+
+		// if there are no remaing items trigger next one
+		if (!notdone) this.trigger('next');
 
 	},
 
@@ -355,5 +411,30 @@ var HangmanView = Backbone.View.extend({
 		return list;
 
 	}
+
+}, {
+
+	USERLIST_CONTAINER_ID: '.userlist',
+	IMAGE_CONTAINER: '.image',
+	INFO_CONTAINER: '.image .info',
+
+	FB_IMAGE_BASE_URL: "https://graph.facebook.com/<%- uid %>/picture?width=80&height=80",
+
+	BACKGROUND_SELECTOR: '.carousel .item.active .background',
+	DEFAULT_COLOR: [59,89,152],
+	USERLIST_DELAY_MODIFIER: 50,
+
+	LOADER_GIF_SRC: 'img/loader.gif',
+
+	DIE_AFTER_NUM: 7,
+	MAX_USERS: 20,
+	MAX_WRONG_PERCENTAGE: 0.5,
+
+	RESULT: {
+		WON: 0, LOST: 1
+	},
+
+	LANG_GAME_LOST: "app.hangman.lost",
+	LANG_GAME_WON: "app.hangman.won"
 
 });

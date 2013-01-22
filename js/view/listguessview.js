@@ -1,20 +1,8 @@
 var ListGuessView = Backbone.View.extend({
 
-	QUESTION_FIELD_ID: "div#question",
-	RESPONSE_FIELD_ID: "input#response",
-	PROGRESS_ID: "div#guess1-progress",
-
-	LANG_QUESTION_FRIEND: 'app.listguess.question_friends',
-	LANG_QUESTION_LIST: 'app.listguess.question_list',
-	LANG_GUESS_HIGH: 'app.listguess.guess_results.high',
-	LANG_GUESS_LOW: 'app.listguess.guess_results.low',
-	LANG_GUESS_CORRECT: 'app.listguess.guess_results.correct',
-
-	MAX_QUESTIONS: 5,
-
 	initialize: function() {
 		console.log("[ListGuessView] Init: ListGuessView");
-		this.template = Handlebars.compile(tpl.get("listguess"));
+		this.template = Handlebars.compile(tpl.get("guess"));
 		this.currentQuestion = undefined;
 	},
 
@@ -34,7 +22,7 @@ var ListGuessView = Backbone.View.extend({
 		var i = 1;
 		var lists = this.player.getFriendLists();
 
-		while (i <= this.MAX_QUESTIONS) {
+		while (i <= ListGuessView.MAX_QUESTIONS) {
 			var list = lists.at($.randomBetween(0, lists.length));
 			if (list === undefined) continue;
 
@@ -61,7 +49,11 @@ var ListGuessView = Backbone.View.extend({
 			}
 		}, this);
 
-		$(this.el).find(this.RESPONSE_FIELD_ID).keypress(this.keypressCb);
+		$(this.el).find(ListGuessView.RESPONSE_FIELD_ID).keypress(this.keypressCb);
+		$(this.el).find(ListGuessView.ENTER_FIELD_ID).click(_.bind(function() {
+			if (this._evaluateResponse())
+				this.next();
+		}, this));
 
 		console.debug('[ListGuessView] ' + this.questions.length + " questions");
 
@@ -75,10 +67,8 @@ var ListGuessView = Backbone.View.extend({
 		this.currentQuestion = this.questions.shift();
 
 		if (this.currentQuestion === undefined) {
-			$(this.el).find(this.RESPONSE_FIELD_ID).unbind('keypress', this.keypressCb);
-
-			$(this.el).find(this.PROGRESS_ID).css("width", "100%").html(this.askedQuestions + '/' + this.questionsLength);
-			$(this.el).find(this.PROGRESS_ID).first().parent().removeClass('active');
+			$(this.el).find(ListGuessView.RESPONSE_FIELD_ID).unbind('keypress', this.keypressCb).prop('disabled', true);
+			$(this.el).find(ListGuessView.ENTER_FIELD_ID).unbind('click').prop('disabled', true);
 
 			console.debug('[ListGuessView] Game finished');
 			this.trigger('listguessview:done');
@@ -88,10 +78,10 @@ var ListGuessView = Backbone.View.extend({
 		var questionText = null;
 		switch(this.currentQuestion.type) {
 			case ListGuessView.QuestionType.ALL:
-				questionText = i18n.t(this.LANG_QUESTION_FRIEND);
+				questionText = i18n.t(ListGuessView.LANG_QUESTION_FRIEND);
 				break;
 			case ListGuessView.QuestionType.LIST:
-				questionText = i18n.t(this.LANG_QUESTION_LIST, {
+				questionText = i18n.t(ListGuessView.LANG_QUESTION_LIST, {
 					listname: this.currentQuestion.name
 				});
 				break;
@@ -99,18 +89,10 @@ var ListGuessView = Backbone.View.extend({
 		
 		console.debug('[ListGuessView] Current question: ' + questionText);
 
-		var question = $('<p>', {
-			html: questionText
-		});
-
-		$(this.el).find(this.PROGRESS_ID)
-			.css("width", this.askedQuestions / this.questionsLength * 100 + "%")
-			.html(this.askedQuestions + '/' + this.questionsLength);
-
-		$(this.el).find(this.RESPONSE_FIELD_ID).fadeOut('fast');
-		$(this.el).find(this.QUESTION_FIELD_ID).fadeOut('fast', _.bind(function() {
-			$(this.el).find(this.QUESTION_FIELD_ID).empty().append(question).fadeIn('fast');
-			$(this.el).find(this.RESPONSE_FIELD_ID).val('').fadeIn('fast');
+		$(this.el).fadeOut('fast', _.bind(function() {
+			$(this.el).find(ListGuessView.QUESTION_FIELD_ID).empty().html(questionText);
+			$(this.el).find(ListGuessView.RESPONSE_FIELD_ID).val('');
+			$(this.el).fadeIn('fast');
 			this.askedQuestions++;
 		}, this));
 
@@ -118,7 +100,7 @@ var ListGuessView = Backbone.View.extend({
 
 	_evaluateResponse: function() {
 
-		var response = $(this.el).find(this.RESPONSE_FIELD_ID).val();
+		var response = $(this.el).find(ListGuessView.RESPONSE_FIELD_ID).val();
 		var correctV = this.currentQuestion.is;
 		var listname = this.currentQuestion.name;
 
@@ -126,27 +108,32 @@ var ListGuessView = Backbone.View.extend({
 
 		var responseI = parseInt(response);
 
-		// var message;
-		// if (responseI > correctV) message = i18n.t(this.LANG_GUESS_HIGH);
-		// else if (responseI == correctV) message = i18n.t(this.LANG_GUESS_CORRECT);
-		// else if (responseI < correctV) message = i18n.t(this.LANG_GUESS_LOW);
-
 		var result = new TestResult({
 			is: responseI,
 			was: correctV,
-			type: TestResult.Type.LISTGUESS,
-			message: listname
+			type: TestResult.Type.LISTGUESS
 		});
 
 		console.debug('[ListGuessView] Question result was ', result);
 
 		this.player.get('results').add(result);
+		ProgressBar.getInstance().subto(this.askedQuestions, this.questionsLength);
 
 		return true;
 
 	}
 
 }, {
+
+	QUESTION_FIELD_ID: "h1.question",
+	RESPONSE_FIELD_ID: "input.response",
+	ENTER_FIELD_ID: "button[type=submit]",
+
+	LANG_QUESTION_FRIEND: 'app.guess.question_friends',
+	LANG_QUESTION_LIST: 'app.guess.question_list',
+
+	MAX_QUESTIONS: 5,
+
 	QuestionType: {
 		ALL: 0, LIST: 1
 	}

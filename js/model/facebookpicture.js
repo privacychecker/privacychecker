@@ -136,6 +136,8 @@ var FacebookPicture = Backbone.Model.extend({
 					case FacebookPicture.FB_FQL_VALUE_CUSTOM:
 						level = PrivacyDefinition.Level.CUSTOM;
 						break;
+					default:
+						console.warn('[FacebookPicture] Found unrecognized privacy level', response[0].value);
 				}
 
 				this.get("privacy").set("level", level);
@@ -161,6 +163,8 @@ var FacebookPicture = Backbone.Model.extend({
 							description.split(FacebookPicture.FB_FQL_NAME_SEPERATOR);
 					}
 
+					includeList.push(FacebookPlayer.getInstance().get('name'));
+
 					this.get("privacy").set("excludeList", excludeList);
 					this.get("privacy").set("includeList", includeList);
 
@@ -177,7 +181,7 @@ var FacebookPicture = Backbone.Model.extend({
 
 }, {
 	FB_FQL_QUERY: "SELECT value,description,owner_id,friends FROM privacy WHERE id = ",
-	FB_FQL_VALUE_ALL: "ALL",
+	FB_FQL_VALUE_ALL: "EVERYONE",
 	FB_FQL_VALUE_FOF: "FRIENDS_OF_FRIENDS",
 	FB_FQL_VALUE_FRIENDS: "ALL_FRIENDS",
 	FB_FQL_VALUE_ME: "SELF",

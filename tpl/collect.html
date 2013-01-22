@@ -1,20 +1,12 @@
-<p class="lead">
-	{{t "app.collect.headline"}}
-</p>
+<h1>{{t "app.collect.headline"}}</h1>
 
-<p>
+<div class="alert">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	{{t "app.collect.hint"}}
+</div>
+
+<p class="lead">
 	{{t "app.collect.description"}}
 </p>
 
-<div class="progress progress-striped active">
-	<div id="collect-progress" class="bar" style="width: 0%;"></div>
-</div>
-
-<ul class="muted">
-	<li id="collect-friends">{{t "app.collect.items.friends"}}</i></li>
-	<li id="collect-lists">{{t "app.collect.items.lists"}}</li>
-	<li id="collect-foreigners">{{t "app.collect.items.foreigners"}}</li>
-	<li id="collect-pictures">{{t "app.collect.items.pictures"}}</li>
-	<li id="collect-posts">{{t "app.collect.items.posts"}}</li>
-	<li id="collect-settings">{{t "app.collect.items.privacy_settings"}}</li>
-</ul>
+<button type="submit" class="trigger-collect btn btn-large btn-primary" data-toggle="button">{{t "app.collect.next_button"}}</button>
