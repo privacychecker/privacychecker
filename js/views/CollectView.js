@@ -35,9 +35,9 @@
             this.player.on( "pictures:error", _.bind( this.fbLoadPicturesErrorCb, this ) );
             this.player.on( "pictures:finished", _.bind( this.fbLoadPicturesFinishedCb, this ) );
 
-            this.player.on( "posts:start", _.bind( this.fbLoadPostsStartCb, this ) );
-            this.player.on( "posts:error", _.bind( this.fbLoadPostsErrorCb, this ) );
-            this.player.on( "posts:finished", _.bind( this.fbLoadPostsFinishedCb, this ) );
+            this.player.on( "statuses:start", _.bind( this.fbLoadStatusesStartCb, this ) );
+            this.player.on( "statuses:error", _.bind( this.fbLoadStatusesErrorCb, this ) );
+            this.player.on( "statuses:finished", _.bind( this.fbLoadStatusesFinishedCb, this ) );
         },
 
         render: function()
@@ -84,14 +84,18 @@
 
         readPrivacySettings: function( cb )
         {
-
             console.log( "[CollectView] Transforming privacy ids from pictures to user ids" );
             this.player.getPictures().each( _.bind( function( picture )
             {
-
                 //console.debug("[CollectView] Finalizing privacy settings for picture: ", picture);
                 picture.validatePrivacy( this.player.getFriends(), this.player.getFriendLists() );
+            }, this ) );
 
+            console.log( "[CollectView] Transforming privacy ids from statuses to user ids" );
+            this.player.getStatuses().each( _.bind( function( status )
+            {
+                //console.debug("[CollectView] Finalizing privacy settings for picture: ", picture);
+                status.validatePrivacy( this.player.getFriends(), this.player.getFriendLists() );
             }, this ) );
 
             cb.success();
@@ -115,7 +119,7 @@
 
             this.player.getFriendLists();
             this.player.getPictures();
-            this.player.getPosts();
+            this.player.getStatuses();
             this.player.getForeigners();
         },
 
@@ -170,18 +174,18 @@
             this.trigger( "collected:new" );
         },
 
-        fbLoadPostsStartCb: function()
+        fbLoadStatusesStartCb: function()
         {
         },
 
-        fbLoadPostsErrorCb: function()
+        fbLoadStatusesErrorCb: function()
         {
             if ( window.confirm( i18n.t( pc.view.CollectView.LANG_ERROR_LOADING ) ) ) {
                 location.reload();
             }
         },
 
-        fbLoadPostsFinishedCb: function()
+        fbLoadStatusesFinishedCb: function()
         {
             this.collected.push( "posts" );
             this.trigger( "collected:new" );

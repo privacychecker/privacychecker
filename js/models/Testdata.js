@@ -22,7 +22,7 @@
         {
             this.player = pc.model.FacebookPlayer.getInstance();
             this.set( 'pictures', undefined );
-            this.set( 'posts', undefined );
+            this.set( 'statuses', undefined );
             this.set( 'data', undefined );
 
             if ( this.USE_PICTURES ) {
@@ -30,7 +30,7 @@
             }
 
             this.rateTupples = {};
-            this.allreadyComparedTuples = [];
+            this.alreadyComparedTuples = [];
             this.ratePtr = 0;
             this.elo = new EloRating(); // NOQA
             this.remainingRates = this.TEST_ROUNDS;
@@ -58,10 +58,10 @@
                 if ( !two ) {
                     continue;
                 }
-                alreadyseen = _.contains( this.allreadyComparedTuples, one.id + two.id );
+                alreadyseen = _.contains( this.alreadyComparedTuples, one.id + two.id );
             }
 
-            this.allreadyComparedTuples.push( one.id + two.id );
+            this.alreadyComparedTuples.push( one.id + two.id );
 
             console.debug( '[TestData] Pair is ', one, ' and ', two );
 
@@ -97,7 +97,6 @@
 
         _collectPictures: function()
         {
-
             console.log( '[TestData] Collecting pictures for test' );
 
             var availablePics = this.player.getPictures();

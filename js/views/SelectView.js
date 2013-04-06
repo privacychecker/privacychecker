@@ -21,18 +21,18 @@
             this.container1 = $( '<img>', {
                 src: 'img/loader.gif'
             } ).css( {
-                    display:  'none',
-                    position: 'absolute',
-                    left:     '0px',
-                    top:      '0px'
+                    display:  "none",
+                    position: "absolute",
+                    left:     "0px",
+                    top:      "0px"
                 } );
             this.container2 = $( '<img>', {
                 src: 'img/loader.gif'
             } ).css( {
-                    display:  'none',
-                    position: 'absolute',
-                    left:     '0px',
-                    top:      '0px'
+                    display:  "none",
+                    position: "absolute",
+                    left:     "0px",
+                    top:      "0px"
                 } );
             $( 'body' ).append( this.container1 ).append( this.container2 );
 
@@ -103,23 +103,23 @@
                     'progress' ).fadeTo( 0, opacity1 );
                 $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER ).unbind( 'click' ).css( 'cursor',
                         'progress' ).fadeTo( 0, opacity2, _.bind( function()
-                {
-
-                    var loaded = [];
-
-                    $( this.container1 ).attr( 'src', item1.get( 'source' ) ).bind( 'load', _.bind( function( )
                     {
-                        $( this.container1 ).unbind();
-                        this.imagesLoadedCb( loaded.push( true ) );
-                    }, this ) );
 
-                    $( this.container2 ).attr( 'src', item2.get( 'source' ) ).bind( 'load', _.bind( function( )
-                    {
-                        $( this.container2 ).unbind();
-                        this.imagesLoadedCb( loaded.push( true ) );
-                    }, this ) );
+                        var loaded = [];
 
-                }, this ) );
+                        $( this.container1 ).attr( 'src', item1.get( 'source' ) ).bind( 'load', _.bind( function()
+                        {
+                            $( this.container1 ).unbind();
+                            this.imagesLoadedCb( loaded.push( true ) );
+                        }, this ) );
+
+                        $( this.container2 ).attr( 'src', item2.get( 'source' ) ).bind( 'load', _.bind( function()
+                        {
+                            $( this.container2 ).unbind();
+                            this.imagesLoadedCb( loaded.push( true ) );
+                        }, this ) );
+
+                    }, this ) );
 
             }
             else {
@@ -137,31 +137,32 @@
             var item2 = this.currentPair[1];
 
             $( this.el ).find( pc.view.SelectView.IMAGE_1_CONTAINER ).unbind( 'click' ).fadeOut( 'fast' );
-            $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER ).unbind( 'click' ).fadeOut( 'fast', _.bind( function()
-            {
-
-                $( this.el ).find( pc.view.SelectView.IMAGE_1_CONTAINER + ' ' + pc.view.SelectView.INFO_CONTAINER ).empty().html( item1.get( 'name' ) ).fadeTo( 'fast',
-                    1 );
-                $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER + ' ' + pc.view.SelectView.INFO_CONTAINER ).empty().html( item2.get( 'name' ) ).fadeTo( 'fast',
-                    1 );
-
-                $( this.el ).find( pc.view.SelectView.IMAGE_1_CONTAINER + ' img' ).attr( 'src',
-                    item1.get( 'source' ) ).fadeIn( 'fast' );
-                $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER + ' img' ).attr( 'src',
-                    item2.get( 'source' ) ).fadeIn( 'fast' );
-
-                $( this.el ).find( pc.view.SelectView.IMAGE_1_CONTAINER ).click( _.bind( function()
+            $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER ).unbind( 'click' ).fadeOut( 'fast',
+                _.bind( function()
                 {
-                    this.lastselection = 1;
-                    this.next( item1 );
-                }, this ) ).css( 'cursor', 'pointer' ).fadeTo( 'fast', 1 );
-                $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER ).click( _.bind( function()
-                {
-                    this.lastselection = 2;
-                    this.next( item2 );
-                }, this ) ).css( 'cursor', 'pointer' ).fadeTo( 'fast', 1 );
 
-            }, this ) );
+                    $( this.el ).find( pc.view.SelectView.IMAGE_1_CONTAINER + ' ' + pc.view.SelectView.INFO_CONTAINER ).empty().html( item1.get( 'name' ) ).fadeTo( 'fast',
+                        1 );
+                    $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER + ' ' + pc.view.SelectView.INFO_CONTAINER ).empty().html( item2.get( 'name' ) ).fadeTo( 'fast',
+                        1 );
+
+                    $( this.el ).find( pc.view.SelectView.IMAGE_1_CONTAINER + ' img' ).attr( 'src',
+                        item1.get( 'source' ) ).fadeIn( 'fast' );
+                    $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER + ' img' ).attr( 'src',
+                        item2.get( 'source' ) ).fadeIn( 'fast' );
+
+                    $( this.el ).find( pc.view.SelectView.IMAGE_1_CONTAINER ).click( _.bind( function()
+                    {
+                        this.lastselection = 1;
+                        this.next( item1 );
+                    }, this ) ).css( 'cursor', 'pointer' ).fadeTo( 'fast', 1 );
+                    $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER ).click( _.bind( function()
+                    {
+                        this.lastselection = 2;
+                        this.next( item2 );
+                    }, this ) ).css( 'cursor', 'pointer' ).fadeTo( 'fast', 1 );
+
+                }, this ) );
 
         }
 

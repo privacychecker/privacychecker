@@ -12,7 +12,7 @@
                 settings = {};
             }
 
-            var min = settings.min !== undefined ? settings.min : pc.model.FacebookRandomCollector.DEFAULT_MIN;
+            var min = settings.min !== undefined ? settings.min : pc.common.FacebookRandomCollector.DEFAULT_MIN;
             var users = settings.users !== undefined ? settings.users : new pc.model.FacebookUserCollection();
 
             console.warn( "[FacebookRandomCollector] Starting to collect, taking groups" );

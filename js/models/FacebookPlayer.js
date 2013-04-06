@@ -12,7 +12,7 @@
         FB_FRIENDS_URL:    "/me/friends?fields=id,name",
         FB_FRIENDLIST_URL: "/me/friendlists/?fields=members.fields(id),id,name",
         FB_PICTURES_URL:   "/me/albums?fields=id,name,photos.fields(id,name,source,height,width,from)",
-        FB_FEED_URL:       "/me/feed",
+        FB_STATUS_URL:     "/me/statuses?fields=id,message,place",
         FB_GRAPH_BASE:     "https://graph.facebook.com/",
         FB_IMAGE_SUFFIX:   "/picture?type=square",
         DELAY_INIT_EVENT:  2500,
@@ -21,7 +21,7 @@
         _friends:     undefined,
         _friendlists: undefined,
         _pictures:    undefined,
-        _posts:       undefined,
+        _status:      undefined,
 
         defaults: {
             id:      undefined,
@@ -160,7 +160,6 @@
                 console.log( "[FacebookPlayer] Friends of " + this.get( "id" ) + ": ", this._friends );
                 this.trigger( "friends:finished" );
 
-
             }, this ) );
         },
 
@@ -222,9 +221,6 @@
                 // parse all friends
                 this._friendlists = new pc.model.FacebookListCollection( _.map( response.data, _.bind( function( list )
                 {
-                    var lid = list.id;
-                    //console.debug("Parsing friendlist", lid, list);
-
                     var friendList = new pc.model.FacebookList( {
                         id:      list.id,
                         name:    list.name,
@@ -306,15 +302,15 @@
                                     width:  photo.width,
                                     height: photo.height
                                 } );
-                                var err = false;
-                                pic.on( 'privacy', _.bind( function()
+
+                                pic.on( 'privacy-done', _.bind( function()
                                 {
+                                    this._pictures.add( pic );
                                     if ( --picturesNum === 0 ) {
                                         console.log( "[FacebookPlayer] " + this._pictures.length + " Pictures of " + this.get( "id" ) + ": ",
                                             this._pictures );
                                         this.trigger( "pictures:finished" );
                                     }
-                                    this._pictures.add( pic );
                                 }, this ) );
                                 pic.on( 'privacy-error', _.bind( function()
                                 {
@@ -336,47 +332,69 @@
             }, this ) );
         },
 
-        getPosts: function()
+        getStatuses: function()
         {
-            if ( this._posts === undefined ) {
-                this._loadPosts();
+            if ( this._status === undefined ) {
+                this._loadStatuses();
                 return undefined;
             }
 
-            return this._posts;
+            return this._status;
         },
 
-        _loadPosts: function()
+        _loadStatuses: function()
         {
-            this.trigger( "posts:start" );
+            this.trigger( "statuses:start" );
             if ( this.getFriends() === undefined ) {
                 this.trigger( "posts:error" );
                 console.log( "[FacebookPlayer] Error loading posts, friends not loaded" );
                 return;
             }
 
-            FB.api( this.FB_FEED_URL, _.bind( function( response )
+            FB.api( this.FB_STATUS_URL, _.bind( function( response )
             {
                 if ( !response.data ) {
-                    this.trigger( "posts:error" );
-                    console.error( "[FacebookPlayer] Error loading psots, response was: ", response );
+                    this.trigger( "statuses:error" );
+                    console.error( "[FacebookPlayer] Error loading statuses response was: ", response );
                     return;
                 }
 
                 // parse all posts
-                this._posts = new pc.model.FacebookPostCollection( _.filter( response.data, _.bind( function( post )
+                this._status = new pc.model.FacebookStatusCollection();
+
+                // privacy for posts is request async, so we need to count how many items are "done" before we can trigger done
+                var itemsRemaining = 0;
+
+                _.each( response.data, _.bind( function( status )
                 {
-                    //console.debug("Parsing post", post);
+                    ++itemsRemaining;
+                    console.log( "Found status", status );
 
-                    // only own posts and post where privacy is set
-                    if ( post.from.id === this.id && post.privacy !== undefined ) {
-                        //console.log("Found post from player", post);
-                        return new pc.model.FacebookPost( {message: post.message, id: post.id, privacy: post.privacy} );
-                    }
-                }, this ) ) );
+                    var statusItem = new pc.model.FacebookStatus( {
+                        message: status.message,
+                        id: status.id,
+                        place: status.place
+                    } );
 
-                console.log( "[FacebookPlayer] Posts of " + this.get( "id" ) + ": ", this._posts );
-                this.trigger( "posts:finished" );
+                    statusItem.on( 'privacy-done', _.bind( function()
+                        {
+                            this._status.add( statusItem );
+
+                            if ( --itemsRemaining === 0 ) {
+                                console.info( "Got privacy for all statuses (", this._status.length, ")" );
+                                this.trigger( "statuses:finished" );
+                            }
+                        }, this ) ).on( 'privacy-error', _.bind( function()
+                        {
+                            if ( --itemsRemaining === 0 ) {
+                                console.info( "Got privacy for all statuses (", this._status.length, ")" );
+                                this.trigger( "statuses:finished" );
+                            }
+                        }, this ) );
+
+                }, this ) );
+
+                console.log( "[FacebookPlayer] Status of " + this.get( "id" ) + ": ", this._status );
 
             }, this ) );
 

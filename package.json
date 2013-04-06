@@ -53,7 +53,8 @@
       "jquery.center": "github:dreamerslab/jquery.center/v1.1.0",
       "jquery.random": "http://www.rockechris.com/jquery/jquery.random.js",
       "EloRating-JavaScript": "github:hugodias/EloRating-JavaScript/master",
-      "jquery.transit": "github:rstacruz/jquery.transit/v0.9.9"
+      "jquery.transit": "github:rstacruz/jquery.transit/v0.9.9",
+      "jquery-smooth-scroll": "github:kswedberg/jquery-smooth-scroll/1.4.10"
     }
   }
 }

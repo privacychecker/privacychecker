@@ -62,12 +62,14 @@ module.exports = function( grunt )
 
         jshint: {
             options: {
-                curly:   false, // allow if(true) foo();
-                eqeqeq:  true,
-                eqnull:  true,
-                browser: true,
-                devel:   true,
-                globals: {
+                curly:     false, // allow if(true) foo();
+                eqeqeq:    true,
+                eqnull:    true,
+                browser:   true,
+                devel:     true,
+                camelcase: false,
+                latedef:   true,
+                globals:   {
                     jQuery:     true,
                     $:          true,
                     i18n:       true,
@@ -135,6 +137,7 @@ module.exports = function( grunt )
                     // jquery
                     '<%= dir.vendor %>/jquery.js', '<%= dir.vendor %>/jquery.random.js',
                     '<%= dir.vendor %>/jquery.center.js', '<%= dir.vendor %>/jquery.transit.js',
+                    '<%= dir.vendor %>/jquery-smooth-scroll/jquery.smooth-scroll.js',
                     // backbone
                     '<%= dir.vendor %>/backbone.js', '<%= dir.vendor %>/backbone-subroute/backbone.subroute.js',
                     // bootstrap
@@ -155,7 +158,7 @@ module.exports = function( grunt )
                     //i18next
                     '<%= dir.vendor %>/i18next/release/i18next-1.6.0.js',
                     //
-                    '<% dir.vendor %>/EloRating-JavaScript/src/elo_rating.js'
+                    '<%= dir.vendor %>/EloRating-JavaScript/src/elo_rating.js'
                 ],
                 dest: '<%= dir.assets %>/vendor.js'
             }

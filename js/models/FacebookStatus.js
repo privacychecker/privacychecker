@@ -4,33 +4,31 @@
 
     var ns = namespace( "pc.model" );
 
-    ns.FacebookPicture = Backbone.Model.extend( {
+    ns.FacebookStatus = Backbone.Model.extend( {
 
         defaults: {
+            message: undefined,
             id:      undefined,
-            name:    undefined,
-            source:  undefined,
-            height:  undefined,
-            width:   undefined,
-            privacy: undefined
+            privacy: undefined,
+            place:   undefined
         },
 
         /**
-         * Create a new FacebookPicture
+         * Create a new FacebookStatus
          *
-         * @param picture {{id: Number, source: String}}
+         * @param status {{id: Number, message: String}}
          * @constructor
          */
-        initialize:      function( picture )
+        initialize:      function( status )
         {
-            if ( !picture.id || !picture.source ) {
-                console.error( "[FacebookPicture] Missing required data (id, source)", picture.id, picture.source );
-                throw new pc.common.Exception( "[FacebookPicture] Missing required data: id or source" );
+            if ( !status.id || !status.message ) {
+                console.error( "[FacebookStatus] Missing required data (id, message)", status.id, status.message );
+                throw new pc.common.Exception( "Status missing required data: id or message" );
             }
 
-            this.set( "id", picture.id );
-            this.set( "name", picture.name );
-            this.set( "source", picture.source );
+            this.set( "id", status.id );
+            this.set( "message", status.message );
+            this.set( "place", status.place );
             this._getPrivacy();
         },
 
