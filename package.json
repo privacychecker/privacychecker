@@ -1,24 +1,24 @@
 {
-  "name": "gallery",
-  "description": "port17 gallery (based on backbone)",
+  "name": "privacy checker",
+  "description": "analyze facebook privacy knowledge",
   "version": "0.0.1",
-  "homepage": "https://github.com/chr/gallery",
+  "homepage": "http://www-ifs.uni-regensburg.de/",
   "author": {
     "name": "Christian Roth",
     "email": "christian.roth@port17.de",
-    "url": "http://port17.de"
+    "url": "http://www-ifs.uni-regensburg.de/"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/chr/gallery.git"
+    "url": "git://github.com/chr/piggybacking.git"
   },
   "bugs": {
-    "url": "https://github.com/chr/gallery/issues"
+    "url": "https://github.com/chr/piggybacking/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/chr/gallery/blob/master/LICENSE-MIT"
+      "url": "https://github.com/chr/piggybacking/blob/master/LICENSE-MIT"
     }
   ],
   "devDependencies": {
