@@ -4,6 +4,13 @@
 
     var ns = namespace( "pc.model" );
 
+    /**
+     * A facebook member who plays the game
+     *
+     * @namespace pc.model
+     * @class FacebookPlayer
+     * @extends Backbone.Model
+     */
     ns.FacebookPlayer = Backbone.Model.extend( {
 
         STATUS_LOGGED_IN:  "connected",
@@ -31,6 +38,13 @@
             gender:  undefined
         },
 
+        /**
+         * Create a new player.<br />
+         * A player holds every data of the current user like friends, lists, pictures, ..
+         *
+         * @method
+         * @constructor
+         */
         initialize: function()
         {
             console.log( "[FacebookPlayer] New FacebookPlayer" );
@@ -55,6 +69,11 @@
             }, this ), this.DELAY_INIT_EVENT );
         },
 
+        /**
+         * Log in the current user at facebook
+         *
+         * @method login
+         */
         login: function()
         {
             console.log( "[FacebookPlayer] Loggin player in" );
@@ -70,6 +89,11 @@
             } );
         },
 
+        /**
+         * log out the current at facebook
+         *
+         * @method logout
+         */
         logout: function()
         {
             console.log( "[FacebookPlayer] Loggin player out" );
@@ -83,11 +107,18 @@
             }, this ) );
         },
 
+        /**
+         * Triggered when facebook api submits a auth change like login or logout
+         *
+         * @method _authResponseChangeCb
+         * @param {{status: String}} resp Response from facebook api
+         * @private
+         */
         _authResponseChangeCb: function( resp )
         {
             var oldLoggedIn = this.loggedin;
 
-            if ( resp === undefined || !resp.status ) {
+            if ( !resp || !resp.status ) {
                 return;
             }
 
@@ -123,11 +154,17 @@
             }, this ) );
         },
 
+        /**
+         * Get all friends of the current player
+         *
+         * @method getFriends
+         * @returns {pc.model.FacebookUserCollection} All friends of player
+         */
         getFriends: function()
         {
             if ( this._friends === undefined ) {
                 this._loadFriends();
-                return undefined;
+                return null;
             }
 
             return this._friends;
@@ -163,11 +200,17 @@
             }, this ) );
         },
 
+        /**
+         * Get a set of random user which are not friend with the current player
+         *
+         * @method getForeigners
+         * @returns {pc.model.FacebookUserCollection} All friends
+         */
         getForeigners: function()
         {
             if ( this._foreigners === undefined ) {
                 this._loadForeigners();
-                return undefined;
+                return null;
             }
 
             return this._foreigners;
@@ -186,6 +229,12 @@
             frc.collect();
         },
 
+        /**
+         * Get all friend lists of the current player
+         *
+         * @method getFriendLists
+         * @returns {pc.model.FacebookListCollection} All friends lists
+         */
         getFriendLists: function()
         {
             if ( this._friendlists === undefined ) {
@@ -244,11 +293,17 @@
             }, this ) );
         },
 
+        /**
+         * Get most recent pictures of the current player
+         *
+         * @method getPictures
+         * @returns {pc.model.FacebookPictureCollection} Most recent  pictures
+         */
         getPictures: function()
         {
             if ( this._pictures === undefined ) {
                 this._loadPictures();
-                return undefined;
+                return null;
             }
 
             return this._pictures;
@@ -332,11 +387,17 @@
             }, this ) );
         },
 
+        /**
+         * Get most recent statuses of the current player
+         *
+         * @method getStatuses
+         * @returns {pc.model.FacebookStatusCollection} Most recent statuses
+         */
         getStatuses: function()
         {
             if ( this._status === undefined ) {
                 this._loadStatuses();
-                return undefined;
+                return null;
             }
 
             return this._status;
@@ -404,6 +465,13 @@
 
         GALLERIES_TO_SKIP: ['Profile Pictures', 'Cover Photos'],
 
+        /**
+         * Get a singleton instance of facebook player.
+         *
+         * @method getInstance
+         * @returns {pc.model.FacebookPlayer} A singleton instance
+         * @static
+         */
         getInstance: function()
         {
             if ( this.__instance === undefined ) {

@@ -4,8 +4,23 @@
 
     var ns = namespace( "pc.common" );
 
+    /**
+     * A Range.<br />
+     * A range represents a range between two numbers.
+     *
+     * @namespace pc.common
+     * @class Range
+     * @extends Backbone.Model
+     */
     ns.Range = Backbone.Model.extend( {
 
+        /**
+         * Create a new range
+         *
+         * @method initialize
+         * @constructor
+         * @param { {lower: Number, upper: Number}} p The upper and lower end of the range
+         */
         initialize: function( p )
         {
             if ( p.upper === undefined || p.lower === undefined ) {

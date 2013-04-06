@@ -4,8 +4,27 @@
 
     var ns = namespace( "pc.common" );
 
+    /**
+     * A Facebookrandomcollector<br />
+     * Helper to select random user from facebook.<br />
+     * First tries to request closer friends by using people which are in the same group as the player, then people
+     * which are invited to the same events and as a fallback totally random people by using the facebook search using
+     * specific names
+     *
+     * @namespace pc.common
+     * @class FacebookRandomCollector
+     * @extends Backbone.Model
+     */
     ns.FacebookRandomCollector = Backbone.Model.extend( {
 
+        /**
+         * Trigger the user collection.<br />
+         *
+         * @method collect
+         * @param { {min: Number, user: pc.model.FacebookUserCollection}} settings Settings to customize the behavior
+         * @event {pc.model.FacebookUserCollection} frc:done Triggered if enough users are collected
+         * @event {pc.model.FacebookUserCollection} frc:less Triggered if not enough users can be collected
+         */
         collect: function( settings )
         {
             if ( settings === undefined ) {
@@ -237,6 +256,13 @@
 
         DEFAULT_MIN: 200,
 
+        /**
+         * Get a singleton instance of facebook random collector.
+         *
+         * @method getInstance
+         * @returns {pc.common.FacebookRandomCollector} A singleton instance
+         * @static
+         */
         getInstance: function()
         {
             if ( this.__instance === undefined ) {

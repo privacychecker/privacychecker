@@ -4,22 +4,42 @@
 
     var ns = namespace( "pc.model" );
 
+    /**
+     * A facebook status
+     *
+     * @namespace pc.model
+     * @class FacebookStatus
+     * @extends Backbone.Model
+     */
     ns.FacebookStatus = Backbone.Model.extend( {
 
         defaults: {
-            message: undefined,
+            /**
+             * @property {Number} id id of the status
+             */
             id:      undefined,
+            /**
+             * @property {String} message Message of the status
+             */
+            message: undefined,
+            /**
+             * @property {pc.common.PrivacyDefinition} privacy Privacy definition of the status
+             */
             privacy: undefined,
+            /**
+             * @property {*} place A location attached to the status
+             */
             place:   undefined
         },
 
         /**
          * Create a new FacebookStatus
          *
-         * @param status {{id: Number, message: String}}
+         * @method
          * @constructor
+         * @param { {id: Number, message: String}} status
          */
-        initialize:      function( status )
+        initialize: function( status )
         {
             if ( !status.id || !status.message ) {
                 console.error( "[FacebookStatus] Missing required data (id, message)", status.id, status.message );
@@ -35,14 +55,21 @@
         /**
          * Transform list ids to ids of all list's members
          *
-         * @param friends pc.model.FacebookUserCollection
-         * @param friendlists pc.model.FacebookListCollection
+         * @method validatePrivacy
+         * @param {pc.model.FacebookUserCollection} friends
+         * @param {pc.model.FacebookListCollection} friendlists
          */
         validatePrivacy: function( friends, friendlists )
         {
             this.get( 'privacy' ).flattenLists( friends, friendlists );
         },
 
+        /**
+         * Add PrivacyDefinition for class
+         *
+         * @method _getPrivacy
+         * @private
+         */
         _getPrivacy: function()
         {
             var privacy = new pc.common.PrivacyDefinition( {id: this.id} );

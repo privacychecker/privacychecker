@@ -4,19 +4,37 @@
 
     var ns = namespace( "pc.common" );
 
+    /**
+     * A facebook privacy definition for different items like pictures or statuses
+     *
+     * @namespace pc.common
+     * @class PrivacyDefinition
+     * @extends Backbone.Model
+     */
     ns.PrivacyDefinition = Backbone.Model.extend( {
 
         defaults: {
+            /**
+             * @property {String} level The visibility level
+             */
             level:       undefined,
             excludeList: [], // temp
             includeList: [], // temp
-            exclude:     [], // simple id array
+            /**
+             * @property {pc.model.FacebookUserCollection} exclude All members which cannot see the item
+             */
+            exclude:     [],
+            /**
+             * @property {pc.model.FacebookUserCollection} include All members which can see the item
+             */
             include:     []
         },
 
         /**
          * Query privacy definition from facebook via fql using:
-         * SELECT value,description,owner_id,friends FROM privacy WHERE id = <id>
+         * <pre>SELECT value,description,owner_id,friends FROM privacy WHERE id = <id></pre>
+         *
+         * @method load
          */
         load: function()
         {
@@ -57,6 +75,13 @@
             }, this ) );
         },
 
+        /**
+         * Transform list ids to plain user ids
+         *
+         * @method flattenLists
+         * @param {pc.model.FacebookUserCollection} friends All friends of current player
+         * @param {pc.model.FacebookListCollection} lists All lists of current player
+         */
         flattenLists: function( friends, lists )
         {
             //console.debug('[PrivacyDefinition] Flattening lists with ', lists);
@@ -125,8 +150,12 @@
          *   ]
          * }
          *
-         * @param response [{value: String, description: String, owner_id: Number, friends: String}]
-         * @returns {{include: Array, exclude: Array, level: String}}
+         * @method _parseResponse
+         * @param {Array<{value: String, description: String, owner_id: Number, friends: String}>} response A facebook response
+         * @returns { {include: Array, exclude: Array, level: String}} The parsed data
+         * @throws {E_RESPONSE_IS_UNDEF} If the response is undefined or has wrong structure
+         * @throws {E_UNKNOWN_PRIVACY_DEFINITION} If the privacy definition is unknown
+         * @throws {E_EMPTY_PRIVACY_DESCRIPTION} If the privacy desceprition is empty (no users listed, ...)
          * @private
          */
         _parseResponse: function( response )

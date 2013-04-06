@@ -4,22 +4,48 @@
 
     var ns = namespace( "pc.model" );
 
+    /**
+     * A facebook picture
+     *
+     * @namespace pc.model
+     * @class FacebookPicture
+     * @extends Backbone.Model
+     */
     ns.FacebookPicture = Backbone.Model.extend( {
 
         defaults: {
+            /**
+             * @property {Number} id id of the picture
+             */
             id:      undefined,
+            /**
+             * @property {String} [name] Name of the picture
+             */
             name:    undefined,
+            /**
+             * @property {String} source Url of the picture
+             */
             source:  undefined,
+            /**
+             * @property {Number} height Height of the picture in px
+             */
             height:  undefined,
+            /**
+             * @property {Number} width Width of the picture in px
+             */
             width:   undefined,
+            /**
+             * @property {pc.common.PrivacyDefinition} privacy Privacy definition of the picture
+             */
             privacy: undefined
         },
 
         /**
          * Create a new FacebookPicture
          *
-         * @param picture {{id: Number, source: String}}
+         * @method
          * @constructor
+         * @param { {id: Number, message: String}} picture
          */
         initialize:      function( picture )
         {
@@ -37,14 +63,21 @@
         /**
          * Transform list ids to ids of all list's members
          *
-         * @param friends pc.model.FacebookUserCollection
-         * @param friendlists pc.model.FacebookListCollection
+         * @method validatePrivacy
+         * @param {pc.model.FacebookUserCollection} friends
+         * @param {pc.model.FacebookListCollection} friendlists
          */
         validatePrivacy: function( friends, friendlists )
         {
             this.get( 'privacy' ).flattenLists( friends, friendlists );
         },
 
+        /**
+         * Add PrivacyDefinition for class
+         *
+         * @method _getPrivacy
+         * @private
+         */
         _getPrivacy: function()
         {
             var privacy = new pc.common.PrivacyDefinition( {id: this.id} );

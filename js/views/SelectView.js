@@ -65,9 +65,9 @@
                     }, this ) );
 
             }
-            //else if ( item instanceof pc.model.FacebookPost ) {
-            //
-            //}
+            else if ( item instanceof pc.model.FacebookStatus ) {
+
+            }
 
             return null;
 

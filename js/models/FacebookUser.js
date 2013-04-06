@@ -4,6 +4,13 @@
 
     var ns = namespace( "pc.model" );
 
+    /**
+     * A Facebook user.
+     *
+     * @namespace pc.model
+     * @class FacebookUser
+     * @extends Backbone.Model
+     */
     ns.FacebookUser = Backbone.Model.extend( {
 
         defaults: {
@@ -11,6 +18,13 @@
             id:   undefined
         },
 
+        /**
+         * Create a new facebook user.
+         *
+         * @method
+         * @constructor
+         * @param friend {{id: Number, name: String, type: String?}}
+         */
         initialize: function( friend )
         {
             if ( !friend.id || !friend.name ) {

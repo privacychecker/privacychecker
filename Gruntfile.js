@@ -152,7 +152,6 @@ module.exports = function( grunt )
                     '<%= dir.vendor %>/bootstrap/js/bootstrap-popover.js',
                     '<%= dir.vendor %>/bootstrap/js/bootstrap-scrollspy.js',
                     '<%= dir.vendor %>/bootstrap/js/bootstrap-tab.js',
-                    '<%= dir.vendor %>/bootstrap/js/bootstrap-typeahead.js',
                     //handlebars
                     '<%= dir.vendor %>/handlebars/dist/handlebars.js',
                     //i18next
@@ -264,7 +263,9 @@ module.exports = function( grunt )
                 version:     '<%= pkg.version %>',
                 url:         '<%= pkg.homepage %>',
                 options:     {
-                    paths:  '<%= dir.js %>',
+                    paths:  [
+                        '<%= dir.js %>/common', '<%= dir.js %>/models', '<%= dir.js %>/routers', '<%= dir.js %>/views',
+                        '<%= dir.js %>/' ],
                     outdir: 'doc/'
                 }
             }

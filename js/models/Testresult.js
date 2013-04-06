@@ -4,6 +4,14 @@
 
     var ns = namespace( "pc.model" );
 
+    /**
+     * A testresult.<br />
+     * A testresult is used to store data of a game
+     *
+     * @namespace pc.model
+     * @class TestResult
+     * @extends Backbone.Model
+     */
     ns.TestResult = Backbone.Model.extend( {
 
         defaults: {
@@ -13,10 +21,17 @@
             type:    undefined
         },
 
-        initialize: function( p )
+        /**
+         * Create a new Testresult.
+         *
+         * @method
+         * @constructor
+         * @param { {is: Object, was: Object}} result The result
+         */
+        initialize: function( result )
         {
-            if ( p.is === undefined || p.was === undefined ) {
-                throw new Error( 'Testresult missing input data', p );
+            if ( result.is === undefined || result.was === undefined ) {
+                throw new Error( 'Testresult missing input data', result );
             }
 
             console.log( "[TestResult] Init" );

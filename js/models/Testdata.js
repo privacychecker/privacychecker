@@ -4,6 +4,14 @@
 
     var ns = namespace( "pc.model" );
 
+    /**
+     * A testdata set.<br />
+     * Testdata represents a set of pictures and statuses used to play
+     *
+     * @namespace pc.model
+     * @class TestData
+     * @extends Backbone.Model
+     */
     ns.TestData = Backbone.Model.extend( {
 
         USE_PICTURES:   true,
@@ -13,11 +21,12 @@
         INITIAL_SCORE:  1000,
         TEST_DATA_SIZE: 5,
 
-        /* attributes
-         * pictures
-         * posts
+        /**
+         * Create a new set of testdata
+         *
+         * @method
+         * @constructor
          */
-
         initialize: function()
         {
             this.player = pc.model.FacebookPlayer.getInstance();
@@ -36,6 +45,13 @@
             this.remainingRates = this.TEST_ROUNDS;
         },
 
+        /**
+         * Get a new pair of Testdata instances to rate.<br />
+         * These pairs a are always different.
+         *
+         * @method getRateTupple
+         * @returns {Array<pc.model.FacebookPicture|pc.model.FacebookStatus>} A pair to rate
+         */
         getRateTupple: function()
         {
 
@@ -69,6 +85,15 @@
 
         },
 
+        /**
+         * Set the winner of a comparison.<br />
+         * The winner gets points depending on the opponent's current rating.
+         *
+         * @method setWinner
+         * @param {pc.model.FacebookPicture|pc.model.FacebookStatus} one
+         * @param {pc.model.FacebookPicture|pc.model.FacebookStatus} two
+         * @param {pc.model.FacebookPicture|pc.model.FacebookStatus} winner The winner must be either one or two
+         */
         setWinner: function( one, two, winner )
         {
 
@@ -85,16 +110,36 @@
 
         },
 
+        /**
+         * How many rounds are used to rate items
+         *
+         * @method getMaxRounds
+         * @returns {number} max rounds
+         */
         getMaxRounds: function()
         {
             return this.TEST_ROUNDS;
         },
 
+        /**
+         * Current round of maxRounds
+         *
+         * @method getCurrentRound
+         * @returns {number} current round
+         */
         getCurrentRound: function()
         {
             return this.TEST_ROUNDS - this.remainingRates;
         },
 
+        /**
+         * Collect a few pictures from the player's collected picture set.<br />
+         * These pictures are later used for comparison.<br />
+         * Sets the pictures attribute
+         *
+         * @method _collectPictures
+         * @private
+         */
         _collectPictures: function()
         {
             console.log( '[TestData] Collecting pictures for test' );
@@ -127,6 +172,13 @@
                 this.get( 'pictures' ) );
         },
 
+        /**
+         * Get the TEST_DATA_SIZE elements with highest score from the test data collection.<br />
+         * Sets the data attribute.
+         *
+         * @method _extractTestData
+         * @private
+         */
         _extractTestData: function()
         {
 
@@ -153,7 +205,13 @@
         }
 
     }, {
-
+        /**
+         * Get a singleton instance of test data.
+         *
+         * @method getInstance
+         * @returns {pc.model.TestData} A singleton instance
+         * @static
+         */
         getInstance: function()
         {
             if ( this.__instance === undefined ) {
