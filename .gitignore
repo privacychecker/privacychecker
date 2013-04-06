@@ -1,4 +1,6 @@
-.sublime-project
-.sublime-workspace
-sftp-config.json
-.DS_Store
+vendor/
+node_modules/
+build/
+doc/
+.idea
+www.iml

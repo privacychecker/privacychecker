@@ -43,8 +43,69 @@
 
 	.alert {
 		font-size: 40px;
-		background: url("../img/overlayinfobackground.png") right center rgb(252, 248, 227) no-repeat;
+		background: url("assets/overlayinfobackground.png") right center rgb(252, 248, 227) no-repeat;
 		padding: 20px;
 		cursor: pointer;
+	}
+}
+
+.center-outer {
+	float: right;
+    right: 50%;
+    position: relative;
+}
+
+.center-inner {
+ 	float: right;
+    right: -50%;
+    position: relative;
+}
+
+.polaroid {
+	position: relative;
+
+	img {
+		border: 10px solid #fff;
+		border-bottom: 45px solid #fff;
+  		-webkit-box-shadow: 3px 3px 3px #777, inset 0 0 50px #000, inset 0 0 50px #000, inset 0 0 50px #000;
+     	-moz-box-shadow: 3px 3px 3px #777, inset 0 0 50px #000, inset 0 0 50px #000, inset 0 0 50px #000;
+        box-shadow: 3px 3px 3px #777, inset 0 0 50px #000, inset 0 0 50px #000, inset 0 0 50px #000;
+        max-height: 400px;
+        max-width: 400px;
+        overflow: hidden;
+	}
+
+	p {
+  		position: absolute;
+  		text-align: left;
+  		margin-left: 10px;
+  		width: 100%;
+  		bottom: 10px;
+  		font: 400 18px/1 'Kaushan Script', cursive;
+  		color: #888;
+	}
+
+	&.leftern {
+		-webkit-transform:rotate(-3deg);
+		-moz-transform:rotate(-3deg);
+		-o-transform:rotate(-3deg);
+		-ms-transform:rotate(-3deg);
+		z-index: 100;
+
+		&:hover {
+			z-index: 200;
+		}
+	}
+
+	&.rightern {
+		-webkit-transform:rotate(5deg);
+		-moz-transform:rotate(5deg);
+		-o-transform:rotate(5deg);
+		-ms-transform:rotate(5deg);
+		z-index: 100;
+
+		&:hover {
+			z-index: 200;
+		}
 	}
 }

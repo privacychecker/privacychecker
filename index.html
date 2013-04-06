@@ -1,251 +1,374 @@
 <!DOCTYPE html>
 <html>
-  <head>    
-    <title>piggybacking.</title>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-    <!-- Main -->
-    <link href="css/main.css" rel="stylesheet">
+<head>
+    <title>
+        privacy checker
+    </title>
 
+    <link href="assets/main.css" rel="stylesheet">
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+</head>
 
-  </head>
-
-  <body>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1&appId=508385819190108";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
-    <header class="navbar-wrapper">
-      <div class="container">
-
+<body>
+<div id="fb-root">
+</div>
+<script>
+    (function( d, s, id )
+    {
+        var js, fjs = d.getElementsByTagName( s )[0];
+        if ( d.getElementById( id ) ) return;
+        js = d.createElement( s );
+        js.id = id;
+        js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1&appId=508385819190108";
+        fjs.parentNode.insertBefore( js, fjs );
+    }( document, 'script', 'facebook-jssdk' ));
+</script>
+<header class="navbar-wrapper">
+    <div class="container">
         <div class="navbar navbar-inverse">
-          <div class="navbar-inner">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="#">Piggybacking</a>
-            <div class="nav-collapse collapse">
-              <ul class="nav">
-                <li class="active"><a href="#" onclick="location.reload();return false;" data-i18n="app.header.start">_start_</a></li>
-                <li><a href="#" data-i18n="app.header.about">_about_</a></li>
-                <li class="divider"></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-i18n="app.header.change_language">_sprache_ <b class="caret"></b></a>
-                    <ul class="dropdown-menu pull-right">
-                        <li><a href="?setLng=de-DE">Deutsch</a></li>
-                        <li><a href="?setLng=en-US">English</a></li>
-                        <li class="divider"></li>
-                        <li class="nav-header" data-i18n="app.header.more_languages">_more_</li>
-                        <li><a href="?setLng=fr-FR">Francais</a></li>
-                        <li><a href="?setLng=it-IT">Italiano</a></li>
+            <div class="navbar-inner">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#">Privacy Checker</a>
+
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                               data-i18n="app.header.change_language">_sprache_ <b class="caret"></b></a>
+                            <ul class="dropdown-menu pull-right language-menu">
+                                <li>
+                                    <a href="?setLng=de-DE">Deutsch</a>
+                                </li>
+                                <li>
+                                    <a href="?setLng=en-US">English</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
+                </div>
+                <div class="progress progress-striped pull-left">
+                    <div id="progressbar" class="bar">
+                    </div>
+                </div>
+                <div class="pull-right player" data-i18n="app.header.hi">
+                    _hi_
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<section id="game-carousel" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="item active" style="height: 450px;">
+            <div class="background" style="background-image: url(assets/bgimage1.jpg);">
+            </div>
+            <div class="container">
+                <div class="carousel-caption">
+                    <div id="container-home">
+                    </div>
+                    <!-- template container -->
+                </div>
+            </div>
+        </div>
+        <div class="item" style="height: 450px;">
+            <div class="background" style="background-image: url(assets/bgimage2.jpg);">
+            </div>
+            <div class="container">
+                <div class="carousel-caption collect">
+                    <div id="container-collect">
+                    </div>
+                    <!-- template container -->
+                </div>
+            </div>
+        </div>
+        <div class="item" style="height: 450px;">
+            <div class="background" style="background-image: url(assets/bgimage3.jpg);">
+            </div>
+            <div class="container">
+                <div class="carousel-caption select">
+                    <div id="container-select">
+                    </div>
+                    <!-- template container -->
+                </div>
+            </div>
+        </div>
+        <div class="item" style="height: 680px;">
+            <div class="background" style="background-image: url(assets/bgimage4.jpg);">
+            </div>
+            <div class="container">
+                <div class="carousel-caption guess">
+                    <div id="container-guess">
+                    </div>
+                    <!-- template container -->
+                </div>
+            </div>
+        </div>
+        <div class="item" style="height: 450px;">
+            <div class="background" style="background-image: url(assets/bgimage5.jpg);">
+            </div>
+            <div class="container">
+                <div class="carousel-caption estimate">
+                    <div id="container-estimate">
+                    </div>
+                    <!-- template container -->
+                </div>
+            </div>
+        </div>
+        <div class="item" style="height: 680px;">
+            <div class="background" style="background-image: url(assets/bgimage6.jpg);">
+            </div>
+            <div class="container">
+                <div class="carousel-caption hangman">
+                    <div id="container-hangman">
+                    </div>
+                    <!-- template container -->
+                </div>
+            </div>
+        </div>
+        <div class="item" style="height: 680px;">
+            <div class="background" style="background-image: url(assets/bgimage7.jpg);">
+            </div>
+            <div class="container">
+                <div class="carousel-caption results">
+                    <div id="container-results">
+                    </div>
+                    <!-- template container -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+
+    <div class="fb-like" data-send="false" data-layout="button_count" data-width="350"
+         data-show-faces="true">
+    </div>
+</section>
+<section class="page container">
+    <div class="row">
+        <div class="span4 divider">
+            <h2 data-i18n="app.page.column1.headline">
+                _headline_
+            </h2>
+            <img src="assets/trust.png">
+
+            <p data-i18n="app.page.column1.body">
+                _body_
+            </p>
+            <a href="#trust" class="btn btn-small btn-inverse">Mehr Infos</a>
+        </div>
+        <div class="span4 divider">
+            <h2 data-i18n="app.page.column2.headline">
+                _headline_
+            </h2>
+            <img src="assets/learnmore.png">
+
+            <p data-i18n="app.page.column2.body">
+                _body_
+            </p>
+            <a href="#learnmore" class="btn btn-small btn-inverse">Mehr Infos</a>
+        </div>
+        <div class="span4">
+            <h2 data-i18n="app.page.column3.headline">
+                _headline_
+            </h2>
+            <img src="assets/contact.png">
+
+            <p data-i18n="app.page.column3.body">
+                _body_
+            </p>
+            <a href="#contact" class="btn btn-small btn-inverse">Mehr Infos</a>
+        </div>
+    </div>
+</section>
+<hr class="container"/>
+<section id="trust" name="trust" class="page container trust feature">
+    <div class="row">
+        <div class="span3">
+            <img src="assets/trust_large.png">
+        </div>
+        <div class="span9">
+            <h2 data-i18n="app.page.trust.headline">
+                _headline_
+            </h2>
+
+            <p data-i18n="app.page.trust.body">
+                _body_
+            </p>
+
+            <div class="row">
+                <div class="span3 divider">
+                    <h3 data-i18n="app.page.trust.client.headline">
+                        _headline_
+                    </h3>
+
+                    <p data-i18n="app.page.trust.client.body">
+                        _body_
+                    </p>
+                </div>
+                <div class="span3 divider">
+                    <h3 data-i18n="app.page.trust.opensource.headline">
+                        _headline_
+                    </h3>
+
+                    <p data-i18n="app.page.trust.opensource.body">
+                        _body_
+                    </p>
+                </div>
+                <div class="span3">
+                    <h3 data-i18n="app.page.trust.download.headline">
+                        _headline_
+                    </h3>
+
+                    <p data-i18n="app.page.trust.download.body">
+                        _body_
+                    </p>
+                    <a data-i18n="app.page.trust.download.web" href="http://www-ifs.uni-regensburg.de/xyz.zip"
+                       target="_blank" class="btn btn-small btn-primary">_headline_</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<hr class="container"/>
+<section id="learnmore" name="learnmore" class="page container learnmore feature">
+    <div class="row">
+        <div class="span9">
+            <h2 class="featurette-heading" data-i18n="app.page.learnmore.headline">
+                _headline_
+            </h2>
+
+            <p data-i18n="app.page.learnmore.body">
+                _body_
+            </p>
+            <ul class="thumbnails">
+                <li class="span2" style="text-align: center;">
+                    <a href="#" class="thumbnail">
+                        <img src="assets/bgimage1.jpg" alt="">
+                        <h5>Bewerten</h5>
+                    </a>
                 </li>
-              </ul>
-            </div>
-            <div class="pull-right player" data-i18n="app.header.hi">_hi_ </div>
-          </div>
+                <li class="span2" style="text-align: center;">
+                    <a href="#" class="thumbnail">
+                        <img src="assets/bgimage7.jpg" alt="">
+                        <h5>Hangman</h5>
+                    </a>
+                </li>
+                <li class="span2" style="text-align: center;">
+                    <a href="#" class="thumbnail">
+                        <img src="assets/facebook-world.jpg" alt="">
+                        <h5>Ergebnisse</h5>
+                    </a>
+                </li>
+            </ul>
         </div>
-
-      </div>
-    </header>
-
-    <section id="game-carousel" class="carousel slide">     
-      <div class="carousel-inner">
-
-        <div class="item active">
-          <div class="background" style="background-image: url('img/facebook-world.jpg');"></div>
-          <div class="container">
-            <div class="carousel-caption">
-                <div id="container-home"></div> <!-- template container -->
-            </div>
-          </div>
+        <div class="span3">
+            <img src="assets/learnmore_large.png">
         </div>
-
-        <div class="item">
-          <div class="background">
-            <div class="overlay"></div>
-          </div>
-          <div class="container">
-            <div class="carousel-caption collect">
-                <div id="container-collect"></div> <!-- template container -->
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="background">
-            <div class="overlay"></div>
-          </div>
-          <div class="container">
-            <div class="carousel-caption select">
-                <div id="container-select"></div> <!-- template container -->
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="background">
-            <div class="overlay"></div>
-          </div>
-          <div class="container">
-            <div class="carousel-caption guess">
-                <div id="container-guess"></div> <!-- template container -->
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="background">
-            <div class="overlay"></div>
-          </div>
-          <div class="container">
-            <div class="carousel-caption estimate">
-                <div id="container-estimate"></div> <!-- template container -->
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="background">
-            <div class="overlay"></div>
-          </div>
-          <div class="container">
-            <div class="carousel-caption hangman">
-                <div id="container-hangman"></div> <!-- template container -->
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="background">
-            <div class="overlay"></div>
-          </div>
-          <div class="container">
-            <div class="carousel-caption results">
-                <div id="container-results"></div> <!-- template container -->
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
-
-      <div class="fb-like" data-send="false" data-layout="button_count" data-width="350" data-show-faces="true"></div>
-    </section>
-
-    <div id="divider">
-      <ul>
-        <li class="active" data-i18n="app.home.name">_1_</li>
-        <li data-i18n="app.collect.name">_2_</li>
-        <li data-i18n="app.select.name">_3_</li>
-        <li data-i18n="app.guess.name">_4_</li>
-        <li data-i18n="app.estimate.name">_5_</li>
-        <li data-i18n="app.hangman.name">_6_</li>
-        <li class="last" data-i18n="app.results.name">_7_</li>
-      </ul>
     </div>
-    <div id="progressbar">
-    </div>
+</section>
+<hr class="container"/>
+<section id="contact" name="contact" class="page container contact feature">
+    <div class="row">
+        <div class="span3">
+            <img src="assets/contact_large.png">
+        </div>
+        <div class="span9">
+            <h2 class="featurette-heading" data-i18n="app.page.contact.headline">
+                _headline_
+            </h2>
 
-    <section class="page container">
-        <div class="row">
-            <div class="span4">
-              <h2 data-i18n="app.page.column1.headline">_headline_</h2>
-              <p data-i18n="app.page.column1.body">_body_</p>
-            </div>
-            <div class="span4">
-              <h2 data-i18n="app.page.column2.headline">_headline_</h2>
-              <p data-i18n="app.page.column2.body">_body_</p>
-            </div>
-            <div class="span4">
-              <h2 data-i18n="app.page.column3.headline">_headline_</h2>
-              <p data-i18n="app.page.column3.body">_body_</p>
+            <p data-i18n="app.page.contact.body">
+                _body_
+            </p>
+
+            <div class="row">
+                <div class="span3 divider">
+                    <h3 data-i18n="app.page.contact.team.headline">
+                        _headline_
+                    </h3>
+                    <h4 data-i18n="app.page.contact.team.dev.headline">
+                        _headline_
+                    </h4>
+
+                    <p style="margin:0px" data-i18n="app.page.contact.team.dev.body">
+                        _body_
+                    </p>
+                    <h4 data-i18n="app.page.contact.team.concept.headline">
+                        _headline_
+                    </h4>
+
+                    <p style="margin:0px" data-i18n="app.page.contact.team.concept.body">
+                        _body_
+                    </p>
+                    <h4 data-i18n="app.page.contact.team.management.headline">
+                        _headline_
+                    </h4>
+
+                    <p data-i18n="app.page.contact.team.management.body">
+                        _body_
+                    </p>
+                    <a data-i18n="app.page.contact.team.contact.mail"
+                       href="mailto:michael.netter@wiwi.uni-regensburg.de?subject=PrivacyChecker"
+                       style="margin-right: 10px" class="btn btn-small btn-primary">_headline_</a>
+                    <a data-i18n="app.page.contact.team.contact.web" href="http://www-ifs.uni-regensburg.de/"
+                       target="_blank" class="btn btn-small btn-primary">_headline_</a>
+                </div>
+                <div class="span3 divider">
+                    <h3 data-i18n="app.page.contact.privacy.headline">
+                        _headline_
+                    </h3>
+
+                    <p data-i18n="app.page.contact.privacy.body">
+                        _body_
+                    </p>
+                </div>
+                <div class="span3">
+                    <h3 data-i18n="app.page.contact.liability.headline">
+                        _headline_
+                    </h3>
+
+                    <p data-i18n="app.page.contact.liability.body">
+                        _body_
+                    </p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+<hr class="container"/>
+<footer class="container">
+    <p>
+        <img src="assets/logo_ur.jpg" alt="UR"/>
+        Universit&auml;t Regensburg
+    </p>
+</footer>
+<script src="//connect.facebook.net/en_US/all.js">
 
-    <footer class="container">
-        <hr />
-        <p>
-            &copy; 2013 Universit&auml;t Regensburg <img src="img/ifs-logo-small.jpg" alt="IFS"/> &middot; <a href="#">Privacy</a> &middot; <a href="#">Imprint</a> &middot; <a href="https://github.com/cr0/piggybacking/">Source</a>
-        </p>
-    </footer>
+</script>
+<script src="assets/vendor.js"></script>
+<script src="assets/namespace.js"></script>
+<script src="assets/templates.js"></script>
+<script src="assets/common.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/app.js"></script>
 
-    <script src="//connect.facebook.net/en_US/all.js"></script>
-
-    <script src="lib/jquery.min.js"></script>
-    <script src="lib/jquery.transit.min.js"></script>
-
-    <script src="lib/underscore.min.js"></script>
-    <script src="lib/backbone.min.js"></script>
-    <script src="lib/bootstrap.min.js"></script>
-    <script src="lib/handlebars.js"></script>
-    <script src="lib/i18next.min.js"></script>
-    <script src="lib/elorating.js"></script>
-    <script src="lib/quantize.js"></script>
-    <script src="lib/color-thief.js"></script>
-
-    <script src="lib/jquery.random.js"></script>
-
-    <script src="js/utils.js"></script>
-
-    <script src="js/model/facebookuser.js"></script>
-    <script src="js/model/facebooklist.js"></script>
-    <script src="js/model/facebookpicture.js"></script>
-    <script src="js/model/facebookpost.js"></script>
-    <script src="js/model/facebookrandomcollector.js"></script>
-
-    <script src="js/model/testdata.js"></script>
-    <script src="js/model/testresult.js"></script>
-
-    <script src="js/model/facebookplayer.js"></script>
-
-    <script src="js/view/headerview.js"></script>
-    <script src="js/view/homeview.js"></script>
-    <script src="js/view/collectview.js"></script>
-    <script src="js/view/selectview.js"></script>
-    <script src="js/view/listguessview.js"></script>
-    <script src="js/view/estimateview.js"></script>
-    <script src="js/view/hangmanview.js"></script>
-    <script src="js/view/resultview.js"></script>
-
-    <script src="js/main.js"></script>
-
-    <script type="text/javascript">
-
-    $(window).ready(function() {
-        $('#game-carousel').carousel({
-          interval: false
-        });
-
-        setTimeout(function() {
-            //$('#game-carousel').carousel('next');
-
-            // $('#game-carousel').on('slid', function(e, el) {
-            //      $('.item.active').transition({
-            //         'height': '600px'
-            //     });
-            //     $('.item.active .background').transition({
-            //         'background-color': 'rgb(0,0,255)'
-            //      });
-            // });
-            // 
-        }, 2000);
+<script type="text/javascript">
+    $( window ).ready( function()
+    {
+        $( '#game-carousel' ).carousel( {
+            interval: false
+        } );
+        $( 'a' ).smoothScroll();
     });
+</script>
+</body>
 
-    </script>
-  </body>
 </html>

@@ -1,3 +1,4 @@
+@import "../vendor/bootstrap/less/bootstrap.less";
 @import "share.less";
 @import "collect.less";
 @import "select.less";
@@ -16,6 +17,10 @@ body {
 /* FOOTER */
 footer {
     margin-top: 50px;
+}
+
+hr {
+	margin: 50px 0;
 }
 
 
@@ -71,7 +76,7 @@ footer {
 
 /* NAVBAR */
 .carousel {
-	margin-bottom: 15px;
+	margin-bottom: 50px;
 	overflow: hidden;
 
 	.container {
@@ -80,7 +85,7 @@ footer {
   	}
 
   	.item {
-  		height: 500px;
+  		height: 450px;
   		overflow: hidden;
 	}
 
@@ -94,23 +99,12 @@ footer {
 		-moz-transition: all 1s;
 		-ms-transition: all 1s;
 		-o-transition: all 1s;
-		transition: all 1s;	
-		background:  no-repeat 0 0 rgba(59,89,152,1);
-
-		.overlay {
-			position: absolute;
-			left: 0;
-			top: 0;
-			right: 0;
-			width: 100%;
-			height: 100%;
-			background: -moz-linear-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, 0));
-			background: -o-linear-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, 0));
-			background: -moz-linear-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, 0));
-			background: -webkit-linear-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, 0));
-			background: -ms-linear-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, 0));
-			background: linear-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, 0));
-		}
+		transition: all 1s;
+		background: no-repeat 0 0;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
 	}
 
 	.fb-like {
@@ -130,7 +124,7 @@ footer {
 			margin: 0;
 			line-height: 1.25;
 			color: rgb(255, 255, 255);
-			text-shadow: 0 1px 1px rgba(0, 0, 0, .4);	
+			text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
 		}
 
 		.btn {
@@ -150,10 +144,10 @@ footer {
 		font-size: 60px;
 		font-weight: 100;
 		line-height: 30px;
-		color: rgb(192, 152, 83);
-		text-align: center;
-		background: rgb(252, 248, 227);
-		border: 2px solid rgb(251, 238, 213);
+		color:#0088CC;
+		text-align:center;
+		background:#ffffff;
+		border:2px solid #fbeed5;
 	  	opacity: 0.7;
 	  	filter: alpha(opacity=70);
 		transition: width 0.5s;
@@ -174,7 +168,7 @@ footer {
 
 		&:hover {
 			width: @button-width + 20px;
-			color: rgb(192, 152, 83);
+			color: #c09853;
 			text-decoration: none;
 			opacity: 0.9;
 			filter: alpha(opacity=90);
@@ -184,68 +178,77 @@ footer {
 
 }
 
-/* PROGRESSBAR */
-@height: 30px;
-#divider {
+.progress {
+	width: 40%;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top: 13px;
 	float: left;
-	width: 100%;
-	height: @height;
-	margin: 0;
+	border: 1px solid #111111;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6) inset;
+	background: none repeat scroll 0 0 #222222;
 
-	ul {
-		.plain-list;
-		margin: 0;
-
-		li {
-			float: left;
-			width: 100px; // fix stagging position error
-			text-align: center;
-			//border-right: 1px solid rgba(51,51,51,.5);
-			line-height: @height;
-			vertical-align: top;
-			display: inline-block;
-			background-color: rgba(204,204,204,.1);
-			font-weight: 300;
-			font-size: 20px;
-			vertical-align: baseline;
-			-webkit-transition: background 0.5s linear;
-			-moz-transition: background 0.5s linear;
-			-ms-transition: background 0.5s linear;
-			-o-transition: background 0.5s linear;
-			transition: background 0.5s linear;
-
-			&.last {
-				border-right: 0 !important;
-			}
-
-			&.active {
-				background-color: rgba(102,102,102,.1);
-			}
-		}
+	#progressbar {
+		background: #383838; /* Old browsers */
+		background: -moz-linear-gradient(top,  #383838 0%, #474747 49%, #383838 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#383838), color-stop(49%,#474747), color-stop(100%,#383838)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  #383838 0%,#474747 49%,#383838 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  #383838 0%,#474747 49%,#383838 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  #383838 0%,#474747 49%,#383838 100%); /* IE10+ */
+		background: linear-gradient(to bottom,  #383838 0%,#474747 49%,#383838 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#383838', endColorstr='#383838',GradientType=0 ); /* IE6-9 */
 	}
-}
-
-@progressBarHeight: 6px;
-#progressbar {
-	background-color: rgb(111, 191, 77);
-	height: @progressBarHeight;
-	width: 0%;
-	margin: -@progressBarHeight 0 60px 0;
 }
 
 /* PAGE */
 .page {
 
-	.span4 {
-		text-align: center;
+	.divider {
+  		background: url("divider.png")  repeat-y scroll right center transparent;
+	}
+
+	.span3 {
 
 		p {
-			margin-left: 10px;
-			margin-right: 10px;	
+			margin-right: 10px;
+		}
+
+	}
+
+	.span4 {
+		text-align: left;
+
+		& > img {
+			float: left;
+			margin-right: 15px;
+		}
+
+		p {
+			margin-right: 20px;
 		}
 	}
 
 	h2 {
-		font-weight: normal;	
+		font-weight: normal;
 	}
+
+	h3 {
+		font-weight: bold;
+	}
+
+	h4 {
+		margin-bottom: 0px;
+	}
+
+	&.feature {
+
+		h2 {
+			font-size: 40px;
+			font-weight: 300;
+			letter-spacing: -1px;
+			line-height: 1;
+		}
+
+	}
+
 }
