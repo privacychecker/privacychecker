@@ -9,6 +9,7 @@
         initialize: function()
         {
             console.log( "[HeaderView] Init: HeaderView" );
+            this.nameInjected = false;
 
             pc.model.FacebookPlayer.getInstance().on( "profile:loaded", _.bind( this.fbPlayerProfileLoadedCb, this ) );
         },
@@ -26,31 +27,38 @@
             var player = pc.model.FacebookPlayer.getInstance();
             var container = $( document ).find( pc.view.HeaderView.PLAYER_INFO_SELECTOR );
 
-            var name = player.get( "name" );
-            //var image = pc.view.HeaderView.PLAYER_IMAGE_SRC( {uid: player.get( "id" )} );
+            if ( player.loggedin && !this.nameInjected ) {
+                var name = player.get( "name" );
+                //var image = pc.view.HeaderView.PLAYER_IMAGE_SRC( {uid: player.get( "id" )} );
 
-            var inject = $( '<span>', {
-                "html": i18n.t( pc.view.HeaderView.LANG_LANGUAGE_GREETING, {name: name} )
-            } );
-
-            var logoutBtn = $( '<button>' ).addClass( 'btn btn-mini' ).click(function() {
-                console.log("[HeaderView] Logout clicked");
-                player.logout();
-            });
-            var logoutTxt = $( '<i>', {
-                "html":        "&#128275;",
-                "data-toggle": "tooltip",
-                "title":       i18n.t( pc.view.HeaderView.LANG_LANGUAGE_LOGOUT )
-            } ).tooltip( {
-                    "placement": "bottom",
-                    "html":      true
+                var inject = $( '<span>', {
+                    "html": i18n.t( pc.view.HeaderView.LANG_LANGUAGE_GREETING, {name: name} )
                 } );
-            logoutBtn.append( logoutTxt );
 
-            container.fadeOut( 'fast', function()
-            {
-                container.remove( 'span' ).append( inject ).append( logoutBtn ).fadeIn( 'fast' );
-            } );
+                var logoutBtn = $( '<button>' ).click( function()
+                {
+                    console.log( "[HeaderView] Logout clicked" );
+                    player.logout();
+                } ).addClass( 'btn btn-mini' );
+                var logoutTxt = $( '<i>', {
+                    "html":        "&#128275;",
+                    "data-toggle": "tooltip",
+                    "title":       i18n.t( pc.view.HeaderView.LANG_LANGUAGE_LOGOUT )
+                } ).tooltip( {
+                        "placement": "bottom",
+                        "html":      true
+                    } );
+                logoutBtn.append( logoutTxt );
+
+                container.fadeOut( 'fast', function()
+                {
+                    container.remove( 'span' ).append( inject ).append( logoutBtn ).fadeIn( 'fast' );
+                } );
+            }
+            else if ( !player.loggedin ) {
+                container.empty();
+                this.nameInjected = false;
+            }
         },
 
         changeLanguageCb: function()
