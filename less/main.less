@@ -1,4 +1,5 @@
 @import "../vendor/bootstrap/less/bootstrap.less";
+@import "entypo.less";
 @import "share.less";
 @import "collect.less";
 @import "select.less";
@@ -7,248 +8,261 @@
 @import "hangman.less";
 @import "results.less";
 
-/* GLOBAL STYLES */
+    /* GLOBAL STYLES */
 
 body {
-	padding-bottom: 40px;
-	color: rgb(90, 90, 90);
+    padding-bottom: 40px;
+    color: rgb(90, 90, 90);
 }
 
-/* FOOTER */
+    /* FOOTER */
 footer {
     margin-top: 50px;
 }
 
 hr {
-	margin: 50px 0;
+    margin: 50px 0;
 }
 
+    /* NAVBAR */
 
-/* NAVBAR */
-
-/* Special class on .container surrounding .navbar, used for positioning it into place. */
+    /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
-  	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 10;
-	margin-top: 20px;
-	margin-bottom: -90px; /* pull up caroussel */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    //z-index: 10;
+    margin-top: 20px;
+    margin-bottom: -90px; /* pull up caroussel */
 }
 
 .navbar {
 
-	.navbar-inner {
-		border: 0;
-		-webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-		-moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-		box-shadow: 0 2px 10px rgba(0,0,0,.25);
-	}
+    .navbar-inner {
+        border: 0;
+        -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+        -moz-box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+    }
 
-	.brand {
-		padding: 14px 20px 16px;
-		font-size: 16px;
-		font-weight: bold;
-		text-shadow: 0 -1px 0 rgba(0,0,0,.5);
-	}
+    .brand {
+        padding: 14px 20px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, .5);
+    }
 
-	.nav {
-		& > li {
-			& > a {
-				padding: 15px 20px;
-			}
-		}
-	}
+    .nav {
+        & > li {
+            & > a {
+                padding: 15px 20px;
+            }
+        }
+    }
 
-	.btn-navbar {
-		margin-top: 10px;
-	}
+    .btn-navbar {
+        margin-top: 10px;
+    }
 
-	.player {
-		margin-top: 14px;
+    .player {
+        margin-top: 14px;
 
-		span {
-			color: rgb(255, 255, 255);
-		}
-	}
+        span {
+            color: rgb(255, 255, 255);
+        }
+
+        button {
+            margin-top: -3px;
+            margin-left: 5px;
+        }
+    }
+
+    .progress {
+        width: 30%;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 13px;
+        float: left;
+        border: 1px solid #111111;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6) inset;
+        background: none repeat scroll 0 0 #222222;
+
+        #progressbar {
+            background: #383838; /* Old browsers */
+            background: -moz-linear-gradient(top, #383838 0%, #474747 49%, #383838 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #383838), color-stop(49%, #474747), color-stop(100%, #383838)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #383838 0%, #474747 49%, #383838 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #383838 0%, #474747 49%, #383838 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top, #383838 0%, #474747 49%, #383838 100%); /* IE10+ */
+            background: linear-gradient(to bottom, #383838 0%, #474747 49%, #383838 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#383838', endColorstr='#383838', GradientType=0); /* IE6-9 */
+        }
+    }
+
 }
 
-/* NAVBAR */
+    /* NAVBAR */
 .carousel {
-	margin-bottom: 50px;
-	overflow: hidden;
+    margin-bottom: 50px;
+    overflow: hidden;
 
-	.container {
-  		position: relative;
-  		z-index: 9;
-  	}
+    .container {
+        position: relative;
+        z-index: 9;
+    }
 
-  	.item {
-  		height: 450px;
-  		overflow: hidden;
-	}
+    .item {
+        height: 450px;
+        overflow: hidden;
+    }
 
-	.background {
-  		position: absolute;
-  		top: 0;
-  		left: 0;
-  		width: 100%;
-  		height: 100%;
-		-webkit-transition: all 1s;
-		-moz-transition: all 1s;
-		-ms-transition: all 1s;
-		-o-transition: all 1s;
-		transition: all 1s;
-		background: no-repeat 0 0;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-	}
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all 1s;
+        -moz-transition: all 1s;
+        -ms-transition: all 1s;
+        -o-transition: all 1s;
+        transition: all 1s;
+        background: no-repeat 0 0;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        z-index: -100;
+    }
 
-	.fb-like {
-		position: absolute;
-		bottom: 5px;
-		right: 10px;
-	}
+    .fb-like {
+        position: absolute;
+        bottom: 25px;
+        right: 10px;
+    }
 
-	.carousel-caption {
-		background-color: transparent;
-		position: static;
-		max-width: 550px;
-		padding: 0 20px;
-		margin-top: 200px;
+    .carousel-caption {
+        background-color: transparent;
+        position: static;
+        max-width: 550px;
+        padding: 0 20px;
+        margin-top: 200px;
 
-		h1, .lead {
-			margin: 0;
-			line-height: 1.25;
-			color: rgb(255, 255, 255);
-			text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
-		}
+        h1, .lead {
+            margin: 0;
+            line-height: 1.25;
+            color: rgb(255, 255, 255);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+        }
 
-		.btn {
-			margin-top: 10px;
-		}
-	}
+        .btn {
+            margin-top: 10px;
+        }
+    }
 
-	@button-width: 60px;
-	.carousel-control {
-		.rounded-corners(0px);
-		position: absolute;
-		top: 45%;
-		left: 0;
-		width: @button-width;
-		height: 40px;
-		margin-top: -20px;
-		font-size: 60px;
-		font-weight: 100;
-		line-height: 30px;
-		color:#0088CC;
-		text-align:center;
-		background:#ffffff;
-		border:2px solid #fbeed5;
-	  	opacity: 0.7;
-	  	filter: alpha(opacity=70);
-		transition: width 0.5s;
-		-moz-transition: width 0.5s ease-in-out; /* Firefox 4 */
-		-webkit-transition: width 0.5s ease-in-out; /* Safari and Chrome */
-		-o-transition: width 0.5s ease-in-out; /* Opera */
-		-webkit-border-top-left-radius: 5px;
-		-webkit-border-bottom-left-radius: 5px;
-		-moz-border-radius-topleft: 5px;
-		-moz-border-radius-bottomleft: 5px;
-		border-top-left-radius: 5px;
-		border-bottom-left-radius: 5px;
+    @button-width: 60px;
+    .carousel-control {
+        .rounded-corners(0px);
+        position: absolute;
+        top: 45%;
+        left: 0;
+        width: @button-width;
+        height: 40px;
+        margin-top: -20px;
+        font-size: 60px;
+        font-weight: 100;
+        line-height: 30px;
+        color: #0088CC;
+        text-align: center;
+        background: #ffffff;
+        border: 2px solid #fbeed5;
+        opacity: 0.7;
+        filter: alpha(opacity=70);
+        transition: width 0.5s;
+        -moz-transition: width 0.5s ease-in-out; /* Firefox 4 */
+        -webkit-transition: width 0.5s ease-in-out; /* Safari and Chrome */
+        -o-transition: width 0.5s ease-in-out; /* Opera */
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
 
-		&.right {
-			left: auto;
-	  		right: 0;
-		}
+        &.right {
+            left: auto;
+            right: 0;
+        }
 
-		&:hover {
-			width: @button-width + 20px;
-			color: #c09853;
-			text-decoration: none;
-			opacity: 0.9;
-			filter: alpha(opacity=90);
-		}
+        &:hover {
+            width: @button-width + 20px;
+            color: #c09853;
+            text-decoration: none;
+            opacity: 0.9;
+            filter: alpha(opacity=90);
+        }
 
-	}
+    }
+
+    div.zipper {
+        background: url(zipper.png) repeat-x left bottom transparent;
+        width: 100%;
+        height: 22px;
+        margin-top: -22px;
+    }
 
 }
 
-.progress {
-	width: 30%;
-	margin-left: 5%;
-	margin-right: 5%;
-	margin-top: 13px;
-	float: left;
-	border: 1px solid #111111;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6) inset;
-	background: none repeat scroll 0 0 #222222;
-
-	#progressbar {
-		background: #383838; /* Old browsers */
-		background: -moz-linear-gradient(top,  #383838 0%, #474747 49%, #383838 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#383838), color-stop(49%,#474747), color-stop(100%,#383838)); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(top,  #383838 0%,#474747 49%,#383838 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(top,  #383838 0%,#474747 49%,#383838 100%); /* Opera 11.10+ */
-		background: -ms-linear-gradient(top,  #383838 0%,#474747 49%,#383838 100%); /* IE10+ */
-		background: linear-gradient(to bottom,  #383838 0%,#474747 49%,#383838 100%); /* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#383838', endColorstr='#383838',GradientType=0 ); /* IE6-9 */
-	}
-}
-
-/* PAGE */
+    /* PAGE */
 .page {
 
-	.divider {
-  		background: url("divider.png")  repeat-y scroll right center transparent;
-	}
+    .divider {
+        background: url("divider.png") repeat-y scroll right center transparent;
+    }
 
-	.span3 {
+    .span3 {
 
-		p {
-			margin-right: 10px;
-		}
+        p {
+            margin-right: 10px;
+        }
 
-	}
+    }
 
-	.span4 {
-		text-align: left;
+    .span4 {
+        text-align: left;
 
-		& > img {
-			float: left;
-			margin-right: 15px;
-		}
+        & > img {
+            float: left;
+            margin-right: 15px;
+        }
 
-		p {
-			margin-right: 20px;
-		}
-	}
+        p {
+            margin-right: 20px;
+        }
+    }
 
-	h2 {
-		font-weight: normal;
-	}
+    h2 {
+        font-weight: normal;
+    }
 
-	h3 {
-		font-weight: bold;
-	}
+    h3 {
+        font-weight: bold;
+    }
 
-	h4 {
-		margin-bottom: 0px;
-	}
+    h4 {
+        margin-bottom: 0px;
+    }
 
-	&.feature {
+    &.feature {
 
-		h2 {
-			font-size: 40px;
-			font-weight: 300;
-			letter-spacing: -1px;
-			line-height: 1;
-		}
+        h2 {
+            font-size: 40px;
+            font-weight: 300;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
 
-	}
+    }
 
 }

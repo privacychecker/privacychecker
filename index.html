@@ -58,7 +58,7 @@
                     <div id="progressbar" class="bar">
                     </div>
                 </div>
-                <div class="pull-right player" data-i18n="app.header.hi">
+                <div class="pull-right player" data-i18n="app.header.hi_not_loggedin">
                     _hi_
                 </div>
             </div>
@@ -89,7 +89,7 @@
                 </div>
             </div>
         </div>
-        <div class="item" style="height: 450px;">
+        <div class="item" style="height: 470px;">
             <div class="background" style="background-image: url(assets/bgimage3.jpg);">
             </div>
             <div class="container">
@@ -100,7 +100,7 @@
                 </div>
             </div>
         </div>
-        <div class="item" style="height: 680px;">
+        <div class="item" style="height: 700px;">
             <div class="background" style="background-image: url(assets/bgimage4.jpg);">
             </div>
             <div class="container">
@@ -111,7 +111,7 @@
                 </div>
             </div>
         </div>
-        <div class="item" style="height: 450px;">
+        <div class="item" style="height: 470px;">
             <div class="background" style="background-image: url(assets/bgimage5.jpg);">
             </div>
             <div class="container">
@@ -122,7 +122,7 @@
                 </div>
             </div>
         </div>
-        <div class="item" style="height: 680px;">
+        <div class="item" style="height: 700px;">
             <div class="background" style="background-image: url(assets/bgimage6.jpg);">
             </div>
             <div class="container">
@@ -133,7 +133,7 @@
                 </div>
             </div>
         </div>
-        <div class="item" style="height: 680px;">
+        <div class="item" style="height: 700px;">
             <div class="background" style="background-image: url(assets/bgimage7.jpg);">
             </div>
             <div class="container">
@@ -150,6 +150,7 @@
     <div class="fb-like" data-send="false" data-layout="button_count" data-width="350"
          data-show-faces="true">
     </div>
+    <div class="footer zipper"></div>
 </section>
 <section class="page container">
     <div class="row">
@@ -162,7 +163,9 @@
             <p data-i18n="app.page.column1.body">
                 _body_
             </p>
-            <a href="#trust" class="btn btn-small btn-inverse">Mehr Infos</a>
+            <a href="#trust" class="btn btn-small btn-inverse">
+                <i>&#128161;</i> <span>Mehr Infos</span>
+            </a>
         </div>
         <div class="span4 divider">
             <h2 data-i18n="app.page.column2.headline">
@@ -173,7 +176,9 @@
             <p data-i18n="app.page.column2.body">
                 _body_
             </p>
-            <a href="#learnmore" class="btn btn-small btn-inverse">Mehr Infos</a>
+            <a href="#learnmore" class="btn btn-small btn-inverse">
+                <i>&#8505;</i> <span>Mehr Infos</span>
+            </a>
         </div>
         <div class="span4">
             <h2 data-i18n="app.page.column3.headline">
@@ -184,7 +189,9 @@
             <p data-i18n="app.page.column3.body">
                 _body_
             </p>
-            <a href="#contact" class="btn btn-small btn-inverse">Mehr Infos</a>
+            <a href="#contact" class="btn btn-small btn-inverse">
+                <i>&#128326;</i> <span>Mehr Infos</span>
+            </a>
         </div>
     </div>
 </section>
@@ -230,8 +237,10 @@
                     <p data-i18n="app.page.trust.download.body">
                         _body_
                     </p>
-                    <a data-i18n="app.page.trust.download.web" href="http://www-ifs.uni-regensburg.de/xyz.zip"
-                       target="_blank" class="btn btn-small btn-primary">_headline_</a>
+                    <a href="https://github.com/cr0/privacychecker/archive/develop.zip" target="_blank"
+                       class="btn btn-small btn-primary"><i>&#128229;</i>
+                        <span data-i18n="app.page.trust.download.web">_headline_</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -316,11 +325,14 @@
                     <p data-i18n="app.page.contact.team.management.body">
                         _body_
                     </p>
-                    <a data-i18n="app.page.contact.team.contact.mail"
-                       href="mailto:michael.netter@wiwi.uni-regensburg.de?subject=PrivacyChecker"
-                       style="margin-right: 10px" class="btn btn-small btn-primary">_headline_</a>
-                    <a data-i18n="app.page.contact.team.contact.web" href="http://www-ifs.uni-regensburg.de/"
-                       target="_blank" class="btn btn-small btn-primary">_headline_</a>
+                    <a href="mailto:michael.netter@wiwi.uni-regensburg.de?subject=PrivacyChecker"
+                       style="margin-right: 10px" class="btn btn-small btn-primary">
+                        <i>&#9993;</i> <span data-i18n="app.page.contact.team.contact.mail">_mail_</span></a>
+
+                    <a href="http://www-ifs.uni-regensburg.de/"
+                       target="_blank" class="btn btn-small btn-primary">
+                        <i>&#127758;</i> <span data-i18n="app.page.contact.team.contact.web">_web_</span>
+                    </a>
                 </div>
                 <div class="span3 divider">
                     <h3 data-i18n="app.page.contact.privacy.headline">
@@ -349,8 +361,22 @@
     <p>
         <img src="assets/logo_ur.jpg" alt="UR"/>
         Universit&auml;t Regensburg
+        <span>&bull; using <a href="http://www.entypo.com/">entypo icons</a></span>
     </p>
 </footer>
+
+<div id="loading-container" class="modal hide fade" tabindex="-1" role="dialog" data-backdrop="false"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <h3 id="myModalLabel" data-i18n="app.loading.loading">app.loading.loading</h3>
+    </div>
+    <div class="modal-body">
+        <div class="progress progress-striped active">
+            <div class="bar" style="width: 0%"></div>
+        </div>
+    </div>
+</div>
+
 <script src="//connect.facebook.net/en_US/all.js">
 
 </script>
@@ -368,7 +394,7 @@
             interval: false
         } );
         $( 'a' ).smoothScroll();
-    });
+    } );
 </script>
 </body>
 

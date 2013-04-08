@@ -132,7 +132,7 @@
                 return false;
             }
 
-            var responseI = parseInt( response, 100 );
+            var responseI = parseInt( response, 10 );
 
             var result = new pc.model.TestResult( {
                 is:   responseI,

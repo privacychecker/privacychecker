@@ -13,7 +13,7 @@
             pc.model.FacebookPlayer.getInstance().on( "profile:loaded", _.bind( this.fbPlayerProfileLoadedCb, this ) );
         },
 
-        render: function( )
+        render: function()
         {
             $( pc.view.HeaderView.LANGUAGE_CHANGE_SELECTOR ).click( _.bind( this.changeLanguageCb, this ) );
             return this;
@@ -30,12 +30,26 @@
             //var image = pc.view.HeaderView.PLAYER_IMAGE_SRC( {uid: player.get( "id" )} );
 
             var inject = $( '<span>', {
-                "html": name
+                "html": i18n.t( pc.view.HeaderView.LANG_LANGUAGE_GREETING, {name: name} )
             } );
+
+            var logoutBtn = $( '<button>' ).addClass( 'btn btn-mini' ).click(function() {
+                console.log("[HeaderView] Logout clicked");
+                player.logout();
+            });
+            var logoutTxt = $( '<i>', {
+                "html":        "&#128275;",
+                "data-toggle": "tooltip",
+                "title":       i18n.t( pc.view.HeaderView.LANG_LANGUAGE_LOGOUT )
+            } ).tooltip( {
+                    "placement": "bottom",
+                    "html":      true
+                } );
+            logoutBtn.append( logoutTxt );
 
             container.fadeOut( 'fast', function()
             {
-                container.remove( 'span' ).append( inject ).fadeIn( 'fast' );
+                container.remove( 'span' ).append( inject ).append( logoutBtn ).fadeIn( 'fast' );
             } );
         },
 
@@ -51,7 +65,9 @@
 
         LANGUAGE_CHANGE_SELECTOR: '.language-menu li > a',
 
-        LANG_LANGUAGE_CONFIRM: "app.header.language_confirm"
+        LANG_LANGUAGE_CONFIRM:  "app.header.language_confirm",
+        LANG_LANGUAGE_GREETING: "app.header.hi",
+        LANG_LANGUAGE_LOGOUT:   "app.header.logout"
 
     } );
 

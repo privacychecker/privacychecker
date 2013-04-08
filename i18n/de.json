@@ -1,171 +1,183 @@
 {
-	"app": {
+    "app": {
 
-		"header": {
-			"start": "Start",
-			"change_language": "Sprache wechseln",
-			"language_confirm": "Will du die Sprache wirklich wechseln? Das Spiel wird hierbei abgebrochen!",
-			"hi": "Eingeloggt als: "
-		},
+        "header": {
+            "start":            "Start",
+            "change_language":  "Sprache wechseln",
+            "language_confirm": "Will du die Sprache wirklich wechseln? Das Spiel wird hierbei abgebrochen!",
+            "hi":               "Eingeloggt als: __name__",
+            "hi_not_loggedin":  "",
+            "logout":           "Bei Facebook abmelden"
+        },
 
-		"home": {
-			"name": "Hallo",
-			"headline": "Kennst du alle deine Freunde?",
-			"description": "Finde spielend heraus, wer deine Fotos sehen kann und ob du auch weißt, wer diese Leute sind.",
-			"play_button": "Spielen",
-			"other_player": "Als anderer Nutzer anmelden"
-		},
+        "loading": {
+            "loading":     "Lade Daten..",
+            "please_wait": "Bitte warten.."
+        },
 
-		"collect": {
-			"name": "Sammeln",
-			"headline": "Wir brauchen noch ein paar Daten von dir!",
-			"description": "In diesem Schritt werden die Daten von deinem Facebookprofil lokal auf deinem Rechner gespeichert. Anschließend können diese für den Test verwendet werden.",
-			"next_button": "Okay, legt los &raquo;",
-			"next_button_loading": "Daten werden geladen, das kann ein wenig dauern..",
-			"error": "Beim Abrufen der Daten ist leider ein Fehler aufgetreten. Bitte starte das Spiel neu!"
-		},
+        "home": {
+            "name":         "Hallo",
+            "headline":     "Kennst du alle deine Freunde?",
+            "description":  "Finde spielend heraus, wer deine Fotos sehen kann und ob du auch weißt, wer diese Leute sind.",
+            "play_button":  "Spielen",
+            "other_player": "Als anderer Nutzer anmelden"
+        },
 
-		"select": {
-			"name": "Auswählen",
-			"headline": "Welches Item ist für dich persönlicher?",
-			"insufficient_data": "Dein Profil erfüllt leider nicht die Mindestanforderungen an das Spiel."
-		},
+        "collect": {
+            "name":                "Sammeln",
+            "headline":            "Wir brauchen noch ein paar Daten von dir!",
+            "description":         "In diesem Schritt werden die Daten von deinem Facebookprofil lokal auf deinem Rechner gespeichert. Anschließend können diese für den Test verwendet werden.",
+            "next_button":         "Okay, legt los &raquo;",
+            "next_button_loading": "Daten werden geladen, das kann ein wenig dauern..",
+            "error":               "Beim Abrufen der Daten ist leider ein Fehler aufgetreten. Bitte starte das Spiel neu!"
+        },
 
-		"guess": {
-			"name": "Raten",
-			"what_do_you_guess": "Was tippst du?",
-			"input_button": "Eingeben",
-	        "question_friends": "Wie viele Freunde hast du insgesamt?",
-	        "question_list": "Wie viele Mitglieder hat die Liste &raquo;__listname__&laquo;?"
-		},
+        "select": {
+            "name":               "Auswählen",
+            "headline":           "Welches Item ist für dich persönlicher?",
+            "insufficient_data":  "Dein Profil erfüllt leider nicht die Mindestanforderungen an das Spiel.",
+            "game_usage":         "Spielumfang wählen",
+            "what_to_use":        "Du kannst den Test mit deinen Fotos, deinen Statusmeldungen oder beidem zusammen spielen.",
+            "play_with_images":   "Nur Bilder benutzen",
+            "play_with_statuses": "Nur Statusmeldungen benutzen",
+            "play_with_both":     "Beides benutzen"
+        },
 
-		"estimate": {
-			"name": "Schätzen",
-			"headline": "Was schätzt du wie viele Leute das sehen können?",
-			"what_do_you_guess": "Was tippst du?",
-			"input_button": "Eingeben"
-		},
+        "guess": {
+            "name":              "Raten",
+            "what_do_you_guess": "Was tippst du?",
+            "input_button":      "Eingeben",
+            "question_friends":  "Wie viele Freunde hast du insgesamt?",
+            "question_list":     "Wie viele Mitglieder hat die Liste &raquo;__listname__&laquo;?"
+        },
 
-	    "hangman": {
-	    	"name": "Bestimmen",
-	    	"headline": "Wähle die Personen, die das folgende Bild sehen können",
-	    	"lost": "Du hast verloren!",
-	    	"won": "Du hast gewonnen!",
-	    	"remaining_lives": "Leben: "
-	    },
+        "estimate": {
+            "name":              "Schätzen",
+            "headline":          "Was schätzt du wie viele Leute das sehen können?",
+            "what_do_you_guess": "Was tippst du?",
+            "input_button":      "Eingeben"
+        },
 
-		"results": {
-			"name": "Ergebnisse",
-			"headline": "Zeit für Ergebnisse",
-			"game1": {
-				"headline": "Raten",
-				"good": {
-					"summerize": "Du bist gut dabei.",
-					"advice": "Du hast deine Listen gut organisiert und anscheinend auch keine oder wenige Freunde, die nicht wirklich deine Freunde sind. Nicht schlecht!"
-				},
-				"neutral": {
-					"summerize": "Da kann man noch etwas machen.",
-					"advice": "Du hast anscheinend einige Freunde, die du nicht mehr so gut kennst. Eventuell solltest du deine Listen nochmal anschauen und überprüfen, ob alle Freunde noch aktuell sind."
-				},
-				"bad": {
-					"summerize": "Du solltest dir deine Freunde und die Listen nochmal gut anschauen.",
-					"advice": "Eventuell kannst du ein paar Freunde löschen oder die Listen kleiner machen. Dann kannst du dir die bekannten Gesichter auch besser merken."
-				}
-			},
-			"game2": {
-				"headline": "Raten",
-				"good": {
-					"summerize": "Hier passt alles.",
-					"advice": "Du kannst gut einschätzen für wie viele Leute deine Sachen bei Facebook freigegeben sind."
-				},
-				"bad": {
-					"summerize": "Achte beim Nächsten mal besser auf das Privatsphärelevel.",
-					"advice": "Deine Sachen bei Facebook sind oftmals für viel mehr Leuten freigegeben als du vermutest. Achte beim nächsten Posten darauf, Sachen nur für bestimmte Listen oder Freunde zu veröffentlichen. Öffentlich ist übrigens auch keine gute Freigabestufe ;)"
-				}
-			},
-			"game3": {
-				"headline": "Raten",
-				"good": {
-					"summerize": "Hier passt alles.",
-					"advice": "Deine Items sind nicht für viele Leute freigegeben. Da diese laut deiner Angabe persönliche Informationen beinhalten ist das auch gut so."
-				},
-				"bad": {
-					"summerize": "Überdenke deine Freigaben noch einmal.",
-					"advice": "Manche Items waren für sehr viele Leute freigegeben. Überprüfe deine Items nochmal und schau, ob du sie nicht für eine kleinere Liste freigeben solltest. "
-				},
-				"lost": "<br/>Du hast allerdings ein paar Spiele verloren. Das kann daran liegen, dass die Sachen für zu viele Leute freigegeben sind oder du deine Freunde nicht mehr so gut kennst. Überprüfe das bei Gelegenheit mal."
-			}
-		},
+        "hangman": {
+            "name":            "Bestimmen",
+            "headline":        "Wähle die Personen, die das folgende Bild sehen können",
+            "lost":            "Du hast verloren!",
+            "won":             "Du hast gewonnen!",
+            "remaining_lives": "Leben: "
+        },
 
-		"page": {
-			"column1": {
-				"headline": "Vertrauen",
-				"body": "Privacy Checker läuft ausschließlich in Deinem Browser, Deine Daten bleiben daher immer bei Dir. Noch nicht sicher? Du kannst jederzeit nachsehen, denn der Privacy Checker Quellcode ist öffentlich verfügbar"
-			},
-			"column2": {
-				"headline": "Was ist Privacy Checker?",
-				"body": "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook Profil kennst. Mit verschiedenen Spielen kannst du herausfinden, ob du weißt was Deine Freunde sehen können"
-			},
-			"column3": {
-				"headline": "Über uns",
-				"body": "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen"
-			},
-			"trust": {
-				"headline": "Vertrauen",
-				"body": "Diese App wurde mit dem Ziel entworfen, Deine Daten möglichst gut zu schützen. So wird die App beispielsweise nur in Deinem Browser ausgeführt, es werden keine persönlichen Daten an einen Server (auch nicht unseren eigenen Server) gesendet. Um das Vertrauen in die App noch weiter zu erhöhen, haben wir den Quellcode der App veröffentlicht.",
-				"client": {
-					"headline": "Technologie",
-					"body" : "Im Gegensatz zu vielen anderen Apps, vervendet diese App ausschließlich clientseitige Technologien, wie beispielsweise JavaScript, CSS und HTML. Nachdem Du die App mit Deinem Browser aufgerufen hast, werden alle Deine persönlichen Daten nur noch innerhalb Deines Browsers verarbeitet."			
-				},
-				"opensource": {
-					"headline": "Open Source",
-					"body" : "Wir haben den Quellcode der App öffentlich gemacht um die Verarbeitung Deiner Daten in der App transparent zu machen. Wenn Du möchtest, kannst du ihn Dir ansehen und erweitern."
-				},
-				"download": {
-					"headline": "Download",
-					"body" : "Du kannst Dir die aktuelle Version dieser App hier herunterladen:",
-					"web" : "Download App"
-				}
-			},
-			"learnmore": {
-				"headline": "Was ist Privacy Checker?",
-				"body": "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook Profil kennst. Mit verschiedenen Spielen kannst du herausfinden, ob du weißt was Deine Freunde sehen können. Eine Zusammenfassung am Ende zeigt Dir Dein Ergebnis an und gibt Dir Tips wie Du Deine Privatsphäre noch besser schützen kannst. Um vorher zu sehen, wie die App aussieht, klicke Dich durch die Bildergallerie."
-			},
-			
-			"contact": {
-				"headline": "Über uns",
-				"body": "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen:",
-				"team": {
-					"headline": "Team & Kontakt",
-					"dev": {
-						"headline": "Entwicklung",
-						"body": "Christian Roth"
-					},
-					"concept": {
-						"headline": "Konzeption",
-						"body": "Moritz Riesner, Michael Netter"
-					},
-					"management": {
-						"headline": "Projektmanagement",
-						"body": "Prof. Dr. Günther Pernul"
-					},
-					"contact": {
-						"mail": "Mail",							
-						"web": "Web"	
-					}
-				},
-				"privacy": {
-					"headline": "Privacy Policy",
-					"body" : "Alle Deine persönlichen Daten bleiben bei Dir, es werden keine Daten an einen anderen Server übertragen. Weder wir noch andere Personen haben Zugriff auf Deine Daten."
-				},
-				"liability": {
-					"headline": "Haftungsausschluss",
-					"body" : "Trotz sorgfältiger Prüfung können Programmfehler nicht ausgeschlossen werden. Mit der Benutzung dieser App stimmen Sie zu, dass die Autoren nicht für etwaige Schäden verantwortlich gemacht werden."
-				}
-			},
-			"footer": {
-				"uni": "Universität Regensburg - Lehrstuhl für Wirtschaftsinformatik I"
-			}
-		}
-	}
+        "results": {
+            "name":     "Ergebnisse",
+            "headline": "Zeit für Ergebnisse",
+            "game1":    {
+                "headline": "Raten",
+                "good":     {
+                    "summerize": "Du bist gut dabei.",
+                    "advice":    "Du hast deine Listen gut organisiert und anscheinend auch keine oder wenige Freunde, die nicht wirklich deine Freunde sind. Nicht schlecht!"
+                },
+                "neutral":  {
+                    "summerize": "Da kann man noch etwas machen.",
+                    "advice":    "Du hast anscheinend einige Freunde, die du nicht mehr so gut kennst. Eventuell solltest du deine Listen nochmal anschauen und überprüfen, ob alle Freunde noch aktuell sind."
+                },
+                "bad":      {
+                    "summerize": "Du solltest dir deine Freunde und die Listen nochmal gut anschauen.",
+                    "advice":    "Eventuell kannst du ein paar Freunde löschen oder die Listen kleiner machen. Dann kannst du dir die bekannten Gesichter auch besser merken."
+                }
+            },
+            "game2":    {
+                "headline": "Raten",
+                "good":     {
+                    "summerize": "Hier passt alles.",
+                    "advice":    "Du kannst gut einschätzen für wie viele Leute deine Sachen bei Facebook freigegeben sind."
+                },
+                "bad":      {
+                    "summerize": "Achte beim Nächsten mal besser auf das Privatsphärelevel.",
+                    "advice":    "Deine Sachen bei Facebook sind oftmals für viel mehr Leuten freigegeben als du vermutest. Achte beim nächsten Posten darauf, Sachen nur für bestimmte Listen oder Freunde zu veröffentlichen. Öffentlich ist übrigens auch keine gute Freigabestufe ;)"
+                }
+            },
+            "game3":    {
+                "headline": "Raten",
+                "good":     {
+                    "summerize": "Hier passt alles.",
+                    "advice":    "Deine Items sind nicht für viele Leute freigegeben. Da diese laut deiner Angabe persönliche Informationen beinhalten ist das auch gut so."
+                },
+                "bad":      {
+                    "summerize": "Überdenke deine Freigaben noch einmal.",
+                    "advice":    "Manche Items waren für sehr viele Leute freigegeben. Überprüfe deine Items nochmal und schau, ob du sie nicht für eine kleinere Liste freigeben solltest. "
+                },
+                "lost":     "<br/>Du hast allerdings ein paar Spiele verloren. Das kann daran liegen, dass die Sachen für zu viele Leute freigegeben sind oder du deine Freunde nicht mehr so gut kennst. Überprüfe das bei Gelegenheit mal."
+            }
+        },
+
+        "page": {
+            "column1":   {
+                "headline": "Vertrauen",
+                "body":     "Privacy Checker läuft ausschließlich in Deinem Browser, Deine Daten bleiben daher immer bei Dir. Noch nicht sicher? Du kannst jederzeit nachsehen, denn der Privacy Checker Quellcode ist öffentlich verfügbar"
+            },
+            "column2":   {
+                "headline": "Was ist Privacy Checker?",
+                "body":     "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook Profil kennst. Mit verschiedenen Spielen kannst du herausfinden, ob du weißt was Deine Freunde sehen können"
+            },
+            "column3":   {
+                "headline": "Über uns",
+                "body":     "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen"
+            },
+            "trust":     {
+                "headline":   "Vertrauen",
+                "body":       "Diese App wurde mit dem Ziel entworfen, Deine Daten möglichst gut zu schützen. So wird die App beispielsweise nur in Deinem Browser ausgeführt, es werden keine persönlichen Daten an einen Server (auch nicht unseren eigenen Server) gesendet. Um das Vertrauen in die App noch weiter zu erhöhen, haben wir den Quellcode der App veröffentlicht.",
+                "client":     {
+                    "headline": "Technologie",
+                    "body":     "Im Gegensatz zu vielen anderen Apps, vervendet diese App ausschließlich clientseitige Technologien, wie beispielsweise JavaScript, CSS und HTML. Nachdem Du die App mit Deinem Browser aufgerufen hast, werden alle Deine persönlichen Daten nur noch innerhalb Deines Browsers verarbeitet."
+                },
+                "opensource": {
+                    "headline": "Open Source",
+                    "body":     "Wir haben den Quellcode der App öffentlich gemacht um die Verarbeitung Deiner Daten in der App transparent zu machen. Wenn Du möchtest, kannst du ihn Dir ansehen und erweitern."
+                },
+                "download":   {
+                    "headline": "Download",
+                    "body":     "Du kannst Dir die aktuelle Version dieser App hier herunterladen:",
+                    "web":      "Download App"
+                }
+            },
+            "learnmore": {
+                "headline": "Was ist Privacy Checker?",
+                "body":     "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook Profil kennst. Mit verschiedenen Spielen kannst du herausfinden, ob du weißt was Deine Freunde sehen können. Eine Zusammenfassung am Ende zeigt Dir Dein Ergebnis an und gibt Dir Tips wie Du Deine Privatsphäre noch besser schützen kannst. Um vorher zu sehen, wie die App aussieht, klicke Dich durch die Bildergallerie."
+            },
+
+            "contact": {
+                "headline":  "Über uns",
+                "body":      "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen:",
+                "team":      {
+                    "headline":   "Team & Kontakt",
+                    "dev":        {
+                        "headline": "Entwicklung",
+                        "body":     "Christian Roth"
+                    },
+                    "concept":    {
+                        "headline": "Konzeption",
+                        "body":     "Moritz Riesner, Michael Netter"
+                    },
+                    "management": {
+                        "headline": "Projektmanagement",
+                        "body":     "Prof. Dr. Günther Pernul"
+                    },
+                    "contact":    {
+                        "mail": "Mail",
+                        "web":  "Web"
+                    }
+                },
+                "privacy":   {
+                    "headline": "Privacy Policy",
+                    "body":     "Alle Deine persönlichen Daten bleiben bei Dir, es werden keine Daten an einen anderen Server übertragen. Weder wir noch andere Personen haben Zugriff auf Deine Daten."
+                },
+                "liability": {
+                    "headline": "Haftungsausschluss",
+                    "body":     "Trotz sorgfältiger Prüfung können Programmfehler nicht ausgeschlossen werden. Mit der Benutzung dieser App stimmen Sie zu, dass die Autoren nicht für etwaige Schäden verantwortlich gemacht werden."
+                }
+            },
+            "footer":  {
+                "uni": "Universität Regensburg - Lehrstuhl für Wirtschaftsinformatik I"
+            }
+        }
+    }
 }

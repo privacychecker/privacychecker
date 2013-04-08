@@ -37,7 +37,7 @@
             this.player.on( "profile:loaded", _.bind( this.profileLoadedCb, this ) );
             this.homeView.on( "click:proceed", _.bind( this.startCollectCb, this ) );
             this.collectView.on( "collect:done", _.bind( this.selectEntitiesCb, this ) );
-            this.selectView.on("select:done", _.bind(this.guessListSizeCb, this));
+            this.selectView.on( "select:done", _.bind( this.guessListSizeCb, this ) );
             this.listGuessView.on( "listguessview:done", _.bind( this.guessEntitySizeCb, this ) );
             this.estimateView.on( "estimateview:done", _.bind( this.hangmanStartCb, this ) );
             this.hangmanView.on( "hangmanview:done", _.bind( this.showResultsCb, this ) );
@@ -84,12 +84,14 @@
             $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 2 );
             pc.common.ProgressBar.getInstance().to( 2 );
 
-            $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
+            this.selectView.on( "preload:done", _.bind( function()
             {
+                console.log( "[Controller] Preload done" );
                 $( '.carousel .item.active' ).transition( {
-                    "height": "680px"
+                    "height": "700px"
                 } );
-            } );
+                this.selectView.start();
+            }, this ) );
 
         },
 
@@ -110,7 +112,7 @@
                 $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
                 {
                     $( '.carousel .item.active' ).transition( {
-                        "height": "450px"
+                        "height": "470px"
                     } );
                 } );
             }, this ) );
@@ -134,7 +136,7 @@
                 $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
                 {
                     $( '.carousel .item.active' ).transition( {
-                        "height": "680px"
+                        "height": "700px"
                     } );
                 } );
             }, this ) );
@@ -159,7 +161,7 @@
                 $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
                 {
                     $( '.carousel .item.active' ).transition( {
-                        "height": "680px"
+                        "height": "700px"
                     } );
                 } );
             }, this ) );
@@ -183,7 +185,7 @@
                 $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', _.bind( function()
                 {
                     $( '.carousel .item.active' ).transition( {
-                        "height": "450px"
+                        "height": "470px"
                     } );
                     this.resultView.renderResults();
                 }, this ) );

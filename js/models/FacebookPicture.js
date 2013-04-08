@@ -45,7 +45,7 @@
          *
          * @method
          * @constructor
-         * @param { {id: Number, message: String}} picture
+         * @param { {id: Number, source: String, [name]:String}} picture
          */
         initialize:      function( picture )
         {

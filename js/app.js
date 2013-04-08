@@ -2,8 +2,16 @@
 {
     "use strict";
 
-    var main = {
+    /**
+     * Main entry point.
+     */
+    var app = {
 
+        /**
+         * Register Handlebar helper for i18n usage in templates
+         *
+         * @method
+         */
         handlebars: function()
         {
 
@@ -26,13 +34,18 @@
             } );
         },
 
+        /**
+         * Start the backbone router and listen for changes
+         *
+         * @method
+         */
         start: function()
         {
             i18n.init( {
                     resGetPath:      'i18n/__lng__.json',
                     fallbackLng:     "en",
                     useLocalStorage: false
-                }, function( )
+                }, function()
                 {
                     console.log( "Language files loaded, initializing app" );
                     // translate index
@@ -42,16 +55,21 @@
                     var app = new pc.router.AppRouter();
                     Backbone.history.start();
 
-                    $( '.page' ).css( {'width': ''} );
+                    //$( '.page' ).css( {'width': ''} );
                 }
             );
         }
     };
 
+    /**
+     * lets bang when the document is ready
+     *
+     * @method
+     */
     $( 'document' ).ready( function()
     {
-        main.handlebars();
-        main.start();
+        app.handlebars();
+        app.start();
     } );
 
 })();

@@ -12,32 +12,54 @@
             console.log( "Init: SelectView" );
             this.currentPair = undefined;
             this.lastselection = undefined;
+            this.scope = undefined;
         },
 
         render: function()
         {
-            $( this.el ).html( this.template() );
+            this.$el.html( this.template() );
+            this.$el.find( '.body' ).hide();
 
-            this.container1 = $( '<img>', {
-                src: 'img/loader.gif'
-            } ).css( {
-                    display:  "none",
-                    position: "absolute",
-                    left:     "0px",
-                    top:      "0px"
-                } );
-            this.container2 = $( '<img>', {
-                src: 'img/loader.gif'
-            } ).css( {
-                    display:  "none",
-                    position: "absolute",
-                    left:     "0px",
-                    top:      "0px"
-                } );
-            $( 'body' ).append( this.container1 ).append( this.container2 );
+            var modal = $( this.el ).find( pc.view.SelectView.MODAL_GAME_SCOPE ).first();
+            modal.modal( 'show', {
+                "keyboard": false
+            } );
+
+            console.debug( "[SelectView] Rendering selectView - asking for scope" );
+
+            modal.find( pc.view.SelectView.MODAL_GAME_SCOPE_IMAGES ).click( _.bind( function()
+            {
+                console.info( "[SelectView] User wants to play with images" );
+                modal.modal( 'hide' );
+                this.scope = pc.view.SelectView.GAME_SCOPE.IMAGES;
+                this.preload();
+            }, this ) );
+
+            modal.find( pc.view.SelectView.MODAL_GAME_SCOPE_STATUS ).click( _.bind( function()
+            {
+                console.info( "[SelectView] User wants to play with statuses" );
+                modal.modal( 'hide' );
+                this.scope = pc.view.SelectView.GAME_SCOPE.STATUSES;
+                this.preload();
+            }, this ) );
+
+            modal.find( pc.view.SelectView.MODAL_GAME_SCOPE_BOTH ).click( _.bind( function()
+            {
+                console.info( "[SelectView] User wants to play with images and statuses" );
+                modal.modal( 'hide' );
+                this.scope = pc.view.SelectView.GAME_SCOPE.BOTH;
+                this.preload();
+            }, this ) );
+
+            return this;
+        },
+
+        preload: function()
+        {
 
             try {
                 this.testData = pc.model.TestData.getInstance();
+                this.testData.setScope( this.scope );
             }
             catch ( e ) {
                 console.error( "[SelectView] Caught exception while querying testdata", e );
@@ -45,9 +67,41 @@
                 throw "E_STOP";
             }
 
-            this.next();
+            // preload images
+            var imgsToPreload = this.testData.get( 'pictures' ).map( function( el )
+            {
+                console.log( el );
+                return el.get( 'source' );
+            } );
 
-            return this;
+            console.log( "[SelectView] Preloading images:", imgsToPreload );
+
+            var loadingUtil = pc.common.LoadingUtil.getInstance(),
+                loadedItems = 0;
+            loadingUtil.reset();
+            loadingUtil.show();
+
+            $.imgpreload( imgsToPreload, {
+                each: function()
+                {
+                    loadingUtil.percent( (++loadedItems / imgsToPreload.length) * 100 );
+                    console.debug( "[SelectView] Image loaded", $( this ).attr( 'src' ) );
+                },
+                all:  _.bind( function()
+                {
+                    console.log( "[SelectView] All images loaded" );
+                    loadingUtil.percent( 100 );
+                    loadingUtil.hide();
+                    this.trigger( 'preload:done' );
+                }, this )
+            } );
+
+        },
+
+        start: function()
+        {
+            this.$el.find( '.body' ).fadeIn( 'fast' );
+            this.next();
         },
 
         _createObject: function( item )
@@ -55,18 +109,11 @@
 
             if ( item instanceof pc.model.FacebookPicture ) {
 
-                return $( '<img>', {
-                    src:     item.get( 'source' ),
-                    title:   item.get( 'name' ),
-                    'class': 'img-rounded'
-                } ).click( _.bind( function()
-                    {
-                        this.next( item );
-                    }, this ) );
-
+                return pc.common.ImageContainer.create( item.get( 'source' ),
+                    item.get( 'name' ) ).toHtml().addClass( 'polaroid' );
             }
             else if ( item instanceof pc.model.FacebookStatus ) {
-
+                return pc.common.StatusContainer.create( item.get( 'message' ), item.get('date'), item.get( 'place' ) ).toHtml();
             }
 
             return null;
@@ -89,35 +136,34 @@
                 var item1 = this.currentPair[0];
                 var item2 = this.currentPair[1];
 
-                var opacity1 = 0.7, opacity2 = 0.7;
-                if ( this.lastselection === 1 ) {
-                    opacity1 = 1;
-                }
-                else if ( this.lastselection === 2 ) opacity2 = 1;
-
-                $( this.el ).find( pc.view.SelectView.IMAGE_1_CONTAINER + ' ' + pc.view.SelectView.INFO_CONTAINER ).fadeTo( 0,
-                    opacity1 );
-                $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER + ' ' + pc.view.SelectView.INFO_CONTAINER ).fadeTo( 0,
-                    opacity2 );
-                $( this.el ).find( pc.view.SelectView.IMAGE_1_CONTAINER ).unbind( 'click' ).css( 'cursor',
-                    'progress' ).fadeTo( 0, opacity1 );
-                $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER ).unbind( 'click' ).css( 'cursor',
-                        'progress' ).fadeTo( 0, opacity2, _.bind( function()
+                // hide items
+                $( this.el ).find( pc.view.SelectView.ITEM_1_CONTAINER ).unbind( 'click' ).fadeOut( 'fast' );
+                $( this.el ).find( pc.view.SelectView.ITEM_2_CONTAINER ).unbind( 'click' ).fadeOut( 'fast',
+                    _.bind( function()
                     {
+                        // show new items
+                        var el1 = this._createObject( item1 );
+                        var el2 = this._createObject( item2 );
 
-                        var loaded = [];
+                        $( this.el )
+                            .find( pc.view.SelectView.ITEM_1_CONTAINER )
+                            .empty()
+                            .append( el1 )
+                            .click( _.bind( function()
+                            {
+                                this.next( item1 );
+                            }, this ) )
+                            .fadeIn( 'fast' );
 
-                        $( this.container1 ).attr( 'src', item1.get( 'source' ) ).bind( 'load', _.bind( function()
-                        {
-                            $( this.container1 ).unbind();
-                            this.imagesLoadedCb( loaded.push( true ) );
-                        }, this ) );
-
-                        $( this.container2 ).attr( 'src', item2.get( 'source' ) ).bind( 'load', _.bind( function()
-                        {
-                            $( this.container2 ).unbind();
-                            this.imagesLoadedCb( loaded.push( true ) );
-                        }, this ) );
+                        $( this.el )
+                            .find( pc.view.SelectView.ITEM_2_CONTAINER )
+                            .empty()
+                            .append( el2 )
+                            .click( _.bind( function()
+                            {
+                                this.next( item2 );
+                            }, this ) )
+                            .fadeIn( 'fast' );
 
                     }, this ) );
 
@@ -126,56 +172,25 @@
                 console.log( '[SelectView] Selection done' );
                 this.trigger( 'select:done' );
             }
-        },
-
-        imagesLoadedCb: function( img )
-        {
-
-            if ( img !== 2 ) return;
-
-            var item1 = this.currentPair[0];
-            var item2 = this.currentPair[1];
-
-            $( this.el ).find( pc.view.SelectView.IMAGE_1_CONTAINER ).unbind( 'click' ).fadeOut( 'fast' );
-            $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER ).unbind( 'click' ).fadeOut( 'fast',
-                _.bind( function()
-                {
-
-                    $( this.el ).find( pc.view.SelectView.IMAGE_1_CONTAINER + ' ' + pc.view.SelectView.INFO_CONTAINER ).empty().html( item1.get( 'name' ) ).fadeTo( 'fast',
-                        1 );
-                    $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER + ' ' + pc.view.SelectView.INFO_CONTAINER ).empty().html( item2.get( 'name' ) ).fadeTo( 'fast',
-                        1 );
-
-                    $( this.el ).find( pc.view.SelectView.IMAGE_1_CONTAINER + ' img' ).attr( 'src',
-                        item1.get( 'source' ) ).fadeIn( 'fast' );
-                    $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER + ' img' ).attr( 'src',
-                        item2.get( 'source' ) ).fadeIn( 'fast' );
-
-                    $( this.el ).find( pc.view.SelectView.IMAGE_1_CONTAINER ).click( _.bind( function()
-                    {
-                        this.lastselection = 1;
-                        this.next( item1 );
-                    }, this ) ).css( 'cursor', 'pointer' ).fadeTo( 'fast', 1 );
-                    $( this.el ).find( pc.view.SelectView.IMAGE_2_CONTAINER ).click( _.bind( function()
-                    {
-                        this.lastselection = 2;
-                        this.next( item2 );
-                    }, this ) ).css( 'cursor', 'pointer' ).fadeTo( 'fast', 1 );
-
-                }, this ) );
-
         }
 
     }, {
 
-        IMAGE_COTAINER:    '.select',
-        IMAGE_1_CONTAINER: '.image1',
-        IMAGE_2_CONTAINER: '.image2',
-        INFO_CONTAINER:    '.title',
+        ITEM_1_CONTAINER: '.item1',
+        ITEM_2_CONTAINER: '.item2',
+
+        MODAL_GAME_SCOPE:        '#game-scope',
+        MODAL_GAME_SCOPE_IMAGES: 'button.images',
+        MODAL_GAME_SCOPE_STATUS: 'button.statuses',
+        MODAL_GAME_SCOPE_BOTH:   'button.both',
 
         LOADER_GIF_SRC: 'img/loader.gif',
 
-        LANG_INSUFFICIENT_DATA: "app.select.insufficient_data"
+        LANG_INSUFFICIENT_DATA: "app.select.insufficient_data",
+
+        GAME_SCOPE: {
+            IMAGES: 0, STATUSES: 1, BOTH: 2
+        }
 
     } );
 

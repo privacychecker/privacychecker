@@ -19,7 +19,7 @@
         FB_FRIENDS_URL:    "/me/friends?fields=id,name",
         FB_FRIENDLIST_URL: "/me/friendlists/?fields=members.fields(id),id,name",
         FB_PICTURES_URL:   "/me/albums?fields=id,name,photos.fields(id,name,source,height,width,from)",
-        FB_STATUS_URL:     "/me/statuses?fields=id,message,place",
+        FB_STATUS_URL:     "/me/statuses?fields=id,message,place,updated_time",
         FB_GRAPH_BASE:     "https://graph.facebook.com/",
         FB_IMAGE_SUFFIX:   "/picture?type=square",
         DELAY_INIT_EVENT:  2500,
@@ -434,7 +434,8 @@
                     var statusItem = new pc.model.FacebookStatus( {
                         message: status.message,
                         id: status.id,
-                        place: status.place
+                        place: status.place,
+                        date: status.updated_time
                     } );
 
                     statusItem.on( 'privacy-done', _.bind( function()

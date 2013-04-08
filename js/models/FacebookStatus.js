@@ -27,6 +27,10 @@
              */
             privacy: undefined,
             /**
+             * @property {Date} date Date of the status
+             */
+            date: undefined,
+            /**
              * @property {*} place A location attached to the status
              */
             place:   undefined
@@ -37,7 +41,7 @@
          *
          * @method
          * @constructor
-         * @param { {id: Number, message: String}} status
+         * @param { {id: Number, message: String, [date]: Date, [place]: Object}} status
          */
         initialize: function( status )
         {

@@ -1,3 +1,9 @@
+/**
+ * Create new (nested) namespace. It can be accessed through the base, window.
+ *
+ * @param {String} namespaceString The namespace to create
+ * @returns {*|window|window}
+ */
 var namespace = function( namespaceString )
 {
     "use strict";

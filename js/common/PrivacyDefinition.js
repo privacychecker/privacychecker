@@ -139,7 +139,7 @@
         /**
          * Parse data returned from facebook after a fql query.<br/>
          * Response always looks like:
-         * {
+         * <pre>{
          *   "data": [
          *     {
          *       "value": "ALL_FRIENDS",
@@ -148,14 +148,14 @@
          *       "friends": "NO_FRIENDS"
          *     }
          *   ]
-         * }
+         * }</pre>
          *
          * @method _parseResponse
-         * @param {Array<{value: String, description: String, owner_id: Number, friends: String}>} response A facebook response
-         * @returns { {include: Array, exclude: Array, level: String}} The parsed data
-         * @throws {E_RESPONSE_IS_UNDEF} If the response is undefined or has wrong structure
-         * @throws {E_UNKNOWN_PRIVACY_DEFINITION} If the privacy definition is unknown
-         * @throws {E_EMPTY_PRIVACY_DESCRIPTION} If the privacy desceprition is empty (no users listed, ...)
+         * @param {Array<Object{value: String, description: String, owner_id: Number, friends: String}>} response A facebook response
+         * @returns {{include: Array, exclude: Array, level: String}} The parsed data
+         * @throws "E_RESPONSE_IS_UNDEF" If the response is undefined or has wrong structure
+         * @throws "E_UNKNOWN_PRIVACY_DEFINITION" If the privacy definition is unknown
+         * @throws "E_EMPTY_PRIVACY_DESCRIPTION" If the privacy description is empty (no users listed, ...)
          * @private
          */
         _parseResponse: function( response )

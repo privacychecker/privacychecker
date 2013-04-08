@@ -54,7 +54,8 @@
       "jquery.random": "http://www.rockechris.com/jquery/jquery.random.js",
       "EloRating-JavaScript": "github:hugodias/EloRating-JavaScript/master",
       "jquery.transit": "github:rstacruz/jquery.transit/v0.9.9",
-      "jquery-smooth-scroll": "github:kswedberg/jquery-smooth-scroll/1.4.10"
+      "jquery-smooth-scroll": "github:kswedberg/jquery-smooth-scroll/1.4.10",
+      "jquery.imgpreload": "github:farinspace/jquery.imgpreload/v1.3.20120217"
     }
   }
 }

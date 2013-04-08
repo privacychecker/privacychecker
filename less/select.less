@@ -1,20 +1,79 @@
 .select {
-	margin-top: 100px !important;
-	max-width: 100% !important;
+    margin-top: 100px !important;
+    max-width: 100% !important;
 
-	.image {
-		cursor: pointer;
-		margin-top: 40px;
-		float: left;
-	}
+    .item {
+        cursor: pointer;
+        margin-top: 40px;
+        float: left;
+        z-index: 100;
 
-	.image1 {
-		float: left;
-		margin-right: -15px;
-		margin-top: 50px;
-	}
+        &.leftern {
+            -webkit-transform: rotate(-3deg);
+            -moz-transform: rotate(-3deg);
+            -o-transform: rotate(-3deg);
+            -ms-transform: rotate(-3deg);
+        }
 
-	.image2 {
-	}
+        &.rightern {
+            -webkit-transform: rotate(5deg);
+            -moz-transform: rotate(5deg);
+            -o-transform: rotate(5deg);
+            -ms-transform: rotate(5deg);
+        }
+
+        &:hover {
+            z-index: 200;
+        }
+    }
+
+    .item1 {
+        float: left;
+        margin-right: -15px;
+        margin-top: 50px;
+    }
+
+    .item2 {
+    }
+
+    .status {
+        background-color: #fff;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        -ms-border-radius: 5px;
+        border-radius: 5px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 20px;
+        max-width: 350px;
+
+        .message {
+            color: #464646;
+
+            &:before {
+                content: "  \00BB  ";
+                color: #b4b4b4;
+            }
+
+            &:after {
+                content: "  \00AB  ";
+                color: #b4b4b4;
+            }
+        }
+
+        .date {
+            color: #464646;
+            float: right;
+            font-size: 14px;
+
+            &:before {
+                content: "\2014  ";
+                color: #b4b4b4;
+            }
+        }
+    }
 
 }
