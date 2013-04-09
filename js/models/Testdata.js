@@ -83,7 +83,6 @@
                     return null;
                 }
             } ) );
-            this.rateSource = _.compact( this.rateSource );
 
             console.info( "[TestData] Selected the following data for rating: ", this.rateSource );
 
@@ -266,8 +265,9 @@
         _extractTestData: function()
         {
 
-            var i = this.TEST_DATA_SIZE;
-            var data = [];
+            var i = this.TEST_DATA_SIZE,
+                data = [],
+                el;
 
             while ( --i >= 0 ) {
                 var highest = null;
@@ -280,7 +280,10 @@
 
                 delete this.rateTupples[highest];
 
-                data.push( this.get( 'pictures' ).get( highest ) );
+                el = this.get( 'pictures' ).get( highest );
+                if ( !el ) el = this.get( 'statuses' ).get( highest );
+                data.push( el );
+                el = undefined;
             }
 
             this.set( 'data', data );

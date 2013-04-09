@@ -14,9 +14,9 @@
             this.currentQuestion = undefined;
         },
 
-        render: function(  )
+        render: function()
         {
-            $( this.el ).html( this.template() );
+            this.$el.html( this.template() );
 
             this.player = pc.model.FacebookPlayer.getInstance();
 
@@ -68,8 +68,8 @@
                 }
             }, this );
 
-            $( this.el ).find( pc.view.ListGuessView.RESPONSE_FIELD_ID ).keypress( this.keypressCb );
-            $( this.el ).find( pc.view.ListGuessView.ENTER_FIELD_ID ).click( _.bind( function()
+            this.$el.find( pc.view.ListGuessView.RESPONSE_FIELD_ID ).keypress( this.keypressCb );
+            this.$el.find( pc.view.ListGuessView.ENTER_FIELD_ID ).click( _.bind( function()
             {
                 if ( this._evaluateResponse() ) {
                     this.next();
@@ -89,9 +89,9 @@
             this.currentQuestion = this.questions.shift();
 
             if ( this.currentQuestion === undefined ) {
-                $( this.el ).find( pc.view.ListGuessView.RESPONSE_FIELD_ID ).unbind( 'keypress',
+                this.$el.find( pc.view.ListGuessView.RESPONSE_FIELD_ID ).unbind( 'keypress',
                     this.keypressCb ).prop( 'disabled', true );
-                $( this.el ).find( pc.view.ListGuessView.ENTER_FIELD_ID ).unbind( 'click' ).prop( 'disabled', true );
+                this.$el.find( pc.view.ListGuessView.ENTER_FIELD_ID ).unbind( 'click' ).prop( 'disabled', true );
 
                 console.debug( '[ListGuessView] Game finished' );
                 this.trigger( 'listguessview:done' );
@@ -112,11 +112,11 @@
 
             console.debug( '[ListGuessView] Current question: ' + questionText );
 
-            $( this.el ).fadeOut( 'fast', _.bind( function()
+            this.$el.fadeOut( 'fast', _.bind( function()
             {
-                $( this.el ).find( pc.view.ListGuessView.QUESTION_FIELD_ID ).empty().html( questionText );
-                $( this.el ).find( pc.view.ListGuessView.RESPONSE_FIELD_ID ).val( '' );
-                $( this.el ).fadeIn( 'fast' );
+                this.$el.find( pc.view.ListGuessView.QUESTION_FIELD_ID ).empty().html( questionText );
+                this.$el.find( pc.view.ListGuessView.RESPONSE_FIELD_ID ).val( '' );
+                this.$el.fadeIn( 'fast' );
                 this.askedQuestions++;
             }, this ) );
 
@@ -125,14 +125,30 @@
         _evaluateResponse: function()
         {
 
-            var response = $( this.el ).find( pc.view.ListGuessView.RESPONSE_FIELD_ID ).val();
+            var $el = this.$el.find( pc.view.EstimateView.RESPONSE_FIELD_ID ).first();
+            var response = $el.val();
             var correctV = this.currentQuestion.is;
 
-            if ( !$.isNumeric( response ) ) {
+            // hide old tooltips
+            $el.parent().popover( 'destroy' );
+
+            // validate
+            var responseI = parseInt( response, 10 );
+            if ( !$.isNumeric( response ) || responseI < 0 ) {
+                console.debug( "[SelectView] Input is not valid" );
+
+                $el.parent().popover( {
+                    "content":     $.t( pc.view.ListGuessView.LANG_NO_NUMERIC ),
+                    "placement": "right"
+                } ).popover( "show" );
+
+                window.setTimeout( _.bind( function()
+                {
+                    $el.parent().popover( 'destroy' );
+                }, this ), 4000 );
+
                 return false;
             }
-
-            var responseI = parseInt( response, 10 );
 
             var result = new pc.model.TestResult( {
                 is:   responseI,
@@ -155,8 +171,9 @@
         RESPONSE_FIELD_ID: "input.response",
         ENTER_FIELD_ID:    "button[type=submit]",
 
-        LANG_QUESTION_FRIEND: 'app.guess.question_friends',
-        LANG_QUESTION_LIST:   'app.guess.question_list',
+        LANG_QUESTION_FRIEND: "app.guess.question_friends",
+        LANG_QUESTION_LIST:   "app.guess.question_list",
+        LANG_NO_NUMERIC:      "app.guess.no_number",
 
         MAX_QUESTIONS: 5,
 

@@ -26,18 +26,7 @@
 
         render: function()
         {
-            $( this.el ).html( this.template() );
-
-            this.container = $( '<img>', {
-                src:         'img/loader.gif',
-                crossOrigin: ''
-            } ).css( {
-                    display:  'none',
-                    position: 'absolute',
-                    left:     '0px',
-                    top:      '0px'
-                } );
-            $( 'body' ).append( this.container );
+            this.$el.html( this.template() );
 
             this.player = pc.model.FacebookPlayer.getInstance();
 
@@ -46,7 +35,7 @@
             _.each( pc.model.TestData.getInstance().get( 'data' ), _.bind( function( item )
             {
 
-                if ( item instanceof pc.model.FacebookPicture ) {
+                if ( item instanceof pc.model.FacebookPicture || item instanceof pc.model.FacebookStatus ) {
                     try {
                         var range = this._getThreashold( item );
                         this.questions.push( {
@@ -59,8 +48,8 @@
                     }
                 }
                 else {
-                    console.error( "Unknown item for guess game" );
-                    throw new Error( {message: "Unknown item for guess game"} );
+                    console.error( "Unknown item for guess game:", item.constructor.name );
+                    throw "E_UNKNOWN_ITEM";
                 }
 
             }, this ) );
@@ -95,9 +84,9 @@
 
             // if current question is null the question array is empty and we've asked all questions
             if ( this.currentQuestion === undefined ) {
-                $( this.el ).find( pc.view.EstimateView.RESPONSE_FIELD_ID ).unbind( 'keypress',
+                this.$el.find( pc.view.EstimateView.RESPONSE_FIELD_ID ).unbind( 'keypress',
                     this.keypressCb ).prop( 'disabled', true );
-                $( this.el ).find( pc.view.EstimateView.ENTER_FIELD_ID ).unbind( 'click' ).prop( 'disabled', true );
+                this.$el.find( pc.view.EstimateView.ENTER_FIELD_ID ).unbind( 'click' ).prop( 'disabled', true );
 
                 console.debug( '[EstimateView] Game finished' );
                 this.trigger( 'estimateview:done' );
@@ -108,76 +97,70 @@
             var item = this.currentQuestion.item;
 
             // prepare new image
-            $( this.el ).find( pc.view.EstimateView.RESPONSE_FIELD_ID ).val( '' ).prop( 'disabled', true );
-            $( this.el ).find( pc.view.EstimateView.ENTER_FIELD_ID ).prop( 'disabled', true );
-            $( this.el ).find( pc.view.EstimateView.IMAGE_CONTAINER + ' ' + pc.view.EstimateView.INFO_CONTAINER ).fadeOut( 'fast' );
-            $( this.el ).find( pc.view.EstimateView.IMAGE_CONTAINER ).unbind( 'click' ).fadeOut( 'fast',
-                _.bind( function()
-                {
+            this.$el.find( pc.view.EstimateView.RESPONSE_FIELD_ID ).val( '' ).prop( 'disabled' );
+            this.$el.find( pc.view.EstimateView.ENTER_FIELD_ID ).prop( 'disabled' );
+            this.$el.find( pc.view.EstimateView.ITEM_CONTAINER ).fadeOut( 'fast', _.bind( function()
+            {
 
-                    //$(this.el).find(EstimateView.IMAGE_CONTAINER + ' img').attr('src', EstimateView.LOADER_GIF_SRC);
-                    //$(this.el).find(EstimateView.IMAGE_CONTAINER).fadeIn('fast');
+                // show image
+                this.$el
+                    .find( pc.view.EstimateView.ITEM_CONTAINER )
+                    .empty()
+                    .append( this._createObject( item ) )
+                    .fadeIn( 'fast' );
 
-                    $( this.container ).attr( 'src', item.get( 'source' ) ).bind( 'load', _.bind( function( event )
+                // reenable button and input field
+                this.$el.find( pc.view.EstimateView.RESPONSE_FIELD_ID )
+                    .removeProp( 'disabled' )
+                    .keypress( this.keypressCb );
+
+                this.$el.find( pc.view.EstimateView.ENTER_FIELD_ID )
+                    .removeProp( 'disabled' )
+                    .click( _.bind( function()
                     {
-
-                        // remove load event
-                        $( this.container ).unbind();
-
-                        // image is now loaded, replace and add events
-                        $( this.el ).find( pc.view.EstimateView.IMAGE_CONTAINER ).unbind( 'click' ).fadeOut( 'fast',
-                            _.bind( function()
-                            {
-
-                                // clear container and set name
-                                $( this.el ).find( pc.view.EstimateView.IMAGE_CONTAINER + ' ' + pc.view.EstimateView.INFO_CONTAINER )
-                                    .empty()
-                                    .html( item.get( 'name' ) )
-                                    .fadeIn( 'fast' );
-
-                                // finally change image to correct one
-                                $( this.el ).find( pc.view.EstimateView.IMAGE_CONTAINER + ' img' ).
-                                    attr( 'src', item.get( 'source' ) );
-
-                                // show polaroid
-                                $( this.el ).find( pc.view.EstimateView.IMAGE_CONTAINER ).fadeIn( 'fast' );
-
-                                // reenable button and input field
-                                $( this.el ).find( pc.view.EstimateView.RESPONSE_FIELD_ID ).prop( 'disabled',
-                                    false ).keypress( this.keypressCb );
-                                $( this.el ).find( pc.view.EstimateView.ENTER_FIELD_ID ).prop( 'disabled',
-                                        false ).click( _.bind( function()
-                                    {
-                                        if ( this._evaluateResponse() ) {
-                                            this.next();
-                                        }
-                                    }, this ) );
-
-                                // we have successfully asked this question
-                                this.askedQuestions++;
-                            }, this ) );
+                        if ( this._evaluateResponse() ) {
+                            this.next();
+                        }
                     }, this ) );
-                }, this ) );
+
+                // we have successfully asked this question
+                this.askedQuestions++;
+
+            }, this ) );
 
         },
 
         _evaluateResponse: function()
         {
 
-            var response = $( this.el ).find( pc.view.EstimateView.RESPONSE_FIELD_ID ).val();
+            var $el = this.$el.find( pc.view.EstimateView.RESPONSE_FIELD_ID ).first();
+            var response = $el.val();
             // _evaluateResponse is triggered when switch to hangmanview, no clue why
             if ( this.currentQuestion === undefined ) {
-                return;
-            }
-
-            var correctV = this.currentQuestion.is;
-            var item = this.currentQuestion.item;
-
-            if ( !$.isNumeric( response ) ) {
                 return false;
             }
+            // hide old tooltips
+            $el.parent().popover( 'destroy' );
 
+            var item = this.currentQuestion.item;
+
+            // validate
             var responseI = parseInt( response, 10 );
+            if ( !$.isNumeric( response ) || responseI < 0 ) {
+                console.debug( "[EstimateView] Input is not valid" );
+
+                $el.parent().popover( {
+                    "content":   $.t( pc.view.EstimateView.LANG_NO_NUMERIC ),
+                    "placement": "right"
+                } ).popover( "show" );
+
+                window.setTimeout( _.bind( function()
+                {
+                    $el.parent().popover( 'destroy' );
+                }, this ), 4000 );
+
+                return false;
+            }
 
             var result = new pc.model.TestResult( {
                 is:   responseI,
@@ -197,27 +180,22 @@
 
         },
 
-        _createObject: function( question )
+        _createObject: function( item )
         {
-
-            var item = question.item;
 
             if ( item instanceof pc.model.FacebookPicture ) {
 
-                return $( '<img>', {
-                    src:     item.get( 'source' ),
-                    title:   item.get( 'name' ),
-                    'class': 'img-rounded'
-                } ).click( _.bind( function()
-                    {
-                        this.next();
-                    }, this ) );
-
+                return pc.common.ImageContainer.create( item.get( 'source' ), item.get( 'name' ) )
+                    .toHtml()
+                    .addClass( 'polaroid' );
             }
-            //            else if ( item instanceof pc.model.FacebookPost ) {
-            //
-            //            }
+            else if ( item instanceof pc.model.FacebookStatus ) {
+                return pc.common.StatusContainer.create( item.get( 'message' ), item.get( 'date' ),
+                        item.get( 'place' ) )
+                    .toHtml();
+            }
 
+            console.warn( "[EstimateView] Invalid object to use" );
             return null;
 
         },
@@ -294,12 +272,11 @@
 
     }, {
 
-        IMAGE_CONTAINER:   ".image",
-        INFO_CONTAINER:    ".title",
+        ITEM_CONTAINER:    ".item",
         RESPONSE_FIELD_ID: "input.response",
         ENTER_FIELD_ID:    "button[type=submit]",
 
-        LOADER_GIF_SRC: 'img/loader.gif'
+        LANG_NO_NUMERIC: "app.estimate.no_number"
 
     } );
 

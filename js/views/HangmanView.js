@@ -23,19 +23,7 @@
 
         render: function()
         {
-            $( this.el ).html( this.template() );
-
-            // container for preloading the image
-            this.container = $( '<img>', {
-                src:         'img/loader.gif',
-                crossOrigin: ''
-            } ).css( {
-                    display:  'none',
-                    position: 'absolute',
-                    left:     '0px',
-                    top:      '0px'
-                } );
-            $( 'body' ).append( this.container );
+            this.$el.html( this.template() );
 
             this.player = pc.model.FacebookPlayer.getInstance();
 
@@ -44,7 +32,7 @@
             _.each( pc.model.TestData.getInstance().get( 'data' ), _.bind( function( item )
             {
 
-                if ( item instanceof pc.model.FacebookPicture ) {
+                if ( item instanceof pc.model.FacebookPicture || item instanceof pc.model.FacebookStatus ) {
                     var wrongU = this._getWrongUsers( item );
                     var correctU = this._getCorrectUsers( item );
                     this.questions.push( {
@@ -57,7 +45,7 @@
                 }
                 else {
                     console.error( "Unknown item for guess game" );
-                    throw new Error( {message: "Unknown item for guess game"} );
+                    throw "E_UNKNOWN_ITEM";
                 }
 
             }, this ) );
@@ -132,62 +120,57 @@
 
             var item = this.currentQuestion.item;
 
-            $( this.el ).find( pc.view.HangmanView.USERLIST_CONTAINER_ID ).fadeOut( 'fast' );
-            $( this.el ).find( pc.view.HangmanView.IMAGE_CONTAINER ).unbind( 'click' ).fadeOut( 'fast',
+            this.$el.find( pc.view.HangmanView.USERLIST_CONTAINER_ID ).fadeOut( 'fast' );
+            this.$el.find( pc.view.HangmanView.ITEM_CONTAINER ).fadeOut( 'fast',
                 _.bind( function()
                 {
+                    this.$el
+                        .find( pc.view.HangmanView.ITEM_CONTAINER )
+                        .empty()
+                        .append( this._createObject( item ) )
+                        .fadeIn( 'fast' );
 
-                    $( this.el ).find( pc.view.HangmanView.IMAGE_CONTAINER + ' img' ).attr( 'src', "#" );
-                    //$(this.el).find(HangmanView.IMAGE_CONTAINER + ' img').attr('src', HangmanView.LOADER_GIF_SRC);
-                    //$(this.el).find(HangmanView.IMAGE_CONTAINER).fadeIn('fast');
+                    // create userlist
+                    this._creatUserList( this.currentQuestion );
 
-                    $( this.container ).attr( 'src', item.get( 'source' ) ).bind( 'load', _.bind( function()
+                    // add lives
+                    this.$el.find( pc.view.HangmanView.LIVESLIST_CONTAINER_ID ).children( 'li' ).each( function( idx,
+                                                                                                                 el )
                     {
+                        console.log( $( el ) );
+                        $( el ).delay( idx * pc.view.HangmanView.USERLIST_DELAY_MODIFIER ).removeClass( 'lost' );
+                    } );
 
-                        // remove load event
-                        $( this.container ).unbind();
-
-                        // image is now loaded, replace and add events
-                        $( this.el ).find( pc.view.HangmanView.IMAGE_CONTAINER ).unbind( 'click' ).fadeOut( 'fast',
-                            _.bind( function()
-                            {
-
-                                // clear container and set name
-                                $( this.el ).find( pc.view.HangmanView.IMAGE_CONTAINER + ' ' + pc.view.HangmanView.INFO_CONTAINER )
-                                    .empty()
-                                    .html( item.get( 'name' ) )
-                                    .fadeIn( 'fast' );
-
-                                // finally change image to correct one
-                                $( this.el ).find( pc.view.HangmanView.IMAGE_CONTAINER + ' img' ).
-                                    attr( 'src', item.get( 'source' ) );
-
-                                // show polaroid
-                                $( this.el ).find( pc.view.HangmanView.IMAGE_CONTAINER ).fadeIn( 'fast' );
-
-                                // create userlist
-                                this._creatUserList( this.currentQuestion );
-
-                                // add lives
-                                $( this.el ).find( pc.view.HangmanView.LIVESLIST_CONTAINER_ID ).children( 'li' ).each( function( idx,
-                                                                                                                                 el )
-                                {
-                                    console.log( $( el ) );
-                                    $( el ).delay( idx * pc.view.HangmanView.USERLIST_DELAY_MODIFIER ).removeClass( 'lost' );
-                                } );
-
-                                // we have successfully asked this question
-                                this.askedQuestions++;
-                            }, this ) );
-                    }, this ) );
+                    // we have successfully asked this question
+                    this.askedQuestions++;
                 }, this ) );
+
+        },
+
+        _createObject: function( item )
+        {
+
+            if ( item instanceof pc.model.FacebookPicture ) {
+
+                return pc.common.ImageContainer.create( item.get( 'source' ), item.get( 'name' ) )
+                    .toHtml()
+                    .addClass( 'polaroid leftern' );
+            }
+            else if ( item instanceof pc.model.FacebookStatus ) {
+                return pc.common.StatusContainer.create( item.get( 'message' ), item.get( 'date' ),
+                        item.get( 'place' ) )
+                    .toHtml();
+            }
+
+            console.warn( "[EstimateView] Invalid object to use" );
+            return null;
 
         },
 
         _showResults: function()
         {
 
-            var container = $( this.el ).find( pc.view.HangmanView.USERLIST_CONTAINER_ID );
+            var container = this.$el.find( pc.view.HangmanView.USERLIST_CONTAINER_ID );
 
             container.children( 'li:not(.done)' ).each( function( idx, el )
             {
@@ -208,7 +191,7 @@
         _creatUserList: function( question )
         {
 
-            var container = $( this.el ).find( pc.view.HangmanView.USERLIST_CONTAINER_ID ).empty().fadeIn( 'fast' );
+            var container = this.$el.find( pc.view.HangmanView.USERLIST_CONTAINER_ID ).empty().fadeIn( 'fast' );
             var correct = question.correct;
             var wrong = question.wrong;
 
@@ -282,7 +265,7 @@
         _validateclick: function( item )
         {
             var $item = $( item ),
-                container = $( this.el ).find( pc.view.HangmanView.USERLIST_CONTAINER_ID ),
+                container = this.$el.find( pc.view.HangmanView.USERLIST_CONTAINER_ID ),
                 correct = $item.data( 'correct' ),
                 user = $item.data( 'user' );
 
@@ -297,7 +280,7 @@
             // user select wrong item hangman +1
             else {
                 statusEl.addClass( 'wrong' );
-                $( this.el ).find( pc.view.HangmanView.LIVESLIST_CONTAINER_ID + " li:not(.lost):last" ).addClass( 'lost' );
+                this.$el.find( pc.view.HangmanView.LIVESLIST_CONTAINER_ID + " li:not(.lost):last" ).addClass( 'lost' );
                 if ( this.currentQuestion.selectedWrong.add( user ).length > pc.view.HangmanView.DIE_AFTER_NUM - 1 ) {
                     this.trigger( 'died' );
                     return;
@@ -491,8 +474,7 @@
 
         USERLIST_CONTAINER_ID:  '.userlist',
         LIVESLIST_CONTAINER_ID: '.lives',
-        IMAGE_CONTAINER:        '.image',
-        INFO_CONTAINER:         '.title',
+        ITEM_CONTAINER:         '.item',
 
         FB_IMAGE_BASE_URL: "https://graph.facebook.com/<%- uid %>/picture?width=80&height=80",
 
