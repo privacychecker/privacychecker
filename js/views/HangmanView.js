@@ -417,13 +417,13 @@
                 case pc.common.PrivacyDefinition.Level.CUSTOM:
 
                     var i = 0;
-                    while ( list.length < this.CORRECT_ITEMS ) {
+                    while ( include.length !== 0 && list.length < this.CORRECT_ITEMS ) {
                         user = undefined;
                         if ( include.length > 0 ) {
                             user = include.at( $.randomBetween( 0, include.length ) );
                         }
 
-                        if ( include.length <= i ) {
+                        if ( include.length < i ) {
                             break;
                         }
 
