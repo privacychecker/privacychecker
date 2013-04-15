@@ -161,7 +161,7 @@
                 $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
                 {
                     $( '.carousel .item.active' ).transition( {
-                        "height": "700px"
+                        "height": "720px"
                     } );
                 } );
             }, this ) );

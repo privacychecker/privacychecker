@@ -1,0 +1,68 @@
+div.status {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    width: 400px;
+    min-height: 200px;
+
+    &:before {
+        height: 20px;
+        display: block;
+        padding: 5px;
+
+        content: "Status";
+        color: #fff;
+        -webkit-text-shadow: 1px 1px 1px #000000;
+        -moz-text-shadow: 1px 1px 1px #000000;
+        -o-text-shadow: 1px 1px 1px #000000;
+        text-shadow: 1px 1px 1px #000000;
+
+        text-align: center;
+
+        background: -webkit-linear-gradient(#8b9dc3 0%, #3b5998 100%);
+        background: -moz-linear-gradient(#8b9dc3 0%, #3b5998 100%);
+        background: -o-linear-gradient(#8b9dc3 0%, #3b5998 100%);
+        background: linear-gradient(#8b9dc3 0%, #3b5998 100%);
+
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .message {
+        color: #333;
+        background: url('status-block-background.jpg') repeat-y #fff;
+        padding-top: 30px;
+        padding-bottom: 10px;
+        padding-left: 30px;
+        padding-right: 20px;
+        line-height: 1.5;
+        min-height: 150px;
+    }
+
+    .date {
+        color: #464646;
+        float: right;
+        font-size: 14px;
+        width: 100%;
+        float: right;
+        dispay: block;
+        background-color: #eee;
+        -webkit-border-bottom-right-radius: 3px;
+        -webkit-border-bottom-left-radius: 3px;
+        -moz-border-radius-bottomright: 3px;
+        -moz-border-radius-bottomleft: 3px;
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
+
+        &:before {
+            content: "\2014  ";
+            color: #b4b4b4;
+        }
+    }
+}

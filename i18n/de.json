@@ -48,14 +48,16 @@
             "what_do_you_guess": "Was tippst du?",
             "input_button":      "Eingeben",
             "question_friends":  "Wie viele Freunde hast du insgesamt?",
-            "question_list":     "Wie viele Mitglieder hat die Liste &raquo;__listname__&laquo;?"
+            "question_list":     "Wie viele Mitglieder hat die Liste &raquo;__listname__&laquo;?",
+            "no_number":         "Bitte gebe eine positive Zahl ein!"
         },
 
         "estimate": {
             "name":              "Schätzen",
             "headline":          "Was schätzt du wie viele Leute das sehen können?",
             "what_do_you_guess": "Was tippst du?",
-            "input_button":      "Eingeben"
+            "input_button":      "Eingeben",
+            "no_number":         "Bitte gebe eine positive Zahl ein!"
         },
 
         "hangman": {
