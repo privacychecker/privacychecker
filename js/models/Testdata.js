@@ -267,23 +267,36 @@
 
             var i = this.TEST_DATA_SIZE,
                 data = [],
-                el;
+                el,
+                highest,
+                pickedId = 0;
 
             while ( --i >= 0 ) {
-                var highest = null;
+                 highest = null;
                 _.each( _.keys( this.rateTupples ), _.bind( function( id )
                 {
                     if ( highest === null || highest <= this.rateTupples[id] ) {
-                        highest = id;
+                        pickedId = id;
+                        highest = this.rateTupples[id];
+                        console.debug("[TestData] Highest rating found is ", highest, pickedId );
                     }
                 }, this ) );
 
-                delete this.rateTupples[highest];
+                if (pickedId === 0) {
+                    console.warn('[TestData] Picked id is 0, skipping');
+                    continue;
+                }
 
-                el = this.get( 'pictures' ).get( highest );
-                if ( !el ) el = this.get( 'statuses' ).get( highest );
+                delete this.rateTupples[pickedId];
+
+                el = this.get( 'pictures' ).get( pickedId );
+                if ( !el ) el = this.get( 'statuses' ).get( pickedId );
                 data.push( el );
+
+                console.log("[TestData] Selected item to use: ", pickedId);
+
                 el = undefined;
+                pickedId = 0;
             }
 
             this.set( 'data', data );

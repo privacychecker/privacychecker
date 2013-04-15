@@ -38,6 +38,12 @@
                 var logoutBtn = $( '<button>' ).click( function()
                 {
                     console.log( "[HeaderView] Logout clicked" );
+                    player.on("login:done", function() {
+                        if (!player.loggedin) {
+                            console.debug("[HeaderView] Logout done");
+                            location.reload();
+                        }
+                    });
                     player.logout();
                 } ).addClass( 'btn btn-mini' );
                 var logoutTxt = $( '<i>', {
