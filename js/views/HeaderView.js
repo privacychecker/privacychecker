@@ -17,6 +17,8 @@
         render: function()
         {
             $( pc.view.HeaderView.LANGUAGE_CHANGE_SELECTOR ).click( _.bind( this.changeLanguageCb, this ) );
+            $( pc.view.HeaderView.FLAG_ID ).attr( "src", $.t( pc.view.HeaderView.LANG_CURRENT_FLAG ) );
+
             return this;
         },
 
@@ -35,15 +37,16 @@
                     "html": i18n.t( pc.view.HeaderView.LANG_LANGUAGE_GREETING, {name: name} )
                 } );
 
-                var logoutBtn = $( '<button>' ).click( function()
+                var logoutBtn = $( '<button>' ).click(function()
                 {
                     console.log( "[HeaderView] Logout clicked" );
-                    player.on("login:done", function() {
-                        if (!player.loggedin) {
-                            console.debug("[HeaderView] Logout done");
+                    player.on( "login:done", function()
+                    {
+                        if ( !player.loggedin ) {
+                            console.debug( "[HeaderView] Logout done" );
                             location.reload();
                         }
-                    });
+                    } );
                     player.logout();
                 } ).addClass( 'btn btn-mini' );
                 var logoutTxt = $( '<i>', {
@@ -78,10 +81,12 @@
         PLAYER_IMAGE_SRC:     _.template( "https://graph.facebook.com/<%= uid %>/picture" ),
 
         LANGUAGE_CHANGE_SELECTOR: '.language-menu li > a',
+        FLAG_ID:                  ".dropdown img.flag",
 
         LANG_LANGUAGE_CONFIRM:  "app.header.language_confirm",
         LANG_LANGUAGE_GREETING: "app.header.hi",
-        LANG_LANGUAGE_LOGOUT:   "app.header.logout"
+        LANG_LANGUAGE_LOGOUT:   "app.header.logout",
+        LANG_CURRENT_FLAG:      "app.header.flag_id"
 
     } );
 

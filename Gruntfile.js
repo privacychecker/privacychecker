@@ -237,7 +237,7 @@ module.exports = function( grunt )
                     {
                         files:      [ '<%= dir.assets %>/*' ],
                         references: [
-                            '<%= dir.assets %>/*', 'build/index.html'
+                            '<%= dir.assets %>/*', 'build/index.html', 'build/<%= dir.i18n %>/*.json'
                         ]
                     }
                 ],
@@ -273,7 +273,10 @@ module.exports = function( grunt )
         },
 
         contributors: {
-            all: {}
+            all: {
+                path:   './build/contributers.txt',
+                branch: 'develop'
+            }
         },
 
         connect: {

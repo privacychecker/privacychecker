@@ -53,17 +53,26 @@
         {
             console.log( "[Controller] Facebook Player is ready, enabling collect view" );
             $( pc.router.AppRouter.CHANGE_PLAYER_ID ).fadeIn( 'fast' );
+            if ( this.player.loggedin ) {
+                this.startCollectCb( true );
+            }
         },
 
-        startCollectCb: function()
+        startCollectCb: function( autostart )
         {
             console.log( '[Controller] Starting to collect data' );
             $( pc.router.AppRouter.CAROUSEL_ID ).unbind();
             this.collectView.render();
             $( "#container-collect" ).html( this.collectView.el );
 
-            $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 1 );
             pc.common.ProgressBar.getInstance().to( 1 );
+
+            if ( autostart ) {
+                console.log( "[Controller] Autostarting because player is logged in" );
+                this.collectView.startCollectCb();
+            }
+
+            $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 1 );
 
             $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
             {
