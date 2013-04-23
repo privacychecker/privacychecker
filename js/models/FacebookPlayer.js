@@ -14,7 +14,7 @@
     ns.FacebookPlayer = Backbone.Model.extend( {
 
         STATUS_LOGGED_IN:  "connected",
-        FB_SCOPE:          "email, user_groups, user_events, user_likes, user_photos, user_relationships, user_status, user_videos, read_friendlists, read_stream, friends_about_me",
+        FB_SCOPE:          "email, user_groups, user_events, user_photos, read_friendlists, read_stream",
         FB_ME_URL:         "/me?fields=id,name,gender,locale",
         FB_FRIENDS_URL:    "/me/friends?fields=id,name",
         FB_FRIENDLIST_URL: "/me/friendlists/?fields=members.fields(id),id,name",
@@ -257,14 +257,15 @@
             FB.api( this.FB_FRIENDLIST_URL, _.bind( function( response )
             {
                 if ( !response.data ) {
-                    this.trigger( "friendlist:error" );
                     console.error( "[FacebookPlayer] Error loading friendlist, response was: ", response );
+                    this.trigger( "friendlist:error" );
                     return;
                 }
 
+                // a user always has at least one list, if no list was received he rejected the read permissions
                 if ( response.data.length === 0 ) {
-                    console.warn( "[FacebookPlayer] Users has no lists" );
-                    this.trigger( "friendlist:finished" );
+                    console.warn( "[FacebookPlayer] Users has no lists (perhaps he refused to grant permission)" );
+                    this.trigger( "friendlist:error" );
                 }
 
                 // parse all friends
@@ -433,9 +434,9 @@
 
                     var statusItem = new pc.model.FacebookStatus( {
                         message: status.message,
-                        id: status.id,
-                        place: status.place,
-                        date: status.updated_time
+                        id:      status.id,
+                        place:   status.place,
+                        date:    status.updated_time
                     } );
 
                     statusItem.on( 'privacy-done', _.bind( function()

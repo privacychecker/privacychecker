@@ -129,7 +129,7 @@
 
         fbLoadRandomErrorCb: function()
         {
-            if ( window.confirm( i18n.t( pc.view.CollectView.LANG_ERROR_LOADING ) ) ) {
+            if ( window.confirm( i18n.t( pc.view.CollectView.LANG_GENERIC_ERROR_LOADING ) ) ) {
                 location.reload();
             }
         },
@@ -146,7 +146,7 @@
 
         fbLoadFriendlistErrorCb: function()
         {
-            if ( window.confirm( i18n.t( pc.view.CollectView.LANG_ERROR_LOADING ) ) ) {
+            if ( window.confirm( i18n.t( pc.view.CollectView.LANG_FRIENDLIST_ERROR_LOADING ) ) ) {
                 location.reload();
             }
         },
@@ -163,7 +163,7 @@
 
         fbLoadPicturesErrorCb: function()
         {
-            if ( window.confirm( i18n.t( pc.view.CollectView.LANG_ERROR_LOADING ) ) ) {
+            if ( window.confirm( i18n.t( pc.view.CollectView.LANG_GENERIC_ERROR_LOADING ) ) ) {
                 location.reload();
             }
         },
@@ -180,7 +180,7 @@
 
         fbLoadStatusesErrorCb: function()
         {
-            if ( window.confirm( i18n.t( pc.view.CollectView.LANG_ERROR_LOADING ) ) ) {
+            if ( window.confirm( i18n.t( pc.view.CollectView.LANG_GENERIC_ERROR_LOADING ) ) ) {
                 location.reload();
             }
         },
@@ -196,7 +196,8 @@
         COLLECT_BTN_ID: 'button.trigger-collect',
 
         LANG_BTN_LOADING:   'app.collect.next_button_loading',
-        LANG_ERROR_LOADING: 'app.collect.error'
+        LANG_GENERIC_ERROR_LOADING: 'app.collect.generic_error',
+        LANG_FRIENDLIST_ERROR_LOADING: 'app.collect.generic_error'
 
     } );
 

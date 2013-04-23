@@ -6,10 +6,6 @@
 
     ns.HangmanView = Backbone.View.extend( {
 
-        MAX_WRONG_ITEMS: 7,
-        WRONG_ITEMS:     20,
-        CORRECT_ITEMS:   20,
-
         template: pc.template.HangmanTemplate,
 
         initialize: function()
@@ -324,7 +320,7 @@
                 case pc.common.PrivacyDefinition.Level.ME:
                 case pc.common.PrivacyDefinition.Level.CUSTOM:
 
-                    while ( list.length < this.WRONG_ITEMS ) {
+                    while ( list.length < pc.view.HangmanView.WRONG_ITEMS ) {
                         user = undefined;
                         if ( exclude.length > 0 && $.randomBetween( 0, 1 ) === 0 ) {
                             user = exclude.at( $.randomBetween( 0, exclude.length ) );
@@ -344,7 +340,7 @@
                 case pc.common.PrivacyDefinition.Level.ALL:
 
                     user = undefined;
-                    while ( list.length < this.WRONG_ITEMS && exclude.length > list.length ) {
+                    while ( list.length < pc.view.HangmanView.WRONG_ITEMS && exclude.length > list.length ) {
                         user = exclude.at( $.randomBetween( 0, exclude.length ) );
 
                         if ( user !== undefined && user.get( 'id' ) !== playerid && !list.contains( user ) && !include.contains( user ) ) {
@@ -359,7 +355,7 @@
                     console.warn( "[HangmanView] Found unknown privacy level for wrong users, taking only foreigners" );
 
                     user = undefined;
-                    while ( list.length < this.WRONG_ITEMS ) {
+                    while ( list.length < pc.view.HangmanView.WRONG_ITEMS ) {
                         user = foreigners.at( $.randomBetween( 0, foreigners.length ) );
 
                         if ( user !== undefined && user.get( 'id' ) !== playerid && !list.contains( user ) && !include.contains( user ) ) {
@@ -395,7 +391,7 @@
                 case pc.common.PrivacyDefinition.Level.FOF:
                 case pc.common.PrivacyDefinition.Level.ME:
 
-                    while ( list.length < this.CORRECT_ITEMS ) {
+                    while ( list.length < pc.view.HangmanView.CORRECT_ITEMS ) {
                         user = undefined;
                         if ( include.length > 0 && $.randomBetween( 0, 1 ) === 0 ) {
                             user = include.at( $.randomBetween( 0, include.length ) );
@@ -439,7 +435,7 @@
 
                 case pc.common.PrivacyDefinition.Level.ALL:
 
-                    while ( list.length < this.CORRECT_ITEMS ) {
+                    while ( list.length < pc.view.HangmanView.CORRECT_ITEMS ) {
                         user = undefined;
                         var coinflip = $.randomBetween( 0, 2 );
                         if ( include.length > 0 && coinflip === 0 ) {
@@ -482,9 +478,11 @@
 
         LOADER_GIF_SRC: 'img/loader.gif',
 
-        DIE_AFTER_NUM:        7,
+        DIE_AFTER_NUM:        5,
         MAX_USERS:            20,
         MAX_WRONG_PERCENTAGE: 0.5,
+        WRONG_ITEMS:          20,
+        CORRECT_ITEMS:        20,
 
         RESULT: {
             WON: 0, LOST: 1

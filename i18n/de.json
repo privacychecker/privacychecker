@@ -29,7 +29,8 @@
             "description":         "In diesem Schritt werden die Daten von deinem Facebookprofil lokal auf deinem Rechner gespeichert. Anschließend können diese für den Test verwendet werden.",
             "next_button":         "Okay, legt los &raquo;",
             "next_button_loading": "Daten werden geladen, das kann ein wenig dauern..",
-            "error":               "Beim Abrufen der Daten ist leider ein Fehler aufgetreten. Bitte starte das Spiel neu!"
+            "generic_error":       "Beim Abrufen der Daten ist leider ein Fehler aufgetreten. Bitte starte das Spiel neu!",
+            "friendlist_error":    "Deine Freundeslisten konnten nicht geladen werden. Hast du eventuell die Berechtigung nicht erteilt?"
         },
 
         "select": {
@@ -150,20 +151,21 @@
                 "headline":  "Über uns",
                 "body":      "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen:",
                 "team":      {
-                    "headline":   "Team & Kontakt",
-                    "dev":        {
+                    "team_headline":    "Team",
+                    "contact_headline": "Kontakt",
+                    "dev":              {
                         "headline": "Entwicklung",
                         "body":     "Christian Roth"
                     },
-                    "concept":    {
+                    "concept":          {
                         "headline": "Konzeption",
                         "body":     "Moritz Riesner, Michael Netter"
                     },
-                    "management": {
+                    "management":       {
                         "headline": "Projektmanagement",
                         "body":     "Prof. Dr. Günther Pernul"
                     },
-                    "contact":    {
+                    "contact":          {
                         "mail": "Mail",
                         "web":  "Web"
                     }

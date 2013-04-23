@@ -69,7 +69,7 @@
 
         changeLanguageCb: function()
         {
-            return !window.confirm( i18n.t( pc.view.HeaderView.LANG_LANGUAGE_CONFIRM ) );
+            return window.confirm( i18n.t( pc.view.HeaderView.LANG_LANGUAGE_CONFIRM ) );
         }
 
     }, {
