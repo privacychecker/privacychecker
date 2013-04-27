@@ -2,6 +2,8 @@
 {
     "use strict";
 
+    var DEV = false;
+
     var ns = namespace( "pc.router" );
 
     ns.AppRouter = Backbone.Router.extend( {
@@ -53,9 +55,11 @@
         {
             console.log( "[Controller] Facebook Player is ready, enabling collect view" );
             $( pc.router.AppRouter.CHANGE_PLAYER_ID ).fadeIn( 'fast' );
-            if ( this.player.loggedin ) {
+            if ( this.player.loggedin && !DEV ) {
                 this.startCollectCb( true );
             }
+
+            this.homeView.enableButton();
         },
 
         startCollectCb: function( autostart )

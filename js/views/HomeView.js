@@ -25,8 +25,16 @@
 
         render: function()
         {
-            $( this.el ).html( this.template() );
+            $( this.el )
+                .html( this.template() )
+                .find( pc.view.HomeView.START_BUTTON_ID )
+                    .prop( "disabled", true );
             return this;
+        },
+
+        enableButton: function()
+        {
+            $( this.el ).find( pc.view.HomeView.START_BUTTON_ID ).button( 'reset' );
         },
 
         fbResetClickCb: function()
@@ -63,6 +71,8 @@
             }
         }
 
+    }, {
+        START_BUTTON_ID: "#startgame"
     } );
 
 })();

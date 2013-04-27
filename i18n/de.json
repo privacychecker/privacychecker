@@ -17,11 +17,10 @@
         },
 
         "home": {
-            "name":         "Hallo",
-            "headline":     "Kennst du alle deine Freunde?",
-            "description":  "Finde spielend heraus, wer deine Fotos sehen kann und ob du auch weißt, wer diese Leute sind.",
-            "play_button":  "Spielen",
-            "other_player": "Als anderer Nutzer anmelden"
+            "name":            "Hallo",
+            "headline":        "Kennst du alle deine Freunde?",
+            "description":     "Finde spielend heraus, wer deine Fotos sehen kann und ob du auch weißt, wer diese Leute sind.",
+            "play_button":     "Spielen"
         },
 
         "collect": {

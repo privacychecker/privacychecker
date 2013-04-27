@@ -55,7 +55,10 @@
                     var app = new pc.router.AppRouter();
                     Backbone.history.start();
 
-                    //$( '.page' ).css( {'width': ''} );
+                    $( "#load" ).fadeOut( 'slow', function()
+                    {
+                        $( this ).remove();
+                    } );
                 }
             );
         }
