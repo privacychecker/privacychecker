@@ -222,44 +222,57 @@ hr {
 /* PAGE */
 .page {
 
-    .divider {
-        background: url("divider.png") repeat-y scroll right center transparent;
-    }
+    &.short {
 
-    .span3 {
+        .row {
+            height: 390px;
 
-        p {
-            margin-right: 10px;
+            .divider {
+                height: 100%;
+            }
+
+            .span4 {
+                text-align: left;
+
+                & > img {
+                    float: left;
+                    margin-right: 15px;
+                }
+
+                p {
+                    margin-right: 20px;
+                }
+            }
+
+            h2 {
+                font-weight: normal;
+            }
+
+            h3 {
+                font-weight: bold;
+            }
+
+            h4 {
+                margin-bottom: 0;
+            }
+
         }
 
     }
 
-    .span4 {
-        text-align: left;
+    &.explain {
 
-        & > img {
-            float: left;
-            margin-right: 15px;
+        .accordion-group {
+            // suppress boostrap-collapse style
+            border: 0 !important;
+            margin: 0 !important;
         }
 
-        p {
-            margin-right: 20px;
+        .span3 {
+            p {
+                margin-right: 10px;
+            }
         }
-    }
-
-    h2 {
-        font-weight: normal;
-    }
-
-    h3 {
-        font-weight: bold;
-    }
-
-    h4 {
-        margin-bottom: 0px;
-    }
-
-    &.feature {
 
         h2 {
             font-size: 40px;
@@ -267,7 +280,10 @@ hr {
             letter-spacing: -1px;
             line-height: 1;
         }
+    }
 
+    .divider {
+        background: url("divider.png") repeat-y scroll right center transparent;
     }
 
 }

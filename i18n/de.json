@@ -114,20 +114,9 @@
         },
 
         "page": {
-            "column1":   {
-                "headline": "Vertrauen",
-                "body":     "Privacy Checker läuft ausschließlich in Deinem Browser, Deine Daten bleiben daher immer bei Dir. Noch nicht sicher? Du kannst jederzeit nachsehen, denn der Privacy Checker Quellcode ist öffentlich verfügbar"
-            },
-            "column2":   {
-                "headline": "Was ist Privacy Checker?",
-                "body":     "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook Profil kennst. Mit verschiedenen Spielen kannst du herausfinden, ob du weißt was Deine Freunde sehen können"
-            },
-            "column3":   {
-                "headline": "Über uns",
-                "body":     "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen"
-            },
-            "trust":     {
+            "trust": {
                 "headline":   "Vertrauen",
+                "short":      "Privacy Checker läuft ausschließlich in Deinem Browser, Deine Daten bleiben daher immer bei Dir. Noch nicht sicher? Du kannst jederzeit nachsehen, denn der Privacy Checker Quellcode ist öffentlich verfügbar",
                 "body":       "Diese App wurde mit dem Ziel entworfen, Deine Daten möglichst gut zu schützen. So wird die App beispielsweise nur in Deinem Browser ausgeführt, es werden keine persönlichen Daten an einen Server (auch nicht unseren eigenen Server) gesendet. Um das Vertrauen in die App noch weiter zu erhöhen, haben wir den Quellcode der App veröffentlicht.",
                 "client":     {
                     "headline": "Technologie",
@@ -143,13 +132,16 @@
                     "web":      "Download App"
                 }
             },
-            "learnmore": {
+
+            "learn": {
                 "headline": "Was ist Privacy Checker?",
+                "short":    "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook Profil kennst. Mit verschiedenen Spielen kannst du herausfinden, ob du weißt was Deine Freunde sehen können",
                 "body":     "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook Profil kennst. Mit verschiedenen Spielen kannst du herausfinden, ob du weißt was Deine Freunde sehen können. Eine Zusammenfassung am Ende zeigt Dir Dein Ergebnis an und gibt Dir Tips wie Du Deine Privatsphäre noch besser schützen kannst. Um vorher zu sehen, wie die App aussieht, klicke Dich durch die Bildergallerie."
             },
 
             "contact": {
                 "headline":  "Über uns",
+                "short":     "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen",
                 "body":      "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen:",
                 "team":      {
                     "team_headline":    "Team",
