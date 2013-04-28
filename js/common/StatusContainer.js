@@ -49,7 +49,7 @@
             this.el.empty();
 
             var messageContainer = $( '<p>', {
-                "html": this.get( 'message' )
+                "html": this.get( 'caption' )
             } ).addClass( 'message' );
 
             var dateContainer = $( '<p>', {
@@ -67,7 +67,7 @@
          *
          * @method
          * @static
-         * @param {String} message The message of the status
+         * @param {String} message The caption of the status
          * @param {String} date The date of the status
          * @param {String} [location] The location of the status
          * @returns {pc.common.StatusContainer} The StatusContainer instance
@@ -76,7 +76,7 @@
         {
 
             var container = new pc.common.StatusContainer();
-            container.set( 'message', message );
+            container.set( 'caption', message );
             container.set( 'date', date );
             if ( location ) container.set( 'location', location );
 

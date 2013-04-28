@@ -16,17 +16,21 @@
             "please_wait": "Bitte warten.."
         },
 
+        "common": {
+            "points": "Punkte"
+        },
+
         "home": {
-            "name":            "Hallo",
-            "headline":        "Kennst du alle deine Freunde?",
-            "description":     "Finde spielend heraus, wer deine Fotos sehen kann und ob du auch weißt, wer diese Leute sind.",
-            "play_button":     "Spielen"
+            "name":        "Hallo",
+            "headline":    "Kennst du alle deine Freunde?",
+            "description": "Finde spielend heraus, wer deine Fotos sehen kann und ob du auch weißt, wer diese Leute sind.",
+            "play_button": "Spielen"
         },
 
         "collect": {
             "name":                "Sammeln",
             "headline":            "Wir brauchen noch ein paar Daten von dir!",
-            "description":         "In diesem Schritt werden die Daten von deinem Facebookprofil lokal auf deinem Rechner gespeichert. Anschließend können diese für den Test verwendet werden.",
+            "description":         "In diesem Schritt werden die Daten von deinem Facebookprofil für den Test lokal auf deinem Rechner gespeichert.",
             "next_button":         "Okay, legt los &raquo;",
             "next_button_loading": "Daten werden geladen, das kann ein wenig dauern..",
             "generic_error":       "Beim Abrufen der Daten ist leider ein Fehler aufgetreten. Bitte starte das Spiel neu!",
@@ -41,7 +45,12 @@
             "what_to_use":        "Du kannst den Test mit deinen Fotos, deinen Statusmeldungen oder beidem zusammen spielen.",
             "play_with_images":   "Nur Bilder benutzen",
             "play_with_statuses": "Nur Statusmeldungen benutzen",
-            "play_with_both":     "Beides benutzen"
+            "play_with_both":     "Beides benutzen",
+            "briefing":           "Es treten verschiedene Deiner auf Facebook veröffentlichten Items paarweise gegeneinander an und sollen von Dir danach beurteilt werden, wie persönlich sie für Dich sind. Dadurch wird festgestellt, welche Items Dir besonders wichtig sind und deshalb besondere Beachtung beim Schutz Deiner Privatsphäre finden müssen. Am Ende des Spiels werden Dir Deine Einschätzungen mit Hilfe eines Rankings angezeigt.",
+
+            "result": {
+                "final_ranking": "Abschließendes Ranking"
+            }
         },
 
         "guess": {

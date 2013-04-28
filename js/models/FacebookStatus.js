@@ -19,9 +19,9 @@
              */
             id:      undefined,
             /**
-             * @property {String} message Message of the status
+             * @property {String} caption Message of the status
              */
-            message: undefined,
+            caption: undefined,
             /**
              * @property {pc.common.PrivacyDefinition} privacy Privacy definition of the status
              */
@@ -33,7 +33,11 @@
             /**
              * @property {*} place A location attached to the status
              */
-            place:   undefined
+            place:   undefined,
+            /**
+             * @property {Number} Points received by rating
+             */
+            points: 0
         },
 
         /**
@@ -41,17 +45,17 @@
          *
          * @method
          * @constructor
-         * @param { {id: Number, message: String, [date]: Date, [place]: Object}} status
+         * @param { {id: Number, caption: String, [date]: Date, [place]: Object}} status
          */
         initialize: function( status )
         {
-            if ( !status.id || !status.message ) {
-                console.error( "[FacebookStatus] Missing required data (id, message)", status.id, status.message );
-                throw new pc.common.Exception( "Status missing required data: id or message" );
+            if ( !status.id || !status.caption ) {
+                console.error( "[FacebookStatus] Missing required data (id, caption)", status.id, status.caption );
+                throw new pc.common.Exception( "Status missing required data: id or caption" );
             }
 
             this.set( "id", status.id );
-            this.set( "message", status.message );
+            this.set( "caption", status.caption );
             this.set( "place", status.place );
             this._getPrivacy();
         },

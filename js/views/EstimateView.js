@@ -184,13 +184,12 @@
         {
 
             if ( item instanceof pc.model.FacebookPicture ) {
-
-                return pc.common.ImageContainer.create( item.get( 'source' ), item.get( 'name' ) )
+                return pc.common.ImageContainer.create( item.get( 'source' ), item.get( 'caption' ) )
                     .toHtml()
                     .addClass( 'polaroid' );
             }
             else if ( item instanceof pc.model.FacebookStatus ) {
-                return pc.common.StatusContainer.create( item.get( 'message' ), item.get( 'date' ),
+                return pc.common.StatusContainer.create( item.get( 'caption' ), item.get( 'date' ),
                         item.get( 'place' ) )
                     .toHtml();
             }
@@ -257,7 +256,7 @@
 
                 default:
                     console.error( "Invalid privacy type: " + privacy.get( 'level' ) );
-                    throw new Error( {message: "Invalid privacy type: " + privacy.get( 'level' )} );
+                    throw new Error( {caption: "Invalid privacy type: " + privacy.get( 'level' )} );
             }
 
             var range = new pc.common.Range( {

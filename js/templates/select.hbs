@@ -1,4 +1,16 @@
-<div class="body">
+<div class="scope half-width">
+    <h1>{{t "app.select.game_usage"}}</h1>
+
+    <p class="lead">{{t "app.select.what_to_use"}}</p>
+
+    <p class="btn-group">
+        <button class="btn btn-primary images">{{t "app.select.play_with_images"}}</button>
+        <button class="btn btn-primary statuses">{{t "app.select.play_with_statuses"}}</button>
+        <button class="btn btn-primary both">{{t "app.select.play_with_both"}}</button>
+    </p>
+</div>
+
+<div class="body full-width">
     <h1>{{t "app.select.headline"}}</h1>
 
     <div class="center-outer">
@@ -12,17 +24,16 @@
     </div>
 </div>
 
-<div id="game-scope" class="modal hide fade" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <h3 id="myModalLabel">{{t "app.select.game_usage"}}</h3>
-    </div>
-    <div class="modal-body">
-        {{t "app.select.what_to_use"}}
+<div class="result half-width">
+    <h1>{{t "app.select.result.final_ranking"}}</h1>
 
-        <p>
-            <button class="btn btn-primary images">{{t "app.select.play_with_images"}}</button>
-            <button class="btn btn-primary statuses">{{t "app.select.play_with_statuses"}}</button>
-            <button class="btn btn-primary both">{{t "app.select.play_with_both"}}</button>
-        </p>
-    </div>
+    <ul>
+        <li>
+            <div class="position"></div>
+            <div class="item"></div>
+            <p class="description"></p>
+            <div class="points"></div>
+        </li>
+    </ul>
+
 </div>

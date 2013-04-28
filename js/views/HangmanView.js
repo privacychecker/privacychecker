@@ -148,12 +148,12 @@
 
             if ( item instanceof pc.model.FacebookPicture ) {
 
-                return pc.common.ImageContainer.create( item.get( 'source' ), item.get( 'name' ) )
+                return pc.common.ImageContainer.create( item.get( 'source' ), item.get( 'caption' ) )
                     .toHtml()
                     .addClass( 'polaroid leftern' );
             }
             else if ( item instanceof pc.model.FacebookStatus ) {
-                return pc.common.StatusContainer.create( item.get( 'message' ), item.get( 'date' ),
+                return pc.common.StatusContainer.create( item.get( 'caption' ), item.get( 'date' ),
                         item.get( 'place' ) )
                     .toHtml();
             }
