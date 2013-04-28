@@ -242,7 +242,7 @@
                 orderedList = this.getOrderedList();
 
             for ( var i = this.TEST_DATA_SIZE; i > 0; i-- ) {
-                data.push( orderedList.pop() );
+                data.push( orderedList.shift() );
             }
 
             this.set( 'data', data );
