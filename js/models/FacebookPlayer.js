@@ -352,11 +352,11 @@
                                 }
 
                                 var pic = new pc.model.FacebookPicture( {
-                                    id:     photo.id,
-                                    name:   photo.name,
-                                    source: photo.source,
-                                    width:  photo.width,
-                                    height: photo.height
+                                    id:      photo.id,
+                                    caption: photo.name,
+                                    source:  photo.source,
+                                    width:   photo.width,
+                                    height:  photo.height
                                 } );
 
                                 pic.on( 'privacy-done', _.bind( function()
@@ -433,7 +433,7 @@
                     console.log( "Found status", status );
 
                     var statusItem = new pc.model.FacebookStatus( {
-                        message: status.message,
+                        caption: status.message,
                         id:      status.id,
                         place:   status.place,
                         date:    status.updated_time

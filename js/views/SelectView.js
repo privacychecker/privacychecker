@@ -17,44 +17,44 @@
         render: function()
         {
             this.$el.html( this.template() );
+
+            // show scope view
+            this.$el.find( '.scope' ).show();
+            // hide playground and result
             this.$el.find( '.body' ).hide();
+            this.$el.find( '.result' ).hide();
 
-            var modal = $( this.el ).find( pc.view.SelectView.MODAL_GAME_SCOPE ).first();
-            modal.modal( 'show', {
-                "keyboard": false
-            } );
+            // generate briefing
+            var briefing = pc.common.GameBriefing.getInstance();
+            briefing.make( $.t( pc.view.SelectView.LANG_BRIEFING ) );
+            briefing.show();
 
+            // query for scope
             console.debug( "[SelectView] Rendering selectView - asking for scope" );
-
-            modal.find( pc.view.SelectView.MODAL_GAME_SCOPE_IMAGES ).click( _.bind( function()
+            this.$el.find( pc.view.SelectView.SCOPE_IMAGES_ID ).click( _.bind( function()
             {
                 console.info( "[SelectView] User wants to play with images" );
-                modal.modal( 'hide' );
-                this.scope = pc.view.SelectView.GAME_SCOPE.IMAGES;
-                this.preload();
+                this.preload( pc.view.SelectView.GAME_SCOPE.IMAGES );
             }, this ) );
 
-            modal.find( pc.view.SelectView.MODAL_GAME_SCOPE_STATUS ).click( _.bind( function()
+            this.$el.find( pc.view.SelectView.SCOPE_STATUSES_ID ).click( _.bind( function()
             {
                 console.info( "[SelectView] User wants to play with statuses" );
-                modal.modal( 'hide' );
-                this.scope = pc.view.SelectView.GAME_SCOPE.STATUSES;
-                this.preload();
+                this.preload( pc.view.SelectView.GAME_SCOPE.STATUSES );
             }, this ) );
 
-            modal.find( pc.view.SelectView.MODAL_GAME_SCOPE_BOTH ).click( _.bind( function()
+            this.$el.find( pc.view.SelectView.SCOPE_BOTH_ID ).click( _.bind( function()
             {
                 console.info( "[SelectView] User wants to play with images and statuses" );
-                modal.modal( 'hide' );
-                this.scope = pc.view.SelectView.GAME_SCOPE.BOTH;
-                this.preload();
+                this.preload( pc.view.SelectView.GAME_SCOPE.BOTH );
             }, this ) );
 
             return this;
         },
 
-        preload: function()
+        preload: function( scope )
         {
+            this.scope = scope;
 
             try {
                 this.testData = pc.model.TestData.getInstance();
@@ -63,7 +63,7 @@
             catch ( e ) {
                 console.error( "[SelectView] Caught exception while querying testdata", e );
                 window.alert( i18n.t( pc.view.SelectView.LANG_INSUFFICIENT_DATA ) );
-                throw "E_STOP";
+                throw "E_TESTDATA_QUERRY_ERROR";
             }
 
             // preload images
@@ -105,8 +105,11 @@
 
         start: function()
         {
-            this.$el.find( '.body' ).fadeIn( 'fast' );
-            this.next();
+            this.$el.find( ".scope" ).fadeOut( 'fast', _.bind( function()
+            {
+                this.$el.find( '.body' ).fadeIn( 'fast' );
+                this.next();
+            }, this ) );
         },
 
         _createObject: function( item )
@@ -119,7 +122,7 @@
                     .addClass( 'polaroid' );
             }
             else if ( item instanceof pc.model.FacebookStatus ) {
-                return pc.common.StatusContainer.create( item.get( 'message' ), item.get( 'date' ),
+                return pc.common.StatusContainer.create( item.get( 'caption' ), item.get( 'date' ),
                         item.get( 'place' ) )
                     .toHtml();
             }
@@ -130,7 +133,7 @@
 
         next: function( winner )
         {
-            if ( !_.isNull(this.currentPair) ) {
+            if ( !_.isNull( this.currentPair ) ) {
                 console.log( "[SelectView] Last comparision's winner was ", winner );
                 this.testData.setWinner( this.currentPair[0], this.currentPair[1], winner );
                 pc.common.ProgressBar.getInstance().subto( pc.model.TestData.getInstance().getCurrentRound(),
@@ -139,7 +142,7 @@
 
             this.currentPair = this.testData.getRateTupple();
 
-            if ( !_.isNull(this.currentPair) ) {
+            if ( !_.isNull( this.currentPair ) ) {
 
                 var item1 = this.currentPair[0];
                 var item2 = this.currentPair[1];
@@ -178,23 +181,71 @@
             }
             else {
                 console.log( '[SelectView] Selection done' );
-                this.trigger( 'select:done' );
+                this.result();
             }
-        }
+        },
+
+        result: function()
+        {
+
+            var itemLine = this.$el.find( pc.view.SelectView.RESULT_LIST_ID ).children( "li" ).first().remove(),
+                orderedRatingItems = pc.model.TestData.getInstance().getOrderedList(),
+                position = 0,
+                lastPoints = 0;
+
+            console.info( "[SelectView] Order after rating is", orderedRatingItems );
+
+            _.each( orderedRatingItems, _.bind( function( el )
+            {
+
+                var usedItemLine = itemLine.clone();
+
+                if ( lastPoints === 0 || el.get( 'points' ) < lastPoints ) {
+                    position++;
+                    usedItemLine.children( ".position" ).html( position );
+                }
+                if ( el instanceof pc.model.FacebookPicture ) {
+                    var image = $( '<img>', {
+                        src: el.get( 'source' ),
+                        alt: el.get( 'caption' )
+                    } ).css( 'visibility', 'hidden' );
+                    usedItemLine.children( ".item" ).append( image ).imgLiquid();
+                }
+                usedItemLine.children( ".description" ).html( el.get( 'caption' ) );
+                usedItemLine.children( ".points" ).html( el.get( 'points' ) + " " + $.t( pc.view.SelectView.LANG_POINTS ) );
+
+                lastPoints = el.get( 'points' );
+
+                this.$el.find( pc.view.SelectView.RESULT_LIST_ID ).append( usedItemLine );
+            }, this ) );
+
+            // extract test data for the next games
+            pc.model.TestData.getInstance().extractTestData();
+
+            this.$el.find( ".body" ).fadeOut( 'fast', _.bind( function()
+            {
+                this.$el.find( '.result' ).fadeIn( 'fast' );
+                this.trigger( 'select:done' );
+            }, this ) );
+
+        },
 
     }, {
 
         ITEM_1_CONTAINER: '.item1',
         ITEM_2_CONTAINER: '.item2',
 
-        MODAL_GAME_SCOPE:        '#game-scope',
-        MODAL_GAME_SCOPE_IMAGES: 'button.images',
-        MODAL_GAME_SCOPE_STATUS: 'button.statuses',
-        MODAL_GAME_SCOPE_BOTH:   'button.both',
+        SCOPE_IMAGES_ID:   '.scope button.images',
+        SCOPE_STATUSES_ID: '.scope button.statuses',
+        SCOPE_BOTH_ID:     '.scope button.both',
+
+        RESULT_LIST_ID: '.result ul',
 
         LOADER_GIF_SRC: 'img/loader.gif',
 
         LANG_INSUFFICIENT_DATA: "app.select.insufficient_data",
+        LANG_BRIEFING:          "app.select.briefing",
+        LANG_POINTS:            "app.common.points",
 
         GAME_SCOPE: {
             IMAGES: 0, STATUSES: 1, BOTH: 2

@@ -1,25 +1,92 @@
 .select {
-    margin-top: 100px !important;
-    max-width: 100% !important;
 
-    .item {
-        cursor: pointer;
-        margin-top: 40px;
-        float: left;
-        z-index: 100;
+    .scope {
+        margin-top: 200px;
+    }
 
-        &:hover {
-            z-index: 200;
+    .body {
+        margin-top: 100px;
+
+        .item {
+            cursor: pointer;
+            margin-top: 40px;
+            float: left;
+            z-index: 100;
+
+            &:hover {
+                z-index: 200;
+            }
+        }
+
+        .item1 {
+            float: left;
+            margin-right: 15px;
+            margin-top: 50px;
         }
     }
 
-    .item1 {
-        float: left;
-        margin-right: 15px;
-        margin-top: 50px;
-    }
+    .result {
+        margin-top: 100px;
 
-    .item2 {
+        ul {
+            .plain-list;
+
+            height: 500px;
+            margin: 0;
+            margin-top: 15px;
+            overflow-y: scroll;
+
+            li {
+                .rounded-corners(5px);
+
+                clear: both;
+                position: relative;
+
+
+                background: #ccc;
+                color: #505050 !important;
+
+                height: 130px;
+                padding: 10px;
+                margin-bottom: 10px;
+
+                overflow: hidden;
+
+                div.position {
+                    float: left;
+                    margin-top: 30px;
+                    width: 20px;
+
+                    font-size: 80px;
+
+                    text-shadow: -1px -1px 0px #202020, 1px 1px 0px #fff;
+                }
+
+                div.item {
+                    float: left;
+
+                    margin-left: 40px;
+
+                    width: 200px;
+                    height: 130px;
+                }
+
+                p.description {
+                    display: block;
+
+                    margin-left: 10px;
+                }
+
+                div.points {
+                    position: absolute;
+                    bottom: 20px;
+                    right: 20px;
+                    font-size: 40px;
+                    font-weight: 100;
+                    color: #666;
+                }
+            }
+        }
     }
 
 }

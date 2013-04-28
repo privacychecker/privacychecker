@@ -19,9 +19,9 @@
              */
             id:      undefined,
             /**
-             * @property {String} [name] Name of the picture
+             * @property {String} [caption] Name of the picture
              */
-            name:    undefined,
+            caption:    undefined,
             /**
              * @property {String} source Url of the picture
              */
@@ -37,7 +37,11 @@
             /**
              * @property {pc.common.PrivacyDefinition} privacy Privacy definition of the picture
              */
-            privacy: undefined
+            privacy: undefined,
+            /**
+             * @property {Number} Points received by rating
+             */
+             points: 0
         },
 
         /**
@@ -55,7 +59,7 @@
             }
 
             this.set( "id", picture.id );
-            this.set( "name", picture.name );
+            this.set( "caption", picture.name );
             this.set( "source", picture.source );
             this._getPrivacy();
         },

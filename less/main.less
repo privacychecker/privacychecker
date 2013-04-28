@@ -1,6 +1,7 @@
 @import "../vendor/bootstrap/less/bootstrap.less";
 @import "entypo.less";
 @import "share.less";
+@import "home.less";
 @import "collect.less";
 @import "select.less";
 @import "guess.less";
@@ -9,6 +10,8 @@
 @import "results.less";
 @import "status.less";
 @import "load.less";
+@import "briefing.less";
+@import "layout.less";
 
 /* GLOBAL STYLES */
 
@@ -151,9 +154,8 @@ hr {
     .carousel-caption {
         background-color: transparent;
         position: static;
-        max-width: 550px;
         padding: 0 20px;
-        margin-top: 200px;
+        margin-top: 100px;
 
         h1, .lead {
             margin: 0;
@@ -223,6 +225,12 @@ hr {
 /* PAGE */
 .page {
 
+    h2 {
+        font-weight: 100;
+        font-size: 35px;
+        letter-spacing: 4px;
+    }
+
     &.short {
 
         .row {
@@ -243,10 +251,6 @@ hr {
                 p {
                     margin-right: 20px;
                 }
-            }
-
-            h2 {
-                font-weight: normal;
             }
 
             h3 {
@@ -277,9 +281,6 @@ hr {
 
         h2 {
             font-size: 40px;
-            font-weight: 300;
-            letter-spacing: -1px;
-            line-height: 1;
         }
     }
 

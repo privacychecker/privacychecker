@@ -100,7 +100,6 @@
             if ( --this.remainingRates < 0 || this.alreadyComparedTuples.length > Math.pow( 2,
                 this.rateSource.length ) ) {
                 console.debug( '[TestData] Rating done: ', this.rateTupples );
-                this._extractTestData();
                 return null;
             }
 
@@ -149,6 +148,10 @@
             this.rateTupples[one.id] = res.a;
             this.rateTupples[two.id] = res.b;
 
+            // attach the points to the item
+            one.set( 'points', res.a );
+            two.set( 'points', res.b );
+
             console.log( '[TestData] New scores: ', res.a, res.b );
 
         },
@@ -173,6 +176,78 @@
         getCurrentRound: function()
         {
             return this.TEST_ROUNDS - this.remainingRates;
+        },
+
+        /**
+         * Get a list of all items ordered by their rating (desc)
+         *
+         * @method getOrderedList
+         * @returns {Array} A array with all items ordered by points descending
+         */
+        getOrderedList: function()
+        {
+
+            var list = [],
+                i = this.MAX_INIT_ITEMS,
+                highest = 0,
+                pickedId = 0,
+                el,
+                rateTupples = _.clone( this.rateTupples );
+
+            while ( --i >= 0 ) {
+                _.each( _.keys( rateTupples ), _.bind( function( id )
+                {
+                    if ( highest === 0 || highest <= rateTupples[id] ) {
+                        pickedId = id;
+                        highest = rateTupples[id];
+                    }
+                }, this ) );
+
+                console.debug( "[TestData] Highest rating found is ", highest, pickedId );
+
+                if ( pickedId === 0 ) {
+                    console.warn( '[TestData] Picked id is 0, skipping' );
+                    continue;
+                }
+
+                delete rateTupples[pickedId];
+
+                el = this.get( 'pictures' ).get( pickedId );
+                if ( !el ) el = this.get( 'statuses' ).get( pickedId );
+                el.set( 'points', highest );
+                list.push( el );
+
+                console.log( "[TestData] Selected item to use: ", pickedId );
+
+                el = undefined;
+                pickedId = 0;
+                highest = 0;
+            }
+
+            return list;
+        },
+
+        /**
+         * Get the TEST_DATA_SIZE elements with highest score from the test data collection.<br />
+         * Sets the data attribute.
+         *
+         * @method extractTestData
+         */
+        extractTestData: function()
+        {
+
+            if ( this.get( 'data' ) !== undefined ) return;
+
+            var data = [],
+                orderedList = this.getOrderedList();
+
+            for ( var i = this.TEST_DATA_SIZE; i > 0; i-- ) {
+                data.push( orderedList.shift() );
+            }
+
+            this.set( 'data', data );
+            console.log( '[TestData] The following data is select to test: ', data );
+
         },
 
         /**
@@ -232,7 +307,7 @@
 
             if ( arr.length <= this.TEST_DATA_SIZE ) {
                 console.error( "[TestData] Insufficient data", arr.length, this.TEST_DATA_SIZE );
-                throw new pc.common.Exception( {message: "insufficient data"} );
+                throw new pc.common.Exception( {caption: "insufficient data"} );
             }
 
             var i = arr.length < this.MAX_INIT_ITEMS ? arr.length : this.MAX_INIT_ITEMS;
@@ -252,55 +327,6 @@
             }
 
             return picked;
-
-        },
-
-        /**
-         * Get the TEST_DATA_SIZE elements with highest score from the test data collection.<br />
-         * Sets the data attribute.
-         *
-         * @method _extractTestData
-         * @private
-         */
-        _extractTestData: function()
-        {
-
-            var i = this.TEST_DATA_SIZE,
-                data = [],
-                el,
-                highest,
-                pickedId = 0;
-
-            while ( --i >= 0 ) {
-                 highest = null;
-                _.each( _.keys( this.rateTupples ), _.bind( function( id )
-                {
-                    if ( highest === null || highest <= this.rateTupples[id] ) {
-                        pickedId = id;
-                        highest = this.rateTupples[id];
-                        console.debug("[TestData] Highest rating found is ", highest, pickedId );
-                    }
-                }, this ) );
-
-                if (pickedId === 0) {
-                    console.warn('[TestData] Picked id is 0, skipping');
-                    continue;
-                }
-
-                delete this.rateTupples[pickedId];
-
-                el = this.get( 'pictures' ).get( pickedId );
-                if ( !el ) el = this.get( 'statuses' ).get( pickedId );
-                data.push( el );
-
-                console.log("[TestData] Selected item to use: ", pickedId);
-
-                el = undefined;
-                pickedId = 0;
-            }
-
-            this.set( 'data', data );
-            console.log( '[TestData] The following data is select to test: ', data );
 
         }
 
