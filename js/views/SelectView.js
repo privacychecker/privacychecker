@@ -204,7 +204,13 @@
                     position++;
                     usedItemLine.children( ".position" ).html( position );
                 }
-                usedItemLine.children( ".item" ).html( "PLACEHOLDER" );
+                if ( el instanceof pc.model.FacebookPicture ) {
+                    var image = $( '<img>', {
+                        src: el.get( 'source' ),
+                        alt: el.get( 'caption' )
+                    } ).css( 'visibility', 'hidden' );
+                    usedItemLine.children( ".item" ).append( image ).imgLiquid();
+                }
                 usedItemLine.children( ".description" ).html( el.get( 'caption' ) );
                 usedItemLine.children( ".points" ).html( el.get( 'points' ) + " " + $.t( pc.view.SelectView.LANG_POINTS ) );
 

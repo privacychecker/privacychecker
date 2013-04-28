@@ -138,7 +138,7 @@ module.exports = function( grunt )
                     '<%= dir.vendor %>/jquery.js', '<%= dir.vendor %>/jquery.random.js',
                     '<%= dir.vendor %>/jquery.center.js', '<%= dir.vendor %>/jquery.transit.js',
                     '<%= dir.vendor %>/jquery-smooth-scroll/jquery.smooth-scroll.js',
-                    '<%= dir.vendor %>/jquery.imgpreload.js',
+                    '<%= dir.vendor %>/jquery.imgpreload.js', '<%= dir.vendor %>/imgLiquid/src/js/imgLiquid.js',
                     // backbone
                     '<%= dir.vendor %>/backbone.js', '<%= dir.vendor %>/backbone-subroute/backbone.subroute.js',
                     // bootstrap
