@@ -49,7 +49,7 @@
          *
          * @method
          * @constructor
-         * @param { {id: Number, source: String, [name]:String}} picture
+         * @param { {id: Number, source: String, [name]:String}} caption
          */
         initialize:      function( picture )
         {
@@ -59,7 +59,7 @@
             }
 
             this.set( "id", picture.id );
-            this.set( "caption", picture.name );
+            this.set( "caption", picture.caption );
             this.set( "source", picture.source );
             this._getPrivacy();
         },
