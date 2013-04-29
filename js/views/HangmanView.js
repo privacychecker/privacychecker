@@ -13,8 +13,20 @@
             console.log( "[HangmanView] Init: HangmanView" );
             this.currentQuestion = undefined;
 
-            this.on( 'next', _.bind( this.nextCb, this ) );
-            this.on( 'died', _.bind( this.diedCb, this ) );
+            this.on( 'done', _.bind( this.doneCb, this ) );
+
+            this._changePointsCb = function()
+            {
+                this._points -= pc.view.HangmanView.LOSE_PER_SECOND;
+                this.$el.find( pc.view.HangmanView.POINT_CONTAINER_ID )
+                    .html( this._points );
+
+                if ( this._points <= 0 ) {
+                    console.info( "[HangmanView] Points are now negative, time's up" );
+                    this._pointsStop();
+                    this.trigger( 'done', pc.view.HangmanView.RESULT.TIMEOUT );
+                }
+            };
         },
 
         render: function()
@@ -56,43 +68,22 @@
             return this;
         },
 
-        nextCb: function()
+        doneCb: function( result )
         {
-            console.debug( 'next triggered' );
+            console.log( "[HangmanView] Result for game was", result );
+            this._pointsStop();
 
-            var result = new pc.model.TestResult( {
-                is:   this.currentQuestion,
-                was:  pc.view.HangmanView.RESULT.WON,
-                type: pc.model.TestResult.Type.HANGMAN
-            } );
+            this.player.get( 'results' ).add( new pc.model.TestResult( {
+                is:     this.currentQuestion,
+                was:    result,
+                points: this._points,
+                type:   pc.model.TestResult.Type.HANGMAN
+            } ) );
 
-            console.debug( '[HangmanView] Question result was ', result );
-            this.player.get( 'results' ).add( result );
             this._showResults();
 
             new pc.common.OverlayInfo( {
                 text:  i18n.t( pc.view.HangmanView.LANG_GAME_WON ),
-                click: _.bind( this.next, this )
-            } ).show();
-
-        },
-
-        diedCb: function()
-        {
-            console.debug( 'died triggered' );
-
-            var result = new pc.model.TestResult( {
-                is:   this.currentQuestion,
-                was:  pc.view.HangmanView.RESULT.LOST,
-                type: pc.model.TestResult.Type.HANGMAN
-            } );
-
-            console.debug( '[HangmanView] Question result was ', result );
-            this.player.get( 'results' ).add( result );
-            this._showResults();
-
-            new pc.common.OverlayInfo( {
-                text:  i18n.t( pc.view.HangmanView.LANG_GAME_LOST ),
                 click: _.bind( this.next, this )
             } ).show();
         },
@@ -117,6 +108,7 @@
             var item = this.currentQuestion.item;
 
             this.$el.find( pc.view.HangmanView.USERLIST_CONTAINER_ID ).fadeOut( 'fast' );
+            this.$el.find( pc.view.HangmanView.POINT_CONTAINER_ID ).fadeOut( 'fast' );
             this.$el.find( pc.view.HangmanView.ITEM_CONTAINER ).fadeOut( 'fast',
                 _.bind( function()
                 {
@@ -130,17 +122,44 @@
                     this._creatUserList( this.currentQuestion );
 
                     // add lives
-                    this.$el.find( pc.view.HangmanView.LIVESLIST_CONTAINER_ID ).children( 'li' ).each( function( idx,
-                                                                                                                 el )
-                    {
-                        console.log( $( el ) );
-                        $( el ).delay( idx * pc.view.HangmanView.USERLIST_DELAY_MODIFIER ).removeClass( 'lost' );
-                    } );
+                    this.$el.find( pc.view.HangmanView.LIVESLIST_CONTAINER_ID )
+                        .children( 'li' ).each( function( idx, el )
+                        {
+                            console.log( $( el ) );
+                            $( el ).delay( idx * pc.view.HangmanView.USERLIST_DELAY_MODIFIER ).removeClass( 'lost' );
+                        } );
+
+                    this.$el.find( pc.view.HangmanView.POINT_CONTAINER_ID )
+                        .html( pc.view.HangmanView.START_POINTS )
+                        .fadeIn( 'fast' );
 
                     // we have successfully asked this question
                     this.askedQuestions++;
+                    this._pointsStart();
                 }, this ) );
 
+        },
+
+        _pointsStart: function()
+        {
+            console.debug( "[HangmanView] Starting points timer" );
+
+            this._points = pc.view.HangmanView.START_POINTS;
+            this._intervalFn = window.setInterval( _.bind( this._changePointsCb, this ), 1000 );
+        },
+
+        _pointsStop: function()
+        {
+            console.debug( "[HangmanView] Stopping points timer" );
+            window.clearInterval( this._intervalFn );
+        },
+
+        _pointsWrongPerson: function()
+        {
+            console.debug( "[HangmanView] Oops wrong user clicked" );
+            this._points -= pc.view.HangmanView.LOSE_WRONG_CLICK;
+            this.$el.find( pc.view.HangmanView.POINT_CONTAINER_ID )
+                .html( this._points );
         },
 
         _createObject: function( item )
@@ -275,10 +294,11 @@
             }
             // user select wrong item hangman +1
             else {
+                this._pointsWrongPerson();
                 statusEl.addClass( 'wrong' );
                 this.$el.find( pc.view.HangmanView.LIVESLIST_CONTAINER_ID + " li:not(.lost):last" ).addClass( 'lost' );
                 if ( this.currentQuestion.selectedWrong.add( user ).length > pc.view.HangmanView.DIE_AFTER_NUM - 1 ) {
-                    this.trigger( 'died' );
+                    this.trigger( 'done', pc.view.HangmanView.RESULT.LOST );
                     return;
                 }
             }
@@ -297,7 +317,7 @@
 
             // if there are no remaing items trigger next one
             if ( !notdone ) {
-                this.trigger( 'next' );
+                this.trigger( 'done', pc.view.HangmanView.RESULT.WON );
             }
 
         },
@@ -471,6 +491,7 @@
         USERLIST_CONTAINER_ID:  '.userlist',
         LIVESLIST_CONTAINER_ID: '.lives',
         ITEM_CONTAINER:         '.item',
+        POINT_CONTAINER_ID:     '.points',
 
         FB_IMAGE_BASE_URL: "https://graph.facebook.com/<%- uid %>/picture?width=80&height=80",
 
@@ -484,8 +505,12 @@
         WRONG_ITEMS:          20,
         CORRECT_ITEMS:        20,
 
+        START_POINTS:     10000,
+        LOSE_WRONG_CLICK: 1000,
+        LOSE_PER_SECOND:  250,
+
         RESULT: {
-            WON: 0, LOST: 1
+            WON: 0, LOST: 1, TIMEOUT: 2
         },
 
         LANG_GAME_LOST: "app.hangman.lost",
