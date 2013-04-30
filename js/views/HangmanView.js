@@ -148,20 +148,47 @@
                 jsonResult = [],
                 totalDuration = 0,
                 totalErrors = 0,
-                totalPoints = 0;
+                totalPoints = 0,
+                itemInformation,
+                rating;
 
             jsonResult = hangmanResults.map( function( result )
             {
                 totalDuration += result.get( 'duration' );
                 totalErrors += result.get( 'errors' );
                 totalPoints += result.get( 'points' );
+                itemInformation = {};
 
-                return {
+                var item = result.get( 'is' ).item;
+                if ( item instanceof pc.model.FacebookPicture ) {
+                    itemInformation = {
+                        picture: {
+                            url:     item.get( 'source' ),
+                            caption: item.get( 'caption' )
+                        }
+                    };
+                }
+                else if ( item instanceof pc.model.FacebookStatus ) {
+                    itemInformation = {
+                        status: {
+                            caption:  item.get( 'caption' ),
+                            date:     item.get( 'date' ),
+                            location: item.get( 'location' )
+                        }
+                    };
+                }
+
+                return _.extend( itemInformation, {
                     duration: result.get( 'duration' ),
                     errors:   result.get( 'errors' ),
                     points:   result.get( 'points' )
-                };
+                } );
             } );
+
+            rating = totalPoints > 37500 ? $.t( pc.view.HangmanView.LANG_RATING_VERYGOOD )
+                : totalPoints > 25000 ? $.t( pc.view.HangmanView.LANG_RATING_GOOD )
+                         : totalPoints > 12500 ? $.t( pc.view.HangmanView.LANG_RATING_BAD )
+                      : $.t( pc.view.HangmanView.LANG_RATING_VERYBAD );
 
             this.$el.fadeOut( _.bind( function()
             {
@@ -171,7 +198,8 @@
                         totals:  {
                             duration: totalDuration,
                             errors:   totalErrors,
-                            points:   totalPoints
+                            points:   totalPoints,
+                            rating:   rating
                         }
                     } ) )
                     .fadeIn();
@@ -534,9 +562,14 @@
             WON: 0, LOST: 1, TIMEOUT: 2
         },
 
-        LANG_GAME_LOST:    "app.hangman.game.lost",
-        LANG_GAME_WON:     "app.hangman.game.won",
-        LANG_GAME_TIMEOUT: "app.hangman.game.timeout"
+        LANG_GAME_LOST:       "app.hangman.game.lost",
+        LANG_GAME_WON:        "app.hangman.game.won",
+        LANG_GAME_TIMEOUT:    "app.hangman.game.timeout",
+        LANG_RATING_VERYGOOD: "app.hangman.result.ratings.verygood",
+        LANG_RATING_GOOD:     "app.hangman.result.ratings.good",
+        LANG_RATING_BAD:      "app.hangman.result.ratings.bad",
+        LANG_RATING_VERYBAD:  "app.hangman.result.ratings.verybad"
+
 
     } );
 

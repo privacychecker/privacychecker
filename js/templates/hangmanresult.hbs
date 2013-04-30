@@ -3,28 +3,43 @@
 
     <h1>{{t "app.hangman.result.headline"}}</h1>
 
-    <p class="lead">
+    <p>
         {{t "app.hangman.result.description"}}
     </p>
 
-    <ul>
+    <ul class="details">
         {{#each results}}
             <li>
-                <div class="item">{{item}}</div>
                 <p class="info">
-                    {{t "app.hangman.result.duration"}}: {{duration}} {{t "app.common.seconds"}}<br/>
-                    {{t "app.hangman.result.errors"}}: {{errors}}<br/>
-                    {{t "app.common.points"}}: {{points}}
+                    <span class="title">{{t "app.hangman.result.duration"}}</span> {{duration}} {{t "app.common.seconds"}}
+                    <br/>
+                    <span class="title">{{t "app.hangman.result.errors"}}</span> {{errors}}<br/>
+                    <span class="title">{{t "app.common.points"}}</span> {{points}}
                 </p>
+
+                {{#if picture}}
+                    <div class="item image" style="background-image: url( {{picture.url}} ); ">{{picture.caption}}</div>
+                {{/if}}
+
+                {{#if status}}
+                    <div class="item status">{{status.caption}}</div>
+                {{/if}}
+
             </li>
         {{/each}}
-        <li>
-            <p class="info">
-                {{t "app.hangman.result.duration"}}: {{totals.duration}} {{t "app.common.seconds"}}<br/>
-                {{t "app.hangman.result.errors"}}: {{totals.errors}}<br/>
-                {{t "app.common.points"}}: {{totals.points}}
-            </p>
-        </li>
     </ul>
+
+    <div class="overall">
+        <h2>{{t "app.hangman.result.overall"}}</h2>
+
+        <p class="info lead">
+            <span class="title">{{t "app.hangman.result.duration"}}</span> {{totals.duration}} {{t "app.common.seconds"}}
+            <br/>
+            <span class="title">{{t "app.hangman.result.errors"}}</span> {{totals.errors}}<br/>
+            <span class="title">{{t "app.common.points"}}</span> {{totals.points}}
+        </p>
+
+        <h3>{{totals.rating}}</h3>
+    </div>
 
 </div>
