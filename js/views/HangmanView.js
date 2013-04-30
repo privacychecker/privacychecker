@@ -6,34 +6,30 @@
 
     ns.HangmanView = Backbone.View.extend( {
 
-        template: pc.template.HangmanTemplate,
+        templateGame:   pc.template.HangmanGameTemplate,
+        templateResult: pc.template.HangmanResultTemplate,
 
         initialize: function()
         {
             console.log( "[HangmanView] Init: HangmanView" );
             this.currentQuestion = undefined;
+            this.errors = 0;
+            this.player = pc.model.FacebookPlayer.getInstance();
 
-            this.on( 'done', _.bind( this.doneCb, this ) );
-
-            this._changePointsCb = function()
-            {
-                this._points -= pc.view.HangmanView.LOSE_PER_SECOND;
-                this.$el.find( pc.view.HangmanView.POINT_CONTAINER_ID )
-                    .html( this._points );
-
-                if ( this._points <= 0 ) {
-                    console.info( "[HangmanView] Points are now negative, time's up" );
-                    this._pointsStop();
-                    this.trigger( 'done', pc.view.HangmanView.RESULT.TIMEOUT );
-                }
-            };
         },
 
         render: function()
         {
-            this.$el.html( this.template() );
+            this.$el.html( this.templateGame() );
 
-            this.player = pc.model.FacebookPlayer.getInstance();
+            // points
+            this.on( 'done', _.bind( this.doneCb, this ) );
+            this.points = new pc.common.Points( {
+                el:            this.$el.find( pc.view.HangmanView.POINT_CONTAINER_ID ).first(),
+                start:         pc.view.HangmanView.START_POINTS,
+                losePerSecond: pc.view.HangmanView.LOSE_PER_SECOND
+            } );
+            this.points.on( 'timeout', _.bind( this.doneCb, this, pc.view.HangmanView.RESULT.TIMEOUT ) );
 
             this.questions = [];
 
@@ -70,14 +66,18 @@
 
         doneCb: function( result )
         {
-            console.log( "[HangmanView] Result for game was", result );
-            this._pointsStop();
+            console.log( "[HangmanView] Result for game was", result, this.errors );
+            this.points.stop();
+
+            if ( result === pc.view.HangmanView.RESULT.LOST ) this.points.set( 'remaining', 0 );
 
             this.player.get( 'results' ).add( new pc.model.TestResult( {
-                is:     this.currentQuestion,
-                was:    result,
-                points: this._points,
-                type:   pc.model.TestResult.Type.HANGMAN
+                is:       this.currentQuestion,
+                was:      result,
+                points:   this.points.get( 'remaining' ),
+                duration: this.points.get( 'duration' ),
+                errors:   this.errors,
+                type:     pc.model.TestResult.Type.HANGMAN
             } ) );
 
             this._showResults();
@@ -92,11 +92,12 @@
         {
 
             this.currentQuestion = this.questions.shift();
+            this.errors = 0;
 
             if ( this.currentQuestion === undefined ) {
 
                 console.debug( '[HangmanView] Game finished' );
-                this.trigger( 'hangmanview:done' );
+                this.result();
                 return;
             }
 
@@ -135,31 +136,49 @@
 
                     // we have successfully asked this question
                     this.askedQuestions++;
-                    this._pointsStart();
+                    this.points.start();
                 }, this ) );
 
         },
 
-        _pointsStart: function()
+        result: function()
         {
-            console.debug( "[HangmanView] Starting points timer" );
 
-            this._points = pc.view.HangmanView.START_POINTS;
-            this._intervalFn = window.setInterval( _.bind( this._changePointsCb, this ), 1000 );
-        },
+            var hangmanResults = this.player.get( 'results' ).where( { type: pc.model.TestResult.Type.HANGMAN } ),
+                jsonResult = [],
+                totalDuration = 0,
+                totalErrors = 0,
+                totalPoints = 0;
 
-        _pointsStop: function()
-        {
-            console.debug( "[HangmanView] Stopping points timer" );
-            window.clearInterval( this._intervalFn );
-        },
+            jsonResult = hangmanResults.map( function( result )
+            {
+                totalDuration += result.get( 'duration' );
+                totalErrors += result.get( 'errors' );
+                totalPoints += result.get( 'points' );
 
-        _pointsWrongPerson: function()
-        {
-            console.debug( "[HangmanView] Oops wrong user clicked" );
-            this._points -= pc.view.HangmanView.LOSE_WRONG_CLICK;
-            this.$el.find( pc.view.HangmanView.POINT_CONTAINER_ID )
-                .html( this._points );
+                return {
+                    duration: result.get( 'duration' ),
+                    errors:   result.get( 'errors' ),
+                    points:   result.get( 'points' )
+                };
+            } );
+
+            this.$el.fadeOut( _.bind( function()
+            {
+                this.$el
+                    .html( this.templateResult( {
+                        results: jsonResult,
+                        totals:  {
+                            duration: totalDuration,
+                            errors:   totalErrors,
+                            points:   totalPoints
+                        }
+                    } ) )
+                    .fadeIn();
+
+                this.trigger( 'hangmanview:done' );
+            }, this ) );
+
         },
 
         _createObject: function( item )
@@ -294,9 +313,11 @@
             }
             // user select wrong item hangman +1
             else {
-                this._pointsWrongPerson();
+                this.points.event( pc.view.HangmanView.LOSE_WRONG_CLICK );
+                this.errors++;
                 statusEl.addClass( 'wrong' );
                 this.$el.find( pc.view.HangmanView.LIVESLIST_CONTAINER_ID + " li:not(.lost):last" ).addClass( 'lost' );
+
                 if ( this.currentQuestion.selectedWrong.add( user ).length > pc.view.HangmanView.DIE_AFTER_NUM - 1 ) {
                     this.trigger( 'done', pc.view.HangmanView.RESULT.LOST );
                     return;
@@ -513,8 +534,9 @@
             WON: 0, LOST: 1, TIMEOUT: 2
         },
 
-        LANG_GAME_LOST: "app.hangman.lost",
-        LANG_GAME_WON:  "app.hangman.won"
+        LANG_GAME_LOST:    "app.hangman.game.lost",
+        LANG_GAME_WON:     "app.hangman.game.won",
+        LANG_GAME_TIMEOUT: "app.hangman.game.timeout"
 
     } );
 

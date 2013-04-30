@@ -1,0 +1,30 @@
+<!-- HangmanResultTemplate -->
+<div class="result">
+
+    <h1>{{t "app.hangman.result.headline"}}</h1>
+
+    <p class="lead">
+        {{t "app.hangman.result.description"}}
+    </p>
+
+    <ul>
+        {{#each results}}
+            <li>
+                <div class="item">{{item}}</div>
+                <p class="info">
+                    {{t "app.hangman.result.duration"}}: {{duration}} {{t "app.common.seconds"}}<br/>
+                    {{t "app.hangman.result.errors"}}: {{errors}}<br/>
+                    {{t "app.common.points"}}: {{points}}
+                </p>
+            </li>
+        {{/each}}
+        <li>
+            <p class="info">
+                {{t "app.hangman.result.duration"}}: {{totals.duration}} {{t "app.common.seconds"}}<br/>
+                {{t "app.hangman.result.errors"}}: {{totals.errors}}<br/>
+                {{t "app.common.points"}}: {{totals.points}}
+            </p>
+        </li>
+    </ul>
+
+</div>
