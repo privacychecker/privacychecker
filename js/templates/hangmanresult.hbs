@@ -18,11 +18,15 @@
                 </p>
 
                 {{#if picture}}
-                    <div class="item image" style="background-image: url( {{picture.url}} ); ">{{picture.caption}}</div>
+                    <div class="item image" style="background-image: url( {{picture.url}} );"
+                         data-tooltip="{{picture.caption}}"></div>
                 {{/if}}
 
                 {{#if status}}
-                    <div class="item status">{{status.caption}}</div>
+                    <div class="item status status-container">
+                        <p class="message">{{status.caption}}</p>
+                        <p class="date">{{status.date}}</p>
+                    </div>
                 {{/if}}
 
             </li>

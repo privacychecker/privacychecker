@@ -23,7 +23,7 @@
         initialize: function()
         {
             this.on( 'change', this._create, this );
-            this.el = $( '<div>' );
+            this.el = $( '<div>' ).addClass( 'image-container' );
         },
 
         /**
@@ -57,6 +57,7 @@
             } ).addClass( 'title' );
 
             this.el.addClass( 'image' ).append( captionEl ).append( imgContainer );
+            this.el.imgLiquid();
 
         }
 

@@ -1,0 +1,55 @@
+a, i, h1, h2, h3, div {
+    position: relative;
+}
+
+a[data-tooltip], i[data-tooltip], h1[data-tooltip], h2[data-tooltip], h3[data-tooltip], div[data-tooltip] {
+}
+
+a[data-tooltip]:before,
+i[data-tooltip]:before,
+h1[data-tooltip]:before,
+h2[data-tooltip]:before,
+h3[data-tooltip]:before,
+div[data-tooltip]:before {
+    position: absolute;
+    left: 0;
+    top: -35px;
+    background-color: #545857;
+    color: #ffffff;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 3px;
+    padding: 0 15px;
+    content: attr(data-tooltip);
+    white-space: nowrap;
+    display: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+a[data-tooltip]:after,
+i[data-tooltip]:after,
+h1[data-tooltip]:after,
+h2[data-tooltip]:after,
+h3[data-tooltip]:after,
+div[data-tooltip]:after {
+    position: absolute;
+    left: 15px;
+    top: -5px;
+    border-top: 7px solid #545857;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    content: "";
+    display: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+a[data-tooltip]:hover:after, a[data-tooltip]:hover:before,
+i[data-tooltip]:hover:after, i[data-tooltip]:hover:before,
+h1[data-tooltip]:hover:after, h1[data-tooltip]:hover:before,
+h2[data-tooltip]:hover:after, h2[data-tooltip]:hover:before,
+h3[data-tooltip]:hover:after, h3[data-tooltip]:hover:before,
+div[data-tooltip]:hover:after, div[data-tooltip]:hover:before {
+    display: block;
+}

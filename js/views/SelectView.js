@@ -119,7 +119,6 @@
 
                 return pc.common.ImageContainer.create( item.get( 'source' ), item.get( 'name' ) )
                     .toHtml()
-                    .addClass( 'polaroid' );
             }
             else if ( item instanceof pc.model.FacebookStatus ) {
                 return pc.common.StatusContainer.create( item.get( 'caption' ), item.get( 'date' ),

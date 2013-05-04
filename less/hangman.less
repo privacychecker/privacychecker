@@ -86,6 +86,10 @@
 
     .result {
 
+        h2, h3 {
+            color: #ecf0f1;
+        }
+
         ul.details {
             .plain-list;
 
@@ -135,6 +139,8 @@
 
             padding: 10px;
 
+            z-index: 100;
+
             span.title {
                 width: 150px;
 
@@ -144,6 +150,14 @@
                     content: ":";
                 }
 
+            }
+        }
+
+        div.item {
+            z-index: 99;
+
+            &.status {
+                padding: 0;
             }
         }
 
