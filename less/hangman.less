@@ -2,71 +2,171 @@
     margin-top: 100px !important;
     max-width: 100% !important;
 
-    .image {
-        margin-top: 10px;
-    }
-
-    .info {
-        .rounded-corners;
-        background-color: rgba(200, 200, 200, .6);
-        padding: 10px;
-        margin-top: 10px;
-        height: 440px;
-        width: 370px;
-
-        .lives {
-            .plain-list;
-            clear: left;
-            height: 35px;
-
-            li {
-                float: left;
-                width: 24px;
-                height: 24px;
-                margin-right: 10px;
-                background: url(heart.png) no-repeat center center transparent;
-
-                &.lost {
-                    background: url(heart_gray.png) no-repeat center center transparent;
-                }
-            }
+    .game {
+        .image {
+            margin-top: 10px;
         }
 
-        .userlist {
-            .plain-list;
-            clear: left;
+        .info {
+            .rounded-corners;
+            background-color: rgba(200, 200, 200, .6);
+            padding: 10px;
+            margin-top: 10px;
+            height: 440px;
+            width: 370px;
 
-            li {
-                width: 80px;
-                height: 80px;
-                cursor: pointer;
+            .lives {
+                .plain-list;
+
+                clear: left;
                 float: left;
-                overflow: hidden;
-                opacity: .7;
-                position: relative;
 
-                &:hover {
-                    opacity: 1;
+                height: 35px;
+
+                li {
+                    float: left;
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 10px;
+                    background: url(heart.png) no-repeat center center transparent;
+
+                    &.lost {
+                        background: url(heart_gray.png) no-repeat center center transparent;
+                    }
+                }
+            }
+
+            .points {
+                float: right;
+
+                font-size: 36px;
+                font-weight: 100;
+            }
+
+            .userlist {
+                .plain-list;
+
+                clear: left;
+
+                li {
+                    width: 80px;
+                    height: 80px;
+                    cursor: pointer;
+                    float: left;
+                    overflow: hidden;
+                    opacity: .7;
+                    position: relative;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+
+                    div {
+                        background: no-repeat 0 0 rgba(104, 104, 104, .5);
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+
+                        &.wrong {
+                            background-color: rgba(255, 0, 0, .5);
+                        }
+
+                        &.correct {
+                            background-color: rgba(0, 255, 0, .5);
+                        }
+                    }
                 }
 
-                div {
-                    background: no-repeat 0 0 rgba(104, 104, 104, .5);
-                    position: absolute;
-                    top: 0;
-                    left: 0;
+            }
+
+        }
+    }
+
+    .result {
+
+        h2, h3 {
+            color: #ecf0f1;
+        }
+
+        ul.details {
+            .plain-list;
+
+            overflow-x: scroll;
+            white-space: nowrap;
+
+            margin-top: 20px;
+            margin-left: 0;
+
+            li {
+
+                width: 300px;
+                height: 200px;
+
+                display: inline-block;
+
+                position: relative;
+
+                div.item {
+                    float: left;
+
                     width: 100%;
                     height: 100%;
 
-                    &.wrong {
-                        background-color: rgba(255, 0, 0, .5);
-                    }
+                    background-color: #f0f;
 
-                    &.correct {
-                        background-color: rgba(0, 255, 0, .5);
+                    &.image {
+                        background-size: cover;
+                        background-position: 50% 50%;
+                        background-repeat: no-repeat no-repeat;
                     }
+                }
+
+                p.info {
+                    width: 280px;
+                    background-color: rgba(127, 140, 141,.7);
                 }
             }
 
+        }
+
+        .overall {
+            p.info {
+                position: relative;
+                padding: 0;
+            }
+        }
+
+        p.info {
+            position: absolute;
+            bottom: 0px;
+
+            float: left;
+
+            margin-right: 100px;
+            padding: 10px;
+
+            z-index: 100;
+
+            span.title {
+                width: 150px;
+
+                display: inline-block;
+
+                &:after {
+                    content: ":";
+                }
+
+            }
+        }
+
+        div.item {
+            z-index: 99;
+
+            &.status {
+                padding: 0;
+            }
         }
 
     }

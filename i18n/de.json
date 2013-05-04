@@ -17,7 +17,8 @@
         },
 
         "common": {
-            "points": "Punkte"
+            "points":  "Punkte",
+            "seconds": "Sekunden"
         },
 
         "home": {
@@ -71,11 +72,27 @@
         },
 
         "hangman": {
-            "name":            "Bestimmen",
-            "headline":        "Wähle die Personen, die das folgende Bild sehen können",
-            "lost":            "Du hast verloren!",
-            "won":             "Du hast gewonnen!",
-            "remaining_lives": "Leben: "
+            "name":   "Bestimmen",
+            "game":   {
+                "headline":        "Wähle die Personen, die das folgende Bild sehen können",
+                "lost":            "Du hast verloren!",
+                "won":             "Du hast gewonnen!",
+                "timeout":         "Zeit abgelaufen, du hast verloren",
+                "remaining_lives": "Leben: "
+            },
+            "result": {
+                "headline":    "Zeit für Ergebnisse",
+                "overall":     "Gesamtergebniss",
+                "description": "Hier siehst Du Deine Ergebnisse aus dem letzten Spiel im Überblick.<br/>Für jedes Item zeigen wir Dir die benötigte Zeit, die Anzahl der Fehlversuche und die darausresultierende Punktzahl.",
+                "duration":    "Benötigte Zeit",
+                "errors":      "Anzahl Fehler",
+                "ratings":     {
+                    "verygood": "Sehr gut!",
+                    "good":     "Okaaay",
+                    "bad":      "Naja, das geht besser",
+                    "verybad":  "Das war wohl nichts!"
+                }
+            }
         },
 
         "results": {

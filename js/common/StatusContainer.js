@@ -23,7 +23,7 @@
         initialize: function()
         {
             this.on( 'change', this._create, this );
-            this.el = $( '<div>' );
+            this.el = $( '<div>' ).addClass( 'status-container' );
         },
 
         /**
@@ -53,10 +53,15 @@
             } ).addClass( 'message' );
 
             var dateContainer = $( '<p>', {
-                "html": _.isNull( this.get( 'date' ) ) ? this.get( 'date' ) : "long long ago"
+                "html": !_.isNull( this.get( 'date' ) ) ? this.get( 'date' ) : "long long ago"
             } ).addClass( 'date' );
 
-            this.el.addClass( 'status' ).append( messageContainer ).append( dateContainer );
+            var shadowContainer = $( '<ul>' ).addClass( 'shadow' );
+            for ( var i = 3; i >= 0; i-- ) {
+                shadowContainer.append( $( '<li>' ) );
+            }
+
+            this.el.append( messageContainer ).append( dateContainer ).append( shadowContainer );
 
         }
 
