@@ -78,7 +78,8 @@ module.exports = function( grunt )
                     pc:         true,
                     namespace:  true,
                     _:          true,
-                    FB:         true
+                    FB:         true,
+                    moment:     true
                 }
             },
             all:     [ 'Gruntfile.js', '<%= dir.js %>/**/*.js', '<%= dir.test %>/**/*.js' ]
@@ -158,7 +159,9 @@ module.exports = function( grunt )
                     //i18next
                     '<%= dir.vendor %>/i18next/release/i18next-1.6.0.js',
                     //
-                    '<%= dir.vendor %>/EloRating-JavaScript/src/elo_rating.js'
+                    '<%= dir.vendor %>/EloRating-JavaScript/src/elo_rating.js',
+                    // momentjs
+                    '<%= dir.vendor %>/moment.js'
                 ],
                 dest: '<%= dir.assets %>/vendor.js'
             }

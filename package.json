@@ -56,7 +56,8 @@
       "jquery.transit": "github:rstacruz/jquery.transit/v0.9.9",
       "jquery-smooth-scroll": "github:kswedberg/jquery-smooth-scroll/1.4.10",
       "jquery.imgpreload": "github:farinspace/jquery.imgpreload/v1.3.20120217",
-      "imgLiquid": "github:karacas/imgLiquid/0.9.901"
+      "imgLiquid": "github:karacas/imgLiquid/0.9.901",
+      "moment": "github:timrwood/moment/2.0.0"
     }
   }
 }

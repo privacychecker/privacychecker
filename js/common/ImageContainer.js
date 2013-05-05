@@ -53,7 +53,7 @@
             } );
 
             var captionEl = $( '<p>', {
-                "html": this.get( 'caption' ) ? this.get( 'caption' ) : ""
+                "html": !_.isNull( this.get( 'caption' ) ) ? this.get( 'caption' ) : ""
             } ).addClass( 'title' );
 
             this.el.addClass( 'image' ).append( captionEl ).append( imgContainer );

@@ -117,8 +117,8 @@
 
             if ( item instanceof pc.model.FacebookPicture ) {
 
-                return pc.common.ImageContainer.create( item.get( 'source' ), item.get( 'name' ) )
-                    .toHtml()
+                return pc.common.ImageContainer.create( item.get( 'source' ), item.get( 'caption' ) )
+                    .toHtml();
             }
             else if ( item instanceof pc.model.FacebookStatus ) {
                 return pc.common.StatusContainer.create( item.get( 'caption' ), item.get( 'date' ),
@@ -227,7 +227,7 @@
                 this.trigger( 'select:done' );
             }, this ) );
 
-        },
+        }
 
     }, {
 

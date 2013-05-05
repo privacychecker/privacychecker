@@ -48,20 +48,31 @@
 
             this.el.empty();
 
+            // message
             var messageContainer = $( '<p>', {
                 "html": this.get( 'caption' )
             } ).addClass( 'message' );
 
-            var dateContainer = $( '<p>', {
-                "html": !_.isNull( this.get( 'date' ) ) ? this.get( 'date' ) : "long long ago"
-            } ).addClass( 'date' );
+            this.el.append( messageContainer );
 
+            // date - only show when av
+            if ( !_.isNull( this.get( 'date' ) ) ) {
+                var date = moment( this.get( 'date' ) ).format( "DD. MM. YY, hh:mm" ) ;
+
+                var dateContainer = $( '<p>', {
+                    "html": date
+                } ).addClass( 'date' );
+
+                this.el.append( dateContainer );
+            }
+
+            // shadow
             var shadowContainer = $( '<ul>' ).addClass( 'shadow' );
             for ( var i = 3; i >= 0; i-- ) {
                 shadowContainer.append( $( '<li>' ) );
             }
 
-            this.el.append( messageContainer ).append( dateContainer ).append( shadowContainer );
+            this.el.append( shadowContainer );
 
         }
 
