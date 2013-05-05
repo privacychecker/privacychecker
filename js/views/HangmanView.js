@@ -565,10 +565,10 @@
         LANG_GAME_LOST:       "app.hangman.game.lost",
         LANG_GAME_WON:        "app.hangman.game.won",
         LANG_GAME_TIMEOUT:    "app.hangman.game.timeout",
-        LANG_RATING_VERYGOOD: "app.hangman.result.ratings.verygood",
-        LANG_RATING_GOOD:     "app.hangman.result.ratings.good",
-        LANG_RATING_BAD:      "app.hangman.result.ratings.bad",
-        LANG_RATING_VERYBAD:  "app.hangman.result.ratings.verybad"
+        LANG_RATING_VERYGOOD: "app.common.ratings.verygood",
+        LANG_RATING_GOOD:     "app.common.ratings.good",
+        LANG_RATING_BAD:      "app.common.ratings.bad",
+        LANG_RATING_VERYBAD:  "app.common.ratings.verybad"
 
 
     } );

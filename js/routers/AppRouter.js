@@ -101,7 +101,7 @@
             {
                 console.log( "[Controller] Preload done" );
                 $( '.carousel .item.active' ).transition( {
-                    "height": "700px"
+                    "height": "580px"
                 } );
                 this.selectView.start();
             }, this ) );
@@ -125,7 +125,7 @@
                 $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
                 {
                     $( '.carousel .item.active' ).transition( {
-                        "height": "470px"
+                        "height": "580px"
                     } );
                 } );
             }, this ) );

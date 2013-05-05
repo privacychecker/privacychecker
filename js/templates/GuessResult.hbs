@@ -1,0 +1,32 @@
+<!-- GuessResult -->
+<div class="result guess">
+
+    <h1>{{t "app.guess.result.headline"}}</h1>
+
+    <ul class="result-links">
+        <li><a href="#" data-toggle="collapse" data-target="#results-items"
+               data-parent="#result-body">{{t "app.guess.game.lists.name"}}</a></li>
+        <li><a href="#" data-toggle="collapse" data-target="#result-lists"
+               data-parent="#result-body">{{t "app.guess.game.items.name"}}</a></li>
+    </ul>
+
+    <div id="result-body">
+
+        <div class="accordion-group">
+
+            <div id="result-lists" class="collapse in">
+                <p>{{t "app.guess.result.lists.description"}}</p>
+
+
+
+            </div>
+
+            <div id="results-items" class="collapse">
+                <p>{{t "app.guess.result.items.description"}}</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

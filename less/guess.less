@@ -1,19 +1,42 @@
 .guess {
-	max-width: 80% !important;
+    max-width: 80% !important;
 
-	.question {
-		line-height: 35px !important;
-	}
+    .sub-template {
 
-	input.response {
-		margin-top: 10px;
-		margin-bottom: 10px;
-		font-size: 60px;
-		border: 0;
-		border-bottom: rgba(51,51,51,1);
-		background-color: rgba(255,255,255,.9);
-		width: 350px;
-		height: 70px;
-		text-align: center;
-	}
+        h2 {
+            color: #ecf0f1;
+        }
+
+        form {
+            margin-top: 20px;
+
+            .warning {
+                font-size: 16px !important;
+                color: #ecf0f1;
+                margin-top: 10px;
+            }
+
+            input, button {
+                width: 100%;
+            }
+
+            input {
+                font-size: 40px;
+                height: auto;
+            }
+
+            button {
+                font-size: 36px;
+                line-height: 36px;
+                height: auto;
+            }
+        }
+
+    }
+
+    .result {
+        .accordion.in {
+            height: 380px !important;
+        }
+    }
 }
