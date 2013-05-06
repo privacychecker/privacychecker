@@ -20,9 +20,11 @@
      */
     ns.ListGuessView = Backbone.View.extend( {
 
-            templateGame:   pc.template.GuessGameTemplate,
-            templateResult: pc.template.GuessResultTemplate,
-            templateItems:  pc.template.GuessGameItemsTemplate,
+            templateGame:        pc.template.GuessGameTemplate,
+            templateResult:      pc.template.GuessResultTemplate,
+            templateResultLists: pc.template.GuessResultListsTemplate,
+            templateResultItems: pc.template.GuessResultItemsTemplate,
+            templateGameItems:   pc.template.GuessGameItemsTemplate,
 
             initialize: function()
             {
@@ -82,7 +84,7 @@
                             break;
                     }
 
-                    container.append( this.templateItems( options ) );
+                    container.append( this.templateGameItems( options ) );
 
                     container.find( "form" ).submit( _.bind( function( event )
                     {
@@ -101,17 +103,60 @@
 
             result: function()
             {
-                var options = {};
-
-                options.lists = this._resultLists();
+                var options = {
+                    lists: this._resultLists(),
+                    items: this._resultItems()
+                };
 
                 console.debug( "[ListGuessView] Rending result view with options", options );
                 // render container
                 this.$el.fadeOut( _.bind( function()
                 {
-                    this.$el.html( this.templateResult( options ) ).fadeIn();
-                    this.$el.find( ".collapse" ).collapse();
+                    this.$el.html( this.templateResult() );
+
+                    // add change events
+                    this.$el.find( pc.view.ListGuessView.SWITCH_LISTS_ID )
+                        .click( _.bind( this.resultShowSubtemplateCb, this, this.templateResultLists, options.lists ) );
+                    this.$el.find( pc.view.ListGuessView.SWITCH_ITEMS_ID )
+                        .click( _.bind( this.resultShowSubtemplateCb, this, this.templateResultItems, options.items ) );
+
+                    this.resultShowSubtemplateCb( this.templateResultLists, options.lists );
+
+                    // ok everything ready
+                    this.$el.fadeIn();
+
                 }, this ) );
+
+                this.trigger('game:done');
+
+            },
+
+            resultShowSubtemplateCb: function( template, options )
+            {
+                var container = this.$el.find( ".container" ).first();
+                container.fadeOut( _.bind( function()
+                {
+                    container
+                        .empty()
+                        .html( template( options ) );
+
+                    // add toggles
+                    this.$el.find( '.collapsable' ).each( function( idx, el )
+                    {
+                        var $el = $( el ),
+                            $btn = $el.find( '.head .control' ).first(),
+                            $body = $el.find( '.body' ).first();
+
+                        $body.slideUp();
+                        $btn.click( function()
+                        {
+                            $body.slideToggle();
+                        } );
+                    } );
+
+                }, this ) );
+
+                container.fadeIn();
 
             },
 
@@ -252,6 +297,7 @@
                 var container = this.$el.find( '.container' ).first(),
                     userValue = parseInt( container.find( "form > input.response" ).val(), 10 ),
                     correctValue = this.currentQuestion.correct,
+                    questionType = this.currentQuestion.type,
                     item = this.currentQuestion.item,
                     type;
 
@@ -272,10 +318,13 @@
 
                 // add result to list
                 pc.model.FacebookPlayer.getInstance().get( 'results' ).add( new pc.model.TestResult( {
-                    is:      this.currentQuestion,
-                    was:     userValue,
-                    correct: correctValue,
-                    type:    type
+                    item:         item,
+                    userValue:    userValue,
+                    correctValue: correctValue,
+                    gameType:     type,
+                    optional:     {
+                        listQuestionType: questionType
+                    }
                 } ) );
 
                 // ask next question
@@ -334,7 +383,7 @@
             _resultLists: function()
             {
                 var player = pc.model.FacebookPlayer.getInstance(),
-                    resultForsLists = player.get( 'results' ).where( {type: pc.model.TestResult.Type.LISTGUESS} );
+                    resultForsLists = player.get( 'results' ).where( {gameType: pc.model.TestResult.Type.LISTGUESS} );
 
                 // get user lists
                 var userLists = this._findType( resultForsLists, pc.view.ListGuessView.QuestionType.USER_LIST ),
@@ -345,14 +394,15 @@
                     "Friend list result", friendLists );
 
                 // friends
-                var friendsDifference = (friendLists[0].get( 'was' ) - friendLists[0].get( 'correct' )) / friendLists[0].get( 'correct' );
+                var friendsDifference = (friendLists[0].get( 'userValue' ) - friendLists[0].get( 'correctValue' )) / friendLists[0].get( 'correctValue' );
 
                 friendsDifference = friendsDifference < 0 ? friendsDifference * (-1) : friendsDifference;
-                var resultFriends = friendsDifference > pc.view.ListGuessView.FRIEND_STEPS.BAD
-                    ? $.t( pc.view.ListGuessView.LANG_FRIENDS_OVERVIEW_BAD,
-                    { percent: (friendsDifference * 100).toFixed() } )
-                    : $.t( pc.view.ListGuessView.LANG_FRIENDS_OVERVIEW_GOOD,
-                    { percent: (friendsDifference * 100).toFixed()} );
+                var resultFriends =
+                    friendsDifference > pc.view.ListGuessView.FRIEND_STEPS.BAD
+                        ? $.t( pc.view.ListGuessView.LANG_FRIENDS_OVERVIEW_BAD,
+                        { percent: (friendsDifference * 100).toFixed() } )
+                        : $.t( pc.view.ListGuessView.LANG_FRIENDS_OVERVIEW_GOOD,
+                        { percent: (friendsDifference * 100).toFixed()} );
 
                 // auto
                 var autoOverallPercentage = 0,
@@ -363,15 +413,15 @@
                 if ( autoLists.length !== 0 ) {
                     autoDetails = _.map( autoLists, _.bind( function( list )
                     {
-                        var difference = (list.get( 'was' ) - list.get( 'correct' )) / list.get( 'correct' );
+                        var difference = (list.get( 'userValue' ) - list.get( 'correctValue' )) / list.get( 'correctValue' );
                         difference = difference < 0 ? difference * (-1) : difference;
                         autoOverallPercentage += difference;
                         return {
-                            name:       list.get( 'is' ).item.get( 'name' ),
-                            was:        list.get( 'was' ),
-                            is:         list.get( 'correct' ),
-                            difference: (difference * 100).toFixed(),
-                            rating:     this._makeRating( difference, pc.view.ListGuessView.AUTO_STEPS )
+                            item_name:     list.get( 'item' ).get( 'name' ),
+                            user_value:    list.get( 'userValue' ),
+                            correct_value: list.get( 'correctValue' ),
+                            difference:    (difference * 100).toFixed(),
+                            rating:        this._makeRating( difference, pc.view.ListGuessView.AUTO_STEPS )
                         };
                     }, this ) );
 
@@ -394,15 +444,15 @@
                 if ( userLists.length !== 0 ) {
                     userDetails = _.map( userLists, _.bind( function( list )
                     {
-                        var difference = (list.get( 'was' ) - list.get( 'correct' )) / list.get( 'correct' );
+                        var difference = (list.get( 'userValue' ) - list.get( 'correctValue' )) / list.get( 'correctValue' );
                         difference = difference < 0 ? difference * (-1) : difference;
                         userOverallPercentage += difference;
                         return {
-                            name:       list.get( 'is' ).item.get( 'name' ),
-                            was:        list.get( 'was' ),
-                            is:         list.get( 'correct' ),
-                            difference: (difference * 100).toFixed(),
-                            rating:     this._makeRating( difference, pc.view.ListGuessView.USER_STEPS )
+                            item_name:     list.get( 'item' ).get( 'name' ),
+                            user_value:    list.get( 'userValue' ),
+                            correct_value: list.get( 'correctValue' ),
+                            difference:    (difference * 100).toFixed(),
+                            rating:        this._makeRating( difference, pc.view.ListGuessView.USER_STEPS )
                         };
                     }, this ) );
 
@@ -421,10 +471,10 @@
                     friends: {
                         result_text: resultFriends,
                         details:     {
-                            was:        friendLists[0].get( 'was' ),
-                            is:         friendLists[0].get( 'correct' ),
-                            difference: (friendsDifference * 100).toFixed(),
-                            rating:     this._makeRating( friendsDifference, pc.view.ListGuessView.FRIEND_STEPS )
+                            user_value:    friendLists[0].get( 'userValue' ),
+                            correct_value: friendLists[0].get( 'correctValue' ),
+                            difference:    (friendsDifference * 100).toFixed(),
+                            rating:        this._makeRating( friendsDifference, pc.view.ListGuessView.FRIEND_STEPS )
                         }
                     },
                     auto:    {
@@ -438,13 +488,186 @@
                 };
             },
 
+            _resultItems: function()
+            {
+                var player = pc.model.FacebookPlayer.getInstance(),
+                    resultForsItems = player.get( 'results' ).where( {gameType: pc.model.TestResult.Type.ENTITYGUESS} ),
+                    results = this._findType( resultForsItems, pc.view.ListGuessView.QuestionType.ITEM ),
+                    groupResults = [],
+                    userResults = [],
+                    publicResults = [],
+                    groupOverallDifference = 0,
+                    userOverallDifference = 0;
+
+                _.each( results, _.bind( function( result )
+                {
+                    var item = result.get( 'item' ),
+                        privacy = item.get( 'privacy' ),
+                        privacyLevel = privacy.get( 'level' ),
+                        itemHash = null,
+                        visibleFor = [],
+                        deniedFor = [];
+
+                    console.debug( '[ListGuessView] Current item to calculate result', item );
+
+                    // final all public items
+                    if ( privacyLevel === pc.common.PrivacyDefinition.Level.ALL ) {
+                        publicResults.push( this.__createItem( item, {} )[0] );
+                    }
+                    // if it is not public it is allowed for some lists' users
+                    else {
+
+                        // depending on the privacy level a item is visible for kind of groups
+                        switch ( privacyLevel ) {
+                            case pc.common.PrivacyDefinition.Level.FRIENDS:
+                                visibleFor.push( $.t( pc.view.ListGuessView.LANG_ALL_FRIENDS ) );
+                                break;
+                            case pc.common.PrivacyDefinition.Level.FOF:
+                                visibleFor.push( $.t( pc.view.ListGuessView.LANG_FOF ) );
+                                break;
+                        }
+
+                        // do we need to extend visibleFor or deniedFor?
+                        if ( privacy.get( 'includeList' ).length > 0 || privacy.get( 'excludeList' ).length > 0 ) {
+                            privacy.get( 'includeList' ).each( function( list )
+                            {
+                                visibleFor.push( list.get( 'name' ) );
+                            } );
+                            privacy.get( 'excludeList' ).each( function( list )
+                            {
+                                deniedFor.push( list.get( 'name' ) );
+                            } );
+                        }
+
+                        itemHash = this.__createItem( result, {
+                            visible_for: visibleFor.join( ', ' ),
+                            denied_for:  deniedFor.join( ', ' )
+                        } );
+                        groupResults.push( itemHash[0] );
+                        groupOverallDifference += itemHash[1];
+                    }
+
+                    // find all items with users as privacy setting
+                    if ( privacy.get( 'includeUser' ).length > 0 || privacy.get( 'excludeUser' ).length > 0 ) {
+                        itemHash = this.__createItem( result, {
+                            visible_for: _.map( privacy.get( 'includeUser' ).models,function( user )
+                            {
+                                return user.get( 'name' );
+                            } ).join( ', ' ),
+                            denied_for:  _.map( privacy.get( 'excludeUser' ).models,function( list )
+                            {
+                                return list.get( 'name' );
+                            } ).join( ', ' )
+                        } );
+                        userResults.push( itemHash[0] );
+                        userOverallDifference += itemHash[1];
+                    }
+
+                }, this ) );
+
+                // make result texts
+                var groupResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_LIST_OVERVIEW_NONE ),
+                    userResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_USER_OVERVIEW_NONE ),
+                    publicResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_PUBLIC_OVERVIEW_NO ),
+                    groupPercentage,
+                    userPercentage;
+
+                if ( groupResults.length > 0 ) {
+                    groupPercentage = groupOverallDifference / groupResults.length;
+                    groupResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_LIST_OVERVIEW_BAD,
+                        { percent: (groupPercentage * 100).toFixed() }
+                    );
+
+                    // good result
+                    if ( groupPercentage < pc.view.ListGuessView.ITEMS_LIST_STEPS.GOOD ) {
+                        groupResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_LIST_OVERVIEW_GOOD,
+                            { percent: (groupPercentage * 100).toFixed() }
+                        );
+                    }
+                }
+
+                if ( userResults.length > 0 ) {
+                    userPercentage = userOverallDifference / userResults.length;
+                    userResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_USER_OVERVIEW_BAD,
+                        { percent: (userPercentage * 100).toFixed() } );
+
+                    // good result
+                    if ( userPercentage < pc.view.ListGuessView.ITEMS_USER_STEPS.GOOD ) {
+                        userResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_USER_OVERVIEW_GOOD,
+                            { percent: (userPercentage * 100).toFixed() }
+                        );
+                    }
+                }
+
+                if ( publicResults.length > 0 ) {
+                    publicResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_PUBLIC_OVERVIEW_YES,
+                        { count: publicResults.length }
+                    );
+                }
+
+                // calculate overalls
+                return {
+                    lists:  {
+                        result_text: groupResultText,
+                        details:     groupResults
+                    },
+                    users:  {
+                        result_text: userResultText,
+                        details:     userResults
+                    },
+                    public: {
+                        result_text: publicResultText,
+                        details:     publicResults
+                    }
+                };
+
+            },
+
+            __createItem: function( result, toMerge )
+            {
+
+                var correctValue = result.get( 'correctValue' ),
+                    userValue = result.get( 'userValue' ),
+                    item = result.get( 'item' ),
+                    difference = (userValue - correctValue) / correctValue, itemHash;
+
+                difference = difference < 0 ? difference * (-1) : difference;
+
+                var hash = _.extend( {
+                    correct_value: correctValue,
+                    user_value:    userValue,
+                    difference:    (difference * 100).toFixed()
+                }, toMerge );
+
+                if ( item instanceof pc.model.FacebookPicture ) {
+                    itemHash =
+                    {
+                        picture: {
+                            url:     item.get( 'source' ),
+                            caption: item.get( 'caption' )
+                        }
+                    };
+                } else if ( item instanceof pc.model.FacebookStatus ) {
+                    itemHash =
+                    {
+                        status: {
+                            date:    pc.common.DateFormatHelper.formatShort( item.get( 'date' ) ),
+                            caption: item.get( 'caption' )
+                        }
+                    };
+                }
+
+                return [_.extend( hash, itemHash ), difference];
+
+            },
+
             _findType: function( lists, type )
             {
                 var response = [];
                 console.debug( "[ListGuessView] Finding type", type, "for lists", lists );
                 _.each( lists, function( list )
                 {
-                    if ( list.get( 'is' ).type === type ) response.push( list );
+                    if ( list.get( 'optional' ).listQuestionType === type ) response.push( list );
                 } );
 
                 return response;
@@ -466,23 +689,39 @@
             HIDE_WARNING_AFTER: 3000,
             FOF_MULTIPLIER:     1.5,
 
-            FRIEND_STEPS: {
+            SWITCH_LISTS_ID: "#switch-lists",
+            SWITCH_ITEMS_ID: "#switch-items",
+
+            FRIEND_STEPS:     {
                 VERYGOOD: 0.1,
                 GOOD:     0.2,
                 BAD:      0.4
             },
-            AUTO_STEPS:   {
+            AUTO_STEPS:       {
                 VERYGOOD: 0.2,
                 GOOD:     0.4,
                 BAD:      0.8
             },
-            USER_STEPS:   {
+            USER_STEPS:       {
+                VERYGOOD: 0.15,
+                GOOD:     0.3,
+                BAD:      0.6
+            },
+            ITEMS_LIST_STEPS: {
+                VERYGOOD: 0.15,
+                GOOD:     0.3,
+                BAD:      0.6
+            },
+            ITEMS_USER_STEPS: {
                 VERYGOOD: 0.15,
                 GOOD:     0.3,
                 BAD:      0.6
             },
 
             LANG_FRIENDS:          "app.common.friends",
+            LANG_ALL_FRIENDS:      "app.common.all_friends",
+            LANG_FOF:              "app.common.fof",
+            LANG_PUBLIC:           "app.common.public",
             LANG_QUESTION_FRIENDS: "app.guess.game.lists.question_friends",
             LANG_QUESTION_LIST:    "app.guess.game.lists.question_list",
             LANG_QUESTION_ITEMS:   "app.guess.game.items.question",
@@ -497,6 +736,17 @@
             LANG_USER_OVERVIEW_BAD:  "app.guess.result.lists.user_bad",
             LANG_USER_OVERVIEW_GOOD: "app.guess.result.lists.user_good",
             LANG_USER_OVERVIEW_NONE: "app.guess.result.lists.user_none",
+
+            LANG_ITEMS_LIST_OVERVIEW_BAD:  "app.guess.result.items.list_bad",
+            LANG_ITEMS_LIST_OVERVIEW_GOOD: "app.guess.result.items.list_good",
+            LANG_ITEMS_LIST_OVERVIEW_NONE: "app.guess.result.items.list_none",
+
+            LANG_ITEMS_USER_OVERVIEW_BAD:  "app.guess.result.items.user_bad",
+            LANG_ITEMS_USER_OVERVIEW_GOOD: "app.guess.result.items.user_good",
+            LANG_ITEMS_USER_OVERVIEW_NONE: "app.guess.result.items.user_none",
+
+            LANG_ITEMS_PUBLIC_OVERVIEW_YES: "app.guess.result.items.public_yes",
+            LANG_ITEMS_PUBLIC_OVERVIEW_NO:  "app.guess.result.items.public_no",
 
             LANG_RATING_VERYGOOD: "app.common.ratings.verygood",
             LANG_RATING_GOOD:     "app.common.ratings.good",

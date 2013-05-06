@@ -1,5 +1,4 @@
 .guess {
-    max-width: 80% !important;
 
     .sub-template {
 
@@ -32,11 +31,155 @@
             }
         }
 
+        .image.image-container {
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
     }
 
     .result {
-        .accordion.in {
-            height: 380px !important;
+
+        h1 {
+            float: left;
+            margin-right: 150px !important;
+            margin-bottom: 10px !important;
         }
+
+        h2 {
+            font-size: 20px;
+            color: #ecf0f1;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: normal;
+
+            color: #ecf0f1;
+
+            margin: 0;
+            margin-top: 10px;
+
+            &:before {
+                content: "\201C";
+            }
+
+            &:after {
+                content: "\201D";
+            }
+        }
+
+        ul.result-links {
+            .plain-list;
+
+            li {
+                float: left;
+                margin-right: 10px;
+            }
+        }
+
+        #result-body {
+            clear: left;
+
+            ul.result {
+                .plain-list;
+
+                height: 330px;
+                margin: 0;
+                margin-top: 10px;
+
+                overflow-y: scroll;
+
+                & > li {
+                    float: left;
+
+                    width: 30%;
+                    height: auto;
+
+                    padding-left: 10px;
+                    padding-right: 10px;
+
+                    &.divider {
+                        border-right: 1px solid #ecf0f1;
+                    }
+
+                    ul.details {
+                        .plain-list;
+
+                        margin: 0;
+
+                        &.items {
+
+                            li {
+                                .rounded-corners;
+
+                                width: 100%;
+                                height: 200px;
+
+                                margin-bottom: 5px;
+
+                                display: inline-block;
+
+                                position: relative;
+
+                                overflow: hidden;
+
+                                div.item {
+                                    float: left;
+
+                                    width: 100%;
+                                    height: 100%;
+
+                                    background-color: #f0f;
+
+                                    z-index: 99;
+
+                                    &.image {
+                                        background-size: cover;
+                                        background-position: 50% 50%;
+                                        background-repeat: no-repeat no-repeat;
+                                    }
+
+                                    &.status {
+                                        padding: 0;
+                                    }
+                                }
+
+                                p.info {
+                                    position: absolute;
+                                    bottom: 0px;
+
+                                    width: 100%;
+
+                                    float: left;
+
+                                    margin-right: 100px;
+                                    padding: 10px;
+
+                                    z-index: 100;
+
+                                    background-color: rgba(127, 140, 141, .7);
+                                }
+                            }
+
+                        }
+
+                        p.info {
+                            span.title {
+                                width: 100px;
+                                display: inline-block;
+
+                                &:after {
+                                    content: ":";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }

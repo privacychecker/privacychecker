@@ -18,8 +18,8 @@
              * @property {String} level The visibility level
              */
             level:       undefined,
-            excludeList: [], // temp
-            includeList: [], // temp
+            excludeTemp: [], // temp
+            includeTemp: [], // temp
             /**
              * @property {pc.model.FacebookUserCollection} exclude All members which cannot see the item
              */
@@ -27,7 +27,23 @@
             /**
              * @property {pc.model.FacebookUserCollection} include All members which can see the item
              */
-            include:     []
+            include:     [],
+            /**
+             * @property {pc.model.FacebookUserCollection} includeUser All user explicit allowed for this item
+             */
+            includeUser: [],
+            /**
+             * @property {pc.model.FacebookListCollection} includeUser All lists explicit allowed for this item
+             */
+            includeList: [],
+            /**
+             * @property {pc.model.FacebookUserCollection} excludeUser All user explicit denied for this item
+             */
+            excludeUser: [],
+            /**
+             * @property {pc.model.FacebookListCollection} excludeGroup All lists explicit denied for this item
+             */
+            excludeList: []
         },
 
         /**
@@ -58,8 +74,8 @@
                 try {
                     var parsedData = this._parseResponse( response );
 
-                    this.set( "excludeList", parsedData.exclude );
-                    this.set( "includeList", parsedData.include );
+                    this.set( "excludeTemp", parsedData.exclude );
+                    this.set( "includeTemp", parsedData.include );
                     this.set( "level", parsedData.level );
                 }
                 catch ( e ) {
@@ -88,28 +104,36 @@
 
             //console.debug('[PrivacyDefinition] Before: ', this.get('exclude'), this.get('include'));
             //
-            console.debug( '[PrivacyDefinition] plain lists are: ', this.get( 'excludeList' ),
-                this.get( 'includeList' ) );
+            console.debug( '[PrivacyDefinition] plain lists are: ', this.get( 'excludeTemp' ),
+                this.get( 'includeTemp' ) );
 
             this.set( 'exclude', new pc.model.FacebookUserCollection() );
             this.set( 'include', new pc.model.FacebookUserCollection() );
 
-            if ( this.get( 'excludeList' ).length > 0 || this.get( 'includeList' ).length > 0 ) {
+            this.set( 'excludeUser', new pc.model.FacebookUserCollection() );
+            this.set( 'includeUser', new pc.model.FacebookUserCollection() );
+
+            this.set( 'excludeList', new pc.model.FacebookListCollection() );
+            this.set( 'includeList', new pc.model.FacebookListCollection() );
+
+            if ( this.get( 'excludeTemp' ).length > 0 || this.get( 'includeTemp' ).length > 0 ) {
                 lists.each( _.bind( function( list )
                 {
                     var listname = list.get( 'name' );
 
                     // enabling this output slows down the browser massivly!
-                    //console.debug('[PrivacyDefinition] list ' + listname, _.contains(this.get('excludeList'), listname), _.contains(this.get('includeList'), listname));
+                    //console.debug('[PrivacyDefinition] list ' + listname, _.contains(this.get('excludeTemp'), listname), _.contains(this.get('includeTemp'), listname));
 
-                    if ( _.contains( this.get( 'excludeList' ), listname ) ) {
+                    if ( _.contains( this.get( 'excludeTemp' ), listname ) ) {
                         console.log( '[PrivacyDefinition] Exclude id contains this list, replacing with listmembers' );
                         this.get( 'exclude' ).add( list.get( 'members' ).models );
+                        this.get( 'excludeList' ).add( list );
                     }
 
-                    if ( _.contains( this.get( 'includeList' ), listname ) ) {
+                    if ( _.contains( this.get( 'includeTemp' ), listname ) ) {
                         console.log( '[PrivacyDefinition] Include id contains this list, replacing with listmembers' );
                         this.get( 'include' ).add( list.get( 'members' ).models );
+                        this.get( 'includeList' ).add( list );
                     }
                 }, this ) );
 
@@ -118,14 +142,16 @@
 
                     var friendname = friend.get( 'name' );
 
-                    if ( _.contains( this.get( 'excludeList' ), friendname ) ) {
+                    if ( _.contains( this.get( 'excludeTemp' ), friendname ) ) {
                         console.log( '[PrivacyDefinition] Exclude id contains friend, replacing.' );
                         this.get( 'exclude' ).add( friend );
+                        this.get( 'excludeFriend' ).add( friend );
                     }
 
-                    if ( _.contains( this.get( 'includeList' ), friendname ) ) {
+                    if ( _.contains( this.get( 'includeTemp' ), friendname ) ) {
                         console.log( '[PrivacyDefinition] Include id contains friend, replacing.' );
                         this.get( 'include' ).add( friend );
+                        this.get( 'includeUser' ).add( friend );
                     }
                 }, this ) );
             }

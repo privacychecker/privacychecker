@@ -1,0 +1,139 @@
+<!-- GuessResultLists -->
+<div class="sub-template container">
+
+    <div id="result-lists">
+        <p>{{t "app.guess.result.lists.description"}}</p>
+
+        <ul class="result collapsable">
+            <!-- friends -->
+            <li class="divider">
+                <div class="head">
+                    <h2>{{t "app.guess.result.items.list_headline"}}</h2>
+
+                    <p>
+                        {{lists.result_text}}<br/>
+                        <a class="btn btn-small btn-inverse control">
+                            <i>&#8505;</i> <span>{{t "app.common.more_info"}}</span>
+                        </a>
+                    </p>
+                </div>
+
+                <ul class="body details items">
+                    {{#each lists.details}}
+                        <li>
+                            <p class="info">
+                                <span class="title">{{t "app.guess.result.items.visible_for"}}</span> {{visible_for}}
+                                <br/>
+                                <span class="title">{{t "app.guess.result.items.denied_for"}}</span> {{denied_for}}
+                                <br/>
+                                <span class="title">{{t "app.guess.result.answer"}}</span> {{user_value}}
+                                <br/>
+                                <span class="title">{{t "app.guess.result.correct"}}</span> {{correct_value}}
+                                <br/>
+                                <span class="title">{{t "app.guess.result.difference"}}</span> {{difference}}%<br/>
+                            </p>
+
+                            {{#if picture}}
+                                <div class="item image" style="background-image: url( {{picture.url}} );"
+                                     data-tooltip="{{picture.caption}}"></div>
+                            {{/if}}
+
+                            {{#if status}}
+                                <div class="item status status-container">
+                                    <p class="message">{{status.caption}}</p>
+
+                                    <p class="date">{{status.date}}</p>
+                                </div>
+                            {{/if}}
+                        </li>
+                    {{/each}}
+                </ul>
+
+            </li>
+
+            <!-- user_lists -->
+            <li class="divider collapsable">
+
+                <div class="head">
+                    <h2>{{t "app.guess.result.items.user_headline"}}</h2>
+
+                    <p>
+                        {{users.result_text}}<br/>
+                        <a class="btn btn-small btn-inverse control">
+                            <i>&#8505;</i> <span>{{t "app.common.more_info"}}</span>
+                        </a>
+                    </p>
+                </div>
+
+                <ul class="body details items">
+                    {{#each users.details}}
+                        <li>
+                            <p class="info">
+                                <span class="title">{{t "app.guess.result.items.visible_for"}}</span> {{visible_for}}
+                                <br/>
+                                <span class="title">{{t "app.guess.result.items.denied_for"}}</span> {{denied_for}}
+                                <br/>
+                                <span class="title">{{t "app.guess.result.answer"}}</span> {{user_value}}
+                                <br/>
+                                <span class="title">{{t "app.guess.result.correct"}}</span> {{correct_value}}
+                                <br/>
+                                <span class="title">{{t "app.guess.result.difference"}}</span> {{difference}}%<br/>
+                            </p>
+
+                            {{#if picture}}
+                                <div class="item image" style="background-image: url( {{picture.url}} );"
+                                     data-tooltip="{{picture.caption}}"></div>
+                            {{/if}}
+
+                            {{#if status}}
+                                <div class="item status status-container">
+                                    <p class="message">{{status.caption}}</p>
+
+                                    <p class="date">{{status.date}}</p>
+                                </div>
+                            {{/if}}
+                        </li>
+                    {{/each}}
+                </ul>
+
+            </li>
+
+            <!-- auto_lists -->
+            <li class="collapsable">
+
+                <div class="head">
+                    <h2>{{t "app.guess.result.items.public_headline"}}</h2>
+
+                    <p>
+                        {{public.result_text}}<br/>
+                        <a class="btn btn-small btn-inverse control">
+                            <i>&#8505;</i> <span>{{t "app.common.more_info"}}</span>
+                        </a>
+                    </p>
+                </div>
+
+                <ul class="body details items">
+                    {{#each public.details}}
+                        <li>
+                            {{#if picture}}
+                                <div class="item image" style="background-image: url( {{picture.url}} );"
+                                     data-tooltip="{{picture.caption}}"></div>
+                            {{/if}}
+
+                            {{#if status}}
+                                <div class="item status status-container">
+                                    <p class="message">{{status.caption}}</p>
+
+                                    <p class="date">{{status.date}}</p>
+                                </div>
+                            {{/if}}
+                        </li>
+                    {{/each}}
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>

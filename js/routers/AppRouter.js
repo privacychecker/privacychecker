@@ -40,8 +40,7 @@
             this.homeView.on( "click:proceed", _.bind( this.startCollectCb, this ) );
             this.collectView.on( "collect:done", _.bind( this.selectEntitiesCb, this ) );
             this.selectView.on( "select:done", _.bind( this.guessListSizeCb, this ) );
-            this.listGuessView.on( "listguessview:done", _.bind( this.guessEntitySizeCb, this ) );
-            this.estimateView.on( "estimateview:done", _.bind( this.hangmanStartCb, this ) );
+            this.listGuessView.on( "game:done", _.bind( this.hangmanStartCb, this ) );
             this.hangmanView.on( "hangmanview:done", _.bind( this.showResultsCb, this ) );
         },
 
@@ -132,31 +131,6 @@
             this._animateNextButton();
         },
 
-        guessEntitySizeCb: function()
-        {
-            console.log( '[Controller] Starting Game #2: Entity Size Guess' );
-            $( pc.router.AppRouter.CAROUSEL_ID ).unbind();
-
-            $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().fadeIn( 'fast' ).click( _.bind( function()
-            {
-                this.estimateView.render();
-                $( '#container-estimate' ).html( this.estimateView.el );
-
-                $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 4 );
-                pc.common.ProgressBar.getInstance().to( 4 );
-                $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().hide();
-
-                $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
-                {
-                    $( '.carousel .item.active' ).transition( {
-                        "height": "700px"
-                    } );
-                } );
-            }, this ) );
-            this._animateNextButton();
-
-        },
-
         hangmanStartCb: function()
         {
             console.log( '[Controller] Starting Game #3: Hangman' );
@@ -167,8 +141,8 @@
                 this.hangmanView.render();
                 $( '#container-hangman' ).html( this.hangmanView.el );
 
-                $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 5 );
-                pc.common.ProgressBar.getInstance().to( 5 );
+                $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 4 );
+                pc.common.ProgressBar.getInstance().to( 4 );
                 $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().hide();
 
                 $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
@@ -191,8 +165,8 @@
                 this.resultView.render();
                 $( '#container-results' ).html( this.resultView.el );
 
-                $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 6 );
-                pc.common.ProgressBar.getInstance().to( 6 );
+                $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 5 );
+                pc.common.ProgressBar.getInstance().to( 5 );
                 $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().hide();
 
                 $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', _.bind( function()

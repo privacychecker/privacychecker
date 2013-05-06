@@ -15,10 +15,11 @@
     ns.TestResult = Backbone.Model.extend( {
 
         defaults: {
-            message: "",
-            is:      0,
-            was:     0,
-            type:    undefined
+            correctValue: 0,
+            userValue:    0,
+            item:         undefined,
+            gameType:     0,
+            optional:      {}
         },
 
         /**
@@ -26,15 +27,14 @@
          *
          * @method
          * @constructor
-         * @param { {is: Object, was: Object}} result The result
+         * @param { {item: Object, userValue: Object, correctValue: Object, gameType: Number}} result The result
          */
         initialize: function( result )
         {
-            if ( result.is === undefined || result.was === undefined ) {
+            if ( _.isUndefined( result.item ) || _.isUndefined( result.userValue ) ||
+                _.isUndefined( result.correctValue ) || _.isUndefined( result.gameType ) ) {
                 throw new Error( 'Testresult missing input data', result );
             }
-
-            console.log( "[TestResult] Init" );
         }
 
     }, {
