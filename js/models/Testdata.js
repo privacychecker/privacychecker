@@ -97,6 +97,7 @@
          */
         getRateTupple: function()
         {
+            console.debug( this.rateSource );
             if ( --this.remainingRates < 0 || this.alreadyComparedTuples.length > Math.pow( 2,
                 this.rateSource.length ) ) {
                 console.debug( '[TestData] Rating done: ', this.rateTupples );
@@ -315,10 +316,13 @@
             console.debug( '[TestData] available ' + arr.length + ' to pick ' + i );
 
             while ( i-- > 0 ) {
-                var pic = arr.at( $.randomBetween( 0, arr.length ) );
+                var pic = arr.at( _.random( arr.length ) );
 
-                if ( pic && pic.get( 'privacy' ).get( 'level' ) !== pc.common.PrivacyDefinition.Level.NOBODY && !_.contains( picked,
-                    pic ) ) {
+                if ( !_.isUndefined( pic )
+                    && !_.isUndefined( pic.get( 'privacy' ).get( 'level' ) )
+                    && pic.get( 'privacy' ).get( 'level' ) !== pc.common.PrivacyDefinition.Level.NOBODY
+                    && !_.contains( picked, pic ) ) {
+
                     picked.push( pic );
                 }
                 else {

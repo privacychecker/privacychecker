@@ -20,6 +20,10 @@
             members: undefined
         }
 
+    }, {
+        Type: {
+            AUTO: 0, USER: 1
+        }
     } );
 
 })();

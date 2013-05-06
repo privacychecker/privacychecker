@@ -17,7 +17,7 @@
         FB_SCOPE:          "email, user_groups, user_events, user_photos, read_friendlists, read_stream",
         FB_ME_URL:         "/me?fields=id,name,gender,locale",
         FB_FRIENDS_URL:    "/me/friends?fields=id,name",
-        FB_FRIENDLIST_URL: "/me/friendlists/?fields=members.fields(id),id,name",
+        FB_FRIENDLIST_URL: "/me/friendlists/?fields=members.fields(id),id,name,list_type",
         FB_PICTURES_URL:   "/me/albums?fields=id,name,photos.fields(id,name,source,height,width,from)",
         FB_STATUS_URL:     "/me/statuses?fields=id,message,place,updated_time",
         FB_GRAPH_BASE:     "https://graph.facebook.com/",
@@ -271,10 +271,16 @@
                 // parse all friends
                 this._friendlists = new pc.model.FacebookListCollection( _.map( response.data, _.bind( function( list )
                 {
+                    var list_type = pc.model.FacebookList.Type.AUTO;
+                    if ( _.contains( pc.model.FacebookPlayer.LISTS_BY_USER, list.list_type ) ) {
+                        console.debug( "[FacebookPlayer] Found a user generated list", list );
+                        list_type = pc.model.FacebookList.Type.USER;
+                    }
+
                     var friendList = new pc.model.FacebookList( {
                         id:      list.id,
                         name:    list.name,
-                        type:    list.list_type,
+                        type:    list_type,
                         members: new pc.model.FacebookUserCollection()
                     } );
 
@@ -466,6 +472,7 @@
     }, {
 
         GALLERIES_TO_SKIP: ['Profile Pictures', 'Cover Photos'],
+        LISTS_BY_USER:     ["user_created"],
 
         /**
          * Get a singleton instance of facebook player.
