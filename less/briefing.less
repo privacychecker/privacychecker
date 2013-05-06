@@ -3,14 +3,13 @@ div.briefing-container {
     position: absolute;
 
     width: 60%;
-    height: 60%;
 
     overlay: auto;
     float: left;
     z-index: 15;
 
-    background-color: rgba(0, 0, 0, 0.9);
-    color: #eee;
+    background-color: rgba(236, 240, 241, .8);
+    color: #333;
 
     font-size: 18px;
     line-height: 1.5;
@@ -25,7 +24,13 @@ div.briefing-container {
         margin-top: -10px;
         margin-right: -10px;
         font-size: 50px;
-        color: #fff;
+        color: rgba(236, 240, 241, .8);
+
+        opacity: .7;
+
+        &:hover {
+            opacity: 1;
+        }
     }
 
     & > div {

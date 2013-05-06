@@ -141,45 +141,38 @@
         },
 
         "results": {
-            "name":     "Ergebnisse",
-            "headline": "Zeit für Ergebnisse",
-            "game1":    {
-                "headline": "Raten",
-                "good":     {
-                    "summerize": "Du bist gut dabei.",
-                    "advice":    "Du hast deine Listen gut organisiert und anscheinend auch keine oder wenige Freunde, die nicht wirklich deine Freunde sind. Nicht schlecht!"
-                },
-                "neutral":  {
-                    "summerize": "Da kann man noch etwas machen.",
-                    "advice":    "Du hast anscheinend einige Freunde, die du nicht mehr so gut kennst. Eventuell solltest du deine Listen nochmal anschauen und überprüfen, ob alle Freunde noch aktuell sind."
-                },
-                "bad":      {
-                    "summerize": "Du solltest dir deine Freunde und die Listen nochmal gut anschauen.",
-                    "advice":    "Eventuell kannst du ein paar Freunde löschen oder die Listen kleiner machen. Dann kannst du dir die bekannten Gesichter auch besser merken."
-                }
+            "name":        "Zusammenfassung",
+            "description": "Abschließend erhältst Du an dieser Stelle eine zusammenfassende Einschätzung Deiner Ergebnisse und damit darüber, wie es umden Schutz Deiner Privatsphäre auf Facebook und um Dein Bewusstsein diesbezüglich bestellt ist. Auf Basis dieser Erkenntnisse werden Dir hilfreiche Tipps und Handlungsempfehlungen vorgeschlagen. Du kannst Dir außerdem noch einmal alle Ergebnisse im Detail ansehen.",
+            "lists":       {
+                "headline": "Freunde & Listen",
+
+                "friend_good": "Du hast einen guten Überblick über die Anzahl Deiner Freunde.",
+                "friend_bad":  "Du hast einen schlechten Überblick über die Anzahl Deiner Freunde. (Daher möchten wir Dich auf die Problematik des Begriffs „Freund“ hinweisen.)",
+
+                "user_good": "Du scheinst Deine selbst erstellten Listen gut zu kennen.",
+                "user_bad":  "Du scheinst Deine selbst erstellten Listen schlecht zu kennen.",
+                "user_none": "Du hast selbst noch keine Liste angelegt. Daher möchten wir Dich kurz darauf hinweisen, wo Du dies machen kannst.",
+
+                "auto_good": "Du scheinst Deine intelligenten Listen gut zu kennen.",
+                "auto_bad":  "Du scheinst Deine intelligenten Listen schlecht zu kennen.",
+                "auto_none": "Du besitzt keine intelligenten Listen. Offensichtlich hast Du keines der relevanten Attribute in Deinem Profil  angegeben."
             },
-            "game2":    {
-                "headline": "Raten",
-                "good":     {
-                    "summerize": "Hier passt alles.",
-                    "advice":    "Du kannst gut einschätzen für wie viele Leute deine Sachen bei Facebook freigegeben sind."
-                },
-                "bad":      {
-                    "summerize": "Achte beim Nächsten mal besser auf das Privatsphärelevel.",
-                    "advice":    "Deine Sachen bei Facebook sind oftmals für viel mehr Leuten freigegeben als du vermutest. Achte beim nächsten Posten darauf, Sachen nur für bestimmte Listen oder Freunde zu veröffentlichen. Öffentlich ist übrigens auch keine gute Freigabestufe ;)"
-                }
+            "items":       {
+                "headline": "Freigabeeinstellungen",
+
+                "lists_yes": "Bei den untersuchten Items hast Du Listen zur Freigabe verwendet.",
+                "lists_no":  "Bei den untersuchten Items hast Du keine Listen zur Freigabe verwendet. Daher möchten wir Dir zeigen, wie das geht.",
+
+                "friends_yes": "Bei den untersuchten Items hast Du einzelne(n) Personen zur Freigabe angegeben.",
+                "friends_no":  "Bei den untersuchten Items hast Du keine einzelne(n) Personen zur Freigabe angegeben. Daher möchten wir Dir zeigen, wie das geht.",
+
+                "public_yes": "Dein Profil weist öffentliche Items auf.",
+                "public_no":  "Dein Profil weist keine öffentliche Items auf. Daher möchten wir Dir zeigen, wie Du dies korrigieren und auch in Zukunft vermeiden kannst"
             },
-            "game3":    {
-                "headline": "Raten",
-                "good":     {
-                    "summerize": "Hier passt alles.",
-                    "advice":    "Deine Items sind nicht für viele Leute freigegeben. Da diese laut deiner Angabe persönliche Informationen beinhalten ist das auch gut so."
-                },
-                "bad":      {
-                    "summerize": "Überdenke deine Freigaben noch einmal.",
-                    "advice":    "Manche Items waren für sehr viele Leute freigegeben. Überprüfe deine Items nochmal und schau, ob du sie nicht für eine kleinere Liste freigeben solltest. "
-                },
-                "lost":     "<br/>Du hast allerdings ein paar Spiele verloren. Das kann daran liegen, dass die Sachen für zu viele Leute freigegeben sind oder du deine Freunde nicht mehr so gut kennst. Überprüfe das bei Gelegenheit mal."
+            "hangman":     {
+                "headline": "Freunderaten",
+                "good":     "In Freunderaten hast Du __points__ Punkte erzielt. Dieser Wert zeigt, dass Du Deine Freunde gut kennst.",
+                "bad":      "In Freunderaten hast Du __points__ Punkte erzielt. Dieser Wert zeigt, dass Du Deine Freunde schlecht kennst."
             }
         },
 

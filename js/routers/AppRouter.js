@@ -162,7 +162,7 @@
 
             $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().fadeIn( 'fast' ).click( _.bind( function()
             {
-                this.resultView.render();
+                this.resultView.render( this.listGuessView, this.hangmanView );
                 $( '#container-results' ).html( this.resultView.el );
 
                 $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 5 );
@@ -172,9 +172,8 @@
                 $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', _.bind( function()
                 {
                     $( '.carousel .item.active' ).transition( {
-                        "height": "470px"
+                        "height": "600px"
                     } );
-                    this.resultView.renderResults();
                 }, this ) );
             }, this ) );
             this._animateNextButton();

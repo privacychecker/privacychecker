@@ -1,0 +1,135 @@
+<!-- Result -->
+<div class="result">
+
+    <h1>{{t "app.results.name"}}</h1>
+
+    <p>
+        {{t "app.results.description"}}
+    </p>
+
+    <ul class="result ">
+        <!-- lists -->
+        <li class="divider collapsable">
+            <div class="head">
+                <h2>{{t "app.results.lists.headline"}}</h2>
+
+                <p>
+                    {{lists.result_text.friends}}<br/>
+                    {{lists.result_text.user}}<br/>
+                    {{lists.result_text.auto}}<br/>
+
+                    <a class="btn btn-small btn-inverse control">
+                        <i>&#8505;</i> <span>{{t "app.common.more_info"}}</span>
+                    </a>
+                </p>
+            </div>
+
+            <ul class="body details">
+                {{#each lists.details}}
+                    <li>
+                        <h3>{{item_name}}</h3>
+
+                        <p class="info">
+                            <span class="title">{{t "app.guess.result.answer"}}</span> {{user_value}}
+                            <br/>
+                            <span class="title">{{t "app.guess.result.correct"}}</span> {{correct_value}}
+                            <br/>
+                            <span class="title">{{t "app.guess.result.difference"}}</span> {{difference}}%<br/>
+                            <span class="title">{{t "app.guess.result.rating"}}</span> {{rating}}
+                        </p>
+                    </li>
+                {{/each}}
+            </ul>
+
+        </li>
+
+        <!-- items -->
+        <li class="divider collapsable">
+            <div class="head">
+                <h2>{{t "app.results.items.headline"}}</h2>
+
+                <p>
+                    {{items.result_text.lists}}<br/>
+                    {{items.result_text.friends}}<br/>
+                    {{items.result_text.public}}<br/>
+
+                    <a class="btn btn-small btn-inverse control">
+                        <i>&#8505;</i> <span>{{t "app.common.more_info"}}</span>
+                    </a>
+                </p>
+            </div>
+
+            <ul class="body details items">
+                {{#each items.details}}
+                    <li>
+                        <p class="info">
+                            <span class="title">{{t "app.guess.result.items.visible_for"}}</span> {{visible_for}}
+                            <br/>
+                            <span class="title">{{t "app.guess.result.items.denied_for"}}</span> {{denied_for}}
+                            <br/>
+                            <span class="title">{{t "app.guess.result.answer"}}</span> {{user_value}}
+                            <br/>
+                            <span class="title">{{t "app.guess.result.correct"}}</span> {{correct_value}}
+                            <br/>
+                            <span class="title">{{t "app.guess.result.difference"}}</span> {{difference}}%<br/>
+                        </p>
+
+                        {{#if picture}}
+                            <div class="item image" style="background-image: url( {{picture.url}} );"
+                                 data-tooltip="{{picture.caption}}"></div>
+                        {{/if}}
+
+                        {{#if status}}
+                            <div class="item status status-container">
+                                <p class="message">{{status.caption}}</p>
+
+                                <p class="date">{{status.date}}</p>
+                            </div>
+                        {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+
+            <!-- hangman -->
+        <li class="collapsable">
+            <div class="head">
+                <h2>{{t "app.results.hangman.headline"}}</h2>
+
+                <p>
+                    {{hangman.result_text}}<br/>
+
+                    <a class="btn btn-small btn-inverse control">
+                        <i>&#8505;</i> <span>{{t "app.common.more_info"}}</span>
+                    </a>
+                </p>
+            </div>
+            <ul class="body details items">
+                {{#each hangman.details}}
+                    <li>
+                        <p class="info">
+                            <span class="title">{{t "app.hangman.result.duration"}}</span> {{duration}} {{t "app.common.seconds"}}
+                            <br/>
+                            <span class="title">{{t "app.hangman.result.errors"}}</span> {{errors}}<br/>
+                            <span class="title">{{t "app.common.points"}}</span> {{points}}
+                        </p>
+
+                        {{#if picture}}
+                            <div class="item image" style="background-image: url( {{picture.url}} );"
+                                 data-tooltip="{{picture.caption}}"></div>
+                        {{/if}}
+
+                        {{#if status}}
+                            <div class="item status status-container">
+                                <p class="message">{{status.caption}}</p>
+
+                                <p class="date">{{status.date}}</p>
+                            </div>
+                        {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+
+        </li>
+    </ul>
+
+</div>

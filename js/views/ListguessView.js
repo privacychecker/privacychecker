@@ -127,7 +127,7 @@
 
                 }, this ) );
 
-                this.trigger('game:done');
+                this.trigger( 'game:done' );
 
             },
 
@@ -394,19 +394,26 @@
                     "Friend list result", friendLists );
 
                 // friends
-                var friendsDifference = (friendLists[0].get( 'userValue' ) - friendLists[0].get( 'correctValue' )) / friendLists[0].get( 'correctValue' );
+                var friendsDifference = (friendLists[0].get( 'userValue' ) - friendLists[0].get( 'correctValue' )) / friendLists[0].get( 'correctValue' ),
+                    friendResult,
+                    friendRating;
 
                 friendsDifference = friendsDifference < 0 ? friendsDifference * (-1) : friendsDifference;
-                var resultFriends =
-                    friendsDifference > pc.view.ListGuessView.FRIEND_STEPS.BAD
-                        ? $.t( pc.view.ListGuessView.LANG_FRIENDS_OVERVIEW_BAD,
-                        { percent: (friendsDifference * 100).toFixed() } )
-                        : $.t( pc.view.ListGuessView.LANG_FRIENDS_OVERVIEW_GOOD,
-                        { percent: (friendsDifference * 100).toFixed()} );
+
+                friendResult = $.t( pc.view.ListGuessView.LANG_FRIENDS_OVERVIEW_BAD,
+                    { percent: (friendsDifference * 100).toFixed() } );
+                friendRating = pc.view.ListGuessView.Result.BAD;
+
+                if ( friendsDifference < pc.view.ListGuessView.FRIEND_STEPS.GOOD ) {
+                    friendResult = $.t( pc.view.ListGuessView.LANG_FRIENDS_OVERVIEW_GOOD,
+                        { percent: (friendsDifference * 100).toFixed() } );
+                    friendRating = pc.view.ListGuessView.Result.GOOD;
+                }
 
                 // auto
                 var autoOverallPercentage = 0,
                     autoResult = $.t( pc.view.ListGuessView.LANG_AUTO_OVERVIEW_NONE ),
+                    autoRating = pc.view.ListGuessView.Result.NONE,
                     autoDetails = {},
                     autoDifference = 0;
 
@@ -429,15 +436,19 @@
 
                     autoResult = $.t( pc.view.ListGuessView.LANG_AUTO_OVERVIEW_BAD,
                         { percent: (autoDifference * 100).toFixed() } );
+                    autoRating = pc.view.ListGuessView.Result.BAD;
+
                     if ( autoDifference < pc.view.ListGuessView.AUTO_STEPS.GOOD ) {
                         autoResult = $.t( pc.view.ListGuessView.LANG_AUTO_OVERVIEW_GOOD,
                             { percent: (autoDifference * 100).toFixed() } );
+                        autoRating = pc.view.ListGuessView.Result.GOOD;
                     }
                 }
 
                 // user
                 var userOverallPercentage = 0,
                     userResult = $.t( pc.view.ListGuessView.LANG_USER_OVERVIEW_NONE ),
+                    userRating = pc.view.ListGuessView.Result.NONE,
                     userDetails = {},
                     userDifference = 0;
 
@@ -460,17 +471,21 @@
 
                     userResult = $.t( pc.view.ListGuessView.LANG_USER_OVERVIEW_BAD,
                         { percent: (userDifference * 100).toFixed() } );
+                    userRating = pc.view.ListGuessView.Result.BAD;
                     if ( userDifference < pc.view.ListGuessView.USER_STEPS.GOOD ) {
                         userResult = $.t( pc.view.ListGuessView.LANG_USER_OVERVIEW_GOOD,
                             { percent: (userDifference * 100).toFixed() } );
+                        userRating = pc.view.ListGuessView.Result.GOOD;
                     }
                 }
 
                 // user
                 return {
                     friends: {
-                        result_text: resultFriends,
+                        result_text: friendResult,
+                        rating:      friendRating,
                         details:     {
+                            item_name:     $.t( pc.view.ListGuessView.LANG_FRIENDS ),
                             user_value:    friendLists[0].get( 'userValue' ),
                             correct_value: friendLists[0].get( 'correctValue' ),
                             difference:    (friendsDifference * 100).toFixed(),
@@ -479,10 +494,12 @@
                     },
                     auto:    {
                         result_text: autoResult,
+                        rating:      autoRating,
                         details:     autoDetails
                     },
                     user:    {
                         result_text: userResult,
+                        rating:      userRating,
                         details:     userDetails
                     }
                 };
@@ -569,6 +586,7 @@
                 var groupResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_LIST_OVERVIEW_NONE ),
                     userResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_USER_OVERVIEW_NONE ),
                     publicResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_PUBLIC_OVERVIEW_NO ),
+
                     groupPercentage,
                     userPercentage;
 
@@ -755,6 +773,10 @@
 
             QuestionType: {
                 ALL: 0, AUTO_LIST: 1, USER_LIST: 2, ITEM: 3
+            },
+
+            Result: {
+                GOOD: 0, BAD: 0, NONE: 0
             }
         }
     )

@@ -72,12 +72,22 @@
             if ( result === pc.view.HangmanView.RESULT.LOST ) this.points.set( 'remaining', 0 );
 
             this.player.get( 'results' ).add( new pc.model.TestResult( {
-                is:       this.currentQuestion,
-                was:      result,
-                points:   this.points.get( 'remaining' ),
-                duration: this.points.get( 'duration' ),
-                errors:   this.errors,
-                type:     pc.model.TestResult.Type.HANGMAN
+                item:         this.currentQuestion.item,
+                correctValue: {
+                    correct: this.currentQuestion.correct,
+                    wrong:   this.currentQuestion.wrong
+                },
+                userValue:    {
+                    correct: this.currentQuestion.selectedCorrect,
+                    wrong:   this.currentQuestion.selectedWrong
+                },
+                gameType:     pc.model.TestResult.Type.HANGMAN,
+                optional:     {
+                    errors:   this.errors,
+                    duration: this.points.get( 'duration' ),
+                    points:   this.points.get( 'remaining' ),
+                    result:   result
+                }
             } ) );
 
             this._showResults();
@@ -144,22 +154,41 @@
         result: function()
         {
 
-            var hangmanResults = this.player.get( 'results' ).where( { type: pc.model.TestResult.Type.HANGMAN } ),
-                jsonResult = [],
+            this.$el.fadeOut( _.bind( function()
+            {
+                var options = this._resultHangman();
+
+                console.info( "[HangmanView] Rending result template with", options );
+
+                this.$el
+                    .html( this.templateResult( options ) )
+                    .fadeIn();
+
+                this.trigger( 'hangmanview:done' );
+            }, this ) );
+
+        },
+
+        _resultHangman: function()
+        {
+
+            var hangmanResults = this.player.get( 'results' ).where( { gameType: pc.model.TestResult.Type.HANGMAN } ),
                 totalDuration = 0,
                 totalErrors = 0,
                 totalPoints = 0,
                 itemInformation,
+                jsonResult,
                 rating;
 
             jsonResult = hangmanResults.map( function( result )
             {
-                totalDuration += result.get( 'duration' );
-                totalErrors += result.get( 'errors' );
-                totalPoints += result.get( 'points' );
+                totalDuration += result.get( 'optional' ).duration;
+                totalErrors += result.get( 'optional' ).errors;
+                totalPoints += result.get( 'optional' ).points;
                 itemInformation = {};
 
-                var item = result.get( 'is' ).item;
+                var item = result.get( 'item' );
+
                 if ( item instanceof pc.model.FacebookPicture ) {
                     itemInformation = {
                         picture: {
@@ -179,9 +208,9 @@
                 }
 
                 return _.extend( itemInformation, {
-                    duration: result.get( 'duration' ),
-                    errors:   result.get( 'errors' ),
-                    points:   result.get( 'points' )
+                    duration: result.get( 'optional' ).duration.toFixed(),
+                    errors:   result.get( 'optional' ).errors,
+                    points:   result.get( 'optional' ).points
                 } );
             } );
 
@@ -190,23 +219,15 @@
                          : totalPoints > 12500 ? $.t( pc.view.HangmanView.LANG_RATING_BAD )
                       : $.t( pc.view.HangmanView.LANG_RATING_VERYBAD );
 
-            this.$el.fadeOut( _.bind( function()
-            {
-                this.$el
-                    .html( this.templateResult( {
-                        results: jsonResult,
-                        totals:  {
-                            duration: totalDuration,
-                            errors:   totalErrors,
-                            points:   totalPoints,
-                            rating:   rating
-                        }
-                    } ) )
-                    .fadeIn();
-
-                this.trigger( 'hangmanview:done' );
-            }, this ) );
-
+            return {
+                results: jsonResult,
+                totals:  {
+                    duration: totalDuration.toFixed(),
+                    errors:   totalErrors,
+                    points:   totalPoints,
+                    rating:   rating
+                }
+            };
         },
 
         _createObject: function( item )

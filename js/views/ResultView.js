@@ -11,157 +11,142 @@
         initialize: function()
         {
             console.log( "[ResultView] Init" );
-
-            this.player = pc.model.FacebookPlayer.getInstance();
-            this.results = this.player.get( 'results' );
         },
 
-        render: function()
+        render: function( listguessView, hangmanView )
         {
-            $( this.el ).html( this.template() );
+            this.listguessView = listguessView;
+            this.hangmanView = hangmanView;
 
-            return this;
-        },
+            var options = {
+                lists:   this._resultLists(),
+                items:   this._resultItems(),
+                hangman: this._resultHangman()
+            };
 
-        renderResults: function()
-        {
+            console.info( "[ResultView] Rendering template with", options );
 
-            console.log( '[ResultView] Rendering results..' );
+            this.$el.html( this.template( options ) );
 
-            this.createResultsGame1();
-            this.createResultsGame2();
-            this.createResultsGame3();
-
-            console.log( '[ResultView] Rendering results done' );
-
-            pc.common.ProgressBar.getInstance().subto( 1, 1 );
-
-        },
-
-        createResultsGame1: function()
-        {
-
-            var results = this.results.where( { type: pc.model.TestResult.Type.LISTGUESS } );
-            console.log( '[ResultView] Results for Game #1:', results );
-
-            var numQ = results.length;
-            var numE = results.length;
-
-            _.each( results, function( result )
+            this.$el.find( '.collapsable' ).each( function( idx, el )
             {
-                if ( result.get( 'is' ) !== result.get( 'was' ) ) numE--;
+                var $el = $( el ),
+                    $btn = $el.find( '.head .control' ).first(),
+                    $body = $el.find( '.body' ).first();
+
+                $body.slideUp();
+                $btn.click( function()
+                {
+                    $body.slideToggle();
+                } );
             } );
+        },
 
-            var advice, summerize;
-            if ( numE / numQ > pc.view.ResultView.GOOD_RANGE ) {
-                summerize = i18n.t( pc.view.ResultView.LANG_GAME1_PREFIX + pc.view.ResultView.LANG_GOOD_PREFIX + pc.view.ResultView.LANG_SUMMERIZE );
-                advice = i18n.t( pc.view.ResultView.LANG_GAME1_PREFIX + pc.view.ResultView.LANG_GOOD_PREFIX + pc.view.ResultView.LANG_ADVICE );
-            }
-            else if ( numE / numQ < pc.view.ResultView.BAD_RANGE ) {
-                summerize = i18n.t( pc.view.ResultView.LANG_GAME1_PREFIX + pc.view.ResultView.LANG_BAD_PREFIX + pc.view.ResultView.LANG_SUMMERIZE );
-                advice = i18n.t( pc.view.ResultView.LANG_GAME1_PREFIX + pc.view.ResultView.LANG_BAD_PREFIX + pc.view.ResultView.LANG_ADVICE );
-            }
-            else {
-                summerize = i18n.t( pc.view.ResultView.LANG_GAME1_PREFIX + pc.view.ResultView.LANG_NEUTRAL_PREFIX + pc.view.ResultView.LANG_SUMMERIZE );
-                advice = i18n.t( pc.view.ResultView.LANG_GAME1_PREFIX + pc.view.ResultView.LANG_NEUTRAL_PREFIX + pc.view.ResultView.LANG_ADVICE );
-            }
+        _resultLists: function()
+        {
 
-            $( this.el ).find( pc.view.ResultView.GAME_1_SELECTOR_SUMMERIZE ).empty().html( summerize );
-            $( this.el ).find( pc.view.ResultView.GAME_1_SELECTOR_ADVICE ).empty().html( advice );
+            var listResult = this.listguessView._resultLists(),
+                results = pc.view.ListGuessView.Result,
+                ns = pc.view.ResultView;
+
+            // result texts
+            var resultForFriends =
+                listResult.friends.rating === results.GOOD ? $.t( ns.LANG_LISTS_FRIENDS_GOOD )
+                    : $.t( ns.LANG_LISTS_FRIENDS_BAD );
+
+            var resultForUser =
+                listResult.user.rating === results.GOOD ? $.t( ns.LANG_LISTS_USER_GOOD )
+                    : listResult.user.rating === results.BAD ? $.t( ns.LANG_LISTS_USER_BAD )
+                    : $.t( ns.LANG_LISTS_USER_NONE );
+
+            var resultForAuto =
+                listResult.auto.rating === results.GOOD ? $.t( ns.LANG_LISTS_AUTO_GOOD )
+                    : listResult.auto.rating === results.BAD ? $.t( ns.LANG_LISTS_AUTO_BAD )
+                    : $.t( ns.LANG_LISTS_USER_NONE );
+
+            return {
+                result_text: {
+                    friends: resultForFriends,
+                    user:    resultForUser,
+                    auto:    resultForAuto
+                },
+                details:     _.union( listResult.friends.details, listResult.user.details, listResult.auto.details )
+            };
 
         },
 
-        createResultsGame2: function()
+        _resultItems: function()
         {
+            var itemResult = this.listguessView._resultItems(),
+                ns = pc.view.ResultView;
 
-            var results = this.results.where( { type: pc.model.TestResult.Type.ENTITYGUESS } );
-            console.log( '[ResultView] Results for Game #1:', results );
+            // result texts
+            var resultForLists =
+                itemResult.lists.details.length > 0 ? $.t( ns.LANG_ITEMS_LISTS_YES )
+                    : $.t( ns.LANG_ITEMS_LISTS_NO );
 
-            var numQ = results.length;
-            var numE = results.length;
+            var resultForUsers =
+                itemResult.users.details.length > 0 ? $.t( ns.LANG_ITEMS_FRIENDS_YES )
+                    : $.t( ns.LANG_ITEMS_FRIENDS_NO );
 
-            _.each( results, function( result )
-            {
-                if ( !result.get( 'was' ).inRange( result.get( 'is' ) ) ) numE--;
-            } );
+            var resultForPublic =
+                itemResult.public.details.length > 0 ? $.t( ns.LANG_ITEMS_PUBLIC_YES )
+                    : $.t( ns.LANG_ITEMS_PUBLIC_NO );
 
-            var advice, summerize;
-            if ( numE / numQ > pc.view.ResultView.GOOD_RANGE ) {
-                summerize = i18n.t( pc.view.ResultView.LANG_GAME2_PREFIX + pc.view.ResultView.LANG_GOOD_PREFIX + pc.view.ResultView.LANG_SUMMERIZE );
-                advice = i18n.t( pc.view.ResultView.LANG_GAME2_PREFIX + pc.view.ResultView.LANG_GOOD_PREFIX + pc.view.ResultView.LANG_ADVICE );
-            }
-            else {
-                summerize = i18n.t( pc.view.ResultView.LANG_GAME2_PREFIX + pc.view.ResultView.LANG_BAD_PREFIX + pc.view.ResultView.LANG_SUMMERIZE );
-                advice = i18n.t( pc.view.ResultView.LANG_GAME2_PREFIX + pc.view.ResultView.LANG_BAD_PREFIX + pc.view.ResultView.LANG_ADVICE );
-            }
-
-            $( this.el ).find( pc.view.ResultView.GAME_2_SELECTOR_SUMMERIZE ).empty().html( summerize );
-            $( this.el ).find( pc.view.ResultView.GAME_2_SELECTOR_ADVICE ).empty().html( advice );
+            return {
+                result_text: {
+                    lists:   resultForLists,
+                    friends: resultForUsers,
+                    public:  resultForPublic
+                },
+                details:     _.union( itemResult.lists.details, itemResult.users.details, itemResult.public.details )
+            };
 
         },
 
-        createResultsGame3: function()
+        _resultHangman: function()
         {
+            var hangmanResult = this.hangmanView._resultHangman(),
+                ns = pc.view.ResultView;
 
-            var results = this.results.where( { type: pc.model.TestResult.Type.HANGMAN } );
-            console.log( '[ResultView] Results for Game #1:', results );
+            var resultText =
+                hangmanResult.totals.points > ns.HANGMAN_BAD_START ?
+                $.t( ns.LANG_HANGMAN_GOOD, {points: hangmanResult.totals.points} )
+                    : $.t( ns.LANG_HANGMAN_BAD, {points: hangmanResult.totals.points} );
 
-            var numQ = results.length;
-            var numE = results.length;
-            var numW = results.length;
-
-            _.each( results, function( result )
-            {
-                if ( result.get( 'was' ) === pc.view.HangmanView.RESULT.LOST ) numE--;
-                if ( result.get( 'is' ).item.get( 'privacy' ).get( 'level' ) === pc.common.PrivacyDefinition.Level.FOF ||
-                    result.get( 'is' ).item.get( 'privacy' ).get( 'level' ) === pc.common.PrivacyDefinition.Level.ALL ) {
-                    numW--;
-                }
-            } );
-
-            var advice, summerize;
-            if ( numW / numQ < pc.view.GOOD_RANGE ) {
-                summerize = i18n.t( pc.view.ResultView.LANG_GAME3_PREFIX + pc.view.ResultView.LANG_BAD_PREFIX + pc.view.ResultView.LANG_SUMMERIZE );
-                advice = i18n.t( pc.view.ResultView.LANG_GAME3_PREFIX + pc.view.ResultView.LANG_BAD_PREFIX + pc.view.ResultView.LANG_ADVICE );
-            }
-            else {
-                summerize = i18n.t( pc.view.ResultView.LANG_GAME3_PREFIX + pc.view.ResultView.LANG_GOOD_PREFIX + pc.view.ResultView.LANG_SUMMERIZE );
-                advice = i18n.t( pc.view.ResultView.LANG_GAME3_PREFIX + pc.view.ResultView.LANG_GOOD_PREFIX + pc.view.ResultView.LANG_ADVICE );
-            }
-
-            $( this.el ).find( pc.view.ResultView.GAME_3_SELECTOR_SUMMERIZE ).empty().html( summerize );
-            $( this.el ).find( pc.view.ResultView.GAME_3_SELECTOR_ADVICE ).empty().html( advice );
-
-            if ( numE / numQ < pc.view.ResultView.GOOD_RANGE ) {
-                $( this.el ).find( pc.view.ResultView.GAME_3_SELECTOR_ADVICE ).append( i18n.t( pc.view.ResultView.LANG_GAME3_PREFIX + pc.view.ResultView.LANG_LOST_PREFIX ) );
-            }
+            return {
+                result_text: resultText,
+                details:     hangmanResult.results
+            };
 
         }
 
     }, {
 
-        GOOD_RANGE:     0.7,
-        BAD_RANGE:      0.3,
-        WARN_THREESOLD: 0.25,
+        LANG_LISTS_FRIENDS_GOOD: "app.results.lists.friend_good",
+        LANG_LISTS_FRIENDS_BAD:  "app.results.lists.friend_bad",
 
-        LANG_GOOD_PREFIX:    ".good",
-        LANG_NEUTRAL_PREFIX: ".neutral",
-        LANG_BAD_PREFIX:     ".bad",
-        LANG_LOST_PREFIX:    ".lost",
+        LANG_LISTS_USER_GOOD: "app.results.lists.user_good",
+        LANG_LISTS_USER_BAD:  "app.results.lists.user_bad",
+        LANG_LISTS_USER_NONE: "app.results.lists.user_none",
 
-        LANG_SUMMERIZE: ".summerize",
-        LANG_ADVICE:    ".advice",
+        LANG_LISTS_AUTO_GOOD: "app.results.lists.user_good",
+        LANG_LISTS_AUTO_BAD:  "app.results.lists.user_bad",
+        LANG_LISTS_AUTO_NONE: "app.results.lists.user_none",
 
-        LANG_GAME1_PREFIX: "app.results.game1",
-        LANG_GAME2_PREFIX: "app.results.game2",
-        LANG_GAME3_PREFIX: "app.results.game3",
+        LANG_ITEMS_LISTS_YES: "app.results.items.lists_yes",
+        LANG_ITEMS_LISTS_NO:  "app.results.items.lists_no",
 
-        GAME_1_SELECTOR_SUMMERIZE: ".guess-result .summerize",
-        GAME_1_SELECTOR_ADVICE:    ".guess-result .advice",
-        GAME_2_SELECTOR_SUMMERIZE: ".estimate-result .summerize",
-        GAME_2_SELECTOR_ADVICE:    ".estimate-result .advice",
-        GAME_3_SELECTOR_SUMMERIZE: ".hangman-result .summerize",
-        GAME_3_SELECTOR_ADVICE:    ".hangman-result .advice"
+        LANG_ITEMS_FRIENDS_YES: "app.results.items.friends_yes",
+        LANG_ITEMS_FRIENDS_NO:  "app.results.items.friends_no",
+
+        LANG_ITEMS_PUBLIC_YES: "app.results.items.public_yes",
+        LANG_ITEMS_PUBLIC_NO:  "app.results.items.public_no",
+
+        LANG_HANGMAN_BAD:  "app.results.hangman.good",
+        LANG_HANGMAN_GOOD: "app.results.hangman.bad",
+
+        HANGMAN_BAD_START: 20000
 
     } );
 
