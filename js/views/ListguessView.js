@@ -394,11 +394,12 @@
                     "Friend list result", friendLists );
 
                 // friends
-                var friendsDifference = (friendLists[0].get( 'userValue' ) - friendLists[0].get( 'correctValue' )) / friendLists[0].get( 'correctValue' ),
+                var friendsDifference = pc.common.RelativeDifferenceCalculator.calculate(
+                        friendLists[0].get( 'correctValue' ),
+                        friendLists[0].get( 'userValue' )
+                    ),
                     friendResult,
                     friendRating;
-
-                friendsDifference = friendsDifference < 0 ? friendsDifference * (-1) : friendsDifference;
 
                 friendResult = $.t( pc.view.ListGuessView.LANG_FRIENDS_OVERVIEW_BAD,
                     { percent: (friendsDifference * 100).toFixed() } );
@@ -420,8 +421,10 @@
                 if ( autoLists.length !== 0 ) {
                     autoDetails = _.map( autoLists, _.bind( function( list )
                     {
-                        var difference = (list.get( 'userValue' ) - list.get( 'correctValue' )) / list.get( 'correctValue' );
-                        difference = difference < 0 ? difference * (-1) : difference;
+                        var difference = pc.common.RelativeDifferenceCalculator.calculate(
+                            list.get( 'correctValue' ),
+                            list.get( 'userValue' )
+                        );
                         autoOverallPercentage += difference;
                         return {
                             item_name:     list.get( 'item' ).get( 'name' ),
@@ -455,8 +458,11 @@
                 if ( userLists.length !== 0 ) {
                     userDetails = _.map( userLists, _.bind( function( list )
                     {
-                        var difference = (list.get( 'userValue' ) - list.get( 'correctValue' )) / list.get( 'correctValue' );
-                        difference = difference < 0 ? difference * (-1) : difference;
+                        var difference = pc.common.RelativeDifferenceCalculator.calculate(
+                            list.get( 'correctValue' ),
+                            list.get( 'userValue' )
+                        );
+
                         userOverallPercentage += difference;
                         return {
                             item_name:     list.get( 'item' ).get( 'name' ),
@@ -647,7 +653,8 @@
                 var correctValue = result.get( 'correctValue' ),
                     userValue = result.get( 'userValue' ),
                     item = result.get( 'item' ),
-                    difference = (userValue - correctValue) / correctValue, itemHash;
+                    difference = pc.common.RelativeDifferenceCalculator.calculate( correctValue, userValue ),
+                    itemHash;
 
                 difference = difference < 0 ? difference * (-1) : difference;
 

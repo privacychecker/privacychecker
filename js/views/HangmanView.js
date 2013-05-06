@@ -201,7 +201,7 @@
                     itemInformation = {
                         status: {
                             caption:  item.get( 'caption' ),
-                            date:     item.get( 'date' ),
+                            date:     pc.common.DateFormatHelper.formatShort( item.get( 'date' ) ),
                             location: item.get( 'location' )
                         }
                     };
