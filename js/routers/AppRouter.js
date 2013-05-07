@@ -2,7 +2,7 @@
 {
     "use strict";
 
-    var DEV = true;
+    var DEV = false;
 
     var ns = namespace( "pc.router" );
 
