@@ -43,6 +43,11 @@
                 this._collect();
                 console.info( "[ListGuessView] Selected the following lists for game:", this.questions );
 
+                // generate briefing
+                var briefing = pc.common.GameBriefing.getInstance();
+                briefing.make( $.t( pc.view.ListGuessView.LANG_BRIEFING ) );
+                briefing.show();
+
                 // ask first
                 this.ask();
             },
@@ -759,6 +764,8 @@
                 GOOD:     0.3,
                 BAD:      0.6
             },
+
+            LANG_BRIEFING: "app.guess.briefing",
 
             LANG_FRIENDS:          "app.common.friends",
             LANG_ALL_FRIENDS:      "app.common.all_friends",

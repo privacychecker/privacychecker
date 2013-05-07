@@ -34,6 +34,10 @@
             }
         },
 
+        "briefing": {
+            "close": "Alles klar"
+        },
+
         "home": {
             "name":        "Hallo",
             "headline":    "Kennst du alle deine Freunde?",
@@ -52,7 +56,7 @@
         },
 
         "select": {
-            "name":               "Auswählen",
+            "name":               "Itembattle",
             "headline":           "Welches Item ist für dich persönlicher?",
             "insufficient_data":  "Dein Profil erfüllt leider nicht die Mindestanforderungen an das Spiel.",
             "game_usage":         "Spielumfang wählen",
@@ -68,8 +72,9 @@
         },
 
         "guess": {
-            "name":   "Listen raten",
-            "game":   {
+            "name":     "Listen schätzen",
+            "briefing": "Nun wirst Du aufgefordert, zu schätzen, wie viele Freunde Du insgesamt auf Facebook hast und wie viele Mitglieder in Deinen Listen jeweils eingeordnet sind. Bei den Listen wird zusätzlich zwischen selbst erstellten und intelligenten Listen unterschieden. Anschließend sollst Du abschätzen, wie viele deiner Freunde ausgewählte, von Dir veröffentlichte Items sehen können, wodurch Du einen Überblick darüber erhältst, wie öffentlich die Einstellungen Deiner Items sind. Deine Antworten und die korrekten Werte werden Dir am Ende des Spiels präsentiert.",
+            "game":     {
                 "what_do_you_guess": "Was tippst du?",
                 "input_button":      "Eingeben",
                 "lists":             {
@@ -82,7 +87,7 @@
                     "question": "Was schätzt du wie viele Leute das sehen können?"
                 }
             },
-            "result": {
+            "result":   {
                 "headline":   "Zeit für Ergebnisse",
                 "answer":     "Antwort",
                 "correct":    "Korrekter Wert",
@@ -123,15 +128,16 @@
         },
 
         "hangman": {
-            "name":   "Bestimmen",
-            "game":   {
+            "name":     "Freunderaten",
+            "briefing": "Spätestens jetzt ist es vorbei mit Ausruhen! Denn jetzt wird nicht nur getestet, ob Du weißt, wem Du Zugriff auf ein Item gegeben hast, sondern auch, wie schnell Du dies weißt. Dazu werden Dir nacheinander Items gezeigt, die Du auf Facebook veröffentlicht hast. Deine Aufgabe ist es, in einer Menge von zufällig ausgewählten Freunden und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte Item sehen können. Bist Du bereit? Dann nimm die Herausforderung an und versuche, eine möglichst hohe Punktzahl zu erzielen!",
+            "game":     {
                 "headline":        "Wähle die Personen, die das folgende Bild sehen können",
                 "lost":            "Du hast verloren!",
                 "won":             "Du hast gewonnen!",
                 "timeout":         "Zeit abgelaufen, du hast verloren",
                 "remaining_lives": "Leben: "
             },
-            "result": {
+            "result":   {
                 "headline":    "Zeit für Ergebnisse",
                 "overall":     "Gesamtergebniss",
                 "description": "Hier siehst Du Deine Ergebnisse aus dem letzten Spiel im Überblick.<br/>Für jedes Item zeigen wir Dir die benötigte Zeit, die Anzahl der Fehlversuche und die darausresultierende Punktzahl.",
@@ -179,32 +185,32 @@
         "page":            {
             "trust": {
                 "headline":   "Vertrauen",
-                "short":      "Privacy Checker läuft ausschließlich in Deinem Browser, Deine Daten bleiben daher immer bei Dir. Noch nicht sicher? Du kannst jederzeit nachsehen, denn der Privacy Checker Quellcode ist öffentlich verfügbar",
-                "body":       "Diese App wurde mit dem Ziel entworfen, Deine Daten möglichst gut zu schützen. So wird die App beispielsweise nur in Deinem Browser ausgeführt, es werden keine persönlichen Daten an einen Server (auch nicht unseren eigenen Server) gesendet. Um das Vertrauen in die App noch weiter zu erhöhen, haben wir den Quellcode der App veröffentlicht.",
+                "short":      "Privacy Checker läuft ausschließlich in Deinem Browser. Deine Daten bleiben daher immer bei Dir und werden nicht an Dritte gesendet. Du bist dir trotzdem noch nicht sicher? Dann kannst du jederzeit nachsehen, denn der Quellcode des Privacy Checkers ist öffentlich verfügbar.",
+                "body":       "Diese App wurde mit dem Ziel entworfen, Deine Daten möglichst gut zu schützen. Aus diesem Grund wird die App nur in Deinem Browser ausgeführt und es werden keine persönlichen Daten an einen Server (auch nicht an unseren eigenen) gesendet. Um das Vertrauen in die App noch weiter zu erhöhen, haben wir den Quellcode der App veröffentlicht, den du nachfolgend herunterladen kannst.",
                 "client":     {
                     "headline": "Technologie",
-                    "body":     "Im Gegensatz zu vielen anderen Apps, vervendet diese App ausschließlich clientseitige Technologien, wie beispielsweise JavaScript, CSS und HTML. Nachdem Du die App mit Deinem Browser aufgerufen hast, werden alle Deine persönlichen Daten nur noch innerhalb Deines Browsers verarbeitet."
+                    "body":     "Im Gegensatz zu vielen anderen Apps, verwendet diese App ausschließlich clientseitige Technologien, wie beispielsweise JavaScript, CSS und HTML. Nachdem Du die App mit Deinem Browser aufgerufen hast, werden alle Deine persönlichen Daten nur noch innerhalb Deines Browsers verarbeitet. Auf diese Weise sind Deine Daten bestmöglich geschützt und Du musst Dir keine Sorgen über eine unsichere Verwendung Deiner Daten machen."
                 },
                 "opensource": {
                     "headline": "Open Source",
-                    "body":     "Wir haben den Quellcode der App öffentlich gemacht um die Verarbeitung Deiner Daten in der App transparent zu machen. Wenn Du möchtest, kannst du ihn Dir ansehen und erweitern."
+                    "body":     "Wir haben den Quellcode der App veröffentlicht, um die Verarbeitung Deiner Daten in der App transparent zu machen und Dir zu zeigen, dass die Verwendung der App vertrauenswürdig ist. Wenn Du möchtest, kannst du ihn Dir ansehen, verbessern und erweitern."
                 },
                 "download":   {
                     "headline": "Download",
-                    "body":     "Du kannst Dir die aktuelle Version dieser App hier herunterladen:",
-                    "web":      "Download App"
+                    "body":     "Hier kannst Du Dir den aktuellen Quellcode der App herunterladen:",
+                    "web":      "Download Quellcode"
                 }
             },
 
             "learn": {
                 "headline": "Was ist Privacy Checker?",
-                "short":    "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook Profil kennst. Mit verschiedenen Spielen kannst du herausfinden, ob du weißt was Deine Freunde sehen können",
-                "body":     "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook Profil kennst. Mit verschiedenen Spielen kannst du herausfinden, ob du weißt was Deine Freunde sehen können. Eine Zusammenfassung am Ende zeigt Dir Dein Ergebnis an und gibt Dir Tips wie Du Deine Privatsphäre noch besser schützen kannst. Um vorher zu sehen, wie die App aussieht, klicke Dich durch die Bildergallerie."
+                "short":    "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook-Profil und vor allem Deine Privatsphäre-Einstellungen kennst. Mit verschiedenen Spielen kannst du herausfinden, ob Du weißt, wer Deine Freunde sind, was sie von deinem Profil sehen können und wie Du Deine Sicherheits-Einstellungen verbessern kannst.",
+                "body":     "Privacy Checker zeigt Dir spielerisch, wie öffentlich Deine Items auf Facebook sind bzw. was deine Freunde alles von Dir sehen können. Mit verschiedenen Spielen kannst Du herausfinden, wie gut Du Dein eigenes Profil und Deine getroffenen Einstellungen kennst. Eine persönliche, auf Dein Profil zugeschnittene Auswertung nach jedem Spiel, sowie eine Zusammenfassung mit Verbesserungsmöglichkeiten am Ende der App, zeigen Dir Dein Ergebnis an und geben Dir Tipps, wie Du Deine Privatsphäre noch besser schützen kannst. Um vorher zu sehen, wie die App aussieht, klicke Dich durch die Bildergalerie."
             },
 
             "contact": {
                 "headline":  "Über uns",
-                "short":     "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen",
+                "short":     "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen zur App hast, findest Du unter „Mehr Infos“ neben weiteren Informationen zur Privacy Policy und dem Haftungsausschluss auch die nötigen Kontaktinformationen.",
                 "body":      "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen:",
                 "team":      {
                     "team_headline":    "Team",
@@ -228,11 +234,11 @@
                 },
                 "privacy":   {
                     "headline": "Privacy Policy",
-                    "body":     "Alle Deine persönlichen Daten bleiben bei Dir, es werden keine Daten an einen anderen Server übertragen. Weder wir noch andere Personen haben Zugriff auf Deine Daten."
+                    "body":     "Es werden keine Daten an einen anderen Server übertragen, dadurch bleiben alle Deine persönlichen Daten bei Dir. Weder wir noch andere Personen haben Zugriff auf Deine Daten."
                 },
                 "liability": {
                     "headline": "Haftungsausschluss",
-                    "body":     "Trotz sorgfältiger Prüfung können Programmfehler nicht ausgeschlossen werden. Mit der Benutzung dieser App stimmen Sie zu, dass die Autoren nicht für etwaige Schäden verantwortlich gemacht werden."
+                    "body":     "Trotz sorgfältiger Prüfung können Programmfehler nicht ausgeschlossen werden. Mit der Benutzung dieser App stimmst Du zu, dass die Autoren nicht für etwaige Schäden verantwortlich gemacht werden."
                 }
             },
             "footer":  {
@@ -240,7 +246,7 @@
             }
         },
         "recommendations": {
-                           "headline":"Mögliche Handlungsempfehlungen",
+            "headline":      "Mögliche Handlungsempfehlungen",
             "friend":        {
                 "headline": "Begriff „Freund“",
                 "body":     "Der Begriff Freundschaft bezeichnet eine positive Beziehung zwischen Menschen, die auf Sympathie, Vertrauen und gegenseitiger Wertschätzung basiert. Nach diesen Kriterien wählt man im realen Leben einen Freund aus. Eine Freundschaft, die lediglich in einem sozialen Netzwerk existiert, ist eine sogenannte „Freundschaft per Mausklick“ und kann die zuvor genannten Kriterien nicht erfüllen.<br/> Vor allem dann, wenn Du Facebook-Freundschaften von Menschen bestätigst, die Du nicht gut kennst oder die Du sogar noch nie persönlich getroffen hast, ist fraglich, ob es nicht vielleicht besser ist, die Freundschaftsanfrage abzulehnen. Denke an all Deine veröffentlichten persönlichen Items: Würdest Du sie im realen Leben auch mit Personen teilen, die Du nicht gut kennst? Ist es nicht besser, wenn Du die Items für Dich behältst bzw. sie nur mit bestimmten Personen teilst?<br/>Natürlich kannst Du Deine Items vor entfernteren Facebook-Freunden mit Hilfe von Einstellungen verbergen. Wird die Anzahl an Freunden jedoch unüberschaubar groß, ist es schwer, den Überblick zu behalten. Da Deine Schätzung zur Anzahl deiner Facebook-Freunde oder deine Leistung beim Freunderaten nicht sehr gut war, ist bei Dir möglicherweise genau das passiert. Aus diesem Grund solltest Du dir Gedanken darüber machen, wen Du als Facebook-Freund haben möchtest und wen nicht. Freundschaftsanfragen sollten nicht nur angenommen werden, um nicht unhöflich zu erscheinen. Außerdem solltest Du nicht davor zurückschrecken, Facebook-Freundschaften zu beenden."

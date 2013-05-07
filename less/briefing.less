@@ -1,40 +1,59 @@
-div.briefing-container {
-
+#briefing {
     position: absolute;
+    top: 40px;
 
-    width: 60%;
+    text-align: center;
 
-    overlay: auto;
-    float: left;
-    z-index: 15;
+    width: 100%;
 
-    background-color: rgba(236, 240, 241, .8);
-    color: #333;
+    div.briefing-container {
 
-    font-size: 18px;
-    line-height: 1.5;
+        width: 600px;
 
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -ms-border-radius: 8px;
-    border-radius: 8px;
+        display: inline-block;
 
-    .close {
-        display: block;
-        margin-top: -10px;
-        margin-right: -10px;
-        font-size: 50px;
-        color: rgba(236, 240, 241, .8);
+        overlay: auto;
+        z-index: 15;
+        background-color: #fff;
+        color: #333;
 
-        opacity: .7;
+        font-size: 18px;
+        line-height: 1.5;
 
-        &:hover {
-            opacity: 1;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        -ms-border-radius: 8px;
+        border-radius: 8px;
+
+        -moz-box-shadow: 0 0 5px 5px #888;
+        -webkit-box-shadow: 0 0 5px 5px #888;
+        box-shadow: 0 0 5px 5px #888;
+
+        & > p {
+            margin: 15px;
+
+            text-align: left;
+
+            &:before {
+                float: left;
+
+                content: "?";
+
+                font-size: 130px;
+
+                margin-top: -40px;
+                margin-right: 20px;
+                margin-bottom: -20px;
+
+                color: #DBDBDB;
+                text-shadow: 0 -1px 1px #FFFFFF, 0 1px 1px #666666;
+            }
         }
-    }
 
-    & > div {
-        margin: 15px;
-    }
+        & > button {
+            display: block;
+            margin: 10px 15px;
+        }
 
+    }
 }
