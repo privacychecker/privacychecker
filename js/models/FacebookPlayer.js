@@ -14,7 +14,7 @@
     ns.FacebookPlayer = Backbone.Model.extend( {
 
         STATUS_LOGGED_IN:  "connected",
-        FB_SCOPE:          "email, user_groups, user_events, user_photos, read_friendlists, read_stream",
+        FB_SCOPE:          "email, user_groups, user_events, user_photos, user_status, read_friendlists, read_stream",
         FB_ME_URL:         "/me?fields=id,name,gender,locale",
         FB_FRIENDS_URL:    "/me/friends?fields=id,name",
         FB_FRIENDLIST_URL: "/me/friendlists/?fields=members.fields(id),id,name,list_type",
