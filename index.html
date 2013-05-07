@@ -148,7 +148,14 @@
     <div class="footer zipper"></div>
 </section>
 
+<section id="tips" class="page tips container">
+
+</section>
+
 <section class="page container short">
+
+    <a class="backbone" href="#/tooltip/5">tooltip</a><br/>
+    <a class="backbone" href="#/recommendation">recommendation</a>
 
     <!-- upper selection -->
     <div class="row">
@@ -406,7 +413,7 @@
         $( '#game-carousel' ).carousel( {
             interval: false
         } );
-        $( 'a' ).smoothScroll();
+        $( 'a:not(.backbone)' ).smoothScroll();
     } );
 </script>
 </body>

@@ -23,6 +23,8 @@
          */
         calculate: function( correct, guess )
         {
+            if ( correct === 0 && guess === 0 ) return 0;
+
             if ( correct < guess ) {
                 return (guess - correct) / guess;
             }

@@ -18,6 +18,8 @@
             this.listguessView = listguessView;
             this.hangmanView = hangmanView;
 
+            this.recommendationsHelper = {};
+
             var options = {
                 lists:   this._resultLists(),
                 items:   this._resultItems(),
@@ -40,6 +42,14 @@
                     $body.slideToggle();
                 } );
             } );
+
+            // show recommendations
+            this.trigger( "recommendations" );
+        },
+
+        getRecommendations: function()
+        {
+            return this.recommendationsHelper;
         },
 
         _resultLists: function()
@@ -63,6 +73,10 @@
                 listResult.auto.rating === results.GOOD ? $.t( ns.LANG_LISTS_AUTO_GOOD )
                     : listResult.auto.rating === results.BAD ? $.t( ns.LANG_LISTS_AUTO_BAD )
                     : $.t( ns.LANG_LISTS_USER_NONE );
+
+            // recommendations
+            if ( listResult.friends.rating === results.BAD ) this.recommendationsHelper.friend = true;
+            if ( listResult.user.details.length === 0 ) this.recommendationsHelper.lists_create = true;
 
             return {
                 result_text: {
@@ -93,6 +107,14 @@
                 itemResult.public.details.length > 0 ? $.t( ns.LANG_ITEMS_PUBLIC_YES )
                     : $.t( ns.LANG_ITEMS_PUBLIC_NO );
 
+            // recommendations
+            if ( itemResult.lists.details.length === 0 ) this.recommendationsHelper.lists_use = true;
+            if ( itemResult.users.details.length === 0 ) this.recommendationsHelper.sharing = true;
+            if ( itemResult.public.details.length > 0 ) {
+                this.recommendationsHelper.defaults = true;
+                this.recommendationsHelper.hide_past = true;
+            }
+
             return {
                 result_text: {
                     lists:   resultForLists,
@@ -113,6 +135,11 @@
                 hangmanResult.totals.points > ns.HANGMAN_BAD_START ?
                 $.t( ns.LANG_HANGMAN_GOOD, {points: hangmanResult.totals.points} )
                     : $.t( ns.LANG_HANGMAN_BAD, {points: hangmanResult.totals.points} );
+
+            // recommendations
+            if ( hangmanResult.totals.points <= ns.HANGMAN_BAD_START ) this.recommendationsHelper.friend = true;
+
+            this.recommendationsHelper.publish_items = true;
 
             return {
                 result_text: resultText,

@@ -52,7 +52,7 @@
                     $( 'body' ).i18n();
 
                     // start the page
-                    var app = new pc.router.AppRouter();
+                    pc.app = new pc.router.AppRouter();
                     Backbone.history.start();
 
                     $( "#load" ).fadeOut( 'slow', function()

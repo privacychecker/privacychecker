@@ -176,7 +176,7 @@
             }
         },
 
-        "page": {
+        "page":            {
             "trust": {
                 "headline":   "Vertrauen",
                 "short":      "Privacy Checker läuft ausschließlich in Deinem Browser, Deine Daten bleiben daher immer bei Dir. Noch nicht sicher? Du kannst jederzeit nachsehen, denn der Privacy Checker Quellcode ist öffentlich verfügbar",
@@ -237,6 +237,37 @@
             },
             "footer":  {
                 "uni": "Universität Regensburg - Lehrstuhl für Wirtschaftsinformatik I"
+            }
+        },
+        "recommendations": {
+                           "headline":"Mögliche Handlungsempfehlungen",
+            "friend":        {
+                "headline": "Begriff „Freund“",
+                "body":     "Der Begriff Freundschaft bezeichnet eine positive Beziehung zwischen Menschen, die auf Sympathie, Vertrauen und gegenseitiger Wertschätzung basiert. Nach diesen Kriterien wählt man im realen Leben einen Freund aus. Eine Freundschaft, die lediglich in einem sozialen Netzwerk existiert, ist eine sogenannte „Freundschaft per Mausklick“ und kann die zuvor genannten Kriterien nicht erfüllen.<br/> Vor allem dann, wenn Du Facebook-Freundschaften von Menschen bestätigst, die Du nicht gut kennst oder die Du sogar noch nie persönlich getroffen hast, ist fraglich, ob es nicht vielleicht besser ist, die Freundschaftsanfrage abzulehnen. Denke an all Deine veröffentlichten persönlichen Items: Würdest Du sie im realen Leben auch mit Personen teilen, die Du nicht gut kennst? Ist es nicht besser, wenn Du die Items für Dich behältst bzw. sie nur mit bestimmten Personen teilst?<br/>Natürlich kannst Du Deine Items vor entfernteren Facebook-Freunden mit Hilfe von Einstellungen verbergen. Wird die Anzahl an Freunden jedoch unüberschaubar groß, ist es schwer, den Überblick zu behalten. Da Deine Schätzung zur Anzahl deiner Facebook-Freunde oder deine Leistung beim Freunderaten nicht sehr gut war, ist bei Dir möglicherweise genau das passiert. Aus diesem Grund solltest Du dir Gedanken darüber machen, wen Du als Facebook-Freund haben möchtest und wen nicht. Freundschaftsanfragen sollten nicht nur angenommen werden, um nicht unhöflich zu erscheinen. Außerdem solltest Du nicht davor zurückschrecken, Facebook-Freundschaften zu beenden."
+            },
+            "lists_create":  {
+                "headline": "Erstellen von Listen",
+                "body":     "Dein Facebook-Account verfügt über keine von Dir selbst erstellten Listen. Da Du möglicherweise nicht weißt, wo man Listen anlegen kann, kannst Du Dich <a href=\"https://www.facebook.com/bookmarks/lists\" target=\"_blank\"> direkt zum entsprechenden Menü führen lassen</a>. Dort hast Du die Möglichkeit, neue Listen zu erstellen und diese anschließend zu verwalten, d.h. ihnen Freunde hinzuzufügen oder daraus zu entfernen.<br/> Es ist durchaus möglich, dass das angesprochene Menü bereits Listen enthält, obwohl Du keine angelegt hast. Bei diesen Listen handelt es sich dann um intelligente Listen, die Facebook automatisch für dich unterhält. Diese kannst Du natürlich auch bearbeiten und verwenden."
+            },
+            "lists_use":     {
+                "headline": "Verwenden von Listen",
+                "body":     "Für keines der in den Spielen näher untersuchten Items hast Du Listen für deren Freigabe-Einstellungen verwendet. Möglicherweise hast Du schon selbst Listen erstellt, weißt aber nicht, wie man diese verwendet.<br/>Für Status Posts findest Du die Freigabe-Einstellungen bzw. die Möglichkeit zu deren Änderung direkt unter Deinem Namen und neben dem Datum, an dem Du den Status Post erstellt hast. Bei Fotos kommt es darauf an, wo Du sie betrachtest. Siehst Du sie Dir in Deinen Fotoalben an, so kannst Du die Freigabe-Einstellungen auf der rechten Seite unterhalb des Fotos bei „Teilen mit:“ ändern. Möchtest Du die Freigabe-Einstellungen eines Fotos, das Dir gerade auf Deiner Pinnwand angezeigt wird, ändern, dann geht das genauso, wie bei einem Status Post.<br/>Hast Du die Anzeige der Freigabe-Einstellungen eines Items gefunden, so kannst Du mit einem Klick darauf ein Menü öffnen, in dem Dir die unterschiedlichen Einstellungen angeboten werden. Hier kannst Du beispielsweise direkt eine bestimmte Liste auswählen, für deren Mitglieder das betrachtete Item sichtbar sein soll."
+            },
+            "sharing":       {
+                "headline": "Freigeben für einzelne Freunde & Gezieltes Verbergen",
+                "body":     "Mit Hilfe der oben beschriebenen Einstellungen kannst du jedoch nicht nur Listen auswählen, für deren Mitglieder das betrachtete Item sichtbar sein soll, sondern auch einzelne Freunde. Dazu musst Du in dem angesprochenen Menü auf „Benutzerdefiniert“ klicken und anschließend „Bestimmte Personen oder Listen …“ in dem angebotenen Dropdown-Menü auswählen. Nun kannst Du in die darunter befindliche Zeile einzelne Freunde eintragen, denen Du das Item zugänglich machen willst.<br/>Außerdem hast Du bei Auswahl von „Benutzerdefiniert“ die Möglichkeit, das Item für bestimmte Personen oder Listen zu verbergen. Sichtbar wäre es dann beispielsweise für alle Freunde, außer den hier angegebenen."
+            },
+            "defaults":      {
+                "headline": "Standardeinstellungen",
+                "body":     "Wir haben festgestellt, dass Dein Profil Items enthält, die Du öffentlich geteilt hast. Das bedeutet, dass alle Facebook-Nutzer – und damit auch völlig fremde Personen – Zugriff darauf haben. War das wirklich so von Dir beabsichtigt? Möchtest Du das in Zukunft vermeiden?<br/>Dafür gibt es einen sehr einfachen und schnellen Weg. Du musst lediglich deine Standard-Einstellungen ändern, und zwar von „Öffentlich“ auf „Freunde“ oder sogar auf bestimmte Listen. Die Möglichkeit hierzu wird Dir in den Privatsphäre-Einstellungen Deines Facebook-Accounts angeboten. Bei Veröffentlichung der neuesten Version dieser Anwendung findest du <a href=\"https://www.facebook.com/settings?tab=privacy&section=composer&view\">hier die entsprechenden Einstellung</a> (Stand: 22.04.2013)."
+            },
+            "hide_past":     {
+                "headline": "Vergangenes einschränken",
+                "body":     "Mit der oben beschriebenen Änderung Deiner Standard-Einstellungen schränkst Du die Sichtbarkeit Deiner zukünftig geteilten Items ein. Es ist jedoch sinnvoll, dies auch für alle bereits öffentlich geteilten Items zu tun. Um Dir den Aufwand der Überprüfung und eventuellen Modifikation aller Deiner Items zu ersparen, gibt es eine Funktion, die diese Aufgabe für Dich übernimmt. Genauer gesagt kannst Du damit die Sichtbarkeit aller Items mit „Öffentlich“ oder „Freunde von Freunden“ als eingestellter Freigabe-Stufe mit nur einem Klick auf Deine Freunde beschränken.<br/>Du findest diese Funktion ebenfalls in den Privatsphäre-Einstellungen Deines Facebook-Accounts. Bei Veröffentlichung der neuesten Version dieser Anwendung findest du <a href=\"https://www.facebook.com/settings?tab=privacy&section=masher&view\">hier die entsprechenden Option</a> (Stand: 22.04.2013)."
+            },
+            "publish_items": {
+                "headline": "Veröffentlichen von Items",
+                "body":     "Wie im realen Leben, solltest Du Dir au“ch in sozialen Netzwerken gut überlegen, welche Items Du anderen Menschen zeigen möchtest und vor allem wem Du sie zeigen möchtest. Im Internet tendiert man dazu, sorgloser mit der Veröffentlichung von Informationen umzugehen, weil man sein Gegenüber nicht sehen kann und umgekehrt auch nicht von ihm gesehen wird. Dieses Verhalten solltest Du aber besser vermeiden!<br/>Für Items (oder allgemein Informationen), die Du einmal im Internet veröffentlicht hast, ist ein vollständiges und unwiederbringliches Entfernen im Normalfall nicht möglich. Selbst dann, wenn Du ein Item aus einem sozialen Netzwerk löschst und davon ausgehst, dass es nun wirklich entfernt wurde, ist es oft nur oberflächlich gelöscht. Hat ein anderer Nutzer das entsprechende Item bei sich gespeichert, so kann es zu einem späteren Zeitpunkt ohne Probleme von ihm wiederhergestellt und verbreitet werden. Aus diesem Grund solltest Du vorsichtig sein mit dem, was Du veröffentlichst und kritische Items lieber vollständig für Dich behalten – genau so, wie Du das auch im richtigen Leben machen würdest."
             }
         }
     }

@@ -533,13 +533,8 @@
 
                     console.debug( '[ListGuessView] Current item to calculate result', item );
 
-                    // final all public items
-                    if ( privacyLevel === pc.common.PrivacyDefinition.Level.ALL ) {
-                        publicResults.push( this.__createItem( item, {} )[0] );
-                    }
-                    // if it is not public it is allowed for some lists' users
-                    else {
-
+                    // final all non-public items
+                    if ( privacyLevel != pc.common.PrivacyDefinition.Level.ALL ) {
                         // depending on the privacy level a item is visible for kind of groups
                         switch ( privacyLevel ) {
                             case pc.common.PrivacyDefinition.Level.FRIENDS:
@@ -587,6 +582,19 @@
                     }
 
                 }, this ) );
+
+                // find all public items (not only testdata)
+                _.each( _.union( player.getPictures().models, player.getStatuses().models ), _.bind( function( item )
+                {
+                    if ( !_.isUndefined( item.get( 'privacy' ) )
+                        && !_.isUndefined( item.get( 'privacy' ).get( 'level' ) )
+                        && item.get( 'privacy' ).get( 'level' ) === pc.common.PrivacyDefinition.Level.ALL ) {
+
+                        publicResults.push( this.__createItem( item, {} ) );
+                    }
+                }, this ) );
+
+                publicResults = _.shuffle( publicResults );
 
                 // make result texts
                 var groupResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_LIST_OVERVIEW_NONE ),
@@ -700,10 +708,19 @@
 
             _makeRating: function( rating, selection )
             {
-                return rating < selection.BAD ? $.t( pc.view.ListGuessView.LANG_RATING_BAD )
-                    : rating < selection.GOOD ? $.t( pc.view.ListGuessView.LANG_RATING_GOOD )
-                           : rating < selection.VERYGOOD ? $.t( pc.view.ListGuessView.LANG_RATING_VERYGOOD )
-                          : $.t( pc.view.ListGuessView.LANG_RATING_VERYBAD );
+                var result = $.t( pc.view.ListGuessView.LANG_RATING_VERYBAD );
+
+                if ( rating < selection.VERYGOOD ) {
+                    result = $.t( pc.view.ListGuessView.LANG_RATING_VERYGOOD );
+                }
+                else if ( rating >= selection.VERYGOOD && rating < selection.GOOD ) {
+                    result = $.t( pc.view.ListGuessView.LANG_RATING_GOOD );
+                }
+                else if ( rating >= selection.GOOD && rating < selection.BAD ) {
+                    result = $.t( pc.view.ListGuessView.LANG_RATING_BAD );
+                }
+
+                return result;
             }
 
         },
