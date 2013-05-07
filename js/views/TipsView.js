@@ -23,11 +23,24 @@
 
             renderTooltip: function( tooltipId )
             {
+                var tooltip = pc.model.TooltipCollection.getInstance().findWhere( {key: tooltipId} ),
+                    options = {
+                        tooltip: tooltip.toJSON()
+                    };
+
+                if ( _.isUndefined( tooltip ) ) {
+                    console.error( '[TipsView] Tooltip not found!' );
+                    return;
+                }
+
+                console.info( "[TipsView] Rendering tooltip template with options", options );
+
                 this.$el.slideUp( _.bind( function()
                 {
+
                     this.$el
                         .empty()
-                        .html( this.templateTooltip() );
+                        .html( this.templateTooltip( options ) );
 
                     this.$el.slideDown();
                 }, this ) );

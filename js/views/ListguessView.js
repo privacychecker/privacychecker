@@ -46,6 +46,14 @@
                 // generate briefing
                 var briefing = pc.common.GameBriefing.getInstance();
                 briefing.make( $.t( pc.view.ListGuessView.LANG_BRIEFING ) );
+
+                try {
+                    pc.model.TooltipCollection.getInstance().pin( briefing.getTextContainer() );
+                }
+                catch ( e ) {
+                    console.error( "[SelectView] Unable to attach tooltips:", e, "Skipping rest" );
+                }
+
                 briefing.show();
 
                 // ask first

@@ -60,6 +60,15 @@
         },
 
         /**
+         * Get the text container
+         *
+         * @returns {jQuery} The jQuery Object with the text
+         */
+        getTextContainer: function() {
+            return this.text;
+        },
+
+        /**
          * Create the briefing overlay in $el
          *
          * @method _create
@@ -70,7 +79,7 @@
             var container = $( '<div>' ).addClass( 'briefing-container' );
 
             var closeBtn = $( '<button>', {
-                html: $.t(pc.common.GameBriefing.LANG_CLOSE_BTN)
+                html: $.t( pc.common.GameBriefing.LANG_CLOSE_BTN )
             } ).addClass( 'btn btn-primary' ).click( _.bind( this.hide, this ) );
             var textEl = $( '<p>' );
 

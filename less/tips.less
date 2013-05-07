@@ -1,6 +1,6 @@
 .tips {
 
-    .recommendation {
+    .recommendation-long {
 
         ul.pairs {
             .plain-list;
@@ -28,8 +28,22 @@
 
     }
 
-    .tooltip {
+    .tooltip-long {
 
     }
 
+}
+
+span[data-tooltip-key] {
+    border-bottom: 2px dotted;
+    cursor: help;
+}
+
+.tooltip-container {
+    font-size: 14px;
+    line-height: 20px;
+
+    & > a {
+        display: block;
+    }
 }

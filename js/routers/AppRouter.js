@@ -2,14 +2,13 @@
 {
     "use strict";
 
-    var DEV = false;
+    var DEV = true;
 
     var ns = namespace( "pc.router" );
 
     ns.AppRouter = Backbone.Router.extend( {
 
         routes: {
-
             "tooltip/:id": "tooltipCb"
         },
 
@@ -20,6 +19,8 @@
                 this.headerView = new pc.view.HeaderView();
                 this.headerView.render();
             }
+
+            this._initializeTooltips();
             //$("header").html(this.headerView.el);
             $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().hide();
 
@@ -47,7 +48,7 @@
             this.selectView.on( "select:done", _.bind( this.guessListSizeCb, this ) );
             this.listGuessView.on( "game:done", _.bind( this.hangmanStartCb, this ) );
             this.hangmanView.on( "hangmanview:done", _.bind( this.showResultsCb, this ) );
-            this.resultView.on("recommendations",  _.bind( this.recommendationCb, this ));
+            this.resultView.on( "recommendations", _.bind( this.recommendationCb, this ) );
 
             this.homeView.render();
             $( "#container-home" ).html( this.homeView.el );
@@ -207,6 +208,69 @@
                     } );
                 } );
             } );
+        },
+
+        _initializeTooltips: function()
+        {
+            var tooltipCollection = pc.model.TooltipCollection.getInstance(),
+                Tooltip = pc.model.Tooltip;
+
+            tooltipCollection.add( [
+                new Tooltip( {
+                    key:      "item",
+                    headline: $.t( "app.tooltip.item.headline" ),
+                    short:    $.t( "app.tooltip.item.short" ),
+                    long:     $.t( "app.tooltip.item.long" )
+                } ),
+                new Tooltip( {
+                    key:      "personal",
+                    headline: $.t( "app.tooltip.personal.headline" ),
+                    short:    $.t( "app.tooltip.personal.short" ),
+                    long:     $.t( "app.tooltip.personal.long" )
+                } ),
+                new Tooltip( {
+                    key:      "ranking",
+                    headline: $.t( "app.tooltip.ranking.headline" ),
+                    short:    $.t( "app.tooltip.ranking.short" ),
+                    long:     $.t( "app.tooltip.ranking.long" )
+                } ),
+                new Tooltip( {
+                    key:      "list",
+                    headline: $.t( "app.tooltip.list.headline" ),
+                    short:    $.t( "app.tooltip.list.short" ),
+                    long:     $.t( "app.tooltip.list.long" )
+                } ),
+                new Tooltip( {
+                    key:      "rated_item",
+                    headline: $.t( "app.tooltip.rated_item.headline" ),
+                    short:    $.t( "app.tooltip.rated_item.short" ),
+                    long:     $.t( "app.tooltip.rated_item.long" )
+                } ),
+                new Tooltip( {
+                    key:      "auto_list",
+                    headline: $.t( "app.tooltip.auto_list.headline" ),
+                    short:    $.t( "app.tooltip.auto_list.short" ),
+                    long:     $.t( "app.tooltip.auto_list.long" )
+                } ),
+                new Tooltip( {
+                    key:      "hangman_users",
+                    headline: $.t( "app.tooltip.hangman_users.headline" ),
+                    short:    $.t( "app.tooltip.hangman_users.short" ),
+                    long:     $.t( "app.tooltip.hangman_users.long" )
+                } ),
+                new Tooltip( {
+                    key:      "hangman_hearts",
+                    headline: $.t( "app.tooltip.hangman_hearts.headline" ),
+                    short:    $.t( "app.tooltip.hangman_hearts.short" ),
+                    long:     $.t( "app.tooltip.hangman_hearts.long" )
+                } ),
+                new Tooltip( {
+                    key:      "hangman_points",
+                    headline: $.t( "app.tooltip.hangman_points.headline" ),
+                    short:    $.t( "app.tooltip.hangman_points.short" ),
+                    long:     $.t( "app.tooltip.hangman_points.long" )
+                } )
+            ] );
         }
 
     }, {

@@ -62,9 +62,21 @@
             // generate briefing
             var briefing = pc.common.GameBriefing.getInstance();
             briefing.make( $.t( pc.view.HangmanView.LANG_BRIEFING ) );
-            briefing.show();
+            try {
+                pc.model.TooltipCollection.getInstance().pin( briefing.getTextContainer() );
+                pc.model.TooltipCollection.getInstance()
+                    .pin( this.$el.find( pc.view.HangmanView.USERLIST_CONTAINER_ID ), "hangman_users" );
+                pc.model.TooltipCollection.getInstance()
+                    .pin( this.$el.find( pc.view.HangmanView.LIVESLIST_CONTAINER_ID ), "hangman_hearts" );
+                pc.model.TooltipCollection.getInstance()
+                    .pin( this.$el.find( pc.view.HangmanView.POINT_CONTAINER_ID ), "hangman_points" );
+            }
+            catch ( e ) {
+                console.error( "[SelectView] Unable to attach tooltips:", e, "Skipping rest" );
+            }
 
-            this.next();
+            briefing.show();
+            briefing.on( 'hidden', _.bind( this.next, this ) );
         },
 
         doneCb: function( result )
