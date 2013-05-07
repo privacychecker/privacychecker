@@ -69,6 +69,9 @@
             if ( this._go && this.player.loggedin ) {
                 this.trigger( "click:proceed" );
             }
+
+            this.enableButton();
+
         }
 
     }, {

@@ -242,6 +242,12 @@
             var data = [],
                 orderedList = this.getOrderedList();
 
+
+            if ( orderedList.length <= this.TEST_DATA_SIZE ) {
+                console.error( "[TestData] Insufficient data", orderedList.length, this.TEST_DATA_SIZE, orderedList );
+                throw "E_INSUFFICIENT_DATA";
+            }
+
             for ( var i = this.TEST_DATA_SIZE; i > 0; i-- ) {
                 data.push( orderedList.shift() );
             }
@@ -305,11 +311,6 @@
         {
 
             var picked = [];
-
-            if ( arr.length <= this.TEST_DATA_SIZE ) {
-                console.error( "[TestData] Insufficient data", arr.length, this.TEST_DATA_SIZE );
-                throw new pc.common.Exception( {caption: "insufficient data"} );
-            }
 
             var i = arr.length < this.MAX_INIT_ITEMS ? arr.length : this.MAX_INIT_ITEMS;
 

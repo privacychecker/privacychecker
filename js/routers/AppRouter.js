@@ -43,7 +43,7 @@
 
             this.player = pc.model.FacebookPlayer.getInstance();
             this.player.on( "profile:loaded", _.bind( this.profileLoadedCb, this ) );
-            this.homeView.on( "click:proceed", _.bind( this.startCollectCb, this ) );
+            //this.homeView.on( "click:proceed", _.bind( this.startCollectCb, this ) );
             this.collectView.on( "collect:done", _.bind( this.selectEntitiesCb, this ) );
             this.selectView.on( "select:done", _.bind( this.guessListSizeCb, this ) );
             this.listGuessView.on( "game:done", _.bind( this.hangmanStartCb, this ) );
@@ -68,6 +68,8 @@
 
         startCollectCb: function( autostart )
         {
+
+
             console.log( '[Controller] Starting to collect data' );
             $( pc.router.AppRouter.CAROUSEL_ID ).unbind();
             this.collectView.render();
@@ -277,7 +279,7 @@
 
         CHANGE_PLAYER_ID: '#changeplayer',
         CAROUSEL_ID:      '#game-carousel',
-        NUM_SLIDES:       6,
+        NUM_SLIDES:       5,
 
         CONTROL_CONTAINER_ID: '.carousel-control.right'
 
