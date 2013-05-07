@@ -43,10 +43,7 @@
          */
         show: function()
         {
-            this.$el.children().first().center( {
-                against:       'parent',
-                top: 90
-            } );
+            this.$el.children().first();
             this.$el.fadeIn();
             this.trigger( 'shown' );
         },
@@ -72,13 +69,13 @@
         {
             var container = $( '<div>' ).addClass( 'briefing-container' );
 
-            var closeBtn = $( '<i>', {
-                html: "&#10006;"
-            } ).addClass('close').click( _.bind(this.hide, this));
-            var textEl = $( '<div>' );
+            var closeBtn = $( '<button>', {
+                html: $.t(pc.common.GameBriefing.LANG_CLOSE_BTN)
+            } ).addClass( 'btn btn-primary' ).click( _.bind( this.hide, this ) );
+            var textEl = $( '<p>' );
 
-            container.append( closeBtn );
             container.append( textEl );
+            container.append( closeBtn );
 
             this.$el.empty().append( container );
 
@@ -87,6 +84,8 @@
 
     }, {
         BRIEFING_CONTAINER_ID: "div#briefing",
+
+        LANG_CLOSE_BTN: "app.briefing.close",
 
         /**
          * Get a singleton instance of GameBriefing.

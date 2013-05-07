@@ -34,6 +34,10 @@
             }
         },
 
+        "briefing": {
+            "close": "Alles klar"
+        },
+
         "home": {
             "name":        "Hallo",
             "headline":    "Kennst du alle deine Freunde?",
@@ -52,7 +56,7 @@
         },
 
         "select": {
-            "name":               "Auswählen",
+            "name":               "Itembattle",
             "headline":           "Welches Item ist für dich persönlicher?",
             "insufficient_data":  "Dein Profil erfüllt leider nicht die Mindestanforderungen an das Spiel.",
             "game_usage":         "Spielumfang wählen",
@@ -68,8 +72,9 @@
         },
 
         "guess": {
-            "name":   "Listen raten",
-            "game":   {
+            "name":     "Listen schätzen",
+            "briefing": "Nun wirst Du aufgefordert, zu schätzen, wie viele Freunde Du insgesamt auf Facebook hast und wie viele Mitglieder in Deinen Listen jeweils eingeordnet sind. Bei den Listen wird zusätzlich zwischen selbst erstellten und intelligenten Listen unterschieden. Anschließend sollst Du abschätzen, wie viele deiner Freunde ausgewählte, von Dir veröffentlichte Items sehen können, wodurch Du einen Überblick darüber erhältst, wie öffentlich die Einstellungen Deiner Items sind. Deine Antworten und die korrekten Werte werden Dir am Ende des Spiels präsentiert.",
+            "game":     {
                 "what_do_you_guess": "Was tippst du?",
                 "input_button":      "Eingeben",
                 "lists":             {
@@ -82,7 +87,7 @@
                     "question": "Was schätzt du wie viele Leute das sehen können?"
                 }
             },
-            "result": {
+            "result":   {
                 "headline":   "Zeit für Ergebnisse",
                 "answer":     "Antwort",
                 "correct":    "Korrekter Wert",
@@ -123,15 +128,16 @@
         },
 
         "hangman": {
-            "name":   "Bestimmen",
-            "game":   {
+            "name":     "Freunderaten",
+            "briefing": "Spätestens jetzt ist es vorbei mit Ausruhen! Denn jetzt wird nicht nur getestet, ob Du weißt, wem Du Zugriff auf ein Item gegeben hast, sondern auch, wie schnell Du dies weißt. Dazu werden Dir nacheinander Items gezeigt, die Du auf Facebook veröffentlicht hast. Deine Aufgabe ist es, in einer Menge von zufällig ausgewählten Freunden und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte Item sehen können. Bist Du bereit? Dann nimm die Herausforderung an und versuche, eine möglichst hohe Punktzahl zu erzielen!",
+            "game":     {
                 "headline":        "Wähle die Personen, die das folgende Bild sehen können",
                 "lost":            "Du hast verloren!",
                 "won":             "Du hast gewonnen!",
                 "timeout":         "Zeit abgelaufen, du hast verloren",
                 "remaining_lives": "Leben: "
             },
-            "result": {
+            "result":   {
                 "headline":    "Zeit für Ergebnisse",
                 "overall":     "Gesamtergebniss",
                 "description": "Hier siehst Du Deine Ergebnisse aus dem letzten Spiel im Überblick.<br/>Für jedes Item zeigen wir Dir die benötigte Zeit, die Anzahl der Fehlversuche und die darausresultierende Punktzahl.",
@@ -176,35 +182,35 @@
             }
         },
 
-        "page": {
+        "page":            {
             "trust": {
                 "headline":   "Vertrauen",
-                "short":      "Privacy Checker läuft ausschließlich in Deinem Browser, Deine Daten bleiben daher immer bei Dir. Noch nicht sicher? Du kannst jederzeit nachsehen, denn der Privacy Checker Quellcode ist öffentlich verfügbar",
-                "body":       "Diese App wurde mit dem Ziel entworfen, Deine Daten möglichst gut zu schützen. So wird die App beispielsweise nur in Deinem Browser ausgeführt, es werden keine persönlichen Daten an einen Server (auch nicht unseren eigenen Server) gesendet. Um das Vertrauen in die App noch weiter zu erhöhen, haben wir den Quellcode der App veröffentlicht.",
+                "short":      "Privacy Checker läuft ausschließlich in Deinem Browser. Deine Daten bleiben daher immer bei Dir und werden nicht an Dritte gesendet. Du bist dir trotzdem noch nicht sicher? Dann kannst du jederzeit nachsehen, denn der Quellcode des Privacy Checkers ist öffentlich verfügbar.",
+                "body":       "Diese App wurde mit dem Ziel entworfen, Deine Daten möglichst gut zu schützen. Aus diesem Grund wird die App nur in Deinem Browser ausgeführt und es werden keine persönlichen Daten an einen Server (auch nicht an unseren eigenen) gesendet. Um das Vertrauen in die App noch weiter zu erhöhen, haben wir den Quellcode der App veröffentlicht, den du nachfolgend herunterladen kannst.",
                 "client":     {
                     "headline": "Technologie",
-                    "body":     "Im Gegensatz zu vielen anderen Apps, vervendet diese App ausschließlich clientseitige Technologien, wie beispielsweise JavaScript, CSS und HTML. Nachdem Du die App mit Deinem Browser aufgerufen hast, werden alle Deine persönlichen Daten nur noch innerhalb Deines Browsers verarbeitet."
+                    "body":     "Im Gegensatz zu vielen anderen Apps, verwendet diese App ausschließlich clientseitige Technologien, wie beispielsweise JavaScript, CSS und HTML. Nachdem Du die App mit Deinem Browser aufgerufen hast, werden alle Deine persönlichen Daten nur noch innerhalb Deines Browsers verarbeitet. Auf diese Weise sind Deine Daten bestmöglich geschützt und Du musst Dir keine Sorgen über eine unsichere Verwendung Deiner Daten machen."
                 },
                 "opensource": {
                     "headline": "Open Source",
-                    "body":     "Wir haben den Quellcode der App öffentlich gemacht um die Verarbeitung Deiner Daten in der App transparent zu machen. Wenn Du möchtest, kannst du ihn Dir ansehen und erweitern."
+                    "body":     "Wir haben den Quellcode der App veröffentlicht, um die Verarbeitung Deiner Daten in der App transparent zu machen und Dir zu zeigen, dass die Verwendung der App vertrauenswürdig ist. Wenn Du möchtest, kannst du ihn Dir ansehen, verbessern und erweitern."
                 },
                 "download":   {
                     "headline": "Download",
-                    "body":     "Du kannst Dir die aktuelle Version dieser App hier herunterladen:",
-                    "web":      "Download App"
+                    "body":     "Hier kannst Du Dir den aktuellen Quellcode der App herunterladen:",
+                    "web":      "Download Quellcode"
                 }
             },
 
             "learn": {
                 "headline": "Was ist Privacy Checker?",
-                "short":    "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook Profil kennst. Mit verschiedenen Spielen kannst du herausfinden, ob du weißt was Deine Freunde sehen können",
-                "body":     "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook Profil kennst. Mit verschiedenen Spielen kannst du herausfinden, ob du weißt was Deine Freunde sehen können. Eine Zusammenfassung am Ende zeigt Dir Dein Ergebnis an und gibt Dir Tips wie Du Deine Privatsphäre noch besser schützen kannst. Um vorher zu sehen, wie die App aussieht, klicke Dich durch die Bildergallerie."
+                "short":    "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook-Profil und vor allem Deine Privatsphäre-Einstellungen kennst. Mit verschiedenen Spielen kannst du herausfinden, ob Du weißt, wer Deine Freunde sind, was sie von deinem Profil sehen können und wie Du Deine Sicherheits-Einstellungen verbessern kannst.",
+                "body":     "Privacy Checker zeigt Dir spielerisch, wie öffentlich Deine Items auf Facebook sind bzw. was deine Freunde alles von Dir sehen können. Mit verschiedenen Spielen kannst Du herausfinden, wie gut Du Dein eigenes Profil und Deine getroffenen Einstellungen kennst. Eine persönliche, auf Dein Profil zugeschnittene Auswertung nach jedem Spiel, sowie eine Zusammenfassung mit Verbesserungsmöglichkeiten am Ende der App, zeigen Dir Dein Ergebnis an und geben Dir Tipps, wie Du Deine Privatsphäre noch besser schützen kannst. Um vorher zu sehen, wie die App aussieht, klicke Dich durch die Bildergalerie."
             },
 
             "contact": {
                 "headline":  "Über uns",
-                "short":     "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen",
+                "short":     "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen zur App hast, findest Du unter „Mehr Infos“ neben weiteren Informationen zur Privacy Policy und dem Haftungsausschluss auch die nötigen Kontaktinformationen.",
                 "body":      "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen:",
                 "team":      {
                     "team_headline":    "Team",
@@ -228,15 +234,46 @@
                 },
                 "privacy":   {
                     "headline": "Privacy Policy",
-                    "body":     "Alle Deine persönlichen Daten bleiben bei Dir, es werden keine Daten an einen anderen Server übertragen. Weder wir noch andere Personen haben Zugriff auf Deine Daten."
+                    "body":     "Es werden keine Daten an einen anderen Server übertragen, dadurch bleiben alle Deine persönlichen Daten bei Dir. Weder wir noch andere Personen haben Zugriff auf Deine Daten."
                 },
                 "liability": {
                     "headline": "Haftungsausschluss",
-                    "body":     "Trotz sorgfältiger Prüfung können Programmfehler nicht ausgeschlossen werden. Mit der Benutzung dieser App stimmen Sie zu, dass die Autoren nicht für etwaige Schäden verantwortlich gemacht werden."
+                    "body":     "Trotz sorgfältiger Prüfung können Programmfehler nicht ausgeschlossen werden. Mit der Benutzung dieser App stimmst Du zu, dass die Autoren nicht für etwaige Schäden verantwortlich gemacht werden."
                 }
             },
             "footer":  {
                 "uni": "Universität Regensburg - Lehrstuhl für Wirtschaftsinformatik I"
+            }
+        },
+        "recommendations": {
+            "headline":      "Mögliche Handlungsempfehlungen",
+            "friend":        {
+                "headline": "Begriff „Freund“",
+                "body":     "Der Begriff Freundschaft bezeichnet eine positive Beziehung zwischen Menschen, die auf Sympathie, Vertrauen und gegenseitiger Wertschätzung basiert. Nach diesen Kriterien wählt man im realen Leben einen Freund aus. Eine Freundschaft, die lediglich in einem sozialen Netzwerk existiert, ist eine sogenannte „Freundschaft per Mausklick“ und kann die zuvor genannten Kriterien nicht erfüllen.<br/> Vor allem dann, wenn Du Facebook-Freundschaften von Menschen bestätigst, die Du nicht gut kennst oder die Du sogar noch nie persönlich getroffen hast, ist fraglich, ob es nicht vielleicht besser ist, die Freundschaftsanfrage abzulehnen. Denke an all Deine veröffentlichten persönlichen Items: Würdest Du sie im realen Leben auch mit Personen teilen, die Du nicht gut kennst? Ist es nicht besser, wenn Du die Items für Dich behältst bzw. sie nur mit bestimmten Personen teilst?<br/>Natürlich kannst Du Deine Items vor entfernteren Facebook-Freunden mit Hilfe von Einstellungen verbergen. Wird die Anzahl an Freunden jedoch unüberschaubar groß, ist es schwer, den Überblick zu behalten. Da Deine Schätzung zur Anzahl deiner Facebook-Freunde oder deine Leistung beim Freunderaten nicht sehr gut war, ist bei Dir möglicherweise genau das passiert. Aus diesem Grund solltest Du dir Gedanken darüber machen, wen Du als Facebook-Freund haben möchtest und wen nicht. Freundschaftsanfragen sollten nicht nur angenommen werden, um nicht unhöflich zu erscheinen. Außerdem solltest Du nicht davor zurückschrecken, Facebook-Freundschaften zu beenden."
+            },
+            "lists_create":  {
+                "headline": "Erstellen von Listen",
+                "body":     "Dein Facebook-Account verfügt über keine von Dir selbst erstellten Listen. Da Du möglicherweise nicht weißt, wo man Listen anlegen kann, kannst Du Dich <a href=\"https://www.facebook.com/bookmarks/lists\" target=\"_blank\"> direkt zum entsprechenden Menü führen lassen</a>. Dort hast Du die Möglichkeit, neue Listen zu erstellen und diese anschließend zu verwalten, d.h. ihnen Freunde hinzuzufügen oder daraus zu entfernen.<br/> Es ist durchaus möglich, dass das angesprochene Menü bereits Listen enthält, obwohl Du keine angelegt hast. Bei diesen Listen handelt es sich dann um intelligente Listen, die Facebook automatisch für dich unterhält. Diese kannst Du natürlich auch bearbeiten und verwenden."
+            },
+            "lists_use":     {
+                "headline": "Verwenden von Listen",
+                "body":     "Für keines der in den Spielen näher untersuchten Items hast Du Listen für deren Freigabe-Einstellungen verwendet. Möglicherweise hast Du schon selbst Listen erstellt, weißt aber nicht, wie man diese verwendet.<br/>Für Status Posts findest Du die Freigabe-Einstellungen bzw. die Möglichkeit zu deren Änderung direkt unter Deinem Namen und neben dem Datum, an dem Du den Status Post erstellt hast. Bei Fotos kommt es darauf an, wo Du sie betrachtest. Siehst Du sie Dir in Deinen Fotoalben an, so kannst Du die Freigabe-Einstellungen auf der rechten Seite unterhalb des Fotos bei „Teilen mit:“ ändern. Möchtest Du die Freigabe-Einstellungen eines Fotos, das Dir gerade auf Deiner Pinnwand angezeigt wird, ändern, dann geht das genauso, wie bei einem Status Post.<br/>Hast Du die Anzeige der Freigabe-Einstellungen eines Items gefunden, so kannst Du mit einem Klick darauf ein Menü öffnen, in dem Dir die unterschiedlichen Einstellungen angeboten werden. Hier kannst Du beispielsweise direkt eine bestimmte Liste auswählen, für deren Mitglieder das betrachtete Item sichtbar sein soll."
+            },
+            "sharing":       {
+                "headline": "Freigeben für einzelne Freunde & Gezieltes Verbergen",
+                "body":     "Mit Hilfe der oben beschriebenen Einstellungen kannst du jedoch nicht nur Listen auswählen, für deren Mitglieder das betrachtete Item sichtbar sein soll, sondern auch einzelne Freunde. Dazu musst Du in dem angesprochenen Menü auf „Benutzerdefiniert“ klicken und anschließend „Bestimmte Personen oder Listen …“ in dem angebotenen Dropdown-Menü auswählen. Nun kannst Du in die darunter befindliche Zeile einzelne Freunde eintragen, denen Du das Item zugänglich machen willst.<br/>Außerdem hast Du bei Auswahl von „Benutzerdefiniert“ die Möglichkeit, das Item für bestimmte Personen oder Listen zu verbergen. Sichtbar wäre es dann beispielsweise für alle Freunde, außer den hier angegebenen."
+            },
+            "defaults":      {
+                "headline": "Standardeinstellungen",
+                "body":     "Wir haben festgestellt, dass Dein Profil Items enthält, die Du öffentlich geteilt hast. Das bedeutet, dass alle Facebook-Nutzer – und damit auch völlig fremde Personen – Zugriff darauf haben. War das wirklich so von Dir beabsichtigt? Möchtest Du das in Zukunft vermeiden?<br/>Dafür gibt es einen sehr einfachen und schnellen Weg. Du musst lediglich deine Standard-Einstellungen ändern, und zwar von „Öffentlich“ auf „Freunde“ oder sogar auf bestimmte Listen. Die Möglichkeit hierzu wird Dir in den Privatsphäre-Einstellungen Deines Facebook-Accounts angeboten. Bei Veröffentlichung der neuesten Version dieser Anwendung findest du <a href=\"https://www.facebook.com/settings?tab=privacy&section=composer&view\">hier die entsprechenden Einstellung</a> (Stand: 22.04.2013)."
+            },
+            "hide_past":     {
+                "headline": "Vergangenes einschränken",
+                "body":     "Mit der oben beschriebenen Änderung Deiner Standard-Einstellungen schränkst Du die Sichtbarkeit Deiner zukünftig geteilten Items ein. Es ist jedoch sinnvoll, dies auch für alle bereits öffentlich geteilten Items zu tun. Um Dir den Aufwand der Überprüfung und eventuellen Modifikation aller Deiner Items zu ersparen, gibt es eine Funktion, die diese Aufgabe für Dich übernimmt. Genauer gesagt kannst Du damit die Sichtbarkeit aller Items mit „Öffentlich“ oder „Freunde von Freunden“ als eingestellter Freigabe-Stufe mit nur einem Klick auf Deine Freunde beschränken.<br/>Du findest diese Funktion ebenfalls in den Privatsphäre-Einstellungen Deines Facebook-Accounts. Bei Veröffentlichung der neuesten Version dieser Anwendung findest du <a href=\"https://www.facebook.com/settings?tab=privacy&section=masher&view\">hier die entsprechenden Option</a> (Stand: 22.04.2013)."
+            },
+            "publish_items": {
+                "headline": "Veröffentlichen von Items",
+                "body":     "Wie im realen Leben, solltest Du Dir au“ch in sozialen Netzwerken gut überlegen, welche Items Du anderen Menschen zeigen möchtest und vor allem wem Du sie zeigen möchtest. Im Internet tendiert man dazu, sorgloser mit der Veröffentlichung von Informationen umzugehen, weil man sein Gegenüber nicht sehen kann und umgekehrt auch nicht von ihm gesehen wird. Dieses Verhalten solltest Du aber besser vermeiden!<br/>Für Items (oder allgemein Informationen), die Du einmal im Internet veröffentlicht hast, ist ein vollständiges und unwiederbringliches Entfernen im Normalfall nicht möglich. Selbst dann, wenn Du ein Item aus einem sozialen Netzwerk löschst und davon ausgehst, dass es nun wirklich entfernt wurde, ist es oft nur oberflächlich gelöscht. Hat ein anderer Nutzer das entsprechende Item bei sich gespeichert, so kann es zu einem späteren Zeitpunkt ohne Probleme von ihm wiederhergestellt und verbreitet werden. Aus diesem Grund solltest Du vorsichtig sein mit dem, was Du veröffentlichst und kritische Items lieber vollständig für Dich behalten – genau so, wie Du das auch im richtigen Leben machen würdest."
             }
         }
     }

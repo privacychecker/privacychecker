@@ -24,11 +24,6 @@
             this.$el.find( '.body' ).hide();
             this.$el.find( '.result' ).hide();
 
-            // generate briefing
-            var briefing = pc.common.GameBriefing.getInstance();
-            briefing.make( $.t( pc.view.SelectView.LANG_BRIEFING ) );
-            briefing.show();
-
             // query for scope
             console.debug( "[SelectView] Rendering selectView - asking for scope" );
             this.$el.find( pc.view.SelectView.SCOPE_IMAGES_ID ).click( _.bind( function()
@@ -108,6 +103,12 @@
             this.$el.find( ".scope" ).fadeOut( 'fast', _.bind( function()
             {
                 this.$el.find( '.body' ).fadeIn( 'fast' );
+
+                // generate briefing
+                var briefing = pc.common.GameBriefing.getInstance();
+                briefing.make( $.t( pc.view.SelectView.LANG_BRIEFING ) );
+                briefing.show();
+
                 this.next();
             }, this ) );
         },

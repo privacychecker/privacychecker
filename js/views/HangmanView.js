@@ -59,9 +59,12 @@
 
             console.debug( '[HangmanView] ' + this.questions.length + " entities to show" );
 
-            this.next();
+            // generate briefing
+            var briefing = pc.common.GameBriefing.getInstance();
+            briefing.make( $.t( pc.view.HangmanView.LANG_BRIEFING ) );
+            briefing.show();
 
-            return this;
+            this.next();
         },
 
         doneCb: function( result )
@@ -583,6 +586,7 @@
             WON: 0, LOST: 1, TIMEOUT: 2
         },
 
+        LANG_BRIEFING:        "app.hangman.briefing",
         LANG_GAME_LOST:       "app.hangman.game.lost",
         LANG_GAME_WON:        "app.hangman.game.won",
         LANG_GAME_TIMEOUT:    "app.hangman.game.timeout",

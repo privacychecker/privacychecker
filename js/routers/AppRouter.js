@@ -9,7 +9,8 @@
     ns.AppRouter = Backbone.Router.extend( {
 
         routes: {
-            "*default": "home"
+
+            "tooltip/:id": "tooltipCb"
         },
 
         initialize: function()
@@ -31,9 +32,13 @@
             this.collectView = new pc.view.CollectView();
             this.selectView = new pc.view.SelectView();
             this.listGuessView = new pc.view.ListGuessView();
-            this.estimateView = new pc.view.EstimateView();
             this.hangmanView = new pc.view.HangmanView();
             this.resultView = new pc.view.ResultView();
+
+            this.tipsView = new pc.view.TipsView( {
+                el: $( ".tips" ).first()
+            } );
+            this.tipsView.hide();
 
             this.player = pc.model.FacebookPlayer.getInstance();
             this.player.on( "profile:loaded", _.bind( this.profileLoadedCb, this ) );
@@ -42,12 +47,11 @@
             this.selectView.on( "select:done", _.bind( this.guessListSizeCb, this ) );
             this.listGuessView.on( "game:done", _.bind( this.hangmanStartCb, this ) );
             this.hangmanView.on( "hangmanview:done", _.bind( this.showResultsCb, this ) );
-        },
+            this.resultView.on("recommendations",  _.bind( this.recommendationCb, this ));
 
-        home: function()
-        {
             this.homeView.render();
             $( "#container-home" ).html( this.homeView.el );
+
         },
 
         profileLoadedCb: function()
@@ -179,6 +183,18 @@
             this._animateNextButton();
         },
 
+        recommendationCb: function()
+        {
+            console.log( '[Controller] Showing recommendations' );
+            this.tipsView.renderRecommendation( this.resultView );
+        },
+
+        tooltipCb: function( tooltipId )
+        {
+            console.log( '[Controller] Showing tooltip with id', tooltipId );
+            this.tipsView.renderTooltip( tooltipId );
+        },
+
         _animateNextButton: function()
         {
             $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).transition( {'width': '80px'}, 500, function()
@@ -197,7 +213,7 @@
 
         CHANGE_PLAYER_ID: '#changeplayer',
         CAROUSEL_ID:      '#game-carousel',
-        NUM_SLIDES:       7,
+        NUM_SLIDES:       6,
 
         CONTROL_CONTAINER_ID: '.carousel-control.right'
 
