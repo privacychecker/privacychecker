@@ -51,9 +51,9 @@
                     pc.model.TooltipCollection.getInstance().pin( briefing.getTextContainer() );
                 }
                 catch ( e ) {
-                    console.error( "[SelectView] Unable to attach tooltips:", e, "Skipping rest" );
+                    console.error( "[ListGuessView] Unable to attach tooltips:", e, "Skipping rest" );
                 }
-
+                
                 briefing.show();
 
                 // ask first
@@ -96,6 +96,8 @@
                             options = this._prepareItemForTemplate( item );
                             break;
                     }
+
+                    console.info("[ListGuessView] Rendering item template with options",options);
 
                     container.append( this.templateGameItems( options ) );
 
@@ -295,7 +297,7 @@
                     _.extend( options, {
                         status: {
                             caption:  item.get( 'caption' ),
-                            date:     item.get( 'date' ),
+                            date:     pc.common.DateFormatHelper.formatShort(item.get( 'date' )),
                             location: item.get( 'location' )
                         }
                     } );
@@ -547,7 +549,7 @@
                     console.debug( '[ListGuessView] Current item to calculate result', item );
 
                     // final all non-public items
-                    if ( privacyLevel != pc.common.PrivacyDefinition.Level.ALL ) {
+                    if ( privacyLevel !== pc.common.PrivacyDefinition.Level.ALL ) {
                         // depending on the privacy level a item is visible for kind of groups
                         switch ( privacyLevel ) {
                             case pc.common.PrivacyDefinition.Level.FRIENDS:

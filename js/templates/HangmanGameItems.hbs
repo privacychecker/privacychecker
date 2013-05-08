@@ -1,0 +1,59 @@
+<!-- HangmanGameItems -->
+<div class="sub-template container">
+
+    <div class="span5">
+
+        <div class="info">
+            <ul class="hearts">
+                {{#each hearts}}
+                    <li class="heart"></li>
+                {{/each}}
+            </ul>
+
+            <div class="points">10000</div>
+        </div>
+
+        <div class="result">
+            <span class="won label label-success">{{t "app.hangman.game.won"}}</span>
+            <span class="lost label label-important">{{t "app.hangman.game.lost"}}</span>
+            <span class="timeout label label-important">{{t "app.hangman.game.timeout"}}</span>
+        </div>
+
+        {{#if picture}}
+            <div class="image image-container" style="background-image: url( {{picture.url}} );">
+                <img src="{{picture.url}}"/>
+
+                <p class="title">{{picture.caption}}</p>
+            </div>
+        {{/if}}
+
+        {{#if status}}
+            <div class="status status-container">
+                <p class="message">{{status.caption}}</p>
+
+                <p class="date">{{status.date}}</p>
+                <ul class="shadow">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        {{/if}}
+
+        <button class="proceed btn btn-primary">{{t "app.hangman.game.proceed"}} <i>&#59230;</i></button>
+    </div>
+
+    <div class="span5 offset1">
+
+        <ul class="userlist">
+            {{#each users}}
+                <li style="background-image: url( https://graph.facebook.com/{{id}}/picture?width=100&height=100 );"
+                    data-title="{{name}}"
+                    data-correct="{{correct}}"></li>
+            {{/each}}
+        </ul>
+
+    </div>
+
+</div>

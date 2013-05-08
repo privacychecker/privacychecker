@@ -134,7 +134,8 @@
                 "lost":            "Du hast verloren!",
                 "won":             "Du hast gewonnen!",
                 "timeout":         "Zeit abgelaufen, du hast verloren",
-                "remaining_lives": "Leben: "
+                "remaining_lives": "Leben: ",
+                "proceed":         "Weiter"
             },
             "result":   {
                 "headline":    "Zeit für Ergebnisse",

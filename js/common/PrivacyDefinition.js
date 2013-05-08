@@ -100,6 +100,12 @@
          */
         flattenLists: function( friends, lists )
         {
+
+            var player = pc.model.FacebookPlayer.getInstance(),
+                playerHash = {
+                    name: player.get( 'name' ),
+                    id:   player.get( 'id' )
+                };
             //console.debug('[PrivacyDefinition] Flattening lists with ', lists);
 
             //console.debug('[PrivacyDefinition] Before: ', this.get('exclude'), this.get('include'));
@@ -154,6 +160,41 @@
                         this.get( 'includeUser' ).add( friend );
                     }
                 }, this ) );
+
+                // "Friends" list is not in lists, manually validate
+                if ( _.contains( this.get( 'includeTemp' ), pc.common.PrivacyDefinition.FRIENDS_LIST_NAME ) ) {
+                    console.log( '[PrivacyDefinition] Include id contains friends_list, replacing.' );
+                    this.get( 'include' ).add( player.getFriends().models );
+                    this.get( 'includeList' ).add( new pc.model.FacebookList( {
+                        id:      -1,
+                        name:    pc.common.PrivacyDefinition.FRIENDS_LIST_NAME,
+                        members: player.getFriends()
+                    } ) );
+                }
+
+                if ( _.contains( this.get( 'excludeTemp' ), pc.common.PrivacyDefinition.FRIENDS_LIST_NAME ) ) {
+                    console.log( '[PrivacyDefinition] Include id contains friends_list, replacing.' );
+                    this.get( 'exclude' ).add( player.getFriends().models );
+                    this.get( 'excludeList' ).add( new pc.model.FacebookList( {
+                        id:      -1,
+                        name:    pc.common.PrivacyDefinition.FRIENDS_LIST_NAME,
+                        members: player.getFriends()
+                    } ) );
+                }
+
+                // player is not in any list
+                if ( _.contains( this.get( 'includeTemp' ), player.get( 'name' ) ) ) {
+                    console.log( '[PrivacyDefinition] Include id contains player, replacing.' );
+                    this.get( 'include' ).add( playerHash );
+                    this.get( 'includeUser' ).add( playerHash );
+                }
+
+                if ( _.contains( this.get( 'excludeTemp' ), player.get( 'name' ) ) ) {
+                    console.log( '[PrivacyDefinition] Include id contains player, replacing.' );
+                    this.get( 'exclude' ).add( playerHash );
+                    this.get( 'includeUser' ).add( playerHash );
+                }
+
             }
 
             console.debug( '[PrivacyDefinition] Definition for item: ', this.get( 'exclude' ), this.get( 'include' ) );
@@ -270,7 +311,9 @@
         FB_FQL_VALUE_CUSTOM:      "CUSTOM",
         FB_FQL_NAME_SEPERATOR:    ", ",
         FB_FQL_TWOLIST_SEPERATOR: /; Except: /,
-        FB_FQL_EXCEPT_SEPERATOR:  /Except: /
+        FB_FQL_EXCEPT_SEPERATOR:  /Except: /,
+
+        FRIENDS_LIST_NAME: "Friends"
 
     } );
 
