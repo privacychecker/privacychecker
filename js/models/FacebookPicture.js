@@ -55,7 +55,7 @@
         {
             if ( !picture.id || !picture.source ) {
                 console.error( "[FacebookPicture] Missing required data (id, source)", picture.id, picture.source );
-                throw new pc.common.Exception( "[FacebookPicture] Missing required data: id or source" );
+                throw "E_MISSING_REQUIRED_DATA";
             }
 
             this.set( "id", picture.id );

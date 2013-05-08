@@ -51,7 +51,7 @@
         {
             if ( !status.id || !status.caption ) {
                 console.error( "[FacebookStatus] Missing required data (id, caption)", status.id, status.caption );
-                throw new pc.common.Exception( "Status missing required data: id or caption" );
+                throw "E_MISSING_REQUIRED_DATA";
             }
 
             this.set( "id", status.id );

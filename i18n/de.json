@@ -72,7 +72,7 @@
 
         "guess": {
             "name":     "Listen schätzen",
-            "briefing": "Nun wirst Du aufgefordert, zu schätzen, wie viele Freunde Du insgesamt auf Facebook hast und wie viele Mitglieder in Deinen <span data-tooltip-key=\"list\">Listen</span> jeweils eingeordnet sind. Bei den Listen wird zusätzlich zwischen selbst erstellten und <span data-tooltip-key=\"auto_list\">intelligenten</span> Listen unterschieden. Anschließend sollst Du abschätzen, wie viele deiner Freunde ausgewählte, von Dir veröffentlichte <span data-tooltip-key=\"rated_item\">Items</span> sehen können, wodurch Du einen Überblick darüber erhältst, wie öffentlich die Einstellungen Deiner Items sind. Deine Antworten und die korrekten Werte werden Dir am Ende des Spiels präsentiert.",
+            "briefing": "Nun wirst Du aufgefordert, zu schätzen, wie viele Freunde Du insgesamt auf Facebook hast und wie viele Mitglieder in Deinen <span data-tooltip-key=\"list\">Listen</span> jeweils eingeordnet sind. Bei den Listen wird zusätzlich zwischen selbst erstellten und <span data-tooltip-key=\"auto_list\">intelligenten Listen</span> unterschieden. Anschließend sollst Du abschätzen, wie viele deiner Freunde ausgewählte, von Dir veröffentlichte <span data-tooltip-key=\"rated_item\">Items</span> sehen können, wodurch Du einen Überblick darüber erhältst, wie öffentlich die Einstellungen Deiner Items sind. Deine Antworten und die korrekten Werte werden Dir am Ende des Spiels präsentiert.",
             "game":     {
                 "what_do_you_guess": "Was tippst du?",
                 "input_button":      "Eingeben",
@@ -128,7 +128,7 @@
 
         "hangman": {
             "name":     "Freunderaten",
-            "briefing": "Spätestens jetzt ist es vorbei mit Ausruhen! Denn jetzt wird nicht nur getestet, ob Du weißt, wem Du Zugriff auf ein Item gegeben hast, sondern auch, wie schnell Du dies weißt. Dazu werden Dir nacheinander Items gezeigt, die Du auf Facebook veröffentlicht hast. Deine Aufgabe ist es, in einer Menge von zufällig ausgewählten Freunden und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte <span data-tooltip-key=\"rated_item\">Items</span> sehen können. Bist Du bereit? Dann nimm die Herausforderung an und versuche, eine möglichst hohe Punktzahl zu erzielen!",
+            "briefing": "Spätestens jetzt ist es vorbei mit Ausruhen! Denn jetzt wird nicht nur getestet, ob Du weißt, wem Du Zugriff auf ein Item gegeben hast, sondern auch, wie schnell Du dies weißt. Dazu werden Dir nacheinander Items gezeigt, die Du auf Facebook veröffentlicht hast. Deine Aufgabe ist es, in einer Menge von <span data-tooltip-key=\"hangman_users\">zufällig ausgewählten Freunden</span> und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte <span data-tooltip-key=\"rated_item\">Items</span> sehen können. Bist Du bereit? Dann nimm die Herausforderung an und versuche, eine möglichst hohe Punktzahl zu erzielen!",
             "game":     {
                 "headline":        "Wähle die Personen, die das folgende Bild sehen können",
                 "lost":            "Du hast verloren!",
@@ -209,8 +209,8 @@
 
             "contact": {
                 "headline":  "Über uns",
-                "short":     "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen zur App hast, findest Du unter „Mehr Infos“ neben weiteren Informationen zur Privacy Policy und dem Haftungsausschluss auch die nötigen Kontaktinformationen.",
-                "body":      "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen:",
+                "short":     "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen:",
+                "body":      "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen zur App hast, findest Du unter „Mehr Infos“ neben weiteren Informationen zur Privacy Policy und dem Haftungsausschluss auch die nötigen Kontaktinformationen.",
                 "team":      {
                     "team_headline":    "Team",
                     "contact_headline": "Kontakt",
@@ -277,39 +277,39 @@
         },
 
         "tooltip": {
-            "headline":   "Mehr zum Tooltip",
-            "more":       "Mehr erfahren?",
-            "item":       {
+            "headline":       "Mehr zum Tooltip",
+            "more":           "Mehr erfahren?",
+            "item":           {
                 "headline": "Was ist ein Item?",
                 "short":    "Der Begriff Item bezeichnet in dieser Anwendung ein Foto oder einen Status Post, das/den Du irgendwann auf Facebook veröffentlicht hast",
                 "long":     "Der Begriff Item bezeichnet in dieser Anwendung ein Foto oder einen Status Post, das/den Du irgendwann auf Facebook veröffentlicht hast.<br/>Deine Items haben wir gerade eben von Facebook abgefragt, damit wir sie in diesem und in den nachfolgenden Spielen verwenden können. Da nicht nur im Foto selbst Informationen über Dich enthalten sein können, sondern auch in der dazugehörigen Fotobeschreibung, haben wir diese ebenfalls mit abgefragt. Zusätzlich informieren wir Dich auch darüber, wann Du das entsprechende Item veröffentlicht hast. Evtl. weißt Du gar nicht mehr, dass es existiert?"
             },
-            "personal":   {
+            "personal":       {
                 "headline": "Wann ist ein Item persönlich?",
                 "short":    "Item ist nicht gleich Item. Ein persönliches Item zeichnet sich dadurch aus, dass es für den Schutz Deiner Privatsphäre eine besonders wichtige Rolle spielt",
                 "long":     "Item ist nicht gleich Item. Ein persönliches Item zeichnet sich dadurch aus, dass es für den Schutz Deiner Privatsphäre eine besonders wichtige Rolle spielt.<br/><br/>Um Dir zu verdeutlichen, wann ein Item besonders persönlich ist, und Dir damit die Beurteilung Deiner Items zu vereinfachen, haben wir Dir hier ein paar hilfreiche Fragen ausgelistet.<br/><br/>Speziell für Fotos:<ul><li>Sind auf dem Foto Personen (z.B. Deine Freunde) zu sehen? Bist Du selbst auf dem Foto zu sehen?</li><li>Zeigt das Foto einen sehr persönlichen Gegenstand? Gibt es Einblicke in Deine Wohnung?</li><li>SZeigt Dich das Foto in einer unangenehmen oder problematischen Situation (z.B. Alkoholkonsum)?</li><li>SHast Du das Foto mit einer privaten Fotobeschreibung versehen?</li></ul>Speziell für Status Posts:<ul><li>Erwähnst Du Freunde? Was schreibst Du über sie?</li><li>Veröffentlichst Du private Details aus Deinem Leben? Sollten nur sehr wenige Personen (z.B. enge Freunde) davon erfahren?</li><li>Schreibst Du über Deine Meinung zu einem kontroversen Thema?</li></ul>"
             },
-            "ranking":    {
+            "ranking":        {
                 "headline": "Was bedeutet Ranking?",
                 "short":    "Auf Basis Deiner Antworten haben wir eine Tabelle – das Ranking – erstellt. Je höher platziert ein Item ist, desto persönlicher scheint es für Dich zu sein. ",
                 "long":     "Auf Basis Deiner Antworten haben wir eine Tabelle – das Ranking – erstellt. Je höher platziert ein Item ist, desto persönlicher scheint es für Dich zu sein.<br/><br/>Um Deine Entscheidungen im gerade gespielten Spiel messbar zu machen, haben wir jedes Deiner Items mit einem Rating versehen, also einer Art Punktzahl. Nach jedem Vergleich gewinnt das von Dir gewählte Item eine gewisse Menge an Punkten, während das andere Item eine gewisse Menge an Punkten verliert. Die Höhe des jeweiligen Gewinns und Verlusts bestimmen wir nach folgender Überlegung:<ul><li>Je höher das Rating des einen Items war, desto mehr kann das andere Item gewinnen und desto weniger kann es verlieren.</li><li>Je niedriger das Rating des einen Items war, desto weniger kann das andere Item gewinnen und desto mehr kann es verlieren.</li></ul>Anhand des Ratings, das ein Item am Ende des Spiels hat, wird das abschließende Ranking erstellt."
             },
-            "list":       {
+            "list":           {
                 "headline": "Was ist eine Liste?",
                 "short":    "Eine Liste (oder auch Freundesliste) dient Dir zur Einteilung Deiner Facebook-Kontakte in verschiedene Freundeskreise. Nachdem Du sie angelegt hast, kannst Du sie zur Einstellung der Freigabe Deiner Items verwenden.",
                 "long":     "Eine Liste (oder auch Freundesliste) dient Dir zur Einteilung Deiner Facebook-Kontakte in verschiedene Freundeskreise. Nachdem Du sie angelegt hast, kannst Du sie zur Einstellung der Freigabe Deiner Items verwenden.<br/><br/>Wie im realen Leben, unterhältst Du auch auf Facebook unterschiedlich starke Kommunikationsbeziehungen zu Deinen Freunden und willst nicht jedem das Gleiche mitteilen.Außerdem pflegst Du manche Freundschaftsbeziehungen aufgrund gewisser Aktivitäten, Mitgliedschaften oder Zugehörigkeiten. Listen tragen dazu bei, reale Kommunikationsbeziehungen nachzuempfinden, indem sie Dir erlauben, Items gezielt nur für einen bestimmten Freundeskreis, der durch die Liste abgebildet wird, freizugeben. Umgekehrt kannst Du Items dadurch auch gezielt vor Freunden verbergen."
             },
-            "rated_item": {
+            "rated_item":     {
                 "headline": "Persönliches Item",
                 "short":    "Hier siehst Du ein Item, das Du im ersten Spiel als besonders persönlich eingestuft hast.",
                 "long":     "Hier siehst Du ein Item, das Du im ersten Spiel als besonders persönlich eingestuft hast.<br/<br/>Genauer gesagt handelt es sich dabei um eines der fünf am höchsten bewerteten Items. Nach dem ersten Spiel haben wir Dir ein abschließendes Ranking gezeigt, welches danach sortiert war, wie persönlich ein Item für Dich ist. Da besonders persönliche Items eine größere Rolle für den Schutz Deiner Privatsphäre spielen, verwenden wir in diesem Spiel die ersten fünf Items des Rankings."
             },
-            "auto_list": {
+            "auto_list":      {
                 "headline": "Was ist eine intelligente Liste",
                 "short":    "Intelligente Listen sind spezielle Listen, die dadurch charakterisiert sind, dass sie automatisch durch Facebook erstellt und aktualisiert werden.",
                 "long":     "Intelligente Listen sind spezielle Listen, die dadurch charakterisiert sind, dass sie automatisch durch Facebook erstellt und aktualisiert werden.<br/<br/>Realisiert wird das anhand verschiedener Attribute, die Du und Deine Freunde in euren Profilen angebt. Solltet ihr für ein bestimmtes Attribut den gleichen Wert angegeben haben (z.B. den gleichen Wohnort), so wird dies von der entsprechenden intelligenten Liste registriert und der Freund wird darin eingeordnet. Beispiele für solche auf Attributen basierende Listen sind:<ul><li>Wohnort</li><li>Schule</li><li>Universität</li><li>Arbeitgeber</li><li>Familie</li></ul>"
             },
-            "hangman_users": {
+            "hangman_users":  {
                 "headline": "Was sind das für Leute?",
                 "short":    "Von diesen 20 Facebook-Nutzern sollst Du möglichst schnell jene bestimmen, die das nebenstehende Item sehen können.",
                 "long":     "Von diesen 20 Facebook-Nutzern sollst Du möglichst schnell jene bestimmen, die das nebenstehende Item sehen können.<br/>Unter den 20 Personen sind:<ul><li>Freunde, denen Du das Item zugänglich gemacht hast</li><li>Freunde, denen Du das Item nicht zugänglich gemacht hast</li><li>Fremde Facebook-Nutzer</li></ul>Innerhalb der obenstehenden Kategorien werden die angezeigten Personen immer wieder neu ausgewählt. Das heißt, jede neue Runde ist eine neue Herausforderung."

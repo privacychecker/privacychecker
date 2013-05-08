@@ -65,8 +65,6 @@
             try {
                 pc.model.TooltipCollection.getInstance().pin( briefing.getTextContainer() );
                 pc.model.TooltipCollection.getInstance()
-                    .pin( this.$el.find( pc.view.HangmanView.USERLIST_CONTAINER_ID ), "hangman_users" );
-                pc.model.TooltipCollection.getInstance()
                     .pin( this.$el.find( pc.view.HangmanView.LIVESLIST_CONTAINER_ID ), "hangman_hearts" );
                 pc.model.TooltipCollection.getInstance()
                     .pin( this.$el.find( pc.view.HangmanView.POINT_CONTAINER_ID ), "hangman_points" );

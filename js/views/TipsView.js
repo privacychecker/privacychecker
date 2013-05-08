@@ -66,9 +66,9 @@
                     this.$el.slideDown();
                 }, this ) );
 
-                $.smoothScroll( {
-                    scrollTarget: pc.view.TipsView.TIPS_CONTAINER_ID
-                } );
+                // $.smoothScroll( {
+                //    scrollTarget: pc.view.TipsView.TIPS_CONTAINER_ID
+                // } );
 
             }
 

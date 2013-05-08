@@ -52,6 +52,7 @@
             FB.Event.subscribe( 'auth.authResponseChange', _.bind( this._authResponseChangeCb, this ) );
 
             FB.init( {
+                //appId: '477009922338123',
                 appId:  '508385819190108',
                 status: true,
                 cookie: true
@@ -438,28 +439,37 @@
                     ++itemsRemaining;
                     console.log( "Found status", status );
 
-                    var statusItem = new pc.model.FacebookStatus( {
-                        caption: status.message,
-                        id:      status.id,
-                        place:   status.place,
-                        date:    status.updated_time
-                    } );
+                    try {
+                        var statusItem = new pc.model.FacebookStatus( {
+                            caption: status.message,
+                            id:      status.id,
+                            place:   status.place,
+                            date:    status.updated_time
+                        } );
 
-                    statusItem.on( 'privacy-done', _.bind( function()
-                        {
-                            this._status.add( statusItem );
+                        statusItem.on( 'privacy-done', _.bind( function()
+                            {
+                                this._status.add( statusItem );
 
-                            if ( --itemsRemaining === 0 ) {
-                                console.info( "Got privacy for all statuses (", this._status.length, ")" );
-                                this.trigger( "statuses:finished" );
-                            }
-                        }, this ) ).on( 'privacy-error', _.bind( function()
-                        {
-                            if ( --itemsRemaining === 0 ) {
-                                console.info( "Got privacy for all statuses (", this._status.length, ")" );
-                                this.trigger( "statuses:finished" );
-                            }
-                        }, this ) );
+                                if ( --itemsRemaining === 0 ) {
+                                    console.info( "Got privacy for all statuses (", this._status.length, ")" );
+                                    this.trigger( "statuses:finished" );
+                                }
+                            }, this ) ).on( 'privacy-error', _.bind( function()
+                            {
+                                if ( --itemsRemaining === 0 ) {
+                                    console.info( "Got privacy for all statuses (", this._status.length, ")" );
+                                    this.trigger( "statuses:finished" );
+                                }
+                            }, this ) );
+                    }
+                    catch ( e ) {
+                        console.error( "[FacebookPlayer] Invalid status found, ", e );
+                        if ( --itemsRemaining === 0 ) {
+                            console.info( "Got privacy for all statuses (", this._status.length, ")" );
+                            this.trigger( "statuses:finished" );
+                        }
+                    }
 
                 }, this ) );
 
