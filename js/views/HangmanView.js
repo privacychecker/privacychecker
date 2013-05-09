@@ -173,8 +173,8 @@
 
                 var player = pc.model.FacebookPlayer.getInstance(),
                     privacy = item.get( 'privacy' ),
-                    includeComplete = new pc.model.FacebookUserCollection( privacy.get( 'include' ).shuffle() ), // with friends and player!
-                    includeUser = new pc.model.FacebookUserCollection( privacy.get( 'includeUser' ).shuffle() ),
+                    includeComplete = new pc.model.FacebookUserCollection( _.shuffle( privacy.get( 'include' ).models ) ), // with friends and player!
+                    includeUser = new pc.model.FacebookUserCollection( _.shuffle( privacy.get( 'includeUser' ).models ) ),
                     includeList = new pc.model.FacebookUserCollection(
                         _.shuffle( _.flatten( privacy.get( 'includeList' ).map( function( list )
                             {
@@ -183,8 +183,8 @@
                             }
                         ) ) )
                     ),
-                    excludeComplete = new pc.model.FacebookUserCollection( privacy.get( 'exclude' ).shuffle() ), // with friends and player!
-                    excludeUser = new pc.model.FacebookUserCollection( privacy.get( 'excludeUser' ).shuffle() ),
+                    excludeComplete = new pc.model.FacebookUserCollection( _.shuffle( privacy.get( 'exclude' ).models ) ), // with friends and player!
+                    excludeUser = new pc.model.FacebookUserCollection( _.shuffle( privacy.get( 'excludeUser' ).models ) ),
                     excludeList = new pc.model.FacebookUserCollection(
                         _.shuffle( _.flatten( privacy.get( 'excludeList' ).map( function( list )
                             {
@@ -192,6 +192,7 @@
                             }
                         ) ) )
                     ),
+                    foreigners = new pc.model.FacebookUserCollection( _.shuffle( player.getForeigners().models ) ),
                     userlistHash = [],
                     alreadyPicked = [];
 
@@ -203,9 +204,9 @@
 
                 // select pc.view.HangmanView.MAX_USERS * pc.view.HangmanView.MAX_CORRECT_PERCENTAGE correct users or less
 
-                // pick user from includeUser, includeList and then includeComplete
+                // pick user from includeUser except the player
                 userlistHash = this._pickFromList(
-                    includeUser,
+                    includeUser.remove( {id: player.get( 'id' )} ),
                     pc.view.HangmanView.MAX_USERS * pc.view.HangmanView.MAX_CORRECT_PERCENTAGE,
                     alreadyPicked,
                     true
@@ -226,6 +227,15 @@
                     alreadyPicked,
                     true
                 ) );
+
+                // add player if userlisthash is empty
+                if ( userlistHash.length === 0 ) {
+                    userlistHash.push( {
+                        name:    player.get( 'name' ),
+                        id:      player.get( 'id' ),
+                        correct: true
+                    } );
+                }
 
                 // excludeUser
                 userlistHash = _.union( userlistHash, this._pickFromList(
@@ -253,7 +263,7 @@
 
                 // foreigners
                 userlistHash = _.union( userlistHash, this._pickFromList(
-                    player.getForeigners(),
+                    foreigners,
                     pc.view.HangmanView.MAX_USERS - userlistHash.length,
                     alreadyPicked,
                     false
