@@ -176,21 +176,21 @@
                     includeComplete = new pc.model.FacebookUserCollection( privacy.get( 'include' ).shuffle() ), // with friends and player!
                     includeUser = new pc.model.FacebookUserCollection( privacy.get( 'includeUser' ).shuffle() ),
                     includeList = new pc.model.FacebookUserCollection(
-                        _.flatten( privacy.get( 'includeList' ).shuffle().map( function( list )
+                        _.shuffle( _.flatten( privacy.get( 'includeList' ).map( function( list )
                             {
                                 console.log( list );
                                 return list.get( 'members' ).models;
                             }
-                        ) )
+                        ) ) )
                     ),
                     excludeComplete = new pc.model.FacebookUserCollection( privacy.get( 'exclude' ).shuffle() ), // with friends and player!
                     excludeUser = new pc.model.FacebookUserCollection( privacy.get( 'excludeUser' ).shuffle() ),
                     excludeList = new pc.model.FacebookUserCollection(
-                        _.flatten( privacy.get( 'excludeList' ).shuffle().map( function( list )
+                        _.shuffle( _.flatten( privacy.get( 'excludeList' ).map( function( list )
                             {
                                 return list.get( 'members' ).models;
                             }
-                        ) )
+                        ) ) )
                     ),
                     userlistHash = [],
                     alreadyPicked = [];
