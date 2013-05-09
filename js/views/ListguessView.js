@@ -428,7 +428,7 @@
                 var autoOverallPercentage = 0,
                     autoResult = $.t( ns.LANG_AUTO_OVERVIEW_NONE ),
                     autoRating = ns.Result.NONE,
-                    autoDetails = {},
+                    autoDetails = [],
                     autoDifference = 0;
 
                 if ( autoLists.length !== 0 ) {
@@ -473,7 +473,7 @@
                 var userOverallPercentage = 0,
                     userResult = $.t( ns.LANG_USER_OVERVIEW_NONE ),
                     userRating = ns.Result.NONE,
-                    userDetails = {},
+                    userDetails = [],
                     userDifference = 0;
 
                 if ( userLists.length !== 0 ) {
