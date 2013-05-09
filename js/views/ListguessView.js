@@ -53,7 +53,7 @@
                 catch ( e ) {
                     console.error( "[ListGuessView] Unable to attach tooltips:", e, "Skipping rest" );
                 }
-
+                
                 briefing.show();
 
                 // ask first
@@ -97,7 +97,7 @@
                             break;
                     }
 
-                    console.info( "[ListGuessView] Rendering item template with options", options );
+                    console.info("[ListGuessView] Rendering item template with options",options);
 
                     container.append( this.templateGameItems( options ) );
 
@@ -297,7 +297,7 @@
                     _.extend( options, {
                         status: {
                             caption:  item.get( 'caption' ),
-                            date:     pc.common.DateFormatHelper.formatShort( item.get( 'date' ) ),
+                            date:     pc.common.DateFormatHelper.formatShort(item.get( 'date' )),
                             location: item.get( 'location' )
                         }
                     } );
@@ -350,6 +350,7 @@
             {
                 var privacy = item.get( 'privacy' ),
                     level = privacy.get( 'level' ),
+                    friends = pc.model.FacebookPlayer.getInstance().getFriends(),
                     visibleFor;
 
                 switch ( level ) {
@@ -359,17 +360,31 @@
                         break;
 
                     case pc.common.PrivacyDefinition.Level.FOF:
-                        visibleFor =
-                            (privacy.get( 'include' ).length - privacy.get( 'exclude' ).length) *
-                                pc.view.ListGuessView.FOF_MULTIPLIER;
+                        visibleFor = friends.length * pc.view.ListGuessView.FOF_MULTIPLIER;
+
+                        visibleFor -= privacy.get( 'exclude' ).length * pc.view.ListGuessView.FOF_MULTIPLIER;
+                        visibleFor += privacy.get( 'include' ).length * pc.view.ListGuessView.FOF_MULTIPLIER;
 
                         break;
 
                     case pc.common.PrivacyDefinition.Level.FRIENDS:
+                        visibleFor = friends.length + 1; // + me
+
+                        visibleFor -= privacy.get( 'exclude' ).length;
+                        visibleFor += privacy.get( 'include' ).length;
+
+                        break;
+
                     case pc.common.PrivacyDefinition.Level.ME:
                     case pc.common.PrivacyDefinition.Level.CUSTOM:
+                        visibleFor = 1; // me
+                        visibleFor += privacy.get( 'include' ).length;
+
+                        break;
+
                     case pc.common.PrivacyDefinition.Level.NOBODY:
-                        visibleFor = privacy.get( 'include' ).length - privacy.get( 'exclude' ).length;
+                        visibleFor = 0;
+
                         break;
 
                     default:
@@ -383,13 +398,12 @@
             _resultLists: function()
             {
                 var player = pc.model.FacebookPlayer.getInstance(),
-                    resultForsLists = player.get( 'results' ).where( {gameType: pc.model.TestResult.Type.LISTGUESS} ),
-                    ns = pc.view.ListGuessView;
+                    resultForsLists = player.get( 'results' ).where( {gameType: pc.model.TestResult.Type.LISTGUESS} );
 
                 // get user lists
-                var userLists = this._findType( resultForsLists, ns.QuestionType.USER_LIST ),
-                    autoLists = this._findType( resultForsLists, ns.QuestionType.AUTO_LIST ),
-                    friendLists = this._findType( resultForsLists, ns.QuestionType.ALL );
+                var userLists = this._findType( resultForsLists, pc.view.ListGuessView.QuestionType.USER_LIST ),
+                    autoLists = this._findType( resultForsLists, pc.view.ListGuessView.QuestionType.AUTO_LIST ),
+                    friendLists = this._findType( resultForsLists, pc.view.ListGuessView.QuestionType.ALL );
 
                 console.debug( "[ListGuessView] User lists results:", userLists, "Auto lists results", autoLists,
                     "Friend list result", friendLists );
@@ -402,32 +416,20 @@
                     friendResult,
                     friendRating;
 
-                // friend rating
-                if ( _.isBetween( friendsDifference, ns.FRIEND_STEPS.VERYGOOD ) ) {
-                    friendResult = $.t( ns.LANG_FRIENDS_OVERVIEW_VERYGOOD,
-                        {percent: (friendsDifference * 100).toFixed()}
-                    );
-                    friendRating = ns.Result.GOOD;
-                }
-                else if ( _.isBetween( friendsDifference, ns.FRIEND_STEPS.VERYGOOD, ns.FRIEND_STEPS.GOOD ) ) {
-                    friendResult = $.t( ns.LANG_FRIENDS_OVERVIEW_GOOD, {percent: (friendsDifference * 100).toFixed()} );
-                    friendRating = ns.Result.GOOD;
-                }
-                else if ( _.isBetween( friendsDifference, ns.FRIEND_STEPS.GOOD, ns.FRIEND_STEPS.BAD ) ) {
-                    friendResult = $.t( ns.LANG_FRIENDS_OVERVIEW_BAD, {percent: (friendsDifference * 100).toFixed()} );
-                    friendRating = ns.Result.BAD;
-                }
-                else if ( _.isBetween( friendsDifference, ns.FRIEND_STEPS.BAD, 1 ) ) {
-                    friendResult = $.t( ns.LANG_FRIENDS_OVERVIEW_VERYBAD,
-                        {percent: (friendsDifference * 100).toFixed()}
-                    );
-                    friendRating = ns.Result.BAD;
+                friendResult = $.t( pc.view.ListGuessView.LANG_FRIENDS_OVERVIEW_BAD,
+                    { percent: (friendsDifference * 100).toFixed() } );
+                friendRating = pc.view.ListGuessView.Result.BAD;
+
+                if ( friendsDifference < pc.view.ListGuessView.FRIEND_STEPS.GOOD ) {
+                    friendResult = $.t( pc.view.ListGuessView.LANG_FRIENDS_OVERVIEW_GOOD,
+                        { percent: (friendsDifference * 100).toFixed() } );
+                    friendRating = pc.view.ListGuessView.Result.GOOD;
                 }
 
                 // auto
                 var autoOverallPercentage = 0,
-                    autoResult = $.t( ns.LANG_AUTO_OVERVIEW_NONE ),
-                    autoRating = ns.Result.NONE,
+                    autoResult = $.t( pc.view.ListGuessView.LANG_AUTO_OVERVIEW_NONE ),
+                    autoRating = pc.view.ListGuessView.Result.NONE,
                     autoDetails = {},
                     autoDifference = 0;
 
@@ -444,35 +446,27 @@
                             user_value:    list.get( 'userValue' ),
                             correct_value: list.get( 'correctValue' ),
                             difference:    (difference * 100).toFixed(),
-                            rating:        this._makeRating( difference, ns.AUTO_STEPS )
+                            rating:        this._makeRating( difference, pc.view.ListGuessView.AUTO_STEPS )
                         };
                     }, this ) );
 
                     autoDifference = autoOverallPercentage / autoDetails.length;
 
-                    // auto rating
-                    if ( _.isBetween( autoDifference, ns.AUTO_STEPS.VERYGOOD ) ) {
-                        autoResult = $.t( ns.LANG_AUTO_OVERVIEW_VERYGOOD, {percent: (autoDifference * 100).toFixed()} );
-                        autoRating = ns.Result.GOOD;
-                    }
-                    else if ( _.isBetween( autoDifference, ns.AUTO_STEPS.VERYGOOD, ns.AUTO_STEPS.GOOD ) ) {
-                        autoResult = $.t( ns.LANG_AUTO_OVERVIEW_GOOD, {percent: (autoDifference * 100).toFixed()} );
-                        autoRating = ns.Result.GOOD;
-                    }
-                    else if ( _.isBetween( autoDifference, ns.AUTO_STEPS.GOOD, ns.AUTO_STEPS.BAD ) ) {
-                        autoResult = $.t( ns.LANG_AUTO_OVERVIEW_BAD, {percent: (autoDifference * 100).toFixed()} );
-                        autoRating = ns.Result.BAD;
-                    }
-                    else if ( _.isBetween( autoDifference, ns.AUTO_STEPS.BAD, 1 ) ) {
-                        autoResult = $.t( ns.LANG_AUTO_OVERVIEW_VERYBAD, {percent: (autoDifference * 100).toFixed()} );
-                        autoRating = ns.Result.BAD;
+                    autoResult = $.t( pc.view.ListGuessView.LANG_AUTO_OVERVIEW_BAD,
+                        { percent: (autoDifference * 100).toFixed() } );
+                    autoRating = pc.view.ListGuessView.Result.BAD;
+
+                    if ( autoDifference < pc.view.ListGuessView.AUTO_STEPS.GOOD ) {
+                        autoResult = $.t( pc.view.ListGuessView.LANG_AUTO_OVERVIEW_GOOD,
+                            { percent: (autoDifference * 100).toFixed() } );
+                        autoRating = pc.view.ListGuessView.Result.GOOD;
                     }
                 }
 
                 // user
                 var userOverallPercentage = 0,
-                    userResult = $.t( ns.LANG_USER_OVERVIEW_NONE ),
-                    userRating = ns.Result.NONE,
+                    userResult = $.t( pc.view.ListGuessView.LANG_USER_OVERVIEW_NONE ),
+                    userRating = pc.view.ListGuessView.Result.NONE,
                     userDetails = {},
                     userDifference = 0;
 
@@ -490,28 +484,19 @@
                             user_value:    list.get( 'userValue' ),
                             correct_value: list.get( 'correctValue' ),
                             difference:    (difference * 100).toFixed(),
-                            rating:        this._makeRating( difference, ns.USER_STEPS )
+                            rating:        this._makeRating( difference, pc.view.ListGuessView.USER_STEPS )
                         };
                     }, this ) );
 
                     userDifference = userOverallPercentage / userDetails.length;
 
-                    // user rating
-                    if ( _.isBetween( userDifference, ns.USER_STEPS.VERYGOOD ) ) {
-                        userResult = $.t( ns.LANG_USER_OVERVIEW_VERYGOOD, {percent: (userDifference * 100).toFixed()} );
-                        userRating = ns.Result.GOOD;
-                    }
-                    else if ( _.isBetween( userDifference, ns.USER_STEPS.VERYGOOD, ns.USER_STEPS.GOOD ) ) {
-                        userResult = $.t( ns.LANG_USER_OVERVIEW_GOOD, {percent: (userDifference * 100).toFixed()} );
-                        userRating = ns.Result.GOOD;
-                    }
-                    else if ( _.isBetween( userDifference, ns.USER_STEPS.GOOD, ns.USER_STEPS.BAD ) ) {
-                        userResult = $.t( ns.LANG_USER_OVERVIEW_BAD, {percent: (userDifference * 100).toFixed()} );
-                        userRating = ns.Result.BAD;
-                    }
-                    else if ( _.isBetween( userDifference, ns.USER_STEPS.BAD, 1 ) ) {
-                        userResult = $.t( ns.LANG_USER_OVERVIEW_VERYBAD, {percent: (userDifference * 100).toFixed()} );
-                        userRating = ns.Result.BAD;
+                    userResult = $.t( pc.view.ListGuessView.LANG_USER_OVERVIEW_BAD,
+                        { percent: (userDifference * 100).toFixed() } );
+                    userRating = pc.view.ListGuessView.Result.BAD;
+                    if ( userDifference < pc.view.ListGuessView.USER_STEPS.GOOD ) {
+                        userResult = $.t( pc.view.ListGuessView.LANG_USER_OVERVIEW_GOOD,
+                            { percent: (userDifference * 100).toFixed() } );
+                        userRating = pc.view.ListGuessView.Result.GOOD;
                     }
                 }
 
@@ -544,7 +529,6 @@
             _resultItems: function()
             {
                 var player = pc.model.FacebookPlayer.getInstance(),
-                    ns = pc.view.ListGuessView,
                     resultForsItems = player.get( 'results' ).where( {gameType: pc.model.TestResult.Type.ENTITYGUESS} ),
                     results = this._findType( resultForsItems, pc.view.ListGuessView.QuestionType.ITEM ),
                     groupResults = [],
@@ -578,19 +562,14 @@
 
                         // do we need to extend visibleFor or deniedFor?
                         if ( privacy.get( 'includeList' ).length > 0 || privacy.get( 'excludeList' ).length > 0 ) {
-
                             privacy.get( 'includeList' ).each( function( list )
                             {
-                                // skips all_friends_list
-                                if ( list.get( 'id' ) !== -1 ) {
-                                    visibleFor.push( list.get( 'name' ) );
-                                }
+                                visibleFor.push( list.get( 'name' ) );
                             } );
                             privacy.get( 'excludeList' ).each( function( list )
                             {
                                 deniedFor.push( list.get( 'name' ) );
                             } );
-
                         }
 
                         itemHash = this.__createItem( result, {
@@ -602,14 +581,11 @@
                     }
 
                     // find all items with users as privacy setting
-                    if ( (privacy.get( 'includeUser' ).length - 1) > 0 || privacy.get( 'excludeUser' ).length > 0 ) {
+                    if ( privacy.get( 'includeUser' ).length > 0 || privacy.get( 'excludeUser' ).length > 0 ) {
                         itemHash = this.__createItem( result, {
                             visible_for: _.map( privacy.get( 'includeUser' ).models,function( user )
                             {
-                                // skip player
-                                if ( user.get( 'id' ) !== player.get( 'id' ) ) {
-                                    return user.get( 'name' );
-                                }
+                                return user.get( 'name' );
                             } ).join( ', ' ),
                             denied_for:  _.map( privacy.get( 'excludeUser' ).models,function( list )
                             {
@@ -645,48 +621,27 @@
 
                 if ( groupResults.length > 0 ) {
                     groupPercentage = groupOverallDifference / groupResults.length;
+                    groupResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_LIST_OVERVIEW_BAD,
+                        { percent: (groupPercentage * 100).toFixed() }
+                    );
 
-                    // group rating
-                    if ( _.isBetween( groupPercentage, ns.ITEMS_LIST_STEPS.VERYGOOD ) ) {
-                        groupResultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_VERYGOOD,
-                            {percent: (groupPercentage * 100).toFixed()}
-                        );
-                    }
-                    else if ( _.isBetween( groupPercentage, ns.ITEMS_LIST_STEPS.VERYGOOD, ns.ITEMS_LIST_STEPS.GOOD ) ) {
-                        groupResultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_GOOD,
-                            {percent: (groupPercentage * 100).toFixed()} );
-                    }
-                    else if ( _.isBetween( groupPercentage, ns.ITEMS_LIST_STEPS.GOOD, ns.ITEMS_LIST_STEPS.BAD ) ) {
-                        groupResultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_BAD,
-                            {percent: (groupPercentage * 100).toFixed()} );
-                    }
-                    else if ( _.isBetween( groupPercentage, ns.ITEMS_LIST_STEPS.BAD, 1 ) ) {
-                        groupResultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_VERYBAD,
-                            {percent: (groupPercentage * 100).toFixed()}
+                    // good result
+                    if ( groupPercentage < pc.view.ListGuessView.ITEMS_LIST_STEPS.GOOD ) {
+                        groupResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_LIST_OVERVIEW_GOOD,
+                            { percent: (groupPercentage * 100).toFixed() }
                         );
                     }
                 }
 
                 if ( userResults.length > 0 ) {
                     userPercentage = userOverallDifference / userResults.length;
+                    userResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_USER_OVERVIEW_BAD,
+                        { percent: (userPercentage * 100).toFixed() } );
 
-                    // user rating
-                    if ( _.isBetween( userPercentage, ns.ITEMS_USER_STEPS.VERYGOOD ) ) {
-                        userResultText = $.t( ns.LANG_ITEMS_USER_OVERVIEW_VERYGOOD,
-                            {percent: (userPercentage * 100).toFixed()}
-                        );
-                    }
-                    else if ( _.isBetween( userPercentage, ns.ITEMS_USER_STEPS.VERYGOOD, ns.ITEMS_USER_STEPS.GOOD ) ) {
-                        userResultText = $.t( ns.LANG_ITEMS_USER_OVERVIEW_GOOD,
-                            {percent: (userPercentage * 100).toFixed()} );
-                    }
-                    else if ( _.isBetween( userPercentage, ns.ITEMS_USER_STEPS.GOOD, ns.ITEMS_USER_STEPS.BAD ) ) {
-                        userResultText = $.t( ns.LANG_ITEMS_USER_OVERVIEW_BAD,
-                            {percent: (userPercentage * 100).toFixed()} );
-                    }
-                    else if ( _.isBetween( userPercentage, ns.ITEMS_USER_STEPS.BAD, 1 ) ) {
-                        userResultText = $.t( ns.LANG_ITEMS_USER_OVERVIEW_VERYBAD,
-                            {percent: (userPercentage * 100).toFixed()}
+                    // good result
+                    if ( userPercentage < pc.view.ListGuessView.ITEMS_USER_STEPS.GOOD ) {
+                        userResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_USER_OVERVIEW_GOOD,
+                            { percent: (userPercentage * 100).toFixed() }
                         );
                     }
                 }
@@ -699,17 +654,17 @@
 
                 // calculate overalls
                 return {
-                    "lists":  {
-                        "result_text": groupResultText,
-                        "details":     groupResults
+                    lists:  {
+                        result_text: groupResultText,
+                        details:     groupResults
                     },
-                    "users":  {
-                        "result_text": userResultText,
-                        "details":     userResults
+                    users:  {
+                        result_text: userResultText,
+                        details:     userResults
                     },
-                    "public": {
-                        "result_text": publicResultText,
-                        "details":     publicResults
+                    public: {
+                        result_text: publicResultText,
+                        details:     publicResults
                     }
                 };
 
@@ -830,34 +785,24 @@
             LANG_QUESTION_LIST:    "app.guess.game.lists.question_list",
             LANG_QUESTION_ITEMS:   "app.guess.game.items.question",
 
-            LANG_FRIENDS_OVERVIEW_VERYBAD:  "app.guess.result.lists.friends_verybad",
-            LANG_FRIENDS_OVERVIEW_BAD:      "app.guess.result.lists.friends_bad",
-            LANG_FRIENDS_OVERVIEW_GOOD:     "app.guess.result.lists.friends_good",
-            LANG_FRIENDS_OVERVIEW_VERYGOOD: "app.guess.result.lists.friends_verygood",
+            LANG_FRIENDS_OVERVIEW_BAD:  "app.guess.result.lists.friends_bad",
+            LANG_FRIENDS_OVERVIEW_GOOD: "app.guess.result.lists.friends_good",
 
-            LANG_AUTO_OVERVIEW_VERYBAD:  "app.guess.result.lists.auto_verybad",
-            LANG_AUTO_OVERVIEW_BAD:      "app.guess.result.lists.auto_bad",
-            LANG_AUTO_OVERVIEW_GOOD:     "app.guess.result.lists.auto_good",
-            LANG_AUTO_OVERVIEW_VERYGOOD: "app.guess.result.lists.auto_verygood",
-            LANG_AUTO_OVERVIEW_NONE:     "app.guess.result.lists.auto_none",
+            LANG_AUTO_OVERVIEW_BAD:  "app.guess.result.lists.auto_bad",
+            LANG_AUTO_OVERVIEW_GOOD: "app.guess.result.lists.auto_good",
+            LANG_AUTO_OVERVIEW_NONE: "app.guess.result.lists.auto_none",
 
-            LANG_USER_OVERVIEW_VERYBAD:  "app.guess.result.lists.user_verybad",
-            LANG_USER_OVERVIEW_BAD:      "app.guess.result.lists.user_bad",
-            LANG_USER_OVERVIEW_GOOD:     "app.guess.result.lists.user_good",
-            LANG_USER_OVERVIEW_VERYGOOD: "app.guess.result.lists.user_verygood",
-            LANG_USER_OVERVIEW_NONE:     "app.guess.result.lists.user_none",
+            LANG_USER_OVERVIEW_BAD:  "app.guess.result.lists.user_bad",
+            LANG_USER_OVERVIEW_GOOD: "app.guess.result.lists.user_good",
+            LANG_USER_OVERVIEW_NONE: "app.guess.result.lists.user_none",
 
-            LANG_ITEMS_LIST_OVERVIEW_VERYBAD:  "app.guess.result.items.list_verybad",
-            LANG_ITEMS_LIST_OVERVIEW_BAD:      "app.guess.result.items.list_bad",
-            LANG_ITEMS_LIST_OVERVIEW_GOOD:     "app.guess.result.items.list_good",
-            LANG_ITEMS_LIST_OVERVIEW_VERYGOOD: "app.guess.result.items.list_verygood",
-            LANG_ITEMS_LIST_OVERVIEW_NONE:     "app.guess.result.items.list_none",
+            LANG_ITEMS_LIST_OVERVIEW_BAD:  "app.guess.result.items.list_bad",
+            LANG_ITEMS_LIST_OVERVIEW_GOOD: "app.guess.result.items.list_good",
+            LANG_ITEMS_LIST_OVERVIEW_NONE: "app.guess.result.items.list_none",
 
-            LANG_ITEMS_USER_OVERVIEW_VERYBAD:  "app.guess.result.items.user_verybad",
-            LANG_ITEMS_USER_OVERVIEW_BAD:      "app.guess.result.items.user_bad",
-            LANG_ITEMS_USER_OVERVIEW_GOOD:     "app.guess.result.items.user_good",
-            LANG_ITEMS_USER_OVERVIEW_VERYGOOD: "app.guess.result.items.user_verygood",
-            LANG_ITEMS_USER_OVERVIEW_NONE:     "app.guess.result.items.user_none",
+            LANG_ITEMS_USER_OVERVIEW_BAD:  "app.guess.result.items.user_bad",
+            LANG_ITEMS_USER_OVERVIEW_GOOD: "app.guess.result.items.user_good",
+            LANG_ITEMS_USER_OVERVIEW_NONE: "app.guess.result.items.user_none",
 
             LANG_ITEMS_PUBLIC_OVERVIEW_YES: "app.guess.result.items.public_yes",
             LANG_ITEMS_PUBLIC_OVERVIEW_NO:  "app.guess.result.items.public_no",
