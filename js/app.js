@@ -35,6 +35,31 @@
         },
 
         /**
+         * Extend underscore to support isBetween
+         *
+         *
+         */
+        underscore: function()
+        {
+
+            _.isBetween = function( x, a, b )
+            {
+
+                b = _.isUndefined( b ) ? 0 : b;
+
+                if ( a > b ) {
+                    var t = a;
+                    a = b;
+                    b = t;
+                }
+
+                return (x >= a && x <= b);
+
+            };
+
+        },
+
+        /**
          * Start the backbone router and listen for changes
          *
          * @method
@@ -72,6 +97,7 @@
     $( 'document' ).ready( function()
     {
         app.handlebars();
+        app.underscore();
         app.start();
     } );
 
