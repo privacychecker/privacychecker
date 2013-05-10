@@ -51,12 +51,12 @@
             "description":         "In diesem Schritt werden die Daten von deinem Facebook-Profil, die für die Spiele benötigt werden, lokal auf deinem Rechner gespeichert.",
             "next_button_loading": "Daten werden geladen...",
             "generic_error":       "Beim Abrufen der Daten ist leider ein Fehler aufgetreten. Bitte starte das Spiel neu.",
-            "friendlist_error":    "Deine Freundeslisten konnten nicht geladen werden. Hast du eventuell die Berechtigung nicht erteilt?"
+            "friendlist_error":    "Deine Freundeslisten konnten nicht geladen werden. Hast du eventuell die Berechtigung dafür nicht erteilt?"
         },
 
         "select": {
             "name":               "Itembattle",
-            "headline":           "Welches Item ist für dich persönlicher?",
+            "headline":           "Welches <span data-tooltip-key=\"item\">Item</span> ist für dich <span data-tooltip-key=\"personal\">persönlicher</span>?",
             "insufficient_data":  "Dein Profil erfüllt leider nicht die Mindestanforderungen an das Spiel.",
             "game_usage":         "Spielumfang wählen",
             "what_to_use":        "Du kannst die Spiele mit deinen Fotos, deinen Statusmeldungen oder beidem zusammen spielen.",
@@ -92,12 +92,12 @@
                 "difference": "Abweichung",
                 "rating":     "Bewertung",
                 "lists":      {
-                    "description":      "Hier siehst du die Auswertung zu den Fragen nach deinen Freunden und deinen Listen. Bei den Listen haben wir nach deinen selbst erstellten und Facebooks intelligenten Listen unterschieden. Falls Du deine genauen Ergebnisse für eine bestimmte Kategorie sehen möchtest, klicke auf den Button unter dem Auswertungstext",
+                    "description":      "Hier siehst du die Auswertung zu den Fragen nach deinen Freunden und deinen Listen. Bei den Listen haben wir nach deinen selbst erstellten und Facebooks intelligenten Listen unterschieden. Falls du deine genauen Ergebnisse für eine bestimmte Kategorie sehen möchtest, klicke auf den Button unter dem Auswertungstext.",
                     "friends_headline": "Gesamtanzahl an Freunden",
-                    "friends_verygood": "Du hast einen sehr guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug nur __percent__%",
-                    "friends_good":     "Du hast einen guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug nur __percent__%",
-                    "friends_bad":      "Du hast keinen guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug __percent__%",
-                    "friends_verybad":  "Du hast einen sehr schlechten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug __percent__%",
+                    "friends_verygood": "Du hast einen sehr guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug nur __percent__%.",
+                    "friends_good":     "Du hast einen guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug nur __percent__%.",
+                    "friends_bad":      "Du hast keinen guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug __percent__%.",
+                    "friends_verybad":  "Du hast einen sehr schlechten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug __percent__%.",
                     "auto_headline":    "Intelligente Listen",
                     "auto_verygood":    "Du scheinst deine intelligenten Listen sehr gut zu kennen. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt nur __percent__%.",
                     "auto_good":        "Du scheinst deine intelligenten Listen gut zu kennen. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt nur __percent__%.",
@@ -136,10 +136,10 @@
         },
 
         "hangman": {
-            "name":     "Freunderaten",
-            "briefing": "Spätestens jetzt ist es vorbei mit Ausruhen! Denn jetzt wird nicht nur getestet, ob du weißt, wem Du Zugriff auf ein Item gegeben hast, sondern auch, wie schnell du dies weißt. Dazu werden dir nacheinander Items gezeigt, die du auf Facebook veröffentlicht hast. Deine Aufgabe ist es, in einer Menge von <span data-tooltip-key=\"hangman_users\">zufällig ausgewählten</span> Freunden und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte <span data-tooltip-key=\"rated_item\">Items</span> sehen können. Bist du bereit? Dann nimm die Herausforderung an und versuche, eine möglichst hohe Punktzahl zu erzielen!",
+            "name":     "Find Your Friends",
+            "briefing": "Spätestens jetzt ist es vorbei mit Ausruhen! Denn jetzt wird nicht nur getestet, ob du weißt, wem du Zugriff auf ein Item gegeben hast, sondern auch, wie schnell du dies weißt. Dazu werden dir nacheinander Items gezeigt, die du auf Facebook veröffentlicht hast. Deine Aufgabe ist es, in einer Menge von <span data-tooltip-key=\"hangman_users\">zufällig ausgewählten</span> Freunden und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte <span data-tooltip-key=\"rated_item\">Items</span> sehen können. Bist du bereit? Dann nimm die Herausforderung an und versuche, eine möglichst hohe Punktzahl zu erzielen!",
             "game":     {
-                "headline":        "Wähle die Personen, die das folgende Bild sehen können",
+                "headline":        "Wähle die Personen, die das folgende Item sehen können",
                 "lost":            "Du hast verloren!",
                 "won":             "Du hast gewonnen!",
                 "timeout":         "Zeit abgelaufen! Du hast verloren!",
@@ -149,7 +149,7 @@
             "result":   {
                 "headline":    "Freunderaten - Ergebnisse",
                 "overall":     "Gesamtergebnis",
-                "description": "Hier siehst du deine Ergebnisse aus Freunderaten im Überblick. Für jedes Item zeigen wir dir die benötigte Zeit, die Anzahl der Fehlversuche und die darausresultierende Punktzahl.",
+                "description": "Hier siehst du deine Ergebnisse aus Find Your Friends im Überblick. Für jedes Item zeigen wir dir die benötigte Zeit, die Anzahl der Fehlversuche und die darausresultierende Punktzahl.",
                 "duration":    "Benötigte Zeit",
                 "errors":      "Anzahl Fehler"
             }
@@ -176,7 +176,7 @@
                 "auto_good": "Du scheinst deine intelligenten Listen gut zu kennen.",
                 "auto_bad":  "Du scheinst deine intelligenten Listen nicht gut zu kennen.",
                 "auto_verybad":  "Du scheinst deine intelligenten Listen sehr schlecht zu kennen.",
-                "auto_none": "Du besitzt keine intelligenten Listen. Offensichtlich hast du keines der relevanten Attribute in Deinem Profil angegeben."
+                "auto_none": "Du besitzt keine intelligenten Listen. Offensichtlich hast du keines der relevanten Attribute in deinem Profil angegeben."
             },
             "items":       {
                 "headline": "Freigabe-Einstellungen",
@@ -191,11 +191,11 @@
                 "public_no":  "Dein Profil weist keine öffentlichen Items auf."
             },
             "hangman":     {
-                "headline": "Freunderaten",
-                "verygood": "In Freunderaten hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass Du Deine Freunde sehr gut kennst.",
-                "good":     "In Freunderaten hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass Du Deine Freunde gut kennst.",
-                "bad":      "In Freunderaten hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass Du Deine Freunde nicht gut kennst."
-                "verybad":  "In Freunderaten hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass Du Deine Freunde sehr schlecht kennst."
+                "headline": "Find Your Friends",
+                "verygood": "In Freunderaten hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass du deine Freunde sehr gut kennst.",
+                "good":     "In Freunderaten hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass du deine Freunde gut kennst.",
+                "bad":      "In Freunderaten hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass du deine Freunde nicht gut kennst.",
+                "verybad":  "In Freunderaten hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass du deine Freunde sehr schlecht kennst."
             }
         },
 
@@ -206,7 +206,7 @@
                 "body":       "Diese App wurde mit dem Ziel entworfen, deine Daten möglichst gut zu schützen. Aus diesem Grund wird die App nur in deinem Browser ausgeführt und es werden keine persönlichen Daten an einen Server (auch nicht an unseren eigenen) gesendet. Um das Vertrauen in die App noch weiter zu erhöhen, haben wir den Quellcode der App veröffentlicht.",
                 "client":     {
                     "headline": "Technologie",
-                    "body":     "Im Gegensatz zu vielen anderen Apps, verwendet diese App ausschließlich clientseitige Technologien, wie beispielsweise JavaScript, CSS und HTML. Nachdem Du die App mit deinem Browser aufgerufen hast, werden alle deine persönlichen Daten nur noch innerhalb deines Browsers verarbeitet. Auf diese Weise sind deine Daten bestmöglich geschützt und du musst Dir keine Sorgen über eine unsichere Verwendung deiner Daten machen."
+                    "body":     "Im Gegensatz zu vielen anderen Apps, verwendet diese App ausschließlich clientseitige Technologien, wie beispielsweise JavaScript, CSS und HTML. Nachdem du die App mit deinem Browser aufgerufen hast, werden alle deine persönlichen Daten nur noch innerhalb deines Browsers verarbeitet. Auf diese Weise sind deine Daten bestmöglich geschützt und du musst dir keine Sorgen über eine unsichere Verwendung deiner Daten machen."
                 },
                 "opensource": {
                     "headline": "Open Source",
@@ -227,8 +227,8 @@
 
             "contact": {
                 "headline":  "Über uns",
-                "short":     "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen hast, findest Du hier die nötigen Kontaktinformationen:",
-                "body":      "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls Du Fragen oder Anregungen zur App hast, findest Du unter „Mehr Infos“ neben weiteren Informationen zur Privacy Policy und dem Haftungsausschluss auch die nötigen Kontaktinformationen.",
+                "short":     "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen hast, findest du hier die nötigen Kontaktinformationen:",
+                "body":      "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen zur App hast, findest du unter „Mehr Infos“ neben weiteren Informationen zur Privacy Policy und dem Haftungsausschluss auch die nötigen Kontaktinformationen.",
                 "team":      {
                     "team_headline":    "Team",
                     "contact_headline": "Kontakt",
@@ -314,8 +314,8 @@
             },
             "list":           {
                 "headline": "Was ist eine Liste?",
-                "short":    "Eine Liste (oder auch Freundesliste) dient dir zur Einteilung Deiner Facebook-Kontakte in verschiedene Freundeskreise. Nachdem du sie angelegt hast, kannst du sie zur Einstellung der Freigabe deiner Items verwenden.",
-                "long":     "Eine Liste (oder auch Freundesliste) dient dir zur Einteilung Deiner Facebook-Kontakte in verschiedene Freundeskreise. Nachdem du sie angelegt hast, kannst du sie zur Einstellung der Freigabe deiner Items verwenden.<br/><br/>Wie im realen Leben, unterhältst du auch auf Facebook unterschiedlich starke Kommunikationsbeziehungen zu deinen Freunden und willst nicht jedem das Gleiche mitteilen. Außerdem pflegst du manche Freundschaftsbeziehungen aufgrund gewisser Aktivitäten, Mitgliedschaften oder Zugehörigkeiten. Listen tragen dazu bei, reale Kommunikationsbeziehungen nachzuempfinden, indem sie dir erlauben, Items gezielt nur für einen bestimmten Freundeskreis, der durch die Liste abgebildet wird, freizugeben. Umgekehrt kannst du Items dadurch auch gezielt vor Freunden verbergen."
+                "short":    "Eine Liste (oder auch Freundesliste) dient dir zur Einteilung deiner Facebook-Kontakte in verschiedene Freundeskreise. Nachdem du sie angelegt hast, kannst du sie zur Einstellung der Freigabe deiner Items verwenden.",
+                "long":     "Eine Liste (oder auch Freundesliste) dient dir zur Einteilung deiner Facebook-Kontakte in verschiedene Freundeskreise. Nachdem du sie angelegt hast, kannst du sie zur Einstellung der Freigabe deiner Items verwenden.<br/><br/>Wie im realen Leben, unterhältst du auch auf Facebook unterschiedlich starke Kommunikationsbeziehungen zu deinen Freunden und willst nicht jedem das Gleiche mitteilen. Außerdem pflegst du manche Freundschaftsbeziehungen aufgrund gewisser Aktivitäten, Mitgliedschaften oder Zugehörigkeiten. Listen tragen dazu bei, reale Kommunikationsbeziehungen nachzuempfinden, indem sie dir erlauben, Items gezielt nur für einen bestimmten Freundeskreis, der durch die Liste abgebildet wird, freizugeben. Umgekehrt kannst du Items dadurch auch gezielt vor Freunden verbergen."
             },
             "rated_item":     {
                 "headline": "Welche Items werden hier verwendet?",
