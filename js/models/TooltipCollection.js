@@ -66,6 +66,7 @@
                 var closeCb = function()
                 {
                     $( document.body ).unbind( 'click', closeCb );
+                    $el.next( '.popover' ).first().unbind( 'mouseleave', closeCb );
 
                     $el.data( '__popover', false );
                     $el.popover( 'hide' );
@@ -74,6 +75,7 @@
                 $( document.body ).bind( 'click', closeCb );
                 $el.data( '__popover', true );
                 $el.popover( 'show' );
+                $el.next( '.popover' ).first().bind( 'mouseleave', closeCb );
             }, this ) );
 
         },
