@@ -5,32 +5,32 @@
             "start":            "Start",
             "change_language":  "Sprache wechseln",
             "flag_id":          "assets/de.png",
-            "language_confirm": "Will du die Sprache wirklich wechseln? Das Spiel wird hierbei abgebrochen!",
+            "language_confirm": "Willst du die Sprache wirklich wechseln? Das Spiel wird hierbei abgebrochen!",
             "hi":               "Eingeloggt als: __name__",
             "hi_not_loggedin":  "",
             "logout":           "Bei Facebook abmelden"
         },
 
         "loading": {
-            "loading":     "Lade Daten..",
-            "please_wait": "Bitte warten.."
+            "loading":     "Lade Daten...",
+            "please_wait": "Bitte warten..."
         },
 
         "common": {
             "points":       "Punkte",
             "seconds":      "Sekunden",
             "hint":         "Hinweis",
-            "only_numbers": "Bitte gebe eine positive Zahl ein",
+            "only_numbers": "Bitte gib eine positive Zahl ein.",
             "more_info":    "Mehr Infos",
             "friends":      "Freunde",
             "all_friends":  "Alle Freunde",
             "fof":          "Freunde von Freunden",
             "public":       "Öffentlich",
             "ratings":      {
-                "verygood": "Sehr gut!",
-                "good":     "Okaaay",
-                "bad":      "Naja, das geht besser",
-                "verybad":  "Das war wohl nichts!"
+                "verygood": "Sehr gut",
+                "good":     "Gut",
+                "bad":      "Verbesserungswürdig",
+                "verybad":  "Stark verbesserungswürdig"
             }
         },
 
@@ -41,17 +41,16 @@
         "home": {
             "name":        "Hallo",
             "headline":    "Kennst du alle deine Freunde?",
-            "description": "Finde spielend heraus, wer deine Fotos sehen kann und ob du auch weißt, wer diese Leute sind.",
+            "description": "Finde spielend heraus, wer deine Items sehen kann und ob du auch weißt, wer diese Leute sind.",
             "play_button": "Spielen"
         },
 
         "collect": {
             "name":                "Sammeln",
             "headline":            "Wir brauchen noch ein paar Daten von dir!",
-            "description":         "In diesem Schritt werden die Daten von deinem Facebookprofil für den Test lokal auf deinem Rechner gespeichert.",
-            "next_button":         "Okay, legt los &raquo;",
-            "next_button_loading": "Daten werden geladen, das kann ein wenig dauern..",
-            "generic_error":       "Beim Abrufen der Daten ist leider ein Fehler aufgetreten. Bitte starte das Spiel neu!",
+            "description":         "In diesem Schritt werden die Daten von deinem Facebook-Profil, die für die Spiele benötigt werden, lokal auf deinem Rechner gespeichert.",
+            "next_button_loading": "Daten werden geladen...",
+            "generic_error":       "Beim Abrufen der Daten ist leider ein Fehler aufgetreten. Bitte starte das Spiel neu.",
             "friendlist_error":    "Deine Freundeslisten konnten nicht geladen werden. Hast du eventuell die Berechtigung nicht erteilt?"
         },
 
@@ -60,72 +59,72 @@
             "headline":           "Welches Item ist für dich persönlicher?",
             "insufficient_data":  "Dein Profil erfüllt leider nicht die Mindestanforderungen an das Spiel.",
             "game_usage":         "Spielumfang wählen",
-            "what_to_use":        "Du kannst den Test mit deinen Fotos, deinen Statusmeldungen oder beidem zusammen spielen.",
-            "play_with_images":   "Nur Bilder benutzen",
-            "play_with_statuses": "Nur Statusmeldungen benutzen",
-            "play_with_both":     "Beides benutzen",
-            "briefing":           "Es treten verschiedene Deiner auf Facebook veröffentlichten <span data-tooltip-key=\"item\">Items</span> paarweise gegeneinander an und sollen von Dir danach beurteilt werden, wie <span data-tooltip-key=\"personal\">persönlich</span> sie für Dich sind. Dadurch wird festgestellt, welche Items Dir besonders wichtig sind und deshalb besondere Beachtung beim Schutz Deiner Privatsphäre finden müssen. Am Ende des Spiels werden Dir Deine Einschätzungen mit Hilfe eines <span data-tooltip-key=\"ranking\">Rankings</span> angezeigt.",
+            "what_to_use":        "Du kannst die Spiele mit deinen Fotos, deinen Statusmeldungen oder beidem zusammen spielen.",
+            "play_with_images":   "Nur Bilder",
+            "play_with_statuses": "Nur Statusmeldungen",
+            "play_with_both":     "Beides",
+            "briefing":           "Es treten verschiedene deiner auf Facebook veröffentlichten <span data-tooltip-key=\"item\">Items</span> paarweise gegeneinander an und sollen von dir danach beurteilt werden, wie <span data-tooltip-key=\"personal\">persönlich</span> sie für dich sind. Dadurch wird festgestellt, welche Items dir besonders wichtig sind und deshalb besondere Beachtung beim Schutz deiner Privatsphäre finden müssen. Am Ende des Spiels werden dir deine Einschätzungen mit Hilfe eines <span data-tooltip-key=\"ranking\">Rankings</span> angezeigt.",
             "result":             {
-                "final_ranking": "Abschließendes Ranking"
+                "final_ranking": "Itembattle - <span data-tooltip-key=\"ranking\">Ranking</span>"
             }
         },
 
         "guess": {
-            "name":     "Listen schätzen",
-            "briefing": "Nun wirst Du aufgefordert, zu schätzen, wie viele Freunde Du insgesamt auf Facebook hast und wie viele Mitglieder in Deinen <span data-tooltip-key=\"list\">Listen</span> jeweils eingeordnet sind. Bei den Listen wird zusätzlich zwischen selbst erstellten und <span data-tooltip-key=\"auto_list\">intelligenten Listen</span> unterschieden. Anschließend sollst Du abschätzen, wie viele deiner Freunde ausgewählte, von Dir veröffentlichte <span data-tooltip-key=\"rated_item\">Items</span> sehen können, wodurch Du einen Überblick darüber erhältst, wie öffentlich die Einstellungen Deiner Items sind. Deine Antworten und die korrekten Werte werden Dir am Ende des Spiels präsentiert.",
+            "name":     "Schätzen",
+            "briefing": "Nun wirst du aufgefordert, zu schätzen, wie viele Freunde du insgesamt auf Facebook hast und wie viele Mitglieder in deinen <span data-tooltip-key=\"list\">Listen</span> jeweils eingeordnet sind. Bei den Listen wird zusätzlich zwischen selbst erstellten und <span data-tooltip-key=\"auto_list\">intelligenten Listen</span> unterschieden.<br/>Anschließend sollst du abschätzen, wie viele deiner Freunde ausgewählte, von dir veröffentlichte <span data-tooltip-key=\"rated_item\">Items</span> sehen können, wodurch du einen Überblick darüber erhältst, wie öffentlich die Einstellungen deiner Items sind. Deine Antworten und die korrekten Werte werden dir am Ende des Spiels präsentiert.",
             "game":     {
                 "what_do_you_guess": "Was tippst du?",
                 "input_button":      "Eingeben",
                 "lists":             {
-                    "name":             "List raten",
+                    "name":             "Listen schätzen",
                     "question_friends": "Wie viele Freunde hast du insgesamt?",
                     "question_list":    "Wie viele Mitglieder hat die Liste __listname__?"
                 },
                 "items":             {
-                    "name":     "Items raten",
-                    "question": "Was schätzt du wie viele Leute das sehen können?"
+                    "name":     "Items schätzen",
+                    "question": "Wie viele Leute können das sehen?"
                 }
             },
             "result":   {
-                "headline":   "Zeit für Ergebnisse",
+                "headline":   "Schätzen - Ergebnisse",
                 "answer":     "Antwort",
                 "correct":    "Korrekter Wert",
                 "difference": "Abweichung",
                 "rating":     "Bewertung",
                 "lists":      {
-                    "description":      "Hier siehst Du die Auswertung zu den Fragen nach Deinen Freunden und Deinen Listen. Bei den Listen haben wir nach Deinen selbst erstellten und Facebooks intelligenten Listen unterschieden. Falls Du Deine genauen Ergebnisse für eine bestimmte Kategorie sehenmöchtest, klicke auf den Pfeil unter dem Auswertungstext",
+                    "description":      "Hier siehst du die Auswertung zu den Fragen nach deinen Freunden und deinen Listen. Bei den Listen haben wir nach deinen selbst erstellten und Facebooks intelligenten Listen unterschieden. Falls Du deine genauen Ergebnisse für eine bestimmte Kategorie sehen möchtest, klicke auf den Button unter dem Auswertungstext",
                     "friends_headline": "Gesamtanzahl an Freunden",
-                    "friends_verygood": "Du hast einen sehr guten Überblick über die Anzahl Deiner Freunde. Die Abweichung Deiner Antwort vom korrekten Wert betrug nur __percent__%",
-                    "friends_good":     "Du hast einen guten Überblick über die Anzahl Deiner Freunde. Die Abweichung Deiner Antwort vom korrekten Wert betrug nur __percent__%",
-                    "friends_bad":      "Du hast einen schlechten Überblick über die Anzahl Deiner Freunde. Die Abweichung Deiner Antwort vom korrekten Wert betrug nur __percent__%",
-                    "friends_verybad":  "Du hast einen sehr schlechten Überblick über die Anzahl Deiner Freunde. Die Abweichung Deiner Antwort vom korrekten Wert betrug nur __percent__%",
+                    "friends_verygood": "Du hast einen sehr guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug nur __percent__%",
+                    "friends_good":     "Du hast einen guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug nur __percent__%",
+                    "friends_bad":      "Du hast keinen guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug __percent__%",
+                    "friends_verybad":  "Du hast einen sehr schlechten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug __percent__%",
                     "auto_headline":    "Intelligente Listen",
-                    "auto_verygood":    "Du scheinst Deine intelligenten Listen sehr gut zu kennen. Die Abweichung Deiner Antwort vom korrekten Wert betrug im Schnitt nur __percent__%.",
-                    "auto_good":        "Du scheinst Deine intelligenten Listen gut zu kennen. Die Abweichung Deiner Antwort vom korrekten Wert betrug im Schnitt nur __percent__%.",
-                    "auto_bad":         "Du scheinst Deine intelligenten Listen schlecht zu kennen. Die Abweichung Deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%.",
-                    "auto_verybad":     "Du scheinst Deine intelligenten Listen sehr schlecht zu kennen. Die Abweichung Deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%.",
-                    "auto_none":        "Du besitzt keine intelligenten Listen. Offensichtlich hast Du keines der relevanten Attribute in Deinem Profil angegeben.",
-                    "user_headline":    "Selbst erstelle Liste",
-                    "user_verygood":    "Du hast selbst bereits eine oder mehrere Listen angelegt, sehr schön! Diese scheinst Du auch sehr gut zu kennen, da die Abweichung Deiner Antwort vom korrekten Wert im Schnitt nur __percent__% betrug.",
-                    "user_good":        "Du hast selbst bereits eine oder mehrere Listen angelegt, sehr schön! Diese scheinst Du auch gut zu kennen, da die Abweichung Deiner Antwort vom korrekten Wert im Schnitt nur __percent__% betrug.",
-                    "user_bad":         "Du hast selbst bereits eine oder mehrere Listen angelegt, sehr schön! Diese scheinst Du allerdings schlecht zu kennen, da die Abweichung Deiner Antwort vom korrekten WertimSchnitt __percent__% betrug.",
-                    "user_verybad":     "Du hast selbst bereits eine oder mehrere Listen angelegt, sehr schön! Diese scheinst Du allerdings sehr schlecht zu kennen, da die Abweichung Deiner Antwort vom korrekten WertimSchnitt __percent__% betrug.",
-                    "user_none":        "Du hastselbst noch keine Liste angelegt."
+                    "auto_verygood":    "Du scheinst deine intelligenten Listen sehr gut zu kennen. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt nur __percent__%.",
+                    "auto_good":        "Du scheinst deine intelligenten Listen gut zu kennen. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt nur __percent__%.",
+                    "auto_bad":         "Du scheinst deine intelligenten Listen nicht gut zu kennen. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%.",
+                    "auto_verybad":     "Du scheinst deine intelligenten Listen sehr schlecht zu kennen. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%.",
+                    "auto_none":        "Du besitzt keine intelligenten Listen. Offensichtlich hast du keines der relevanten Attribute in deinem Profil angegeben.",
+                    "user_headline":    "Selbst erstelle Listen",
+                    "user_verygood":    "Du hast selbst bereits eine oder mehrere Listen angelegt, sehr schön! Diese scheinst du auch sehr gut zu kennen, da die Abweichung deiner Antwort vom korrekten Wert im Schnitt nur __percent__% betrug.",
+                    "user_good":        "Du hast selbst bereits eine oder mehrere Listen angelegt, sehr schön! Diese scheinst du auch gut zu kennen, da die Abweichung deiner Antwort vom korrekten Wert im Schnitt nur __percent__% betrug.",
+                    "user_bad":         "Du hast selbst bereits eine oder mehrere Listen angelegt, sehr schön! Diese scheinst du allerdings nicht gut zu kennen, da die Abweichung deiner Antwort vom korrekten Wert im Schnitt __percent__% betrug.",
+                    "user_verybad":     "Du hast selbst bereits eine oder mehrere Listen angelegt, sehr schön! Diese scheinst du allerdings sehr schlecht zu kennen, da die Abweichung deiner Antwort vom korrekten Wert im Schnitt __percent__% betrug.",
+                    "user_none":        "Du hast selbst noch keine Liste angelegt."
                 },
                 "items":      {
-                    "description":     "Hier haben wir analysiert, ob Du für die Freigabe DeinerItems Listen verwendet oder einzelne Freunde angegeben hast, oder ob Du Items öffentlich geteilt hast. Zusätzlich stellen wirDir alle Deine Antworten mit den korrekten Werten zur Verfügung.",
+                    "description":     "Hier haben wir analysiert, ob du für die Freigabe deiner Items Listen verwendet oder einzelne Freunde angegeben hast, oder ob du Items öffentlich geteilt hast. Zusätzlich stellen wir dir alle deine Antworten mit den korrekten Werten zur Verfügung.",
                     "list_headline":   "Freigabe für Listen",
-                    "list_verygood":   "Bei den untersuchten Items hast Du mindestens einmal Listen zur Freigabe verwendet, sehr schön! Die Abweichung Deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr gutes Ergebnis darstellt.",
-                    "list_good":       "Bei den untersuchten Items hast Du mindestens einmal Listen zur Freigabe verwendet, sehr schön! Die Abweichung Deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein gutes Ergebnis darstellt.",
-                    "list_bad":        "Bei den untersuchten Items hast Du mindestens einmal Listen zur Freigabe verwendet, sehr schön! Die Abweichung Deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein schlechtes Ergebnis darstellt.",
-                    "list_verybad":    "Bei den untersuchten Items hast Du mindestens einmal Listen zur Freigabe verwendet, sehr schön! Die Abweichung Deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr schlechtes Ergebnis darstellt.",
-                    "list_none":       "Bei den untersuchten Items hast Du keine Listen zur Freigabe verwendet.",
+                    "list_verygood":   "Bei den untersuchten Items hast du mindestens einmal Listen zur Freigabe verwendet, sehr schön! Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr gutes Ergebnis darstellt.",
+                    "list_good":       "Bei den untersuchten Items hast du mindestens einmal Listen zur Freigabe verwendet, sehr schön! Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein gutes Ergebnis darstellt.",
+                    "list_bad":        "Bei den untersuchten Items hast du mindestens einmal Listen zur Freigabe verwendet, sehr schön! Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was kein gutes Ergebnis darstellt.",
+                    "list_verybad":    "Bei den untersuchten Items hast du mindestens einmal Listen zur Freigabe verwendet, sehr schön! Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr schlechtes Ergebnis darstellt.",
+                    "list_none":       "Bei den untersuchten Items hast du keine Listen zur Freigabe verwendet.",
                     "user_headline":   "Freigabe für Personen",
-                    "user_verygood":   "Bei den untersuchten Items hast Du mindestens einmal einzelne Personen zur Freigabe angegeben, sehr schön! Die Abweichung Deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr gutes Ergebnis darstellt.",
-                    "user_good":       "Bei den untersuchten Items hast Du mindestens einmal einzelne Personen zur Freigabe angegeben, sehr schön! Die Abweichung Deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein gutes Ergebnis darstellt.",
-                    "user_bad":        "Bei den untersuchten Items hast Du mindestens einmal einzelne Personen zur Freigabe angegeben, sehr schön! Die Abweichung Deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein schlechtes Ergebnis darstellt.",
-                    "user_verybad":    "Bei den untersuchten Items hast Du mindestens einmal einzelne Personen zur Freigabe angegeben, sehr schön! Die Abweichung Deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr schlechtes Ergebnis darstellt.",
-                    "user_none":       "Bei den untersuchten Items hast Du keine einzelnen Personen zur Freigabe angegeben.",
+                    "user_verygood":   "Bei den untersuchten Items hast du mindestens einmal einzelne Personen zur Freigabe angegeben, sehr schön! Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr gutes Ergebnis darstellt.",
+                    "user_good":       "Bei den untersuchten Items hast du mindestens einmal einzelne Personen zur Freigabe angegeben, sehr schön! Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein gutes Ergebnis darstellt.",
+                    "user_bad":        "Bei den untersuchten Items hast du mindestens einmal einzelne Personen zur Freigabe angegeben, sehr schön! Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was kein gutes Ergebnis darstellt.",
+                    "user_verybad":    "Bei den untersuchten Items hast du mindestens einmal einzelne Personen zur Freigabe angegeben, sehr schön! Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr schlechtes Ergebnis darstellt.",
+                    "user_none":       "Bei den untersuchten Items hast du keine einzelnen Personen zur Freigabe angegeben.",
                     "public_headline": "Öffentliche Items",
                     "public_yes":      "Bei den untersuchten Items haben wir __count__ öffentliche Items gefunden. Du solltest diese überprüfen.",
                     "public_no":       "Bei den untersuchten Items haben wir keine öffentlichen Items gefunden, sehr schön!",
@@ -138,19 +137,19 @@
 
         "hangman": {
             "name":     "Freunderaten",
-            "briefing": "Spätestens jetzt ist es vorbei mit Ausruhen! Denn jetzt wird nicht nur getestet, ob Du weißt, wem Du Zugriff auf ein Item gegeben hast, sondern auch, wie schnell Du dies weißt. Dazu werden Dir nacheinander Items gezeigt, die Du auf Facebook veröffentlicht hast. Deine Aufgabe ist es, in einer Menge von <span data-tooltip-key=\"hangman_users\">zufällig ausgewählten Freunden</span> und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte <span data-tooltip-key=\"rated_item\">Items</span> sehen können. Bist Du bereit? Dann nimm die Herausforderung an und versuche, eine möglichst hohe Punktzahl zu erzielen!",
+            "briefing": "Spätestens jetzt ist es vorbei mit Ausruhen! Denn jetzt wird nicht nur getestet, ob du weißt, wem Du Zugriff auf ein Item gegeben hast, sondern auch, wie schnell du dies weißt. Dazu werden dir nacheinander Items gezeigt, die du auf Facebook veröffentlicht hast. Deine Aufgabe ist es, in einer Menge von <span data-tooltip-key=\"hangman_users\">zufällig ausgewählten</span> Freunden und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte <span data-tooltip-key=\"rated_item\">Items</span> sehen können. Bist du bereit? Dann nimm die Herausforderung an und versuche, eine möglichst hohe Punktzahl zu erzielen!",
             "game":     {
                 "headline":        "Wähle die Personen, die das folgende Bild sehen können",
                 "lost":            "Du hast verloren!",
                 "won":             "Du hast gewonnen!",
-                "timeout":         "Zeit abgelaufen, du hast verloren",
+                "timeout":         "Zeit abgelaufen! Du hast verloren!",
                 "remaining_lives": "Leben: ",
                 "proceed":         "Weiter"
             },
             "result":   {
-                "headline":    "Zeit für Ergebnisse",
-                "overall":     "Gesamtergebniss",
-                "description": "Hier siehst Du Deine Ergebnisse aus dem letzten Spiel im Überblick.<br/>Für jedes Item zeigen wir Dir die benötigte Zeit, die Anzahl der Fehlversuche und die darausresultierende Punktzahl.",
+                "headline":    "Freunderaten - Ergebnisse",
+                "overall":     "Gesamtergebnis",
+                "description": "Hier siehst du deine Ergebnisse aus Freunderaten im Überblick. Für jedes Item zeigen wir dir die benötigte Zeit, die Anzahl der Fehlversuche und die darausresultierende Punktzahl.",
                 "duration":    "Benötigte Zeit",
                 "errors":      "Anzahl Fehler"
             }
@@ -158,64 +157,72 @@
 
         "results": {
             "name":        "Zusammenfassung",
-            "description": "Abschließend erhältst Du an dieser Stelle eine zusammenfassende Einschätzung Deiner Ergebnisse und damit darüber, wie es umden Schutz Deiner Privatsphäre auf Facebook und um Dein Bewusstsein diesbezüglich bestellt ist. Auf Basis dieser Erkenntnisse werden Dir hilfreiche Tipps und Handlungsempfehlungen vorgeschlagen. Du kannst Dir außerdem noch einmal alle Ergebnisse im Detail ansehen.",
+            "description": "Abschließend erhältst du an dieser Stelle eine zusammenfassende Einschätzung deiner Ergebnisse und damit darüber, wie es um den Schutz deiner Privatsphäre auf Facebook und um dein Bewusstsein diesbezüglich bestellt ist. Auf Basis dieser Erkenntnisse werden dir hilfreiche Tipps und Handlungsempfehlungen vorgeschlagen. Du kannst dir außerdem noch einmal alle Ergebnisse im Detail ansehen.",
             "lists":       {
                 "headline": "Freunde & Listen",
 
-                "friend_good": "Du hast einen guten Überblick über die Anzahl Deiner Freunde.",
-                "friend_bad":  "Du hast einen schlechten Überblick über die Anzahl Deiner Freunde. (Daher möchten wir Dich auf die Problematik des Begriffs „Freund“ hinweisen.)",
+                "friend_verygood": "Du hast einen sehr guten Überblick über die Anzahl deiner Freunde.",
+                "friend_good": "Du hast einen guten Überblick über die Anzahl deiner Freunde.",
+                "friend_bad":  "Du hast keinen guten Überblick über die Anzahl deiner Freunde. Daher möchten wir dich auf die Problematik des Begriffs „Freund“ hinweisen.",
+                "friend_bad":  "Du hast einen sehr schlechten Überblick über die Anzahl deiner Freunde. Daher möchten wir dich auf die Problematik des Begriffs „Freund“ hinweisen.",
 
-                "user_good": "Du scheinst Deine selbst erstellten Listen gut zu kennen.",
-                "user_bad":  "Du scheinst Deine selbst erstellten Listen schlecht zu kennen.",
-                "user_none": "Du hast selbst noch keine Liste angelegt. Daher möchten wir Dich kurz darauf hinweisen, wo Du dies machen kannst.",
+                "user_verygood": "Du scheinst deine selbst erstellten Listen sehr gut zu kennen.",
+                "user_good": "Du scheinst deine selbst erstellten Listen gut zu kennen.",
+                "user_bad":  "Du scheinst deine selbst erstellten Listen nicht gut zu kennen.",
+                "user_verybad":  "Du scheinst deine selbst erstellten Listen sehr schlecht zu kennen.",
+                "user_none": "Du hast selbst noch keine Liste angelegt. Daher möchten wir dich kurz darauf hinweisen, wo und wie du dies machen kannst.",
 
-                "auto_good": "Du scheinst Deine intelligenten Listen gut zu kennen.",
-                "auto_bad":  "Du scheinst Deine intelligenten Listen schlecht zu kennen.",
-                "auto_none": "Du besitzt keine intelligenten Listen. Offensichtlich hast Du keines der relevanten Attribute in Deinem Profil  angegeben."
+                "auto_verygood": "Du scheinst deine intelligenten Listen sehr gut zu kennen.",
+                "auto_good": "Du scheinst deine intelligenten Listen gut zu kennen.",
+                "auto_bad":  "Du scheinst deine intelligenten Listen nicht gut zu kennen.",
+                "auto_verybad":  "Du scheinst deine intelligenten Listen sehr schlecht zu kennen.",
+                "auto_none": "Du besitzt keine intelligenten Listen. Offensichtlich hast du keines der relevanten Attribute in Deinem Profil angegeben."
             },
             "items":       {
-                "headline": "Freigabeeinstellungen",
+                "headline": "Freigabe-Einstellungen",
 
-                "lists_yes": "Bei den untersuchten Items hast Du Listen zur Freigabe verwendet.",
-                "lists_no":  "Bei den untersuchten Items hast Du keine Listen zur Freigabe verwendet. Daher möchten wir Dir zeigen, wie das geht.",
+                "lists_yes": "Bei den untersuchten Items hast du Listen zur Freigabe verwendet.",
+                "lists_no":  "Bei den untersuchten Items hast du keine Listen zur Freigabe verwendet. Daher möchten wir dir zeigen, wie das geht.",
 
-                "friends_yes": "Bei den untersuchten Items hast Du einzelne(n) Personen zur Freigabe angegeben.",
-                "friends_no":  "Bei den untersuchten Items hast Du keine einzelne(n) Personen zur Freigabe angegeben. Daher möchten wir Dir zeigen, wie das geht.",
+                "friends_yes": "Bei den untersuchten Items hast du einzelne Personen zur Freigabe angegeben.",
+                "friends_no":  "Bei den untersuchten Items hast du keine einzelnen Personen zur Freigabe angegeben. Daher möchten wir dir zeigen, wie das geht.",
 
-                "public_yes": "Dein Profil weist öffentliche Items auf.",
-                "public_no":  "Dein Profil weist keine öffentliche Items auf. Daher möchten wir Dir zeigen, wie Du dies korrigieren und auch in Zukunft vermeiden kannst"
+                "public_yes": "Dein Profil weist öffentliche Items auf. Daher möchten wir dir zeigen, wie du dies korrigieren und auch in Zukunft vermeiden kannst.",
+                "public_no":  "Dein Profil weist keine öffentlichen Items auf."
             },
             "hangman":     {
                 "headline": "Freunderaten",
-                "good":     "In Freunderaten hast Du __points__ Punkte erzielt. Dieser Wert zeigt, dass Du Deine Freunde gut kennst.",
-                "bad":      "In Freunderaten hast Du __points__ Punkte erzielt. Dieser Wert zeigt, dass Du Deine Freunde schlecht kennst."
+                "verygood": "In Freunderaten hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass Du Deine Freunde sehr gut kennst.",
+                "good":     "In Freunderaten hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass Du Deine Freunde gut kennst.",
+                "bad":      "In Freunderaten hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass Du Deine Freunde nicht gut kennst."
+                "verybad":  "In Freunderaten hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass Du Deine Freunde sehr schlecht kennst."
             }
         },
 
         "page":            {
             "trust": {
                 "headline":   "Vertrauen",
-                "short":      "Privacy Checker läuft ausschließlich in Deinem Browser. Deine Daten bleiben daher immer bei Dir und werden nicht an Dritte gesendet. Du bist dir trotzdem noch nicht sicher? Dann kannst du jederzeit nachsehen, denn der Quellcode des Privacy Checkers ist öffentlich verfügbar.",
-                "body":       "Diese App wurde mit dem Ziel entworfen, Deine Daten möglichst gut zu schützen. Aus diesem Grund wird die App nur in Deinem Browser ausgeführt und es werden keine persönlichen Daten an einen Server (auch nicht an unseren eigenen) gesendet. Um das Vertrauen in die App noch weiter zu erhöhen, haben wir den Quellcode der App veröffentlicht, den du nachfolgend herunterladen kannst.",
+                "short":      "Privacy Checker läuft ausschließlich in deinem Browser. Deine Daten bleiben daher immer bei dir und werden nicht an Dritte gesendet. Du bist dir trotzdem noch nicht sicher? Dann kannst du jederzeit nachsehen, denn der Quellcode des Privacy Checkers ist öffentlich verfügbar.",
+                "body":       "Diese App wurde mit dem Ziel entworfen, deine Daten möglichst gut zu schützen. Aus diesem Grund wird die App nur in deinem Browser ausgeführt und es werden keine persönlichen Daten an einen Server (auch nicht an unseren eigenen) gesendet. Um das Vertrauen in die App noch weiter zu erhöhen, haben wir den Quellcode der App veröffentlicht.",
                 "client":     {
                     "headline": "Technologie",
-                    "body":     "Im Gegensatz zu vielen anderen Apps, verwendet diese App ausschließlich clientseitige Technologien, wie beispielsweise JavaScript, CSS und HTML. Nachdem Du die App mit Deinem Browser aufgerufen hast, werden alle Deine persönlichen Daten nur noch innerhalb Deines Browsers verarbeitet. Auf diese Weise sind Deine Daten bestmöglich geschützt und Du musst Dir keine Sorgen über eine unsichere Verwendung Deiner Daten machen."
+                    "body":     "Im Gegensatz zu vielen anderen Apps, verwendet diese App ausschließlich clientseitige Technologien, wie beispielsweise JavaScript, CSS und HTML. Nachdem Du die App mit deinem Browser aufgerufen hast, werden alle deine persönlichen Daten nur noch innerhalb deines Browsers verarbeitet. Auf diese Weise sind deine Daten bestmöglich geschützt und du musst Dir keine Sorgen über eine unsichere Verwendung deiner Daten machen."
                 },
                 "opensource": {
                     "headline": "Open Source",
-                    "body":     "Wir haben den Quellcode der App veröffentlicht, um die Verarbeitung Deiner Daten in der App transparent zu machen und Dir zu zeigen, dass die Verwendung der App vertrauenswürdig ist. Wenn Du möchtest, kannst du ihn Dir ansehen, verbessern und erweitern."
+                    "body":     "Wir haben den Quellcode der App veröffentlicht, um die Verarbeitung deiner Daten in der App transparent zu machen und dir zu zeigen, dass die Verwendung der App vertrauenswürdig ist. Wenn du möchtest, kannst du ihn dir ansehen, verbessern und erweitern."
                 },
                 "download":   {
                     "headline": "Download",
-                    "body":     "Hier kannst Du Dir den aktuellen Quellcode der App herunterladen:",
-                    "web":      "Download Quellcode"
+                    "body":     "Hier kannst du dir den aktuellen Quellcode der App herunterladen:",
+                    "web":      "Download"
                 }
             },
 
             "learn": {
-                "headline": "Was ist Privacy Checker?",
-                "short":    "Privacy Checker ist eine unabhängige Facebook App mit der Du testen kannst, wie gut Du Dein Facebook-Profil und vor allem Deine Privatsphäre-Einstellungen kennst. Mit verschiedenen Spielen kannst du herausfinden, ob Du weißt, wer Deine Freunde sind, was sie von deinem Profil sehen können und wie Du Deine Sicherheits-Einstellungen verbessern kannst.",
-                "body":     "Privacy Checker zeigt Dir spielerisch, wie öffentlich Deine Items auf Facebook sind bzw. was deine Freunde alles von Dir sehen können. Mit verschiedenen Spielen kannst Du herausfinden, wie gut Du Dein eigenes Profil und Deine getroffenen Einstellungen kennst. Eine persönliche, auf Dein Profil zugeschnittene Auswertung nach jedem Spiel, sowie eine Zusammenfassung mit Verbesserungsmöglichkeiten am Ende der App, zeigen Dir Dein Ergebnis an und geben Dir Tipps, wie Du Deine Privatsphäre noch besser schützen kannst. Um vorher zu sehen, wie die App aussieht, klicke Dich durch die Bildergalerie."
+                "headline": "Worum geht's?",
+                "short":    "Privacy Checker ist eine unabhängige Facebook-App mit der du testen kannst, wie gut du dein Facebook-Profil und vor allem deine Privatsphäre-Einstellungen kennst. Mit verschiedenen Spielen kannst du herausfinden, ob du weißt, wer deine Freunde sind, was sie von deinem Profil sehen können und wie du deine Sicherheits-Einstellungen verbessern kannst.",
+                "body":     "Privacy Checker zeigt dir spielerisch, wie öffentlich deine Items auf Facebook sind bzw. was deine Freunde alles von dir sehen können. Mit verschiedenen Spielen kannst du herausfinden, wie gut du dein eigenes Profil und deine getroffenen Einstellungen kennst. Eine persönliche, auf dein Profil zugeschnittene Auswertung nach jedem Spiel, sowie eine Zusammenfassung mit Verbesserungsmöglichkeiten am Ende der App, zeigen dir dein Ergebnis an und geben dir Tipps, wie du deine Privatsphäre noch besser schützen kannst. Um vorher zu sehen, wie die App aussieht, klicke dich durch die Bildergalerie."
             },
 
             "contact": {
@@ -244,11 +251,11 @@
                 },
                 "privacy":   {
                     "headline": "Privacy Policy",
-                    "body":     "Es werden keine Daten an einen anderen Server übertragen, dadurch bleiben alle Deine persönlichen Daten bei Dir. Weder wir noch andere Personen haben Zugriff auf Deine Daten."
+                    "body":     "Es werden keine Daten an einen anderen Server übertragen, wodurch alle deine persönlichen Daten bei dir bleiben. Weder wir, noch andere Personen, haben Zugriff auf deine Daten."
                 },
                 "liability": {
                     "headline": "Haftungsausschluss",
-                    "body":     "Trotz sorgfältiger Prüfung können Programmfehler nicht ausgeschlossen werden. Mit der Benutzung dieser App stimmst Du zu, dass die Autoren nicht für etwaige Schäden verantwortlich gemacht werden."
+                    "body":     "Trotz sorgfältiger Prüfung können Programmfehler nicht ausgeschlossen werden. Mit der Benutzung dieser App stimmst du zu, dass die Autoren nicht für etwaige Schäden verantwortlich gemacht werden."
                 }
             },
             "footer":  {
@@ -259,31 +266,31 @@
             "headline":      "Mögliche Handlungsempfehlungen",
             "friend":        {
                 "headline": "Begriff „Freund“",
-                "body":     "Der Begriff Freundschaft bezeichnet eine positive Beziehung zwischen Menschen, die auf Sympathie, Vertrauen und gegenseitiger Wertschätzung basiert. Nach diesen Kriterien wählt man im realen Leben einen Freund aus. Eine Freundschaft, die lediglich in einem sozialen Netzwerk existiert, ist eine sogenannte „Freundschaft per Mausklick“ und kann die zuvor genannten Kriterien nicht erfüllen.<br/> Vor allem dann, wenn Du Facebook-Freundschaften von Menschen bestätigst, die Du nicht gut kennst oder die Du sogar noch nie persönlich getroffen hast, ist fraglich, ob es nicht vielleicht besser ist, die Freundschaftsanfrage abzulehnen. Denke an all Deine veröffentlichten persönlichen Items: Würdest Du sie im realen Leben auch mit Personen teilen, die Du nicht gut kennst? Ist es nicht besser, wenn Du die Items für Dich behältst bzw. sie nur mit bestimmten Personen teilst?<br/>Natürlich kannst Du Deine Items vor entfernteren Facebook-Freunden mit Hilfe von Einstellungen verbergen. Wird die Anzahl an Freunden jedoch unüberschaubar groß, ist es schwer, den Überblick zu behalten. Da Deine Schätzung zur Anzahl deiner Facebook-Freunde oder deine Leistung beim Freunderaten nicht sehr gut war, ist bei Dir möglicherweise genau das passiert. Aus diesem Grund solltest Du dir Gedanken darüber machen, wen Du als Facebook-Freund haben möchtest und wen nicht. Freundschaftsanfragen sollten nicht nur angenommen werden, um nicht unhöflich zu erscheinen. Außerdem solltest Du nicht davor zurückschrecken, Facebook-Freundschaften zu beenden."
+                "body":     "Der Begriff Freundschaft bezeichnet eine positive Beziehung zwischen Menschen, die auf Sympathie, Vertrauen und gegenseitiger Wertschätzung basiert. Nach diesen Kriterien wählt man im realen Leben einen Freund aus. Eine Freundschaft, die lediglich in einem sozialen Netzwerk existiert, ist eine sogenannte „Freundschaft per Mausklick“ und kann die zuvor genannten Kriterien nicht erfüllen.<br/> Vor allem dann, wenn du Facebook-Freundschaften von Menschen bestätigst, die du nicht gut kennst oder die du sogar noch nie persönlich getroffen hast, ist fraglich, ob es nicht vielleicht besser ist, die Freundschaftsanfrage abzulehnen. Denk an all deine veröffentlichten persönlichen Items: Würdest du sie im realen Leben auch mit Personen teilen, die du nicht gut kennst? Ist es nicht besser, wenn du die Items für dich behältst bzw. sie nur mit bestimmten Personen teilst?<br/>Natürlich kannst du deine Items vor entfernteren Facebook-Freunden mit Hilfe von Einstellungen verbergen. Wird die Anzahl an Freunden jedoch unüberschaubar groß, ist es schwer, den Überblick zu behalten. Da deine Schätzung zur Anzahl deiner Facebook-Freunde oder deine Leistung beim Freunderaten nicht sehr gut war, ist bei dir möglicherweise genau das passiert. Aus diesem Grund solltest du dir Gedanken darüber machen, wen du als Facebook-Freund haben möchtest und wen nicht. Freundschaftsanfragen sollten nicht nur angenommen werden, um nicht unhöflich zu erscheinen. Außerdem solltest du nicht davor zurückschrecken, Facebook-Freundschaften zu beenden."
             },
             "lists_create":  {
                 "headline": "Erstellen von Listen",
-                "body":     "Dein Facebook-Account verfügt über keine von Dir selbst erstellten Listen. Da Du möglicherweise nicht weißt, wo man Listen anlegen kann, kannst Du Dich <a href=\"https://www.facebook.com/bookmarks/lists\" target=\"_blank\"> direkt zum entsprechenden Menü führen lassen</a>. Dort hast Du die Möglichkeit, neue Listen zu erstellen und diese anschließend zu verwalten, d.h. ihnen Freunde hinzuzufügen oder daraus zu entfernen.<br/> Es ist durchaus möglich, dass das angesprochene Menü bereits Listen enthält, obwohl Du keine angelegt hast. Bei diesen Listen handelt es sich dann um intelligente Listen, die Facebook automatisch für dich unterhält. Diese kannst Du natürlich auch bearbeiten und verwenden."
+                "body":     "Dein Facebook-Account verfügt über keine von dir selbst erstellten Listen. Da du möglicherweise nicht weißt, wo man Listen anlegen kann, kannst du dich direkt zum <a href=\"https://www.facebook.com/bookmarks/lists\" target=\"_blank\">entsprechenden Menü</a> führen lassen. Dort hast du die Möglichkeit, neue Listen zu erstellen und diese anschließend zu verwalten, d.h. ihnen Freunde hinzuzufügen oder daraus zu entfernen.<br/> Es ist durchaus möglich, dass das angesprochene Menü bereits Listen enthält, obwohl du keine angelegt hast. Bei diesen Listen handelt es sich dann um intelligente Listen, die Facebook automatisch für dich unterhält. Diese kannst du natürlich auch bearbeiten und verwenden."
             },
             "lists_use":     {
                 "headline": "Verwenden von Listen",
-                "body":     "Für keines der in den Spielen näher untersuchten Items hast Du Listen für deren Freigabe-Einstellungen verwendet. Möglicherweise hast Du schon selbst Listen erstellt, weißt aber nicht, wie man diese verwendet.<br/>Für Status Posts findest Du die Freigabe-Einstellungen bzw. die Möglichkeit zu deren Änderung direkt unter Deinem Namen und neben dem Datum, an dem Du den Status Post erstellt hast. Bei Fotos kommt es darauf an, wo Du sie betrachtest. Siehst Du sie Dir in Deinen Fotoalben an, so kannst Du die Freigabe-Einstellungen auf der rechten Seite unterhalb des Fotos bei „Teilen mit:“ ändern. Möchtest Du die Freigabe-Einstellungen eines Fotos, das Dir gerade auf Deiner Pinnwand angezeigt wird, ändern, dann geht das genauso, wie bei einem Status Post.<br/>Hast Du die Anzeige der Freigabe-Einstellungen eines Items gefunden, so kannst Du mit einem Klick darauf ein Menü öffnen, in dem Dir die unterschiedlichen Einstellungen angeboten werden. Hier kannst Du beispielsweise direkt eine bestimmte Liste auswählen, für deren Mitglieder das betrachtete Item sichtbar sein soll."
+                "body":     "Für keines der in den Spielen näher untersuchten Items hast du Listen für deren Freigabe-Einstellungen verwendet. Möglicherweise hast du schon selbst Listen erstellt, weißt aber nicht, wie man diese verwendet.<br/>Für Status Posts findest du die Freigabe-Einstellungen bzw. die Möglichkeit zu deren Änderung direkt unter deinem Namen und neben dem Datum, an dem du den Status Post erstellt hast. Bei Fotos kommt es darauf an, wo du sie betrachtest. Siehst du sie dir in deinen Fotoalben an, so kannst du die Freigabe-Einstellungen auf der rechten Seite unterhalb des Fotos bei „Teilen mit:“ ändern. Möchtest du die Freigabe-Einstellungen eines Fotos, das dir gerade auf deiner Pinnwand angezeigt wird, ändern, dann geht das genauso, wie bei einem Status Post.<br/>Hast du die Anzeige der Freigabe-Einstellungen eines Items gefunden, so kannst du mit einem Klick darauf ein Menü öffnen, in dem dir die unterschiedlichen Einstellungen angeboten werden. Hier kannst du beispielsweise direkt eine bestimmte Liste auswählen, für deren Mitglieder das betrachtete Item sichtbar sein soll."
             },
             "sharing":       {
                 "headline": "Freigeben für einzelne Freunde & Gezieltes Verbergen",
-                "body":     "Mit Hilfe der oben beschriebenen Einstellungen kannst du jedoch nicht nur Listen auswählen, für deren Mitglieder das betrachtete Item sichtbar sein soll, sondern auch einzelne Freunde. Dazu musst Du in dem angesprochenen Menü auf „Benutzerdefiniert“ klicken und anschließend „Bestimmte Personen oder Listen …“ in dem angebotenen Dropdown-Menü auswählen. Nun kannst Du in die darunter befindliche Zeile einzelne Freunde eintragen, denen Du das Item zugänglich machen willst.<br/>Außerdem hast Du bei Auswahl von „Benutzerdefiniert“ die Möglichkeit, das Item für bestimmte Personen oder Listen zu verbergen. Sichtbar wäre es dann beispielsweise für alle Freunde, außer den hier angegebenen."
+                "body":     "Mit Hilfe der oben beschriebenen Einstellungen kannst du jedoch nicht nur Listen auswählen, für deren Mitglieder das betrachtete Item sichtbar sein soll, sondern auch einzelne Freunde. Dazu musst du in dem angesprochenen Menü auf „Benutzerdefiniert“ klicken und anschließend „Bestimmte Personen oder Listen...“ in dem angebotenen Dropdown-Menü auswählen. Nun kannst du in die darunter befindliche Zeile einzelne Freunde eintragen, denen du das Item zugänglich machen willst.<br/>Außerdem hast du bei Auswahl von „Benutzerdefiniert“ die Möglichkeit, das Item für bestimmte Personen oder Listen zu verbergen. Sichtbar wäre es dann beispielsweise für alle Freunde, außer den hier angegebenen."
             },
             "defaults":      {
                 "headline": "Standardeinstellungen",
-                "body":     "Wir haben festgestellt, dass Dein Profil Items enthält, die Du öffentlich geteilt hast. Das bedeutet, dass alle Facebook-Nutzer – und damit auch völlig fremde Personen – Zugriff darauf haben. War das wirklich so von Dir beabsichtigt? Möchtest Du das in Zukunft vermeiden?<br/>Dafür gibt es einen sehr einfachen und schnellen Weg. Du musst lediglich deine Standard-Einstellungen ändern, und zwar von „Öffentlich“ auf „Freunde“ oder sogar auf bestimmte Listen. Die Möglichkeit hierzu wird Dir in den Privatsphäre-Einstellungen Deines Facebook-Accounts angeboten. Bei Veröffentlichung der neuesten Version dieser Anwendung findest du <a href=\"https://www.facebook.com/settings?tab=privacy&section=composer&view\">hier die entsprechenden Einstellung</a> (Stand: 22.04.2013)."
+                "body":     "Wir haben festgestellt, dass dein Profil Items enthält, die du öffentlich geteilt hast. Das bedeutet, dass alle Facebook-Nutzer – und damit auch völlig fremde Personen – Zugriff darauf haben. War das wirklich so von dir beabsichtigt? Möchtest du das in Zukunft vermeiden?<br/>Dafür gibt es einen sehr einfachen und schnellen Weg. Du musst lediglich deine Standard-Einstellungen ändern, und zwar von „Öffentlich“ auf „Freunde“ oder sogar auf bestimmte Listen. Die Möglichkeit hierzu wird dir in den Privatsphäre-Einstellungen deines Facebook-Accounts angeboten. Bei Veröffentlichung der neuesten Version dieser Anwendung fanden sich die entsprechenden Einstellungen <a href=\"https://www.facebook.com/settings?tab=privacy&section=composer&view\">hier</a> (Stand: 22.04.2013)."
             },
             "hide_past":     {
                 "headline": "Vergangenes einschränken",
-                "body":     "Mit der oben beschriebenen Änderung Deiner Standard-Einstellungen schränkst Du die Sichtbarkeit Deiner zukünftig geteilten Items ein. Es ist jedoch sinnvoll, dies auch für alle bereits öffentlich geteilten Items zu tun. Um Dir den Aufwand der Überprüfung und eventuellen Modifikation aller Deiner Items zu ersparen, gibt es eine Funktion, die diese Aufgabe für Dich übernimmt. Genauer gesagt kannst Du damit die Sichtbarkeit aller Items mit „Öffentlich“ oder „Freunde von Freunden“ als eingestellter Freigabe-Stufe mit nur einem Klick auf Deine Freunde beschränken.<br/>Du findest diese Funktion ebenfalls in den Privatsphäre-Einstellungen Deines Facebook-Accounts. Bei Veröffentlichung der neuesten Version dieser Anwendung findest du <a href=\"https://www.facebook.com/settings?tab=privacy&section=masher&view\">hier die entsprechenden Option</a> (Stand: 22.04.2013)."
+                "body":     "Mit der oben beschriebenen Änderung deiner Standard-Einstellungen schränkst du die Sichtbarkeit deiner zukünftig geteilten Items ein. Es ist jedoch sinnvoll, dies auch für alle bereits öffentlich geteilten Items zu tun. Um dir den Aufwand der Überprüfung und eventuellen Modifikation all deiner Items zu ersparen, gibt es eine Funktion, die diese Aufgabe für dich übernimmt. Genauer gesagt kannst du damit die Sichtbarkeit aller Items mit „Öffentlich“ oder „Freunde von Freunden“ als eingestellter Freigabe-Stufe mit nur einem Klick auf deine Freunde beschränken.<br/>Du findest diese Funktion ebenfalls in den Privatsphäre-Einstellungen deines Facebook-Accounts. Bei Veröffentlichung der neuesten Version dieser Anwendung fand sich die entsprechende Option <a href=\"https://www.facebook.com/settings?tab=privacy&section=masher&view\">hier</a> (Stand: 22.04.2013)."
             },
             "publish_items": {
                 "headline": "Veröffentlichen von Items",
-                "body":     "Wie im realen Leben, solltest Du Dir au“ch in sozialen Netzwerken gut überlegen, welche Items Du anderen Menschen zeigen möchtest und vor allem wem Du sie zeigen möchtest. Im Internet tendiert man dazu, sorgloser mit der Veröffentlichung von Informationen umzugehen, weil man sein Gegenüber nicht sehen kann und umgekehrt auch nicht von ihm gesehen wird. Dieses Verhalten solltest Du aber besser vermeiden!<br/>Für Items (oder allgemein Informationen), die Du einmal im Internet veröffentlicht hast, ist ein vollständiges und unwiederbringliches Entfernen im Normalfall nicht möglich. Selbst dann, wenn Du ein Item aus einem sozialen Netzwerk löschst und davon ausgehst, dass es nun wirklich entfernt wurde, ist es oft nur oberflächlich gelöscht. Hat ein anderer Nutzer das entsprechende Item bei sich gespeichert, so kann es zu einem späteren Zeitpunkt ohne Probleme von ihm wiederhergestellt und verbreitet werden. Aus diesem Grund solltest Du vorsichtig sein mit dem, was Du veröffentlichst und kritische Items lieber vollständig für Dich behalten – genau so, wie Du das auch im richtigen Leben machen würdest."
+                "body":     "Wie im realen Leben, solltest du dir auch in sozialen Netzwerken gut überlegen, welche Items du anderen Menschen zeigen möchtest und vor allem, wem du sie zeigen möchtest. Im Internet tendiert man dazu, sorgloser mit der Veröffentlichung von Informationen umzugehen, weil man sein Gegenüber nicht sehen kann und umgekehrt auch nicht von ihm gesehen wird. Dieses Verhalten solltest du aber besser vermeiden!<br/>Für Items (oder allgemein Informationen), die du einmal im Internet veröffentlicht hast, ist ein vollständiges und unwiederbringliches Entfernen im Normalfall nicht möglich. Selbst dann, wenn du ein Item aus einem sozialen Netzwerk löschst und davon ausgehst, dass es nun wirklich entfernt wurde, ist es oft nur oberflächlich gelöscht. Hat ein anderer Nutzer das entsprechende Item bei sich gespeichert, so kann es zu einem späteren Zeitpunkt ohne Probleme von ihm wiederhergestellt und verbreitet werden. Aus diesem Grund solltest du vorsichtig sein mit dem, was du veröffentlichst und kritische Items lieber vollständig für dich behalten – genau so, wie du das auch im richtigen Leben machen würdest."
             }
         },
 
@@ -292,48 +299,48 @@
             "more":           "Mehr erfahren?",
             "item":           {
                 "headline": "Was ist ein Item?",
-                "short":    "Der Begriff Item bezeichnet in dieser Anwendung ein Foto oder einen Status Post, das/den Du irgendwann auf Facebook veröffentlicht hast",
-                "long":     "Der Begriff Item bezeichnet in dieser Anwendung ein Foto oder einen Status Post, das/den Du irgendwann auf Facebook veröffentlicht hast.<br/>Deine Items haben wir gerade eben von Facebook abgefragt, damit wir sie in diesem und in den nachfolgenden Spielen verwenden können. Da nicht nur im Foto selbst Informationen über Dich enthalten sein können, sondern auch in der dazugehörigen Fotobeschreibung, haben wir diese ebenfalls mit abgefragt. Zusätzlich informieren wir Dich auch darüber, wann Du das entsprechende Item veröffentlicht hast. Evtl. weißt Du gar nicht mehr, dass es existiert?"
+                "short":    "Der Begriff Item bezeichnet in dieser Anwendung ein Foto oder einen Status Post, das/den du irgendwann auf Facebook veröffentlicht hast",
+                "long":     "Der Begriff Item bezeichnet in dieser Anwendung ein Foto oder einen Status Post, das/den du irgendwann auf Facebook veröffentlicht hast.<br/>Deine Items haben wir gerade eben von Facebook abgefragt, damit wir sie in diesem und in den nachfolgenden Spielen verwenden können. Da nicht nur im Foto selbst Informationen über dich enthalten sein können, sondern auch in der dazugehörigen Fotobeschreibung, haben wir diese ebenfalls mit abgefragt. Zusätzlich informieren wir dich bei Status Posts darüber, wann du das entsprechende Item veröffentlicht hast. Evtl. weißt du gar nicht mehr, dass es existiert?"
             },
             "personal":       {
                 "headline": "Wann ist ein Item persönlich?",
-                "short":    "Item ist nicht gleich Item. Ein persönliches Item zeichnet sich dadurch aus, dass es für den Schutz Deiner Privatsphäre eine besonders wichtige Rolle spielt",
-                "long":     "Item ist nicht gleich Item. Ein persönliches Item zeichnet sich dadurch aus, dass es für den Schutz Deiner Privatsphäre eine besonders wichtige Rolle spielt.<br/><br/>Um Dir zu verdeutlichen, wann ein Item besonders persönlich ist, und Dir damit die Beurteilung Deiner Items zu vereinfachen, haben wir Dir hier ein paar hilfreiche Fragen ausgelistet.<br/><br/>Speziell für Fotos:<ul><li>Sind auf dem Foto Personen (z.B. Deine Freunde) zu sehen? Bist Du selbst auf dem Foto zu sehen?</li><li>Zeigt das Foto einen sehr persönlichen Gegenstand? Gibt es Einblicke in Deine Wohnung?</li><li>SZeigt Dich das Foto in einer unangenehmen oder problematischen Situation (z.B. Alkoholkonsum)?</li><li>SHast Du das Foto mit einer privaten Fotobeschreibung versehen?</li></ul>Speziell für Status Posts:<ul><li>Erwähnst Du Freunde? Was schreibst Du über sie?</li><li>Veröffentlichst Du private Details aus Deinem Leben? Sollten nur sehr wenige Personen (z.B. enge Freunde) davon erfahren?</li><li>Schreibst Du über Deine Meinung zu einem kontroversen Thema?</li></ul>"
+                "short":    "Item ist nicht gleich Item. Ein persönliches Item zeichnet sich dadurch aus, dass es für den Schutz deiner Privatsphäre eine besonders wichtige Rolle spielt",
+                "long":     "Item ist nicht gleich Item. Ein persönliches Item zeichnet sich dadurch aus, dass es für den Schutz deiner Privatsphäre eine besonders wichtige Rolle spielt.<br/><br/>Um dir zu verdeutlichen, wann ein Item besonders persönlich ist, und dir damit die Beurteilung deiner Items zu vereinfachen, haben wir dir hier ein paar hilfreiche Fragen aufgelistet.<br/><br/>Speziell für Fotos:<ul><li>Sind auf dem Foto Personen (z.B. deine Freunde) zu sehen? Bist du selbst auf dem Foto zu sehen?</li><li>Zeigt das Foto einen sehr privaten Gegenstand? Gibt es Einblicke in deine Wohnung?</li><li>Zeigt dich das Foto in einer unangenehmen oder problematischen Situation (z.B. Alkoholkonsum)?</li><li>Hast du das Foto mit einer privaten Fotobeschreibung versehen?</li></ul>Speziell für Status Posts:<ul><li>Erwähnst du Freunde? Was schreibst du über sie?</li><li>Veröffentlichst du private Details aus deinem Leben? Sollten nur sehr wenige Personen (z.B. enge Freunde) davon erfahren?</li><li>Schreibst du über deine Meinung zu einem kontroversen Thema?</li></ul>"
             },
             "ranking":        {
-                "headline": "Was bedeutet Ranking?",
-                "short":    "Auf Basis Deiner Antworten haben wir eine Tabelle – das Ranking – erstellt. Je höher platziert ein Item ist, desto persönlicher scheint es für Dich zu sein. ",
-                "long":     "Auf Basis Deiner Antworten haben wir eine Tabelle – das Ranking – erstellt. Je höher platziert ein Item ist, desto persönlicher scheint es für Dich zu sein.<br/><br/>Um Deine Entscheidungen im gerade gespielten Spiel messbar zu machen, haben wir jedes Deiner Items mit einem Rating versehen, also einer Art Punktzahl. Nach jedem Vergleich gewinnt das von Dir gewählte Item eine gewisse Menge an Punkten, während das andere Item eine gewisse Menge an Punkten verliert. Die Höhe des jeweiligen Gewinns und Verlusts bestimmen wir nach folgender Überlegung:<ul><li>Je höher das Rating des einen Items war, desto mehr kann das andere Item gewinnen und desto weniger kann es verlieren.</li><li>Je niedriger das Rating des einen Items war, desto weniger kann das andere Item gewinnen und desto mehr kann es verlieren.</li></ul>Anhand des Ratings, das ein Item am Ende des Spiels hat, wird das abschließende Ranking erstellt."
+                "headline": "Was bedeutet das Ranking?",
+                "short":    "Auf Basis deiner Antworten haben wir eine Tabelle – das Ranking – erstellt. Je höher platziert ein Item ist, desto persönlicher scheint es für dich zu sein. ",
+                "long":     "Auf Basis deiner Antworten haben wir eine Tabelle – das Ranking – erstellt. Je höher platziert ein Item ist, desto persönlicher scheint es für dich zu sein.<br/><br/>Um deine Entscheidungen im gerade gespielten Spiel messbar zu machen, haben wir jedes deiner Items mit einem Rating versehen, also einer Art Punktzahl. Nach jedem Vergleich gewinnt das von dir gewählte Item eine gewisse Menge an Punkten, während das andere Item eine gewisse Menge an Punkten verliert. Die Höhe des jeweiligen Gewinns und Verlusts bestimmen wir nach folgender Überlegung:<ul><li>Je höher das Rating des einen Items war, desto mehr kann das andere Item gewinnen und desto weniger kann es verlieren.</li><li>Je niedriger das Rating des einen Items war, desto weniger kann das andere Item gewinnen und desto mehr kann es verlieren.</li></ul>Anhand des Ratings, das ein Item am Ende des Spiels hat, wird das abschließende Ranking erstellt."
             },
             "list":           {
                 "headline": "Was ist eine Liste?",
-                "short":    "Eine Liste (oder auch Freundesliste) dient Dir zur Einteilung Deiner Facebook-Kontakte in verschiedene Freundeskreise. Nachdem Du sie angelegt hast, kannst Du sie zur Einstellung der Freigabe Deiner Items verwenden.",
-                "long":     "Eine Liste (oder auch Freundesliste) dient Dir zur Einteilung Deiner Facebook-Kontakte in verschiedene Freundeskreise. Nachdem Du sie angelegt hast, kannst Du sie zur Einstellung der Freigabe Deiner Items verwenden.<br/><br/>Wie im realen Leben, unterhältst Du auch auf Facebook unterschiedlich starke Kommunikationsbeziehungen zu Deinen Freunden und willst nicht jedem das Gleiche mitteilen.Außerdem pflegst Du manche Freundschaftsbeziehungen aufgrund gewisser Aktivitäten, Mitgliedschaften oder Zugehörigkeiten. Listen tragen dazu bei, reale Kommunikationsbeziehungen nachzuempfinden, indem sie Dir erlauben, Items gezielt nur für einen bestimmten Freundeskreis, der durch die Liste abgebildet wird, freizugeben. Umgekehrt kannst Du Items dadurch auch gezielt vor Freunden verbergen."
+                "short":    "Eine Liste (oder auch Freundesliste) dient dir zur Einteilung Deiner Facebook-Kontakte in verschiedene Freundeskreise. Nachdem du sie angelegt hast, kannst du sie zur Einstellung der Freigabe deiner Items verwenden.",
+                "long":     "Eine Liste (oder auch Freundesliste) dient dir zur Einteilung Deiner Facebook-Kontakte in verschiedene Freundeskreise. Nachdem du sie angelegt hast, kannst du sie zur Einstellung der Freigabe deiner Items verwenden.<br/><br/>Wie im realen Leben, unterhältst du auch auf Facebook unterschiedlich starke Kommunikationsbeziehungen zu deinen Freunden und willst nicht jedem das Gleiche mitteilen. Außerdem pflegst du manche Freundschaftsbeziehungen aufgrund gewisser Aktivitäten, Mitgliedschaften oder Zugehörigkeiten. Listen tragen dazu bei, reale Kommunikationsbeziehungen nachzuempfinden, indem sie dir erlauben, Items gezielt nur für einen bestimmten Freundeskreis, der durch die Liste abgebildet wird, freizugeben. Umgekehrt kannst du Items dadurch auch gezielt vor Freunden verbergen."
             },
             "rated_item":     {
-                "headline": "Persönliches Item",
-                "short":    "Hier siehst Du ein Item, das Du im ersten Spiel als besonders persönlich eingestuft hast.",
-                "long":     "Hier siehst Du ein Item, das Du im ersten Spiel als besonders persönlich eingestuft hast.<br/<br/>Genauer gesagt handelt es sich dabei um eines der fünf am höchsten bewerteten Items. Nach dem ersten Spiel haben wir Dir ein abschließendes Ranking gezeigt, welches danach sortiert war, wie persönlich ein Item für Dich ist. Da besonders persönliche Items eine größere Rolle für den Schutz Deiner Privatsphäre spielen, verwenden wir in diesem Spiel die ersten fünf Items des Rankings."
+                "headline": "Welche Items werden hier verwendet?",
+                "short":    "Hier siehst du ein Item, das du im ersten Spiel als besonders persönlich eingestuft hast.",
+                "long":     "Hier siehst du ein Item, das du im ersten Spiel als besonders persönlich eingestuft hast.<br/<br/>Genauer gesagt handelt es sich dabei um eines der fünf am höchsten bewerteten Items. Nach dem ersten Spiel haben wir dir ein abschließendes Ranking gezeigt, welches danach sortiert war, wie persönlich ein Item für dich ist. Da besonders persönliche Items eine größere Rolle für den Schutz deiner Privatsphäre spielen, verwenden wir in diesem Spiel die ersten fünf Items des Rankings."
             },
             "auto_list":      {
-                "headline": "Was ist eine intelligente Liste",
+                "headline": "Was ist eine intelligente Liste?",
                 "short":    "Intelligente Listen sind spezielle Listen, die dadurch charakterisiert sind, dass sie automatisch durch Facebook erstellt und aktualisiert werden.",
-                "long":     "Intelligente Listen sind spezielle Listen, die dadurch charakterisiert sind, dass sie automatisch durch Facebook erstellt und aktualisiert werden.<br/<br/>Realisiert wird das anhand verschiedener Attribute, die Du und Deine Freunde in euren Profilen angebt. Solltet ihr für ein bestimmtes Attribut den gleichen Wert angegeben haben (z.B. den gleichen Wohnort), so wird dies von der entsprechenden intelligenten Liste registriert und der Freund wird darin eingeordnet. Beispiele für solche auf Attributen basierende Listen sind:<ul><li>Wohnort</li><li>Schule</li><li>Universität</li><li>Arbeitgeber</li><li>Familie</li></ul>"
+                "long":     "Intelligente Listen sind spezielle Listen, die dadurch charakterisiert sind, dass sie automatisch durch Facebook erstellt und aktualisiert werden.<br/<br/>Realisiert wird das anhand verschiedener Attribute, die du und deine Freunde in euren Profilen angebt. Solltet ihr für ein bestimmtes Attribut den gleichen Wert angegeben haben (z.B. den gleichen Wohnort), so wird dies von der entsprechenden intelligenten Liste registriert und der Freund wird darin eingeordnet. Beispiele für solche auf Attributen basierende Listen sind:<ul><li>Wohnort</li><li>Schule</li><li>Universität</li><li>Arbeitgeber</li><li>Familie</li></ul>"
             },
             "hangman_users":  {
-                "headline": "Was sind das für Leute?",
-                "short":    "Von diesen 20 Facebook-Nutzern sollst Du möglichst schnell jene bestimmen, die das nebenstehende Item sehen können.",
-                "long":     "Von diesen 20 Facebook-Nutzern sollst Du möglichst schnell jene bestimmen, die das nebenstehende Item sehen können.<br/>Unter den 20 Personen sind:<ul><li>Freunde, denen Du das Item zugänglich gemacht hast</li><li>Freunde, denen Du das Item nicht zugänglich gemacht hast</li><li>Fremde Facebook-Nutzer</li></ul>Innerhalb der obenstehenden Kategorien werden die angezeigten Personen immer wieder neu ausgewählt. Das heißt, jede neue Runde ist eine neue Herausforderung."
+                "headline": "Wie werden die Personen ausgewählt?",
+                "short":    "Von den 20 angezeigten Facebook-Nutzern sollst du möglichst schnell jene bestimmen, die das nebenstehende Item sehen können.",
+                "long":     "Von den 20 angezeigten Facebook-Nutzern sollst du möglichst schnell jene bestimmen, die das nebenstehende Item sehen können.<br/>Unter den 20 Personen sind:<ul><li>Freunde, denen du das Item zugänglich gemacht hast</li><li>Freunde, denen du das Item nicht zugänglich gemacht hast</li><li>Fremde Facebook-Nutzer</li></ul>Innerhalb der obenstehenden Kategorien werden die angezeigten Personen immer wieder neu ausgewählt. Das heißt, jede neue Runde ist eine neue Herausforderung."
             },
             "hangman_hearts": {
                 "headline": "Was bedeuten die Herzen?",
-                "short":    "Hier siehst Du, wie viele Fehlversuche Dir noch bleiben. Jedes Mal, wenn du eine Person anklickst, die das Item nicht sehen kann, verlierst Du ein Herz. Außerdem wird ein Fehler mit Punktabzug bestraft.",
+                "short":    "Hier siehst du, wie viele Fehlversuche dir noch bleiben. Jedes Mal, wenn du eine Person anklickst, die das Item nicht sehen kann, verlierst du ein Herz. Außerdem wird ein Fehler mit Punktabzug bestraft.",
                 "long":     "null"
             },
             "hangman_points": {
-                "headline": "Wie bekomme ich Punkte??",
-                "short":    "Hier siehst Du Deine aktuelle Punktzahl für diese Runde.",
-                "long":     "Hier siehst Du Deine aktuelle Punktzahl für diese Runde.<br/<br/>Zu Beginn startest Du immer mit einem Wert von 10000. Dieser sinkt allerdings nach und nach, und zwar pro Sekunde um 250. Daher solltest Du Dich besser beeilen und möglichst schnell alle korrekten Profilbilder anklicken. Doch Vorsicht! Klickst Du ein falsches an, so werden Dir 1000 Punkte abgezogen."
+                "headline": "Wie wird die Punktzahl bestimmt?",
+                "short":    "Hier siehst du deine aktuelle Punktzahl für diese Runde.",
+                "long":     "Hier siehst du deine aktuelle Punktzahl für diese Runde.<br/<br/>Zu Beginn startest du immer mit einem Wert von 10000. Dieser sinkt allerdings nach und nach, und zwar pro Sekunde um 20. Daher solltest du dich besser beeilen und möglichst schnell alle korrekten Profilbilder anklicken. Doch Vorsicht! Klickst du ein falsches an, so werden dir 1000 Punkte abgezogen."
             }
         }
     }
