@@ -299,17 +299,17 @@
             "more":           "Mehr erfahren?",
             "item":           {
                 "headline": "Was ist ein Item?",
-                "short":    "Der Begriff Item bezeichnet in dieser Anwendung ein Foto oder einen Status Post, das/den du irgendwann auf Facebook veröffentlicht hast",
+                "short":    "Der Begriff Item bezeichnet in dieser Anwendung ein Foto oder einen Status Post, das/den du irgendwann auf Facebook veröffentlicht hast.",
                 "long":     "Der Begriff Item bezeichnet in dieser Anwendung ein Foto oder einen Status Post, das/den du irgendwann auf Facebook veröffentlicht hast.<br/>Deine Items haben wir gerade eben von Facebook abgefragt, damit wir sie in diesem und in den nachfolgenden Spielen verwenden können. Da nicht nur im Foto selbst Informationen über dich enthalten sein können, sondern auch in der dazugehörigen Fotobeschreibung, haben wir diese ebenfalls mit abgefragt. Zusätzlich informieren wir dich bei Status Posts darüber, wann du das entsprechende Item veröffentlicht hast. Evtl. weißt du gar nicht mehr, dass es existiert?"
             },
             "personal":       {
                 "headline": "Wann ist ein Item persönlich?",
-                "short":    "Item ist nicht gleich Item. Ein persönliches Item zeichnet sich dadurch aus, dass es für den Schutz deiner Privatsphäre eine besonders wichtige Rolle spielt",
+                "short":    "Item ist nicht gleich Item. Ein persönliches Item zeichnet sich dadurch aus, dass es für den Schutz deiner Privatsphäre eine besonders wichtige Rolle spielt.",
                 "long":     "Item ist nicht gleich Item. Ein persönliches Item zeichnet sich dadurch aus, dass es für den Schutz deiner Privatsphäre eine besonders wichtige Rolle spielt.<br/><br/>Um dir zu verdeutlichen, wann ein Item besonders persönlich ist, und dir damit die Beurteilung deiner Items zu vereinfachen, haben wir dir hier ein paar hilfreiche Fragen aufgelistet.<br/><br/>Speziell für Fotos:<ul><li>Sind auf dem Foto Personen (z.B. deine Freunde) zu sehen? Bist du selbst auf dem Foto zu sehen?</li><li>Zeigt das Foto einen sehr privaten Gegenstand? Gibt es Einblicke in deine Wohnung?</li><li>Zeigt dich das Foto in einer unangenehmen oder problematischen Situation (z.B. Alkoholkonsum)?</li><li>Hast du das Foto mit einer privaten Fotobeschreibung versehen?</li></ul>Speziell für Status Posts:<ul><li>Erwähnst du Freunde? Was schreibst du über sie?</li><li>Veröffentlichst du private Details aus deinem Leben? Sollten nur sehr wenige Personen (z.B. enge Freunde) davon erfahren?</li><li>Schreibst du über deine Meinung zu einem kontroversen Thema?</li></ul>"
             },
             "ranking":        {
                 "headline": "Was bedeutet das Ranking?",
-                "short":    "Auf Basis deiner Antworten haben wir eine Tabelle – das Ranking – erstellt. Je höher platziert ein Item ist, desto persönlicher scheint es für dich zu sein. ",
+                "short":    "Auf Basis deiner Antworten haben wir eine Tabelle – das Ranking – erstellt. Je höher platziert ein Item ist, desto persönlicher scheint es für dich zu sein.",
                 "long":     "Auf Basis deiner Antworten haben wir eine Tabelle – das Ranking – erstellt. Je höher platziert ein Item ist, desto persönlicher scheint es für dich zu sein.<br/><br/>Um deine Entscheidungen im gerade gespielten Spiel messbar zu machen, haben wir jedes deiner Items mit einem Rating versehen, also einer Art Punktzahl. Nach jedem Vergleich gewinnt das von dir gewählte Item eine gewisse Menge an Punkten, während das andere Item eine gewisse Menge an Punkten verliert. Die Höhe des jeweiligen Gewinns und Verlusts bestimmen wir nach folgender Überlegung:<ul><li>Je höher das Rating des einen Items war, desto mehr kann das andere Item gewinnen und desto weniger kann es verlieren.</li><li>Je niedriger das Rating des einen Items war, desto weniger kann das andere Item gewinnen und desto mehr kann es verlieren.</li></ul>Anhand des Ratings, das ein Item am Ende des Spiels hat, wird das abschließende Ranking erstellt."
             },
             "list":           {
