@@ -350,7 +350,17 @@
             {
                 var privacy = item.get( 'privacy' ),
                     level = privacy.get( 'level' ),
-                    visibleFor;
+                    visibleFor,
+                    reduce = 0;
+
+                // only reduce when exclude list contains item from include
+                privacy.get( 'exclude' ).each( function( excludee )
+                {
+                    if ( privacy.get( 'include' ).contains( excludee ) ) reduce++;
+                } );
+
+                console.debug( '[ListGuessView] Reducing include list', privacy.get( 'include' ), 'about', reduce,
+                    privacy.get( 'exclude' ) );
 
                 switch ( level ) {
 
@@ -360,7 +370,7 @@
 
                     case pc.common.PrivacyDefinition.Level.FOF:
                         visibleFor =
-                            (privacy.get( 'include' ).length - privacy.get( 'exclude' ).length) *
+                            (privacy.get( 'include' ).length - reduce) *
                                 pc.view.ListGuessView.FOF_MULTIPLIER;
 
                         break;
@@ -369,7 +379,7 @@
                     case pc.common.PrivacyDefinition.Level.ME:
                     case pc.common.PrivacyDefinition.Level.CUSTOM:
                     case pc.common.PrivacyDefinition.Level.NOBODY:
-                        visibleFor = privacy.get( 'include' ).length - privacy.get( 'exclude' ).length;
+                        visibleFor = privacy.get( 'include' ).length - reduce;
                         break;
 
                     default:

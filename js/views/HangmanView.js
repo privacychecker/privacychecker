@@ -307,11 +307,11 @@
             doneCb: function( result )
             {
                 console.log( "[HangmanView] Result for item", this.currentQuestion.item, " was", result, this.errors );
-                this.points.stop();
+                if ( result !== pc.view.HangmanView.RESULT.TIMEOUT ) this.points.stop();
 
                 var resultContainer = this.$el.find( '.result' );
 
-                if ( result === pc.view.HangmanView.RESULT.LOST ) this.points.set( 'remaining', 0 );
+                if ( result !== pc.view.HangmanView.RESULT.WON ) this.points.set( 'remaining', 0 );
 
                 pc.model.FacebookPlayer.getInstance().get( 'results' ).add( new pc.model.TestResult( {
                     item:         this.currentQuestion.item,
