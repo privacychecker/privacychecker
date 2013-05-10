@@ -35,13 +35,13 @@
         },
 
         "briefing": {
-            "close": "Alles klar"
+            "close": "Alles klar!"
         },
 
         "home": {
             "name":        "Hallo",
             "headline":    "Kennst du alle deine Freunde?",
-            "description": "Finde spielend heraus, wer deine Items sehen kann und ob du auch weißt, wer diese Leute sind.",
+            "description": "Finde auf spielerische Weise heraus, wer deine Items sehen kann und ob du auch weißt, wer diese Leute sind.",
             "play_button": "Spielen"
         },
 
