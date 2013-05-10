@@ -300,7 +300,7 @@
             "item":           {
                 "headline": "Was ist ein Item?",
                 "short":    "Der Begriff Item bezeichnet in dieser Anwendung ein Foto oder einen Status Post, das/den du irgendwann auf Facebook veröffentlicht hast.",
-                "long":     "Der Begriff Item bezeichnet in dieser Anwendung ein Foto oder einen Status Post, das/den du irgendwann auf Facebook veröffentlicht hast.<br/>Deine Items haben wir gerade eben von Facebook abgefragt, damit wir sie in diesem und in den nachfolgenden Spielen verwenden können. Da nicht nur im Foto selbst Informationen über dich enthalten sein können, sondern auch in der dazugehörigen Fotobeschreibung, haben wir diese ebenfalls mit abgefragt. Zusätzlich informieren wir dich bei Status Posts darüber, wann du das entsprechende Item veröffentlicht hast. Evtl. weißt du gar nicht mehr, dass es existiert?"
+                "long":     "Der Begriff Item bezeichnet in dieser Anwendung ein Foto oder einen Status Post, das/den du irgendwann auf Facebook veröffentlicht hast.<br/><br/>Deine Items haben wir gerade eben von Facebook abgefragt, damit wir sie in diesem und in den nachfolgenden Spielen verwenden können. Da nicht nur im Foto selbst Informationen über dich enthalten sein können, sondern auch in der dazugehörigen Fotobeschreibung, haben wir diese ebenfalls mit abgefragt. Zusätzlich informieren wir dich bei Status Posts darüber, wann du das entsprechende Item veröffentlicht hast. Evtl. weißt du gar nicht mehr, dass es existiert?"
             },
             "personal":       {
                 "headline": "Wann ist ein Item persönlich?",
@@ -320,17 +320,17 @@
             "rated_item":     {
                 "headline": "Welche Items werden hier verwendet?",
                 "short":    "Hier siehst du ein Item, das du im ersten Spiel als besonders persönlich eingestuft hast.",
-                "long":     "Hier siehst du ein Item, das du im ersten Spiel als besonders persönlich eingestuft hast.<br/<br/>Genauer gesagt handelt es sich dabei um eines der fünf am höchsten bewerteten Items. Nach dem ersten Spiel haben wir dir ein abschließendes Ranking gezeigt, welches danach sortiert war, wie persönlich ein Item für dich ist. Da besonders persönliche Items eine größere Rolle für den Schutz deiner Privatsphäre spielen, verwenden wir in diesem Spiel die ersten fünf Items des Rankings."
+                "long":     "Hier siehst du ein Item, das du im ersten Spiel als besonders persönlich eingestuft hast.<br/><br/>Genauer gesagt handelt es sich dabei um eines der fünf am höchsten bewerteten Items. Nach dem ersten Spiel haben wir dir ein abschließendes Ranking gezeigt, welches danach sortiert war, wie persönlich ein Item für dich ist. Da besonders persönliche Items eine größere Rolle für den Schutz deiner Privatsphäre spielen, verwenden wir in diesem Spiel die ersten fünf Items des Rankings."
             },
             "auto_list":      {
                 "headline": "Was ist eine intelligente Liste?",
                 "short":    "Intelligente Listen sind spezielle Listen, die dadurch charakterisiert sind, dass sie automatisch durch Facebook erstellt und aktualisiert werden.",
-                "long":     "Intelligente Listen sind spezielle Listen, die dadurch charakterisiert sind, dass sie automatisch durch Facebook erstellt und aktualisiert werden.<br/<br/>Realisiert wird das anhand verschiedener Attribute, die du und deine Freunde in euren Profilen angebt. Solltet ihr für ein bestimmtes Attribut den gleichen Wert angegeben haben (z.B. den gleichen Wohnort), so wird dies von der entsprechenden intelligenten Liste registriert und der Freund wird darin eingeordnet. Beispiele für solche auf Attributen basierende Listen sind:<ul><li>Wohnort</li><li>Schule</li><li>Universität</li><li>Arbeitgeber</li><li>Familie</li></ul>"
+                "long":     "Intelligente Listen sind spezielle Listen, die dadurch charakterisiert sind, dass sie automatisch durch Facebook erstellt und aktualisiert werden.<br/><br/>Realisiert wird das anhand verschiedener Attribute, die du und deine Freunde in euren Profilen angebt. Solltet ihr für ein bestimmtes Attribut den gleichen Wert angegeben haben (z.B. den gleichen Wohnort), so wird dies von der entsprechenden intelligenten Liste registriert und der Freund wird darin eingeordnet. Beispiele für solche auf Attributen basierende Listen sind:<ul><li>Wohnort</li><li>Schule</li><li>Universität</li><li>Arbeitgeber</li><li>Familie</li></ul>"
             },
             "hangman_users":  {
                 "headline": "Wie werden die Personen ausgewählt?",
                 "short":    "Von den 20 angezeigten Facebook-Nutzern sollst du möglichst schnell jene bestimmen, die das nebenstehende Item sehen können.",
-                "long":     "Von den 20 angezeigten Facebook-Nutzern sollst du möglichst schnell jene bestimmen, die das nebenstehende Item sehen können.<br/>Unter den 20 Personen sind:<ul><li>Freunde, denen du das Item zugänglich gemacht hast</li><li>Freunde, denen du das Item nicht zugänglich gemacht hast</li><li>Fremde Facebook-Nutzer</li></ul>Innerhalb der obenstehenden Kategorien werden die angezeigten Personen immer wieder neu ausgewählt. Das heißt, jede neue Runde ist eine neue Herausforderung."
+                "long":     "Von den 20 angezeigten Facebook-Nutzern sollst du möglichst schnell jene bestimmen, die das nebenstehende Item sehen können.<br/><br/>Unter den 20 Personen sind:<ul><li>Freunde, denen du das Item zugänglich gemacht hast</li><li>Freunde, denen du das Item nicht zugänglich gemacht hast</li><li>Fremde Facebook-Nutzer</li></ul>Innerhalb der obenstehenden Kategorien werden die angezeigten Personen immer wieder neu ausgewählt. Das heißt, jede neue Runde ist eine neue Herausforderung."
             },
             "hangman_hearts": {
                 "headline": "Was bedeuten die Herzen?",
@@ -340,7 +340,7 @@
             "hangman_points": {
                 "headline": "Wie wird die Punktzahl bestimmt?",
                 "short":    "Hier siehst du deine aktuelle Punktzahl für diese Runde.",
-                "long":     "Hier siehst du deine aktuelle Punktzahl für diese Runde.<br/<br/>Zu Beginn startest du immer mit einem Wert von 10000. Dieser sinkt allerdings nach und nach, und zwar pro Sekunde um 20. Daher solltest du dich besser beeilen und möglichst schnell alle korrekten Profilbilder anklicken. Doch Vorsicht! Klickst du ein falsches an, so werden dir 1000 Punkte abgezogen."
+                "long":     "Hier siehst du deine aktuelle Punktzahl für diese Runde.<br/><br/>Zu Beginn startest du immer mit einem Wert von 10000. Dieser sinkt allerdings nach und nach, und zwar pro Sekunde um 20. Daher solltest du dich besser beeilen und möglichst schnell alle korrekten Profilbilder anklicken. Doch Vorsicht! Klickst du ein falsches an, so werden dir 1000 Punkte abgezogen."
             }
         }
     }
