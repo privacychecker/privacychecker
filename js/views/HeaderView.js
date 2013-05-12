@@ -50,7 +50,7 @@
                     player.logout();
                 } ).addClass( 'btn btn-mini' );
                 var logoutTxt = $( '<i>', {
-                    "html":        "&#128275;",
+                    "html":        "&#59201;",
                     "data-toggle": "tooltip",
                     "title":       i18n.t( pc.view.HeaderView.LANG_LANGUAGE_LOGOUT )
                 } ).tooltip( {

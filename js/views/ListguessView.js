@@ -438,7 +438,7 @@
                     friendResult = $.t( ns.LANG_FRIENDS_OVERVIEW_VERYGOOD,
                         {percent: (friendsDifference * 100).toFixed()}
                     );
-                    friendRating = ns.Result.GOOD;
+                    friendRating = ns.Result.VERYGOOD;
                 }
                 else if ( _.isBetween( friendsDifference, ns.FRIEND_STEPS.VERYGOOD, ns.FRIEND_STEPS.GOOD ) ) {
                     friendResult = $.t( ns.LANG_FRIENDS_OVERVIEW_GOOD, {percent: (friendsDifference * 100).toFixed()} );
@@ -452,7 +452,7 @@
                     friendResult = $.t( ns.LANG_FRIENDS_OVERVIEW_VERYBAD,
                         {percent: (friendsDifference * 100).toFixed()}
                     );
-                    friendRating = ns.Result.BAD;
+                    friendRating = ns.Result.VERYBAD;
                 }
 
                 // auto
@@ -484,7 +484,7 @@
                     // auto rating
                     if ( _.isBetween( autoDifference, ns.AUTO_STEPS.VERYGOOD ) ) {
                         autoResult = $.t( ns.LANG_AUTO_OVERVIEW_VERYGOOD, {percent: (autoDifference * 100).toFixed()} );
-                        autoRating = ns.Result.GOOD;
+                        autoRating = ns.Result.VERYGOOD;
                     }
                     else if ( _.isBetween( autoDifference, ns.AUTO_STEPS.VERYGOOD, ns.AUTO_STEPS.GOOD ) ) {
                         autoResult = $.t( ns.LANG_AUTO_OVERVIEW_GOOD, {percent: (autoDifference * 100).toFixed()} );
@@ -496,7 +496,7 @@
                     }
                     else if ( _.isBetween( autoDifference, ns.AUTO_STEPS.BAD, 1 ) ) {
                         autoResult = $.t( ns.LANG_AUTO_OVERVIEW_VERYBAD, {percent: (autoDifference * 100).toFixed()} );
-                        autoRating = ns.Result.BAD;
+                        autoRating = ns.Result.VERYBAD;
                     }
                 }
 
@@ -530,7 +530,7 @@
                     // user rating
                     if ( _.isBetween( userDifference, ns.USER_STEPS.VERYGOOD ) ) {
                         userResult = $.t( ns.LANG_USER_OVERVIEW_VERYGOOD, {percent: (userDifference * 100).toFixed()} );
-                        userRating = ns.Result.GOOD;
+                        userRating = ns.Result.VERYGOOD;
                     }
                     else if ( _.isBetween( userDifference, ns.USER_STEPS.VERYGOOD, ns.USER_STEPS.GOOD ) ) {
                         userResult = $.t( ns.LANG_USER_OVERVIEW_GOOD, {percent: (userDifference * 100).toFixed()} );
@@ -542,7 +542,7 @@
                     }
                     else if ( _.isBetween( userDifference, ns.USER_STEPS.BAD, 1 ) ) {
                         userResult = $.t( ns.LANG_USER_OVERVIEW_VERYBAD, {percent: (userDifference * 100).toFixed()} );
-                        userRating = ns.Result.BAD;
+                        userRating = ns.Result.VERYBAD;
                     }
                 }
 
@@ -675,7 +675,7 @@
                     groupPercentage,
                     userPercentage;
 
-                if ( groups > 0) {
+                if ( groups > 0 ) {
                     groupPercentage = groupOverallDifference / groups;
 
                     // group rating
@@ -733,8 +733,10 @@
                 return {
                     "individual": {
                         "result_text_list": groupResultText,
-                        "result_text_user":  userResultText,
-                        "details":           individualResults
+                        "result_text_user": userResultText,
+                        "details":          individualResults,
+                        "numGroup":         groups,
+                        "numUser":          users
                     },
                     "public":     {
                         "result_text": publicResultText,
@@ -913,7 +915,7 @@
             },
 
             Result: {
-                GOOD: 0, BAD: 0, NONE: 0
+                VERYGOOD: 0, GOOD: 1, BAD: 2, VERYBAD: 3, NONE: 4
             }
         }
     )

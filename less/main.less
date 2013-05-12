@@ -118,14 +118,28 @@ hr {
     margin-bottom: 50px;
     overflow: hidden;
 
+    .span3, .span4, .span5, .span6 {
+        margin-left: 0;
+    }
+
     .container {
         position: relative;
         z-index: 9;
+
+        -moz-transition: 1s;
+        -ms-transition: 1s;
+        -o-transition: 1s;
+        -webkit-transition: 1s;
+        transition: 1s;
     }
 
     .item {
-        height: 450px;
+        min-height: 600px;
         overflow: hidden;
+
+        & > .container {
+            margin-bottom: 50px;
+        }
     }
 
     .background {
@@ -175,7 +189,7 @@ hr {
     .carousel-control {
         .rounded-corners(0px);
         position: absolute;
-        top: 45%;
+        top: 250px;
         left: 0;
         width: @button-width;
         height: 40px;
@@ -227,12 +241,6 @@ hr {
 /* PAGE */
 .page {
 
-    h2 {
-        font-weight: 100;
-        font-size: 35px;
-        letter-spacing: 4px;
-    }
-
     &.short {
 
         .row {
@@ -243,7 +251,6 @@ hr {
             }
 
             .span4 {
-                text-align: left;
 
                 & > img {
                     float: left;

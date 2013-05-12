@@ -83,12 +83,12 @@
 
             $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 1 );
 
-            $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
-            {
-                $( '.carousel .item.active .background' ).transition( {
-                    "background-color": "rgb(59,89,152)"
-                } );
-            } );
+//            $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
+//            {
+//                $( '.carousel .item.active .background' ).transition( {
+//                    "background-color": "rgb(59,89,152)"
+//                } );
+//            } );
 
         },
 
@@ -105,9 +105,9 @@
             this.selectView.on( "preload:done", _.bind( function()
             {
                 console.log( "[Controller] Preload done" );
-                $( '.carousel .item.active' ).transition( {
-                    "height": "580px"
-                } );
+//                $( '.carousel .item.active' ).transition( {
+//                    "height": "580px"
+//                } );
                 this.selectView.start();
             }, this ) );
 
@@ -129,9 +129,9 @@
 
                 $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
                 {
-                    $( '.carousel .item.active' ).transition( {
-                        "height": "580px"
-                    } );
+//                    $( '.carousel .item.active' ).transition( {
+//                        "height": "580px"
+//                    } );
                 } );
             }, this ) );
             this._animateNextButton();
@@ -153,9 +153,9 @@
 
                 $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
                 {
-                    $( '.carousel .item.active' ).transition( {
-                        "height": "720px"
-                    } );
+//                    $( '.carousel .item.active' ).transition( {
+//                        "height": "720px"
+//                    } );
                 } );
             }, this ) );
             this._animateNextButton();
@@ -177,9 +177,9 @@
 
                 $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', _.bind( function()
                 {
-                    $( '.carousel .item.active' ).transition( {
-                        "height": "600px"
-                    } );
+//                    $( '.carousel .item.active' ).transition( {
+//                        "height": "600px"
+//                    } );
                 }, this ) );
             }, this ) );
             this._animateNextButton();

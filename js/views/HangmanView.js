@@ -38,10 +38,6 @@
 
                 try {
                     pc.model.TooltipCollection.getInstance().pin( briefing.getTextContainer() );
-                    pc.model.TooltipCollection.getInstance()
-                        .pin( this.$el.find( pc.view.HangmanView.LIVESLIST_CONTAINER_ID ), "hangman_hearts" );
-                    pc.model.TooltipCollection.getInstance()
-                        .pin( this.$el.find( pc.view.HangmanView.POINT_CONTAINER_ID ), "hangman_points" );
                 }
                 catch ( e ) {
                     console.error( "[HangmanView] Unable to attach tooltips:", e, "Skipping rest" );
@@ -392,7 +388,8 @@
                     totalPoints = 0,
                     itemInformation,
                     jsonResult,
-                    rating;
+                    rating,
+                    overallResult;
 
                 jsonResult = hangmanResults.map( function( result )
                 {
@@ -428,10 +425,22 @@
                     } );
                 } );
 
-                rating = totalPoints > 37500 ? $.t( pc.view.HangmanView.LANG_RATING_VERYGOOD )
-                    : totalPoints > 25000 ? $.t( pc.view.HangmanView.LANG_RATING_GOOD )
-                             : totalPoints > 12500 ? $.t( pc.view.HangmanView.LANG_RATING_BAD )
-                          : $.t( pc.view.HangmanView.LANG_RATING_VERYBAD );
+                if ( _.isBetween( totalPoints, 12500 ) ) {
+                    rating = $.t( pc.view.HangmanView.LANG_RATING_VERYBAD );
+                    overallResult = pc.view.HangmanView.Rating.VERYBAD;
+                }
+                else if ( _.isBetween( totalPoints, 12500, 25000 ) ) {
+                    rating = $.t( pc.view.HangmanView.LANG_RATING_BAD );
+                    overallResult = pc.view.HangmanView.Rating.BAD;
+                }
+                else if ( _.isBetween( totalPoints, 25000, 37500 ) ) {
+                    rating = $.t( pc.view.HangmanView.LANG_RATING_GOOD );
+                    overallResult = pc.view.HangmanView.Rating.GOOD;
+                }
+                else if ( _.isBetween( totalPoints, 37500, 50000 ) ) {
+                    rating = $.t( pc.view.HangmanView.LANG_RATING_VERYGOOD );
+                    overallResult = pc.view.HangmanView.Rating.VERYGOOD;
+                }
 
                 return {
                     results: jsonResult,
@@ -439,7 +448,8 @@
                         duration: totalDuration.toFixed(),
                         errors:   totalErrors,
                         points:   totalPoints,
-                        rating:   rating
+                        rating:   rating,
+                        overall:  overallResult
                     }
                 };
             },
@@ -525,7 +535,7 @@
 
             START_POINTS:     10000,
             LOSE_WRONG_CLICK: 1000,
-            LOSE_PER_SECOND:  250,
+            LOSE_PER_SECOND:  200,
 
             RESULT: {
                 WON: 0, LOST: 1, TIMEOUT: 2
@@ -539,11 +549,13 @@
 
             CB_LINK_ID: "app.hangman",
 
-            LANG_GAME_NAME: "app.hangman.name"
+            LANG_GAME_NAME: "app.hangman.name",
+
+            Rating: {
+                VERYGOOD: 0, GOOD: 1, BAD: 2, VERYBAD: 3
+            }
 
         }
-    )
-    ;
+    );
 
-})
-    ();
+})();

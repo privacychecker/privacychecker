@@ -1,12 +1,13 @@
 #briefing {
     position: absolute;
-    top: 40px;
+    top: 120px;
 
     text-align: center;
 
     width: 100%;
 
     div.briefing-container {
+        .rounded-corners;
 
         width: 600px;
 
@@ -21,15 +22,6 @@
 
         font-size: 18px;
         line-height: 1.5;
-
-        -moz-border-radius: 8px;
-        -webkit-border-radius: 8px;
-        -ms-border-radius: 8px;
-        border-radius: 8px;
-
-        -moz-box-shadow: 0 0 5px 5px #888;
-        -webkit-box-shadow: 0 0 5px 5px #888;
-        box-shadow: 0 0 5px 5px #888;
 
         & > p {
             margin: 15px;
@@ -53,9 +45,8 @@
         }
 
         & > a.btn {
-            display: block;
             margin: 10px 15px;
-            max-width: 100px;
+            width: 100px;
         }
 
     }
