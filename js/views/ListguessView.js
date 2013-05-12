@@ -22,8 +22,6 @@
 
             templateGame:        pc.template.GuessGameTemplate,
             templateResult:      pc.template.GuessResultTemplate,
-            templateResultLists: pc.template.GuessResultListsTemplate,
-            templateResultItems: pc.template.GuessResultItemsTemplate,
             templateGameItems:   pc.template.GuessGameItemsTemplate,
 
             initialize: function()
@@ -130,7 +128,7 @@
                 // render container
                 this.$el.fadeOut( _.bind( function()
                 {
-                    this.$el.html( this.templateResult() );
+                    this.$el.html( this.templateResult(options) );
 
                     // add tooltip
                     try {
@@ -139,32 +137,6 @@
                     catch ( e ) {
                         console.error( "[ListGuessView] Unable to attach tooltips:", e, "Skipping rest" );
                     }
-
-                    // add change events
-                    this.$el.find( pc.view.ListGuessView.SWITCH_LISTS_ID )
-                        .click( _.bind( this.resultShowSubtemplateCb, this, this.templateResultLists, options.lists ) );
-                    this.$el.find( pc.view.ListGuessView.SWITCH_ITEMS_ID )
-                        .click( _.bind( this.resultShowSubtemplateCb, this, this.templateResultItems, options.items ) );
-
-                    this.resultShowSubtemplateCb( this.templateResultLists, options.lists );
-
-                    // ok everything ready
-                    this.$el.fadeIn();
-
-                }, this ) );
-
-                this.trigger( 'game:done' );
-
-            },
-
-            resultShowSubtemplateCb: function( template, options )
-            {
-                var container = this.$el.find( ".container" ).first();
-                container.fadeOut( _.bind( function()
-                {
-                    container
-                        .empty()
-                        .html( template( options ) );
 
                     // add toggles
                     this.$el.find( '.collapsable' ).each( function( idx, el )
@@ -180,9 +152,12 @@
                         } );
                     } );
 
+                    // ok everything ready
+                    this.$el.fadeIn();
+
                 }, this ) );
 
-                container.fadeIn();
+                this.trigger( 'game:done' );
 
             },
 
@@ -831,9 +806,6 @@
             MIN_USER_CREATED:   2,
             HIDE_WARNING_AFTER: 3000,
             FOF_MULTIPLIER:     1.5,
-
-            SWITCH_LISTS_ID: "#switch-lists",
-            SWITCH_ITEMS_ID: "#switch-items",
 
             FRIEND_STEPS:     {
                 VERYGOOD: 0.1,
