@@ -188,7 +188,7 @@
                 "verygood": "You scored __points__ points in <i>Find Your Friends</i>. This score indicates that you know your friends very well.",
                 "good":     "You scored __points__ points in <i>Find Your Friends</i>. This score indicates that you know your friends well.",
                 "bad":      "You scored __points__ points in <i>Find Your Friends</i>. This score indicates that you do not know your friends well.",
-                "verybad":  "You scored __points__ points in <i>Find Your Friends</i>. This score indicates that you know your friends badly.",
+                "verybad":  "You scored __points__ points in <i>Find Your Friends</i>. This score indicates that you know your friends badly."
             }
         },
 
