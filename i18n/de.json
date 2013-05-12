@@ -112,20 +112,20 @@
                     "user_none":        "Du hast selbst noch keine Liste angelegt."
                 },
                 "items":       {
-                    "list_headline":   "Freigabe-Einstellungen",
-                    "list_verygood":   "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr gutes Ergebnis darstellt.",
-                    "list_good":       "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein gutes Ergebnis darstellt.",
-                    "list_bad":        "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein weniger gutes Ergebnis darstellt.",
-                    "list_verybad":    "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein schlechtes Ergebnis darstellt.",
-    				"list_none_verygood":   "Bei den untersuchten Items hast du keine Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr gutes Ergebnis darstellt.",
-                    "list_none_good":       "Bei den untersuchten Items hast du keine Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein gutes Ergebnis darstellt.",
-                    "list_none_bad":        "Bei den untersuchten Items hast du keine Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein weniger gutes Ergebnis darstellt.",
-                    "list_none_verybad":    "Bei den untersuchten Items hast du keine Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein schlechtes Ergebnis darstellt.",
-                    "public_headline": "Öffentliche Items",
-                    "public_yes":      "Bei den untersuchten Items haben wir __count__ öffentliche Items gefunden. Du solltest diese überprüfen.",
-                    "public_no":       "Bei den untersuchten Items haben wir keine öffentlichen Items gefunden.",
-                    "visible_for":     "Freigeben für",
-                    "denied_for":      "Verboten für"
+                    "list_headline":      "Freigabe-Einstellungen",
+                    "list_verygood":      "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr gutes Ergebnis darstellt.",
+                    "list_good":          "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein gutes Ergebnis darstellt.",
+                    "list_bad":           "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein weniger gutes Ergebnis darstellt.",
+                    "list_verybad":       "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein schlechtes Ergebnis darstellt.",
+                    "list_none_verygood": "Bei den untersuchten Items hast du keine Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr gutes Ergebnis darstellt.",
+                    "list_none_good":     "Bei den untersuchten Items hast du keine Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein gutes Ergebnis darstellt.",
+                    "list_none_bad":      "Bei den untersuchten Items hast du keine Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein weniger gutes Ergebnis darstellt.",
+                    "list_none_verybad":  "Bei den untersuchten Items hast du keine Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein schlechtes Ergebnis darstellt.",
+                    "public_headline":    "Öffentliche Items",
+                    "public_yes":         "Bei den untersuchten Items haben wir __count__ öffentliche Items gefunden. Du solltest diese überprüfen.",
+                    "public_no":          "Bei den untersuchten Items haben wir keine öffentlichen Items gefunden.",
+                    "visible_for":        "Freigeben für",
+                    "denied_for":         "Verboten für"
                 }
             }
 
@@ -160,7 +160,7 @@
                 "friend_verygood": "Du hast einen sehr guten Überblick über die Anzahl deiner Freunde.",
                 "friend_good":     "Du hast einen guten Überblick über die Anzahl deiner Freunde.",
                 "friend_bad":      "Du hast einen weniger guten Überblick über die Anzahl deiner Freunde. Daher möchten wir dich auf die Problematik des Begriffs <i>Freundschaft</i> hinweisen.",
-                "friend_bad":      "Du hast einen schlechten Überblick über die Anzahl deiner Freunde. Daher möchten wir dich auf die Problematik des Begriffs <i>Freundschaft</i> hinweisen.",
+                "friend_verybad":  "Du hast einen schlechten Überblick über die Anzahl deiner Freunde. Daher möchten wir dich auf die Problematik des Begriffs <i>Freundschaft</i> hinweisen.",
 
                 "user_verygood": "Du scheinst deine selbst erstellten Listen sehr gut zu kennen.",
                 "user_good":     "Du scheinst deine selbst erstellten Listen gut zu kennen.",

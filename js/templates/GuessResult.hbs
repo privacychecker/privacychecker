@@ -3,10 +3,11 @@
 
     <h1>{{t "app.guess.result.headline"}}</h1>
 
+    <p>{{t "app.guess.result.description"}}</p>
+
     <h2>{{t "app.guess.game.lists.name"}}</h2>
 
     <div class="result-lists">
-        <p>{{t "app.guess.result.lists.description"}}</p>
 
         <ul class="result ">
             <!-- friends -->
@@ -112,17 +113,14 @@
     <h2>{{t "app.guess.game.items.name"}}</h2>
 
     <div class="result-lists">
-        <p>{{t "app.guess.result.lists.description"}}</p>
-
         <ul class="result collapsable two">
             <!-- friends -->
             <li class="divider">
                 <div class="head">
-                    <h2>{{t "app.guess.result.items.list_headline"}} & {{t "app.guess.result.items.user_headline"}}</h2>
+                    <h2>{{t "app.guess.result.items.list_headline"}}</h2>
 
                     <p>
-                        {{items.individual.result_text_list}}<br/>
-                        {{items.individual.result_text_user}}<br/>
+                        {{items.individual.result_text}}<br/>
                         <a class="btn btn-small btn-primary control">
                             <i>&#8505;</i> <span>{{t "app.common.more_info"}}</span>
                         </a>

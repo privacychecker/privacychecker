@@ -78,7 +78,7 @@
                 listResult.auto.rating === results.GOOD ? $.t( ns.LANG_LISTS_AUTO_GOOD ) :
                 listResult.auto.rating === results.BAD ? $.t( ns.LANG_LISTS_AUTO_BAD ) :
                 listResult.auto.rating === results.VERYBAD ? $.t( ns.LANG_LISTS_AUTO_VERYBAD ) :
-                $.t( ns.LANG_LISTS_USER_NONE );
+                $.t( ns.LANG_LISTS_AUTO_NONE );
 
             // recommendations
             if ( listResult.friends.rating === results.BAD || listResult.friends.rating === results.VERYBAD ) {
@@ -104,20 +104,16 @@
 
             // result texts
             var resultForLists =
-                itemResult.individual.numGroup > 0 ? $.t( ns.LANG_ITEMS_LISTS_YES )
+                itemResult.individual.has_lists ? $.t( ns.LANG_ITEMS_LISTS_YES )
                     : $.t( ns.LANG_ITEMS_LISTS_NO );
-
-            var resultForUsers =
-                itemResult.individual.numUser > 0 ? $.t( ns.LANG_ITEMS_FRIENDS_YES )
-                    : $.t( ns.LANG_ITEMS_FRIENDS_NO );
 
             var resultForPublic =
                 itemResult.public.details.length > 0 ? $.t( ns.LANG_ITEMS_PUBLIC_YES )
                     : $.t( ns.LANG_ITEMS_PUBLIC_NO );
 
             // recommendations
-            if ( itemResult.individual.numGroup === 0 ) this.recommendationsHelper.lists_use = true;
-            if ( itemResult.individual.numUser === 0 ) this.recommendationsHelper.sharing = true;
+            if ( !itemResult.individual.has_lists ) this.recommendationsHelper.lists_use = true;
+            if ( !itemResult.individual.has_lists ) this.recommendationsHelper.sharing = true;
             if ( itemResult.public.details.length > 0 ) {
                 this.recommendationsHelper.defaults = true;
                 this.recommendationsHelper.hide_past = true;
@@ -126,7 +122,6 @@
             return {
                 result_text: {
                     lists:   resultForLists,
-                    friends: resultForUsers,
                     public:  resultForPublic
                 },
                 details:     _.union( itemResult.individual.details, itemResult.public.details )
@@ -163,10 +158,10 @@
 
     }, {
 
-        LANG_LISTS_FRIENDS_VERYGOOD: "app.results.lists.friend_good",
+        LANG_LISTS_FRIENDS_VERYGOOD: "app.results.lists.friend_verygood",
         LANG_LISTS_FRIENDS_GOOD:     "app.results.lists.friend_good",
         LANG_LISTS_FRIENDS_BAD:      "app.results.lists.friend_bad",
-        LANG_LISTS_FRIENDS_VERYBAD:  "app.results.lists.friend_bad",
+        LANG_LISTS_FRIENDS_VERYBAD:  "app.results.lists.friend_verybad",
 
         LANG_LISTS_USER_VERYGOOD: "app.results.lists.user_verygood",
         LANG_LISTS_USER_GOOD:     "app.results.lists.user_good",
@@ -182,9 +177,6 @@
 
         LANG_ITEMS_LISTS_YES: "app.results.items.lists_yes",
         LANG_ITEMS_LISTS_NO:  "app.results.items.lists_no",
-
-        LANG_ITEMS_FRIENDS_YES: "app.results.items.friends_yes",
-        LANG_ITEMS_FRIENDS_NO:  "app.results.items.friends_no",
 
         LANG_ITEMS_PUBLIC_YES: "app.results.items.public_yes",
         LANG_ITEMS_PUBLIC_NO:  "app.results.items.public_no",

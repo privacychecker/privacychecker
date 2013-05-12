@@ -20,9 +20,9 @@
      */
     ns.ListGuessView = Backbone.View.extend( {
 
-            templateGame:        pc.template.GuessGameTemplate,
-            templateResult:      pc.template.GuessResultTemplate,
-            templateGameItems:   pc.template.GuessGameItemsTemplate,
+            templateGame:      pc.template.GuessGameTemplate,
+            templateResult:    pc.template.GuessResultTemplate,
+            templateGameItems: pc.template.GuessGameItemsTemplate,
 
             initialize: function()
             {
@@ -128,7 +128,7 @@
                 // render container
                 this.$el.fadeOut( _.bind( function()
                 {
-                    this.$el.html( this.templateResult(options) );
+                    this.$el.html( this.templateResult( options ) );
 
                     // add tooltip
                     try {
@@ -555,10 +555,8 @@
                     results = this._findType( resultForsItems, pc.view.ListGuessView.QuestionType.ITEM ),
                     individualResults = [],
                     publicResults = [],
-                    groupOverallDifference = 0,
-                    userOverallDifference = 0,
-                    groups = 0,
-                    users = 0;
+                    overallDifference = 0,
+                    hasLists = false;
 
                 _.each( results, _.bind( function( result )
                 {
@@ -590,15 +588,15 @@
                                 // skips all_friends_list
                                 if ( list.get( 'id' ) !== -1 ) {
                                     visibleFor.push( list.get( 'name' ) );
+                                    hasLists = true;
                                 }
                             } );
                             privacy.get( 'excludeList' ).each( function( list )
                             {
                                 deniedFor.push( list.get( 'name' ) );
+                                hasLists = true;
                             } );
 
-                            groups++;
-                            groupOverallDifference += this.__calculateDifference( item );
                         }
 
                         // do we have user visibleFor or deniedFor
@@ -608,19 +606,20 @@
                                 {
                                     // skip player
                                     if ( user.get( 'id' ) !== player.get( 'id' ) ) {
+                                        hasLists = true;
                                         return user.get( 'name' );
                                     }
                                 } ) );
                             deniedFor = _.union( deniedFor,
                                 _.map( privacy.get( 'excludeUser' ).models, function( list )
                                 {
+                                    hasLists = true;
                                     return list.get( 'name' );
-                                } ) )
-                            ;
-                            users++;
-                            userOverallDifference += this.__calculateDifference( item );
+                                } ) );
 
                         }
+
+                        overallDifference += this.__calculateDifference( result );
 
                         // add to list
                         individualResults.push( this.__createItem( result, {
@@ -638,62 +637,72 @@
                         && !_.isUndefined( item.get( 'privacy' ).get( 'level' ) )
                         && item.get( 'privacy' ).get( 'level' ) === pc.common.PrivacyDefinition.Level.ALL ) {
 
-                        publicResults.push( this.__createItem( item, {} ) );
+                        console.debug( '[ListGuessView] Found PUBLIC item', item );
+
+                        // item need to wrapped in testresult
+                        publicResults.push( this.__createItem( new pc.model.TestResult( {
+                            item:         item,
+                            userValue:    0,
+                            correctValue: 0,
+                            gameType:     pc.model.TestResult.Type.ENTITYGUESS
+                        } ) ) );
                     }
                 }, this ) );
 
                 // make result texts
-                var groupResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_LIST_OVERVIEW_NONE ),
-                    userResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_USER_OVERVIEW_NONE ),
+                var resultText,
                     publicResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_PUBLIC_OVERVIEW_NO ),
 
-                    groupPercentage,
-                    userPercentage;
+                    percentage = overallDifference / results.length;
 
-                if ( groups > 0 ) {
-                    groupPercentage = groupOverallDifference / groups;
+                console.log( percentage, overallDifference, results.length, hasLists );
 
-                    // group rating
-                    if ( _.isBetween( groupPercentage, ns.ITEMS_LIST_STEPS.VERYGOOD ) ) {
-                        groupResultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_VERYGOOD,
-                            {percent: (groupPercentage * 100).toFixed()}
+                // group rating
+                if ( _.isBetween( percentage, ns.ITEMS_STEPS.VERYGOOD ) ) {
+                    if ( hasLists ) {
+                        resultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_VERYGOOD,
+                            {percent: (percentage * 100).toFixed()}
                         );
                     }
-                    else if ( _.isBetween( groupPercentage, ns.ITEMS_LIST_STEPS.VERYGOOD, ns.ITEMS_LIST_STEPS.GOOD ) ) {
-                        groupResultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_GOOD,
-                            {percent: (groupPercentage * 100).toFixed()} );
-                    }
-                    else if ( _.isBetween( groupPercentage, ns.ITEMS_LIST_STEPS.GOOD, ns.ITEMS_LIST_STEPS.BAD ) ) {
-                        groupResultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_BAD,
-                            {percent: (groupPercentage * 100).toFixed()} );
-                    }
-                    else if ( _.isBetween( groupPercentage, ns.ITEMS_LIST_STEPS.BAD, 1 ) ) {
-                        groupResultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_VERYBAD,
-                            {percent: (groupPercentage * 100).toFixed()}
+                    else {
+                        resultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_NONE_VERYGOOD,
+                            {percent: (percentage * 100).toFixed()}
                         );
                     }
                 }
-
-                if ( users > 0 ) {
-                    userPercentage = userOverallDifference / users;
-
-                    // user rating
-                    if ( _.isBetween( userPercentage, ns.ITEMS_USER_STEPS.VERYGOOD ) ) {
-                        userResultText = $.t( ns.LANG_ITEMS_USER_OVERVIEW_VERYGOOD,
-                            {percent: (userPercentage * 100).toFixed()}
+                else if ( _.isBetween( percentage, ns.ITEMS_STEPS.VERYGOOD, ns.ITEMS_STEPS.GOOD ) ) {
+                    if ( hasLists ) {
+                        resultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_GOOD,
+                            {percent: (percentage * 100).toFixed()}
                         );
                     }
-                    else if ( _.isBetween( userPercentage, ns.ITEMS_USER_STEPS.VERYGOOD, ns.ITEMS_USER_STEPS.GOOD ) ) {
-                        userResultText = $.t( ns.LANG_ITEMS_USER_OVERVIEW_GOOD,
-                            {percent: (userPercentage * 100).toFixed()} );
+                    else {
+                        resultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_NONE_GOOD,
+                            {percent: (percentage * 100).toFixed()}
+                        );
                     }
-                    else if ( _.isBetween( userPercentage, ns.ITEMS_USER_STEPS.GOOD, ns.ITEMS_USER_STEPS.BAD ) ) {
-                        userResultText = $.t( ns.LANG_ITEMS_USER_OVERVIEW_BAD,
-                            {percent: (userPercentage * 100).toFixed()} );
+                }
+                else if ( _.isBetween( percentage, ns.ITEMS_STEPS.GOOD, ns.ITEMS_STEPS.BAD ) ) {
+                    if ( hasLists ) {
+                        resultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_BAD,
+                            {percent: (percentage * 100).toFixed()}
+                        );
                     }
-                    else if ( _.isBetween( userPercentage, ns.ITEMS_USER_STEPS.BAD, 1 ) ) {
-                        userResultText = $.t( ns.LANG_ITEMS_USER_OVERVIEW_VERYBAD,
-                            {percent: (userPercentage * 100).toFixed()}
+                    else {
+                        resultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_NONE_BAD,
+                            {percent: (percentage * 100).toFixed()}
+                        );
+                    }
+                }
+                else if ( _.isBetween( percentage, ns.ITEMS_STEPS.BAD, 1 ) ) {
+                    if ( hasLists ) {
+                        resultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_VERYBAD,
+                            {percent: (percentage * 100).toFixed()}
+                        );
+                    }
+                    else {
+                        resultText = $.t( ns.LANG_ITEMS_LIST_OVERVIEW_NONE_VERYBAD,
+                            {percent: (percentage * 100).toFixed()}
                         );
                     }
                 }
@@ -707,11 +716,9 @@
                 // calculate overalls
                 return {
                     "individual": {
-                        "result_text_list": groupResultText,
-                        "result_text_user": userResultText,
-                        "details":          individualResults,
-                        "numGroup":         groups,
-                        "numUser":          users
+                        "result_text": resultText,
+                        "details":     individualResults,
+                        "has_lists":   hasLists
                     },
                     "public":     {
                         "result_text": publicResultText,
@@ -730,11 +737,18 @@
 
                 difference = difference < 0 ? difference * (-1) : difference;
 
+                if ( _.isNaN( difference ) ) {
+                    console.warn( "[ListGuessView] Got NaN value while calculating difference", difference );
+                    difference = 0;
+                }
+
                 return difference;
             },
 
             __createItem: function( result, toMerge )
             {
+
+                if ( _.isUndefined( toMerge ) ) toMerge = {};
 
                 var correctValue = result.get( 'correctValue' ),
                     userValue = result.get( 'userValue' ),
@@ -807,27 +821,22 @@
             HIDE_WARNING_AFTER: 3000,
             FOF_MULTIPLIER:     1.5,
 
-            FRIEND_STEPS:     {
+            FRIEND_STEPS: {
                 VERYGOOD: 0.1,
                 GOOD:     0.2,
                 BAD:      0.4
             },
-            AUTO_STEPS:       {
+            AUTO_STEPS:   {
                 VERYGOOD: 0.2,
                 GOOD:     0.4,
                 BAD:      0.8
             },
-            USER_STEPS:       {
+            USER_STEPS:   {
                 VERYGOOD: 0.15,
                 GOOD:     0.3,
                 BAD:      0.6
             },
-            ITEMS_LIST_STEPS: {
-                VERYGOOD: 0.15,
-                GOOD:     0.3,
-                BAD:      0.6
-            },
-            ITEMS_USER_STEPS: {
+            ITEMS_STEPS:  {
                 VERYGOOD: 0.15,
                 GOOD:     0.3,
                 BAD:      0.6
@@ -866,13 +875,11 @@
             LANG_ITEMS_LIST_OVERVIEW_BAD:      "app.guess.result.items.list_bad",
             LANG_ITEMS_LIST_OVERVIEW_GOOD:     "app.guess.result.items.list_good",
             LANG_ITEMS_LIST_OVERVIEW_VERYGOOD: "app.guess.result.items.list_verygood",
-            LANG_ITEMS_LIST_OVERVIEW_NONE:     "app.guess.result.items.list_none",
 
-            LANG_ITEMS_USER_OVERVIEW_VERYBAD:  "app.guess.result.items.user_verybad",
-            LANG_ITEMS_USER_OVERVIEW_BAD:      "app.guess.result.items.user_bad",
-            LANG_ITEMS_USER_OVERVIEW_GOOD:     "app.guess.result.items.user_good",
-            LANG_ITEMS_USER_OVERVIEW_VERYGOOD: "app.guess.result.items.user_verygood",
-            LANG_ITEMS_USER_OVERVIEW_NONE:     "app.guess.result.items.user_none",
+            LANG_ITEMS_LIST_OVERVIEW_NONE_VERYBAD:  "app.guess.result.items.list_none_verygood",
+            LANG_ITEMS_LIST_OVERVIEW_NONE_BAD:      "app.guess.result.items.list_none_bad",
+            LANG_ITEMS_LIST_OVERVIEW_NONE_GOOD:     "app.guess.result.items.list_none_good",
+            LANG_ITEMS_LIST_OVERVIEW_NONE_VERYGOOD: "app.guess.result.items.list_none_verygood",
 
             LANG_ITEMS_PUBLIC_OVERVIEW_YES: "app.guess.result.items.public_yes",
             LANG_ITEMS_PUBLIC_OVERVIEW_NO:  "app.guess.result.items.public_no",
