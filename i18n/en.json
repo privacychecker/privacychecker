@@ -86,13 +86,13 @@
                 }
             },
             "result":   {
-                "headline":   "Guessing - Results",
-                "answer":     "Answer",
-                "correct":    "Correct value",
-                "difference": "Difference",
-                "rating":     "Feedback",
-                "lists":      {
-                    "description":      "Here are the results for the questions on your friends and lists. Regarding the lists, we have differentiated between your custom lists and Facebook's smart lists. The analysis below shows if you have used some lists or single friends in the privacy settings of your items, or if you have publicly disclosed them. If you like to see your detailed results for a certain category, just click on the button below the corresponding the text.",
+                "headline":    "Guessing - Results",
+                "answer":      "Answer",
+                "correct":     "Correct value",
+                "difference":  "Difference",
+                "rating":      "Feedback",
+                "description": "Here are the results for the questions on your friends and lists. Regarding the lists, we have differentiated between your custom lists and Facebook's smart lists. The analysis below shows if you have used some lists or single friends in the privacy settings of your items, or if you have publicly disclosed them. If you like to see your detailed results for a certain category, just click on the button below the corresponding the text.",
+                "lists":       {
                     "friends_headline": "Number of friends",
                     "friends_verygood": "Your overview of your number of friends is very good. The difference between your answer and the correct value is only __percent__%.",
                     "friends_good":     "Your overview of your number of friends is good. The difference between your answer and the correct value is only __percent__%.",
@@ -111,7 +111,7 @@
                     "user_verybad":     "You have already created one or more custom lists. However, you seem to know them badly because the difference between your answer and the correct value averages __percent__%.",
                     "user_none":        "You do not have created any custom lists."
                 },
-                "items":      {
+                "items":       {
                     "list_headline":   "Usage of lists",
                     "list_verygood":   "You have used some lists or single friends in the privacy settings of the examined items at least once. The difference between your answer and the correct value averages __percent__%, which represents a very good result.",
                     "list_good":       "You have used some lists or single friends in the privacy settings of the examined items at least once. The difference between your answer and the correct value averages __percent__%, which represents a good result.",
@@ -155,21 +155,21 @@
                 "headline": "Friends & Lists",
 
                 "friend_verygood": "Your overview of your number of friends is very good.",
-                "friend_good": "Your overview of your number of friends is good.",
-                "friend_bad":  "Your overview of your number of friends is improvable. Hence, we would like to make you aware of the problems arising from the term <i>friendship</i>.",
-                "friend_bad":  "Your overview of your number of friends is unsatisfactory. Hence, we would like to make you aware of the problems arising from the term <i>friendship</i>.",
+                "friend_good":     "Your overview of your number of friends is good.",
+                "friend_bad":      "Your overview of your number of friends is improvable. Hence, we would like to make you aware of the problems arising from the term <i>friendship</i>.",
+                "friend_bad":      "Your overview of your number of friends is unsatisfactory. Hence, we would like to make you aware of the problems arising from the term <i>friendship</i>.",
 
                 "user_verygood": "You seem to know your custom lists very well.",
-                "user_good": "You seem to know your custom lists well.",
-                "user_bad":  "You do not seem to know your custom lists well.",
+                "user_good":     "You seem to know your custom lists well.",
+                "user_bad":      "You do not seem to know your custom lists well.",
                 "user_verybad":  "You seem to know your custom lists badly.",
-                "user_none": "You do not have created any custom lists. Hence, we would like to point out to you where and how to do this.",
+                "user_none":     "You do not have created any custom lists. Hence, we would like to point out to you where and how to do this.",
 
                 "auto_verygood": "You seem to know your smart lists very well.",
-                "auto_good": "You seem to know your smart lists well.",
-                "auto_bad":  "You do not seem to know your smart lists well.",
+                "auto_good":     "You seem to know your smart lists well.",
+                "auto_bad":      "You do not seem to know your smart lists well.",
                 "auto_verybad":  "You seem to know your smart lists badly.",
-                "auto_none": "You do not have any smart lists. Apparently, you do not have disclosed any relevant attribute in your profile."
+                "auto_none":     "You do not have any smart lists. Apparently, you do not have disclosed any relevant attribute in your profile."
             },
             "items":       {
                 "headline": "Privacy Settings",

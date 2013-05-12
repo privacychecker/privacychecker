@@ -86,13 +86,13 @@
                 }
             },
             "result":   {
-                "headline":   "Guessing - Ergebnisse",
-                "answer":     "Antwort",
-                "correct":    "Korrekter Wert",
-                "difference": "Abweichung",
-                "rating":     "Bewertung",
-                "lists":      {
-                    "description":      "Hier siehst du zum einen die Auswertung zu den Fragen nach deinen Freunden und deinen Listen. Bei den Listen haben wir nach deinen selbst erstellten und Facebooks intelligenten Listen unterschieden. Zum anderen haben wir analysiert, ob du für die Freigabe deiner Items Listen oder einzelne Freunde verwendet hast, oder ob du Items öffentlich geteilt hast. Falls du deine genauen Ergebnisse für eine bestimmte Kategorie sehen möchtest, klicke auf den Button unter dem Auswertungstext.",
+                "headline":    "Guessing - Ergebnisse",
+                "answer":      "Antwort",
+                "correct":     "Korrekter Wert",
+                "difference":  "Abweichung",
+                "rating":      "Bewertung",
+                "description": "Hier siehst du zum einen die Auswertung zu den Fragen nach deinen Freunden und deinen Listen. Bei den Listen haben wir nach deinen selbst erstellten und Facebooks intelligenten Listen unterschieden. Zum anderen haben wir analysiert, ob du für die Freigabe deiner Items Listen oder einzelne Freunde verwendet hast, oder ob du Items öffentlich geteilt hast. Falls du deine genauen Ergebnisse für eine bestimmte Kategorie sehen möchtest, klicke auf den Button unter dem Auswertungstext.",
+                "lists":       {
                     "friends_headline": "Gesamtanzahl an Freunden",
                     "friends_verygood": "Du hast einen sehr guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug nur __percent__%.",
                     "friends_good":     "Du hast einen guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug nur __percent__%.",
@@ -111,7 +111,7 @@
                     "user_verybad":     "Du hast selbst bereits eine oder mehrere Listen angelegt. Diese scheinst du allerdings schlecht zu kennen, da die Abweichung deiner Antwort vom korrekten Wert im Schnitt __percent__% betrug.",
                     "user_none":        "Du hast selbst noch keine Liste angelegt."
                 },
-                "items":      {
+                "items":       {
                     "list_headline":   "Freigabe-Einstellungen",
                     "list_verygood":   "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr gutes Ergebnis darstellt.",
                     "list_good":       "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein gutes Ergebnis darstellt.",
@@ -155,21 +155,21 @@
                 "headline": "Freunde & Listen",
 
                 "friend_verygood": "Du hast einen sehr guten Überblick über die Anzahl deiner Freunde.",
-                "friend_good": "Du hast einen guten Überblick über die Anzahl deiner Freunde.",
-                "friend_bad":  "Du hast einen weniger guten Überblick über die Anzahl deiner Freunde. Daher möchten wir dich auf die Problematik des Begriffs <i>Freundschaft</i> hinweisen.",
-                "friend_bad":  "Du hast einen schlechten Überblick über die Anzahl deiner Freunde. Daher möchten wir dich auf die Problematik des Begriffs <i>Freundschaft</i> hinweisen.",
+                "friend_good":     "Du hast einen guten Überblick über die Anzahl deiner Freunde.",
+                "friend_bad":      "Du hast einen weniger guten Überblick über die Anzahl deiner Freunde. Daher möchten wir dich auf die Problematik des Begriffs <i>Freundschaft</i> hinweisen.",
+                "friend_bad":      "Du hast einen schlechten Überblick über die Anzahl deiner Freunde. Daher möchten wir dich auf die Problematik des Begriffs <i>Freundschaft</i> hinweisen.",
 
                 "user_verygood": "Du scheinst deine selbst erstellten Listen sehr gut zu kennen.",
-                "user_good": "Du scheinst deine selbst erstellten Listen gut zu kennen.",
-                "user_bad":  "Du scheinst deine selbst erstellten Listen weniger gut zu kennen.",
+                "user_good":     "Du scheinst deine selbst erstellten Listen gut zu kennen.",
+                "user_bad":      "Du scheinst deine selbst erstellten Listen weniger gut zu kennen.",
                 "user_verybad":  "Du scheinst deine selbst erstellten Listen schlecht zu kennen.",
-                "user_none": "Du hast selbst noch keine Liste angelegt. Daher möchten wir dich kurz darauf hinweisen, wo und wie du dies machen kannst.",
+                "user_none":     "Du hast selbst noch keine Liste angelegt. Daher möchten wir dich kurz darauf hinweisen, wo und wie du dies machen kannst.",
 
                 "auto_verygood": "Du scheinst deine intelligenten Listen sehr gut zu kennen.",
-                "auto_good": "Du scheinst deine intelligenten Listen gut zu kennen.",
-                "auto_bad":  "Du scheinst deine intelligenten Listen weniger gut zu kennen.",
+                "auto_good":     "Du scheinst deine intelligenten Listen gut zu kennen.",
+                "auto_bad":      "Du scheinst deine intelligenten Listen weniger gut zu kennen.",
                 "auto_verybad":  "Du scheinst deine intelligenten Listen schlecht zu kennen.",
-                "auto_none": "Du besitzt keine intelligenten Listen. Offensichtlich hast du keines der relevanten Attribute in deinem Profil angegeben."
+                "auto_none":     "Du besitzt keine intelligenten Listen. Offensichtlich hast du keines der relevanten Attribute in deinem Profil angegeben."
             },
             "items":       {
                 "headline": "Freigabe-Einstellungen",
