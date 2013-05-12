@@ -4,7 +4,7 @@
         "header": {
             "start":            "Start",
             "change_language":  "Change language",
-            "flag_id":          "assets/us.png",
+            "flag_id":          "assets/de.png",
             "language_confirm": "Do you really want to change the language? The game will be aborted then!",
             "hi":               "Logged in as: __name__",
             "hi_not_loggedin":  "",
@@ -78,7 +78,7 @@
                 "lists":             {
                     "name":             "List Guessing",
                     "question_friends": "How many friends do you have in total?",
-                    "question_list":    "How many member has the list __listname__?"
+                    "question_list":    "How many member has the list <i>__listname__</i>?"
                 },
                 "items":             {
                     "name":     "Item Guessing",
@@ -92,42 +92,35 @@
                 "difference": "Difference",
                 "rating":     "Feedback",
                 "lists":      {
-                    "description":      "Here are the results for the questions on your friends and lists. Regarding the lists, we have differentiated between your custom lists and Facebook's smart lists. If you like to see your detailed results for a certain category, just click on the button below the corresponding the text.",
+                    "description":      "Here are the results for the questions on your friends and lists. Regarding the lists, we have differentiated between your custom lists and Facebook's smart lists. The analysis below shows if you have used some lists or single friends in the privacy settings of your items, or if you have publicly disclosed them. If you like to see your detailed results for a certain category, just click on the button below the corresponding the text.",
                     "friends_headline": "Number of friends",
-                    "friends_verygood": "Your overviews of your number of friends are very good. The difference between your answer and the correct value is only __percent__%.",
-                    "friends_good":     "Your overviews of your number of friends are good. The difference between your answer and the correct value is only __percent__%.",
-                    "friends_bad":      "Your overviews of your number of friends are not good. The difference between your answer and the correct value is __percent__%.",
-                    "friends_verybad":  "Your overviews of your number of friends are very bad. The difference between your answer and the correct value is __percent__%.",
+                    "friends_verygood": "Your overview of your number of friends is very good. The difference between your answer and the correct value is only __percent__%.",
+                    "friends_good":     "Your overview of your number of friends is good. The difference between your answer and the correct value is only __percent__%.",
+                    "friends_bad":      "Your overview of your number of friends is improvable. The difference between your answer and the correct value is __percent__%.",
+                    "friends_verybad":  "Your overview of your number of friends is unsatisfactory. The difference between your answer and the correct value is __percent__%.",
                     "auto_headline":    "Smart lists",
                     "auto_verygood":    "You seem to know your smart lists very well. The difference between your answer and the correct value averages only __percent__%.",
                     "auto_good":        "You seem to know your smart lists well. The difference between your answer and the correct value averages only __percent__%.",
                     "auto_bad":         "You do not seem to know your smart lists well. The difference between your answer and the correct value averages __percent__%.",
-                    "auto_verybad":     "You seem to know your smart lists very badly. The difference between your answer and the correct value averages __percent__%.",
+                    "auto_verybad":     "You seem to know your smart lists badly. The difference between your answer and the correct value averages __percent__%.",
                     "auto_none":        "You do not have any smart lists. Apparently, you do not have disclosed any relevant attribute in your profile.",
                     "user_headline":    "Custom lists",
-                    "user_verygood":    "You have already created one more custom lists, well done! You seem to know them very well because the difference between your answer and the correct value averages only __percent__%.",
-                    "user_good":        "You have already created one more custom lists, well done! You seem to know them well because the difference between your answer and the correct value averages only __percent__%.",
-                    "user_bad":         "You have already created one more custom lists, well done! However, you do not seem to know them very well because the difference between your answer and the correct value averages __percent__%.",
-                    "user_verybad":     "You have already created one more custom lists, well done! However, you seem to know them very badly because the difference between your answer and the correct value averages __percent__%.",
+                    "user_verygood":    "You have already created one or more custom lists. You seem to know them very well because the difference between your answer and the correct value averages only __percent__%.",
+                    "user_good":        "You have already created one or more custom lists. You seem to know them well because the difference between your answer and the correct value averages only __percent__%.",
+                    "user_bad":         "You have already created one or more custom lists. However, you do not seem to know them very well because the difference between your answer and the correct value averages __percent__%.",
+                    "user_verybad":     "You have already created one or more custom lists. However, you seem to know them badly because the difference between your answer and the correct value averages __percent__%.",
                     "user_none":        "You do not have created any custom lists."
                 },
                 "items":      {
-                    "description":     "The following analysis shows if you have used some lists or indicated single friends in the privacy settings of your items, or if you have publicly disclosed them. In addition, we provide all of your answers in combination with the correct values.",
                     "list_headline":   "Usage of lists",
-                    "list_verygood":   "You have used some lists in the privacy settings of the examined items at least once, well done! The difference between your answer and the correct value averages __percent__%, which represents a very good result.",
-                    "list_good":       "You have used some lists in the privacy settings of the examined items at least once, well done! The difference between your answer and the correct value averages __percent__%, which represents a good result.",
-                    "list_bad":        "You have used some lists in the privacy settings of the examined items at least once, well done! The difference between your answer and the correct value averages __percent__%, which does not represent a good result.",
-                    "list_verybad":    "You have used some lists in the privacy settings of the examined items at least once, well done! The difference between your answer and the correct value averages __percent__%, which represents a very bad result.",
+                    "list_verygood":   "You have used some lists or single friends in the privacy settings of the examined items at least once. The difference between your answer and the correct value averages __percent__%, which represents a very good result.",
+                    "list_good":       "You have used some lists or single friends in the privacy settings of the examined items at least once. The difference between your answer and the correct value averages __percent__%, which represents a good result.",
+                    "list_bad":        "You have used some lists or single friends in the privacy settings of the examined items at least once. The difference between your answer and the correct value averages __percent__%, which represents an improvable result.",
+                    "list_verybad":    "You have used some lists or single friends in the privacy settings of the examined items at least once. The difference between your answer and the correct value averages __percent__%, which represents an unsatisfactory result.",
                     "list_none":       "You do not have used any lists in the privacy settings of the examined items.",
-                    "user_headline":   "Usage of single friends",
-                    "user_verygood":   "You have indicated single friends in the privacy settings of the examined items at least once, well done! The difference between your answer and the correct value averages __percent__%, which represents a very good result.",
-                    "user_good":       "You have indicated single friends in the privacy settings of the examined items at least once, well done! The difference between your answer and the correct value averages __percent__%, which represents a good result.",
-                    "user_bad":        "You have indicated single friends in the privacy settings of the examined items at least once, well done! The difference between your answer and the correct value averages __percent__%, which does not represent a good result.",
-                    "user_verybad":    "You have indicated single friends in the privacy settings of the examined items at least once, well done! The difference between your answer and the correct value averages __percent__%, which represents a very bad result.",
-                    "user_none":       "You do not have indicated any single friends in the privacy settings of the examined items.",
                     "public_headline": "Public items",
                     "public_yes":      "We found __count__ public items among the examined ones. You should check them.",
-                    "public_no":       "We did not find any public items among the exmined ones, well done!",
+                    "public_no":       "We did not find any public items among the exmined ones.",
                     "visible_for":     "Available for",
                     "denied_for":      "Denied for"
                 }
@@ -137,7 +130,7 @@
 
         "hangman": {
             "name":     "Find Your Friends",
-            "briefing": "In Find Your Friends we test if you know who exactly you have given access to a certain <span data-tooltip-key=\"rated_item\">item</span> and how fast you know that. You are shown different items you once published on Facebook. Your task is to find – in a set of <span data-tooltip-key=\"hangman_users\">randomly selected</span> friends of yours and other Facebook users - all the persons who can see the depicted items as fast as possible. Your <span data-tooltip-key=\"hangman_points\">score</span> is determined based on the correctness and the speed of your answers and shows how well you accomplished your task.",
+            "briefing": "In <i>Find Your Friends</i> we test if you know who exactly you have given access to a certain <span data-tooltip-key=\"rated_item\">item</span> and how fast you know that. You are shown different items you once published on Facebook. Your task is to find – in a set of <span data-tooltip-key=\"hangman_users\">randomly selected</span> friends of yours and other Facebook users - all the persons who can see the depicted items as fast as possible. Your <span data-tooltip-key=\"hangman_points\">score</span> is determined based on the correctness and the speed of your answers and shows how well you accomplished your task.",
             "game":     {
                 "headline":        "Select the persons that can see the following <span data-tooltip-key=\"rated_item\">item</span>!",
                 "lost":            "You lost!",
@@ -149,7 +142,7 @@
             "result":   {
                 "headline":    "Find Your Friends - Results",
                 "overall":     "Overall result",
-                "description": "Here are your results of Find Your Friends at a glance. For each item, we show you the elapsed time, the number of wrong guesses and the resulting score.",
+                "description": "Here are your results of <i>Find Your Friends</i> at a glance. For each item, we show you the elapsed time, the number of wrong guesses and the resulting score.",
                 "duration":    "Elapsed time",
                 "errors":      "Mistakes"
             }
@@ -161,41 +154,38 @@
             "lists":       {
                 "headline": "Friends & Lists",
 
-                "friend_verygood": "Your overviews of your number of friends are very good.",
-                "friend_good": "Your overviews of your number of friends are good.",
-                "friend_bad":  "Your overviews of your number of friends are not good. Hence, we would like to make you aware of the problems arising from the term „friend“.",
-                "friend_bad":  "Your overviews of your number of friends are very bad. Hence, we would like to make you aware of the problems arising from the term „friend“.",
+                "friend_verygood": "Your overview of your number of friends is very good.",
+                "friend_good": "Your overview of your number of friends is good.",
+                "friend_bad":  "Your overview of your number of friends is improvable. Hence, we would like to make you aware of the problems arising from the term <i>friendship</i>.",
+                "friend_bad":  "Your overview of your number of friends is unsatisfactory. Hence, we would like to make you aware of the problems arising from the term <i>friendship</i>.",
 
                 "user_verygood": "You seem to know your custom lists very well.",
                 "user_good": "You seem to know your custom lists well.",
                 "user_bad":  "You do not seem to know your custom lists well.",
-                "user_verybad":  "You seem to know your custom lists very badly.",
+                "user_verybad":  "You seem to know your custom lists badly.",
                 "user_none": "You do not have created any custom lists. Hence, we would like to point out to you where and how to do this.",
 
                 "auto_verygood": "You seem to know your smart lists very well.",
                 "auto_good": "You seem to know your smart lists well.",
                 "auto_bad":  "You do not seem to know your smart lists well.",
-                "auto_verybad":  "You seem to know your smart lists very badly.",
+                "auto_verybad":  "You seem to know your smart lists badly.",
                 "auto_none": "You do not have any smart lists. Apparently, you do not have disclosed any relevant attribute in your profile."
             },
             "items":       {
                 "headline": "Privacy Settings",
 
-                "lists_yes": "You have used some lists in the privacy settings of the examined items.",
+                "lists_yes": "You have used some lists or single friends in the privacy settings of the examined items.",
                 "lists_no":  "You do not have used some lists in the privacy settings of the examined items. Hence, we would like to show you how to do this.",
-
-                "friends_yes": "You have indicated single friends in the privacy settings of the examined items.",
-                "friends_no":  "You do not have indicated any single friends in the privacy settings of the examined items. Hence, we would like to show you how to do this.",
 
                 "public_yes": "Your profile contains some public items. Hence, we would like to show you how to adjust their settings and how to avoid these mistakes in the future.",
                 "public_no":  "Your profile does not contain any public items."
             },
             "hangman":     {
                 "headline": "Find Your Friends",
-                "verygood": "You scored __points__ points in Find Your Friends. This score indicates that you know your friends very well.",
-                "good":     "You scored __points__ points in Find Your Friends. This score indicates that you know your friends well.",
-                "bad":      "You scored __points__ points in Find Your Friends. This score indicates that you do not know your friends well.",
-                "verybad":  "You scored __points__ points in Find Your Friends. This score indicates that you know your friends very badly.",
+                "verygood": "You scored __points__ points in <i>Find Your Friends</i>. This score indicates that you know your friends very well.",
+                "good":     "You scored __points__ points in <i>Find Your Friends</i>. This score indicates that you know your friends well.",
+                "bad":      "You scored __points__ points in <i>Find Your Friends</i>. This score indicates that you do not know your friends well.",
+                "verybad":  "You scored __points__ points in <i>Find Your Friends</i>. This score indicates that you know your friends badly.",
             }
         },
 
@@ -222,7 +212,7 @@
             "learn": {
                 "headline": "What's it all about?",
                 "short":    "Privacy Checker is an independent Facebook application which allows you to test how well you know your Facebook profile and your privacy settings. With the aid of different games you can find out if you know who your friends are, what they can see on your profile and how you can improve your security settings.",
-                "body":     "Privacy Checker shows you playfully how public your items are on Facebook and what your friends can see from your profile. By means of different games you can find out how well you know your own profile and your privacy settings. At the end of each game and after the whole app you are given a personal evaluation as well as a summary of your results and we offer you recommendations on how you can protect your privacy even better. To get an insight into the design of the app, you can click through the gallery below."
+                "body":     "Privacy Checker shows you playfully how public your items are on Facebook and what your friends can see from your profile. By means of different games you can find out how well you know your own profile and your privacy settings. At the end of each game and after the whole app you are given a personal evaluation as well as a summary of your results and we offer you recommendations on how you can protect your privacy even better."
             },
 
             "contact": {
@@ -265,8 +255,8 @@
         "recommendations": {
             "headline":      "Possible recommendations for action",
             "friend":        {
-                "headline": "The term „friend“",
-                "body":     "The term „friend“ indicates a positive relationship between people which is grounded on sympathy, trust, and mutual appreciation. In real-life you choose your friends with regard to these criteria. A friendship which exists solely in a social network is also called a “friendship at the click of a mouse” und cannot fulfil the criteria mentioned above.<br/>Especially if you confirm Facebook friendships from people you do not really know or you even have never met before it might be better to reject the friend request. Think about all your published personal items: Would you also share them with persons you do not know well in real-life? Maybe it is better to keep the items private or share them only with special persons.<br/>You can certainly hide your items from distant acquaintances by using your settings. But if the amount of your friends gets unimaginable vast it might be hard to stay on top of things. As your guess concerning the amount of your friends or your performance in Find Your Friends was not very good this is exactly what might have happened. For this reason, you should think about who you really want to have as a Facebook friend. Friend requests should not be accepted just to be polite. Moreover, you should not be afraid of breaking off a friendship on Facebook."
+                "headline": "The term <i>friendship</i>",
+                "body":     "The term <i>friendship</i> indicates a positive relationship between people which is grounded on sympathy, trust, and mutual appreciation. In real-life you choose your friends with regard to these criteria. A friendship which exists solely in a social network is also called a “friendship at the click of a mouse” und cannot fulfil the criteria mentioned above.<br/>Especially if you confirm Facebook friendships from people you do not really know or you even have never met before it might be better to reject the friend request. Think about all your published personal items: Would you also share them with persons you do not know well in real-life? Maybe it is better to keep the items private or share them only with special persons.<br/>You can certainly hide your items from distant acquaintances by using your settings. But if the amount of your friends gets unimaginable vast it might be hard to stay on top of things. As your guess concerning the amount of your friends or your performance in <i>Find Your Friends</i> was not very good this is exactly what might have happened. For this reason, you should think about who you really want to have as a Facebook friend. Friend requests should not be accepted just to be polite. Moreover, you should not be afraid of breaking off a friendship on Facebook."
             },
             "lists_create":  {
                 "headline": "Creating lists",
@@ -299,8 +289,8 @@
             "more":           "More information",
             "item":           {
                 "headline": "What is an item?",
-                "short":    "In this application, the term item denotes a photo or a status post which you have posted on Facebook at some time or another.",
-                "long":     "In this application, the term item denotes a photo or a status post, which you have posted on Facebook at some time or another.<br/><br/>Just this minute, we have requested your items from Facebook in order to be able to use them in this game and in the ones coming up. As information about you is not only contained in a photo but probably also in the corresponding description, we have requested it, too. In addition, we display the date on which you posted the item. Maybe you actually do not know that it exists?"
+                "short":    "In this application, the term <i>item</i> denotes a photo or a status post which you have posted on Facebook at some time or another.",
+                "long":     "In this application, the term <i>item</i> denotes a photo or a status post, which you have posted on Facebook at some time or another.<br/><br/>Just this minute, we have requested your items from Facebook in order to be able to use them in this game and in the ones coming up. As information about you is not only contained in a photo but probably also in the corresponding description, we have requested it, too. In addition, we display the date on which you posted the item. Maybe you actually do not know that it exists?"
             },
             "personal":       {
                 "headline": "When can an item be considered personal?",
@@ -339,8 +329,8 @@
             },
             "hangman_points": {
                 "headline": "How is the score determined?",
-                "short":    "This is your current score for this round.",
-                "long":     "This is your current score for this round.<br/><br/>You start with a score of 10000. However, it is decreasing bit by bit, namely by 200 points per second. Thus, you should hurry up and click on the correct profile pictures as fast as possible. But be careful! If you click on a wrong profile picture, your score will be decreased by 1000 points."
+                "short":    "Your performance in <i>Find Your Friends</i> is assessed with the help of a score.",
+                "long":     "Your performance in <i>Find Your Friends</i> is assessed with the help of a score.<br/><br/>You start with a score of 10000. However, it is decreasing bit by bit, namely by 200 points per second. Thus, you should hurry up and click on the correct profile pictures as fast as possible. But be careful! If you click on a wrong profile picture, your score will be decreased by 1000 points."
             }
         }
     }
