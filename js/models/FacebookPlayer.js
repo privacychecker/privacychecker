@@ -392,6 +392,11 @@
                     }
 
                 }, this ) );
+
+                if ( picturesNum === 0 ) {
+                    console.log( "[FacebookPlayer] User has no images in any albums", response );
+                    this.trigger( "pictures:finished" );
+                }
             }, this ) );
         },
 
@@ -425,6 +430,12 @@
                 if ( !response.data ) {
                     this.trigger( "statuses:error" );
                     console.error( "[FacebookPlayer] Error loading statuses response was: ", response );
+                    return;
+                }
+
+                if ( response.data.length === 0 ) {
+                    console.warn( "[FacebookPlayer] Users has no statuses" );
+                    this.trigger( "statuses:finished" );
                     return;
                 }
 

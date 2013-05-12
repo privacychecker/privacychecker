@@ -96,10 +96,6 @@
 
                     // attach tooltips
                     try {
-                        pc.model.TooltipCollection.getInstance()
-                            .pin( container.find( ".hearts" ), "hangman_hearts" );
-                        pc.model.TooltipCollection.getInstance()
-                            .pin( container.find( ".points" ), "hangman_points" );
                         pc.model.TooltipCollection.getInstance().pin( this.$el.find( 'h1' ) );
                     }
                     catch ( e ) {
