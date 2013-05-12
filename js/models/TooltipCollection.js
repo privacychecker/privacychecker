@@ -17,7 +17,8 @@
         pin: function( $el, tooltipId )
         {
             if ( !($el instanceof jQuery) ) {
-                throw "E_EL_IS_NO_JQUERY_OBJECT";
+                console.error( "[Tooltip] $el is not a jquery object, skipping" );
+                return;
             }
 
             if ( _.isUndefined( tooltipId ) ) {

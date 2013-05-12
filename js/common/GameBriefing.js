@@ -89,7 +89,7 @@
          */
         getTextContainer: function()
         {
-            return this.text;
+            return this.textEl;
         },
 
         /**
