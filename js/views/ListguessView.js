@@ -578,18 +578,18 @@
                     ns = pc.view.ListGuessView,
                     resultForsItems = player.get( 'results' ).where( {gameType: pc.model.TestResult.Type.ENTITYGUESS} ),
                     results = this._findType( resultForsItems, pc.view.ListGuessView.QuestionType.ITEM ),
-                    groupResults = [],
-                    userResults = [],
+                    individualResults = [],
                     publicResults = [],
                     groupOverallDifference = 0,
-                    userOverallDifference = 0;
+                    userOverallDifference = 0,
+                    groups = 0,
+                    users = 0;
 
                 _.each( results, _.bind( function( result )
                 {
                     var item = result.get( 'item' ),
                         privacy = item.get( 'privacy' ),
                         privacyLevel = privacy.get( 'level' ),
-                        itemHash = null,
                         visibleFor = [],
                         deniedFor = [];
 
@@ -622,33 +622,36 @@
                                 deniedFor.push( list.get( 'name' ) );
                             } );
 
+                            groups++;
+                            groupOverallDifference += this.__calculateDifference( item );
                         }
 
-                        itemHash = this.__createItem( result, {
+                        // do we have user visibleFor or deniedFor
+                        if ( (privacy.get( 'includeUser' ).length - 1) > 0 || privacy.get( 'excludeUser' ).length > 0 ) {
+                            visibleFor = _.union( visibleFor,
+                                _.map( privacy.get( 'includeUser' ).models, function( user )
+                                {
+                                    // skip player
+                                    if ( user.get( 'id' ) !== player.get( 'id' ) ) {
+                                        return user.get( 'name' );
+                                    }
+                                } ) );
+                            deniedFor = _.union( deniedFor,
+                                _.map( privacy.get( 'excludeUser' ).models, function( list )
+                                {
+                                    return list.get( 'name' );
+                                } ) )
+                            ;
+                            users++;
+                            userOverallDifference += this.__calculateDifference( item );
+
+                        }
+
+                        // add to list
+                        individualResults.push( this.__createItem( result, {
                             visible_for: visibleFor.join( ', ' ),
                             denied_for:  deniedFor.join( ', ' )
-                        } );
-                        groupResults.push( itemHash[0] );
-                        groupOverallDifference += itemHash[1];
-                    }
-
-                    // find all items with users as privacy setting
-                    if ( (privacy.get( 'includeUser' ).length - 1) > 0 || privacy.get( 'excludeUser' ).length > 0 ) {
-                        itemHash = this.__createItem( result, {
-                            visible_for: _.map( privacy.get( 'includeUser' ).models,function( user )
-                            {
-                                // skip player
-                                if ( user.get( 'id' ) !== player.get( 'id' ) ) {
-                                    return user.get( 'name' );
-                                }
-                            } ).join( ', ' ),
-                            denied_for:  _.map( privacy.get( 'excludeUser' ).models,function( list )
-                            {
-                                return list.get( 'name' );
-                            } ).join( ', ' )
-                        } );
-                        userResults.push( itemHash[0] );
-                        userOverallDifference += itemHash[1];
+                        } ) );
                     }
 
                 }, this ) );
@@ -664,8 +667,6 @@
                     }
                 }, this ) );
 
-                //publicResults = _.shuffle( publicResults );
-
                 // make result texts
                 var groupResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_LIST_OVERVIEW_NONE ),
                     userResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_USER_OVERVIEW_NONE ),
@@ -674,8 +675,8 @@
                     groupPercentage,
                     userPercentage;
 
-                if ( groupResults.length > 0 ) {
-                    groupPercentage = groupOverallDifference / groupResults.length;
+                if ( groups > 0) {
+                    groupPercentage = groupOverallDifference / groups;
 
                     // group rating
                     if ( _.isBetween( groupPercentage, ns.ITEMS_LIST_STEPS.VERYGOOD ) ) {
@@ -698,8 +699,8 @@
                     }
                 }
 
-                if ( userResults.length > 0 ) {
-                    userPercentage = userOverallDifference / userResults.length;
+                if ( users > 0 ) {
+                    userPercentage = userOverallDifference / users;
 
                     // user rating
                     if ( _.isBetween( userPercentage, ns.ITEMS_USER_STEPS.VERYGOOD ) ) {
@@ -730,20 +731,29 @@
 
                 // calculate overalls
                 return {
-                    "lists":  {
-                        "result_text": groupResultText,
-                        "details":     groupResults
+                    "individual": {
+                        "result_text_list": groupResultText,
+                        "result_text_user":  userResultText,
+                        "details":           individualResults
                     },
-                    "users":  {
-                        "result_text": userResultText,
-                        "details":     userResults
-                    },
-                    "public": {
+                    "public":     {
                         "result_text": publicResultText,
                         "details":     publicResults
                     }
                 };
 
+            },
+
+            __calculateDifference: function( result )
+            {
+                var correctValue = result.get( 'correctValue' ),
+                    userValue = result.get( 'userValue' ),
+                    item = result.get( 'item' ),
+                    difference = pc.common.RelativeDifferenceCalculator.calculate( correctValue, userValue );
+
+                difference = difference < 0 ? difference * (-1) : difference;
+
+                return difference;
             },
 
             __createItem: function( result, toMerge )
@@ -752,10 +762,8 @@
                 var correctValue = result.get( 'correctValue' ),
                     userValue = result.get( 'userValue' ),
                     item = result.get( 'item' ),
-                    difference = pc.common.RelativeDifferenceCalculator.calculate( correctValue, userValue ),
+                    difference = this.__calculateDifference( result ),
                     itemHash;
-
-                difference = difference < 0 ? difference * (-1) : difference;
 
                 var hash = _.extend( {
                     correct_value: correctValue,
@@ -781,7 +789,7 @@
                     };
                 }
 
-                return [_.extend( hash, itemHash ), difference];
+                return _.extend( hash, itemHash );
 
             },
 
