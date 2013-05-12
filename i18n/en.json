@@ -63,7 +63,7 @@
             "play_with_images":   "Photos only",
             "play_with_statuses": "Status posts only",
             "play_with_both":     "Both of them",
-            "briefing":           "N/A",
+            "briefing":           "Several of your <span data-tooltip-key=\"item\">items</span> published on Facebook compete against each other by pairs and you have to assess how <span data-tooltip-key=\"personal\">personal</span> they are for you. For this reason, we determine which items are particularly important to you and thereby need to be protected in particular in terms of your privacy. At the end of the game your assessments are shown to you by means of a <span data-tooltip-key=\"ranking\">ranking</span>.",
             "result":             {
                 "final_ranking": "Itembattle - <span data-tooltip-key=\"ranking\">Ranking</span>"
             }
@@ -71,7 +71,7 @@
 
         "guess": {
             "name":     "Guessing",
-            "briefing": "N/A",
+            "briefing": "Now, you are invited to guess how many friends you have on Facebook and how many members your <span data-tooltip-key=\"list\">lists</span> contain. Concerning the lists we additionally differentiate between custom lists and <span data-tooltip-key=\"auto_list\">smart lists</span>. Subsequently, you are supposed to estimate how many of your friends can see selected items you published. As a result, you gain an overview of how public the settings of your items are. Your answers as well as the correct values are presented to you at the end of the game.",
             "game":     {
                 "what_do_you_guess": "What do you guess?",
                 "input_button":      "Submit",
@@ -137,9 +137,9 @@
 
         "hangman": {
             "name":     "Find Your Friends",
-            "briefing": "N/A",
+            "briefing": "In Find Your Friends we test if you know who exactly you have given access to a certain <span data-tooltip-key=\"rated_item\">item</span> and how fast you know that. You are shown different items you once published on Facebook. Your task is to find – in a set of <span data-tooltip-key=\"hangman_users\">randomly selected</span> friends of yours and other Facebook users - all the persons who can see the depicted items as fast as possible. Your <span data-tooltip-key=\"hangman_points\">score</span> is determined based on the correctness and the speed of your answers and shows how well you accomplished your task.",
             "game":     {
-                "headline":        "Select the persons that can see the following item",
+                "headline":        "Select the persons that can see the following <span data-tooltip-key=\"rated_item\">item</span>!",
                 "lost":            "You lost!",
                 "won":             "You won!",
                 "timeout":         "Time's up! You lost!",
@@ -191,7 +191,7 @@
                 "public_no":  "Your profile does not contain any public items."
             },
             "hangman":     {
-                "headline": "Freunderaten",
+                "headline": "Find Your Friends",
                 "verygood": "You scored __points__ points in Find Your Friends. This score indicates that you know your friends very well.",
                 "good":     "You scored __points__ points in Find Your Friends. This score indicates that you know your friends well.",
                 "bad":      "You scored __points__ points in Find Your Friends. This score indicates that you do not know your friends well.",
@@ -201,47 +201,47 @@
 
         "page":            {
             "trust": {
-                "headline":   "Vertrauen",
-                "short":      "N/A",
-                "body":       "N/A",
+                "headline":   "Trust",
+                "short":      "Privacy Checker runs exclusively in your browser. Thus, your data stays with you and is not sent to others. Anyway you are not sure? You can check anytime you want because the source code of Privacy Checker is publicly available.",
+                "body":       "This app was developed with the aim to protect your data as good as possible. For this reason, the app is solely executed in your browser and no personal data is sent to another server (not even to ours). To enhance the trust in the app we published the source code which you can download below.",
                 "client":     {
-                    "headline": "Technologie",
-                    "body":     "N/A"
+                    "headline": "Technology",
+                    "body":     "In contrast to many other apps, this app solely uses client-side technologies as for example Java Script, CSS, and HTML. After you opened the app in your browser all your personal data is processed there. In this way, your data is protected as good as possible and you do not have to worry about an insecure use of your data."
                 },
                 "opensource": {
                     "headline": "Open Source",
-                    "body":     "N/A"
+                    "body":     "We published the source code of the app to make the processing of your data transparent and to show you that using the app is trustworthy. You can have a look at it, improve it and extend it if you want to."
                 },
                 "download":   {
                     "headline": "Download",
-                    "body":     "N/A",
+                    "body":     "You can download the current version of the source code here:",
                     "web":      "Download"
                 }
             },
 
             "learn": {
-                "headline": "Worum geht's?",
-                "short":    "N/A",
-                "body":     "N/A"
+                "headline": "What's it all about?",
+                "short":    "Privacy Checker is an independent Facebook application which allows you to test how well you know your Facebook profile and your privacy settings. With the aid of different games you can find out if you know who your friends are, what they can see on your profile and how you can improve your security settings.",
+                "body":     "Privacy Checker shows you playfully how public your items are on Facebook and what your friends can see from your profile. By means of different games you can find out how well you know your own profile and your privacy settings. At the end of each game and after the whole app you are given a personal evaluation as well as a summary of your results and we offer you recommendations on how you can protect your privacy even better. To get an insight into the design of the app, you can click through the gallery below."
             },
 
             "contact": {
-                "headline":  "Über uns",
-                "short":     "N/A",
-                "body":      "N/A",
+                "headline":  "About us",
+                "short":     "This app was developed at Lehrstuhl für Wirtschaftsinformatik I of Universität Regensburg. If you have questions or suggestions concerning the application you can find more information regarding privacy policy, disclaimer of liability, and how to contact us.",
+                "body":      "This app was developed at Lehrstuhl für Wirtschaftsinformatik I of Universität Regensburg. If you have questions or suggestions concerning the application you can find more information regarding privacy policy, disclaimer of liability, and how to contact us.",
                 "team":      {
                     "team_headline":    "Team",
-                    "contact_headline": "Kontakt",
+                    "contact_headline": "Contact",
                     "dev":              {
-                        "headline": "Entwicklung",
+                        "headline": "Development",
                         "body":     "Christian Roth"
                     },
                     "concept":          {
-                        "headline": "Konzeption",
+                        "headline": "Conception",
                         "body":     "Moritz Riesner, Michael Netter"
                     },
                     "management":       {
-                        "headline": "Projektmanagement",
+                        "headline": "Project management",
                         "body":     "Prof. Dr. Günther Pernul"
                     },
                     "contact":          {
@@ -251,11 +251,11 @@
                 },
                 "privacy":   {
                     "headline": "Privacy Policy",
-                    "body":     "N/A"
+                    "body":     "No data is transferred to another server. Thereby, all your personal data stays with you. Neither we nor other persons have access to your data."
                 },
                 "liability": {
-                    "headline": "Haftungsausschluss",
-                    "body":     "N/A"
+                    "headline": "Disclaimer of liability",
+                    "body":     "Despite diligent inspection we cannot guarantee that there are no program errors. By using the app you agree that the authors cannot be made responsible for any errors that might arise."
                 }
             },
             "footer":  {
@@ -263,39 +263,39 @@
             }
         },
         "recommendations": {
-            "headline":      "Mögliche Handlungsempfehlungen",
+            "headline":      "Possible recommendations for action",
             "friend":        {
-                "headline": "Begriff „Freund“",
-                "body":     "N/A"
+                "headline": "The term „friend“",
+                "body":     "The term „friend“ indicates a positive relationship between people which is grounded on sympathy, trust, and mutual appreciation. In real-life you choose your friends with regard to these criteria. A friendship which exists solely in a social network is also called a “friendship at the click of a mouse” und cannot fulfil the criteria mentioned above.<br/>Especially if you confirm Facebook friendships from people you do not really know or you even have never met before it might be better to reject the friend request. Think about all your published personal items: Would you also share them with persons you do not know well in real-life? Maybe it is better to keep the items private or share them only with special persons.<br/>You can certainly hide your items from distant acquaintances by using your settings. But if the amount of your friends gets unimaginable vast it might be hard to stay on top of things. As your guess concerning the amount of your friends or your performance in Find Your Friends was not very good this is exactly what might have happened. For this reason, you should think about who you really want to have as a Facebook friend. Friend requests should not be accepted just to be polite. Moreover, you should not be afraid of breaking off a friendship on Facebook."
             },
             "lists_create":  {
-                "headline": "Erstellen von Listen",
-                "body":     "N/A"
+                "headline": "Creating lists",
+                "body":     "Your Facebook account does not contain any lists created by you, and maybe you do not know how to do this. This <a href=\"https://www.facebook.com/bookmarks/lists\" target=\"_blank\">link</a> leads you directly to the relevant menu. There, you have the possibility to set up new lists and to administrate them subsequently, which means that you can add or delete friends to or from them.<br/>It is also possible that the menu mentioned here already contains some lists although you do not have created them. These lists are so-called smart lists which Facebook automatically creates for you. You can certainly edit and use them, too."
             },
             "lists_use":     {
-                "headline": "Verwenden von Listen",
-                "body":     "N/A"
+                "headline": "Using lists",
+                "body":     "For none of the items used in the app you made use of lists for the privacy settings of the items. Maybe you have already created some lists but you do not know how to use them.<br/>For status posts you find the privacy settings or the possibility to change them directly under your name and next to the date when you issued the status post. Regarding pictures it depends on where you are watching them. If you are watching them in your photo album you can alter the privacy settings on the right-hand side below the photo at “Share with:”. If you want to alter the privacy settings of a photo which is shown to you on your wall you can change them in the same way as a status post.<br/>If you have found the privacy settings of an item you can open a menu which shows you the different settings by clicking on it. Here you can directly choose a list whose members shall be able to see the item, for example."
             },
             "sharing":       {
-                "headline": "Freigeben für einzelne Freunde & Gezieltes Verbergen",
-                "body":     "N/A"
+                "headline": "Disclosing for individual friends & Denying",
+                "body":     "By using the mentioned settings you cannot only choose lists but also individual fiends who shall be able to see a specific item. For this purpose you have to click on “Custom” in the menu mentioned before, and afterwards you can choose specific friends or lists.<br/>Moreover, by selecting “Custom” you have the opportunity to hide an item from individual persons or lists. Then, the item would be visible for e.g. all your friends except the ones you chose here."
             },
             "defaults":      {
                 "headline": "Default Settings",
-                "body":     "N/A"
+                "body":     "We observed that your profile contains items which you have publicly disclosed. This means that all Facebook users – and with that also totally foreign persons – have access to them. Was this really your purpose? Do you want to avoid this in the future?<br/>There is a very easy and quick way to do so. You simply have to alter your default settings from “Public” to “Friends” or to certain lists. You find this possibility in your privacy settings. When publishing the current version of the application this <a href=\"https://www.facebook.com/settings?tab=privacy&section=composer&view\">link</a> (as from: 22.04.2013) led you directly to the relevant option."
             },
             "hide_past":     {
-                "headline": "Vergangenes einschränken",
-                "body":     "N/A"
+                "headline": "Restricting items from the past",
+                "body":     "By altering the default settings as explained above you restrict the visibility of the items you are going to share in the future. But it is also suggestive to do so for all the items you have publicly disclosed in the past. To free you from the effort of checking and altering the settings of all your items there is a function which takes over this task. To be exact, this function allows you to restrict the visibility of all your items visible for “Public” or “Friends of friends” to only your friends.<br/>You can find this function in the privacy settings of your Facebook account. When publishing the current version of the application this <a href=\"https://www.facebook.com/settings?tab=privacy&section=masher&view\">link</a> (as from: 22.04.2013) led you directly to the relevant option."
             },
             "publish_items": {
-                "headline": "Veröffentlichen von Items",
-                "body":     "N/A"
+                "headline": "Publishing items",
+                "body":     "Just like in real-life, you should also consider wisely which items you want to show to other people in social networks and above all who you want to show them to. On the Internet, people tend to handle the publishing of information more carelessly than in real life because you cannot see the other person and in reverse the other person cannot see you. You should try to avoid this!<br/>Items (or information in general) you have once published on the Internet usually cannot be removed completely and irretrievably. Even if you delete an item from a social network and assume that it is completely removed it often is removed only superficially. If another user saved the item it can be restored and distributed at any future date without any problems. For this reason, you should be careful with the items you publish and keep sceptical items to yourself - just like in real-life."
             }
         },
 
         "tooltip": {
-            "headline":       "Mehr zum Tooltip",
+            "headline":       "More on the tooltip",
             "more":           "More information",
             "item":           {
                 "headline": "What is an item?",

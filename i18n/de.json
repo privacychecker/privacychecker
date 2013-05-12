@@ -71,7 +71,7 @@
 
         "guess": {
             "name":     "Schätzen",
-            "briefing": "Nun wirst du aufgefordert, zu schätzen, wie viele Freunde du insgesamt auf Facebook hast und wie viele Mitglieder in deinen <span data-tooltip-key=\"list\">Listen</span> jeweils eingeordnet sind. Bei den Listen wird zusätzlich zwischen selbst erstellten und <span data-tooltip-key=\"auto_list\">intelligenten Listen</span> unterschieden.<br/>Anschließend sollst du abschätzen, wie viele deiner Freunde ausgewählte, von dir veröffentlichte <span data-tooltip-key=\"rated_item\">Items</span> sehen können, wodurch du einen Überblick darüber erhältst, wie öffentlich die Einstellungen deiner Items sind. Deine Antworten und die korrekten Werte werden dir am Ende des Spiels präsentiert.",
+            "briefing": "Nun wirst du aufgefordert, zu schätzen, wie viele Freunde du insgesamt auf Facebook hast und wie viele Mitglieder in deinen <span data-tooltip-key=\"list\">Listen</span> jeweils eingeordnet sind. Bei den Listen wird zusätzlich zwischen selbst erstellten und <span data-tooltip-key=\"auto_list\">intelligenten Listen</span> unterschieden.<br/>Anschließend sollst du abschätzen, wie viele deiner Freunde ausgewählte, von dir veröffentlichte <span data-tooltip-key=\"rated_item\">Items</span> sehen können. Dadurch erhältst du einen Überblick darüber, wie öffentlich die Einstellungen deiner Items sind. Deine Antworten und die korrekten Werte werden dir am Ende des Spiels präsentiert.",
             "game":     {
                 "what_do_you_guess": "Was tippst du?",
                 "input_button":      "Eingeben",
@@ -137,9 +137,9 @@
 
         "hangman": {
             "name":     "Find Your Friends",
-            "briefing": "Spätestens jetzt ist es vorbei mit Ausruhen! Denn jetzt wird nicht nur getestet, ob du weißt, wem du Zugriff auf ein Item gegeben hast, sondern auch, wie schnell du dies weißt. Dazu werden dir nacheinander Items gezeigt, die du auf Facebook veröffentlicht hast. Deine Aufgabe ist es, in einer Menge von <span data-tooltip-key=\"hangman_users\">zufällig ausgewählten</span> Freunden und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte <span data-tooltip-key=\"rated_item\">Items</span> sehen können. Bist du bereit? Dann nimm die Herausforderung an und versuche, eine möglichst hohe Punktzahl zu erzielen!",
+            "briefing": "In Find Your Friends wird nun getestet, ob du weißt, wem du im Einzelnen Zugriff auf ein <span data-tooltip-key=\"rated_item\">Item</span> gegeben hast und auch, wie schnell du dies weißt. Dazu werden dir nacheinander Items gezeigt, die du auf Facebook veröffentlicht hast. Deine Aufgabe ist es, in einer Menge von <span data-tooltip-key=\"hangman_users\">zufällig ausgewählten</span> Freunden und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte Item sehen können. Anhand der Korrektheit und der Geschwindigkeit deiner Lösung wird eine <span data-tooltip-key=\"hangman_points\">Punktzahl</span> bestimmt, die dir zeigt, wie gut du die Aufgabe gelöst hast.",
             "game":     {
-                "headline":        "Wähle die Personen, die das folgende Item sehen können",
+                "headline":        "Wähle die Personen, die das folgende <span data-tooltip-key=\"rated_item\">Item</span> sehen können!",
                 "lost":            "Du hast verloren!",
                 "won":             "Du hast gewonnen!",
                 "timeout":         "Zeit abgelaufen! Du hast verloren!",
@@ -227,8 +227,8 @@
 
             "contact": {
                 "headline":  "Über uns",
-                "short":     "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen hast, findest du hier die nötigen Kontaktinformationen:",
-                "body":      "Diese App wird am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen zur App hast, findest du unter „Mehr Infos“ neben weiteren Informationen zur Privacy Policy und dem Haftungsausschluss auch die nötigen Kontaktinformationen.",
+                "short":     "Diese App wurde am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen hast, findest du hier die nötigen Kontaktinformationen:",
+                "body":      "Diese App wurde am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen zur App hast, findest du unter „Mehr Infos“ neben weiteren Informationen zur Privacy Policy und dem Haftungsausschluss auch die nötigen Kontaktinformationen.",
                 "team":      {
                     "team_headline":    "Team",
                     "contact_headline": "Kontakt",
@@ -265,8 +265,8 @@
         "recommendations": {
             "headline":      "Mögliche Handlungsempfehlungen",
             "friend":        {
-                "headline": "Begriff „Freund“",
-                "body":     "Der Begriff Freundschaft bezeichnet eine positive Beziehung zwischen Menschen, die auf Sympathie, Vertrauen und gegenseitiger Wertschätzung basiert. Nach diesen Kriterien wählt man im realen Leben einen Freund aus. Eine Freundschaft, die lediglich in einem sozialen Netzwerk existiert, ist eine sogenannte „Freundschaft per Mausklick“ und kann die zuvor genannten Kriterien nicht erfüllen.<br/> Vor allem dann, wenn du Facebook-Freundschaften von Menschen bestätigst, die du nicht gut kennst oder die du sogar noch nie persönlich getroffen hast, ist fraglich, ob es nicht vielleicht besser ist, die Freundschaftsanfrage abzulehnen. Denk an all deine veröffentlichten persönlichen Items: Würdest du sie im realen Leben auch mit Personen teilen, die du nicht gut kennst? Ist es nicht besser, wenn du die Items für dich behältst bzw. sie nur mit bestimmten Personen teilst?<br/>Natürlich kannst du deine Items vor entfernteren Facebook-Freunden mit Hilfe von Einstellungen verbergen. Wird die Anzahl an Freunden jedoch unüberschaubar groß, ist es schwer, den Überblick zu behalten. Da deine Schätzung zur Anzahl deiner Facebook-Freunde oder deine Leistung beim Freunderaten nicht sehr gut war, ist bei dir möglicherweise genau das passiert. Aus diesem Grund solltest du dir Gedanken darüber machen, wen du als Facebook-Freund haben möchtest und wen nicht. Freundschaftsanfragen sollten nicht nur angenommen werden, um nicht unhöflich zu erscheinen. Außerdem solltest du nicht davor zurückschrecken, Facebook-Freundschaften zu beenden."
+                "headline": "Der Begriff „Freund“",
+                "body":     "Der Begriff Freundschaft bezeichnet eine positive Beziehung zwischen Menschen, die auf Sympathie, Vertrauen und gegenseitiger Wertschätzung basiert. Nach diesen Kriterien wählt man im realen Leben einen Freund aus. Eine Freundschaft, die lediglich in einem sozialen Netzwerk existiert, ist eine sogenannte „Freundschaft per Mausklick“ und kann die zuvor genannten Kriterien nicht erfüllen.<br/> Vor allem dann, wenn du Facebook-Freundschaften von Menschen bestätigst, die du nicht gut kennst oder die du sogar noch nie persönlich getroffen hast, ist fraglich, ob es nicht vielleicht besser ist, die Freundschaftsanfrage abzulehnen. Denk an all deine veröffentlichten persönlichen Items: Würdest du sie im realen Leben auch mit Personen teilen, die du nicht gut kennst? Ist es nicht besser, wenn du die Items für dich behältst bzw. sie nur mit bestimmten Personen teilst?<br/>Natürlich kannst du deine Items vor entfernteren Facebook-Freunden mit Hilfe von Einstellungen verbergen. Wird die Anzahl an Freunden jedoch unüberschaubar groß, ist es schwer, den Überblick zu behalten. Da deine Schätzung zur Anzahl deiner Facebook-Freunde oder deine Leistung in Find Your Friends nicht sehr gut war, ist bei dir möglicherweise genau das passiert. Aus diesem Grund solltest du dir Gedanken darüber machen, wen du als Facebook-Freund haben möchtest und wen nicht. Freundschaftsanfragen sollten nicht nur angenommen werden, um nicht unhöflich zu erscheinen. Außerdem solltest du nicht davor zurückschrecken, Facebook-Freundschaften zu beenden."
             },
             "lists_create":  {
                 "headline": "Erstellen von Listen",
@@ -281,11 +281,11 @@
                 "body":     "Mit Hilfe der oben beschriebenen Einstellungen kannst du jedoch nicht nur Listen auswählen, für deren Mitglieder das betrachtete Item sichtbar sein soll, sondern auch einzelne Freunde. Dazu musst du in dem angesprochenen Menü auf „Benutzerdefiniert“ klicken und anschließend „Bestimmte Personen oder Listen...“ in dem angebotenen Dropdown-Menü auswählen. Nun kannst du in die darunter befindliche Zeile einzelne Freunde eintragen, denen du das Item zugänglich machen willst.<br/>Außerdem hast du bei Auswahl von „Benutzerdefiniert“ die Möglichkeit, das Item für bestimmte Personen oder Listen zu verbergen. Sichtbar wäre es dann beispielsweise für alle Freunde, außer den hier angegebenen."
             },
             "defaults":      {
-                "headline": "Standardeinstellungen",
+                "headline": "Standard-Einstellungen",
                 "body":     "Wir haben festgestellt, dass dein Profil Items enthält, die du öffentlich geteilt hast. Das bedeutet, dass alle Facebook-Nutzer – und damit auch völlig fremde Personen – Zugriff darauf haben. War das wirklich so von dir beabsichtigt? Möchtest du das in Zukunft vermeiden?<br/>Dafür gibt es einen sehr einfachen und schnellen Weg. Du musst lediglich deine Standard-Einstellungen ändern, und zwar von „Öffentlich“ auf „Freunde“ oder sogar auf bestimmte Listen. Die Möglichkeit hierzu wird dir in den Privatsphäre-Einstellungen deines Facebook-Accounts angeboten. Bei Veröffentlichung der neuesten Version dieser Anwendung fanden sich die entsprechenden Einstellungen <a href=\"https://www.facebook.com/settings?tab=privacy&section=composer&view\">hier</a> (Stand: 22.04.2013)."
             },
             "hide_past":     {
-                "headline": "Vergangenes einschränken",
+                "headline": "Frühere Items einschränken",
                 "body":     "Mit der oben beschriebenen Änderung deiner Standard-Einstellungen schränkst du die Sichtbarkeit deiner zukünftig geteilten Items ein. Es ist jedoch sinnvoll, dies auch für alle bereits öffentlich geteilten Items zu tun. Um dir den Aufwand der Überprüfung und eventuellen Modifikation all deiner Items zu ersparen, gibt es eine Funktion, die diese Aufgabe für dich übernimmt. Genauer gesagt kannst du damit die Sichtbarkeit aller Items mit „Öffentlich“ oder „Freunde von Freunden“ als eingestellter Freigabe-Stufe mit nur einem Klick auf deine Freunde beschränken.<br/>Du findest diese Funktion ebenfalls in den Privatsphäre-Einstellungen deines Facebook-Accounts. Bei Veröffentlichung der neuesten Version dieser Anwendung fand sich die entsprechende Option <a href=\"https://www.facebook.com/settings?tab=privacy&section=masher&view\">hier</a> (Stand: 22.04.2013)."
             },
             "publish_items": {
