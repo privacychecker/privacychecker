@@ -7,6 +7,7 @@
     ns.TipsView = Backbone.View.extend( {
 
             templateTooltip:        pc.template.TipsTooltipTemplate,
+            templateBriefing:       pc.template.TipsBriefingTemplate,
             templateRecommendation: pc.template.TipsRecommendationTemplate,
 
             initialize: function()
@@ -41,6 +42,36 @@
                     this.$el
                         .empty()
                         .html( this.templateTooltip( options ) );
+
+                    this.$el.slideDown();
+                }, this ) );
+
+            },
+
+            renderBriefing: function( briefingId )
+            {
+                // briefingId is a string like app.hangman.briefing
+
+                if ( _.isUndefined( briefingId ) ) {
+                    console.error( '[TipsView] Briefing not undefined!' );
+                    return;
+                }
+
+                console.info( "[TipsView] Rendering briefing template with options", briefingId );
+
+                this.$el.slideUp( _.bind( function()
+                {
+
+                    this.$el
+                        .empty()
+                        .html( this.templateBriefing( {
+                            briefing: {
+                                headline: $.t( briefingId + ".name" ),
+                                long:     $.t( briefingId + ".briefing" )
+                            }
+                        } ) );
+
+                    pc.model.TooltipCollection.getInstance().pin( this.$el );
 
                     this.$el.slideDown();
                 }, this ) );

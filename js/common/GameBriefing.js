@@ -33,7 +33,28 @@
          */
         make: function( text )
         {
-            this.text.html( text );
+            this.textEl.html( text );
+        },
+
+        /**
+         * Set the briefing headline
+         *
+         * @method headline
+         * @param {string} text The text to show in the headline (html allowed)
+         */
+        headline: function( text )
+        {
+            this.headlineEl.html( text );
+        },
+
+        /**
+         * Set the cbLink for the close btn
+         *
+         * @param id The cbLink ID
+         */
+        cbLink: function( id )
+        {
+            this.closeBtn.attr( 'href', '#/briefing/' + id );
         },
 
         /**
@@ -46,6 +67,7 @@
             this.$el.children().first();
             this.$el.fadeIn();
             this.trigger( 'shown' );
+            return true;
         },
 
         /**
@@ -57,6 +79,7 @@
         {
             this.$el.fadeOut();
             this.trigger( 'hidden' );
+            return true;
         },
 
         /**
@@ -64,7 +87,8 @@
          *
          * @returns {jQuery} The jQuery Object with the text
          */
-        getTextContainer: function() {
+        getTextContainer: function()
+        {
             return this.text;
         },
 
@@ -78,17 +102,22 @@
         {
             var container = $( '<div>' ).addClass( 'briefing-container' );
 
-            var closeBtn = $( '<button>', {
+            var headline = $( '<h2>' );
+            var closeBtn = $( '<a>', {
+                href: "#",
                 html: $.t( pc.common.GameBriefing.LANG_CLOSE_BTN )
             } ).addClass( 'btn btn-primary' ).click( _.bind( this.hide, this ) );
             var textEl = $( '<p>' );
 
+            container.append( headline );
             container.append( textEl );
             container.append( closeBtn );
 
             this.$el.empty().append( container );
 
-            this.text = textEl;
+            this.headlineEl = headline;
+            this.textEl = textEl;
+            this.closeBtn = closeBtn;
         }
 
     }, {

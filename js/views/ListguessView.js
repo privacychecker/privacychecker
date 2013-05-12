@@ -46,8 +46,11 @@
                 // generate briefing
                 var briefing = pc.common.GameBriefing.getInstance();
                 briefing.make( $.t( pc.view.ListGuessView.LANG_BRIEFING ) );
+                briefing.headline( $.t( pc.view.ListGuessView.LANG_GAME_NAME ) );
+                briefing.cbLink( pc.view.ListGuessView.CB_LINK_ID );
 
                 try {
+                    pc.model.TooltipCollection.getInstance().pin( this.$el.find( 'h1' ) );
                     pc.model.TooltipCollection.getInstance().pin( briefing.getTextContainer() );
                 }
                 catch ( e ) {
@@ -129,6 +132,14 @@
                 {
                     this.$el.html( this.templateResult() );
 
+                    // add tooltip
+                    try {
+                        pc.model.TooltipCollection.getInstance().pin( this.$el.find( 'h1' ) );
+                    }
+                    catch ( e ) {
+                        console.error( "[ListGuessView] Unable to attach tooltips:", e, "Skipping rest" );
+                    }
+
                     // add change events
                     this.$el.find( pc.view.ListGuessView.SWITCH_LISTS_ID )
                         .click( _.bind( this.resultShowSubtemplateCb, this, this.templateResultLists, options.lists ) );
@@ -206,26 +217,16 @@
                 if ( toPick > autoLists.length + userLists.length ) toPick = autoLists.length + userLists.length;
 
                 // randomly pick
-                while ( toPick !== this.questions.length ) {
+                // pick 1 .. toPick/2
+                var random = _.random( 1, Math.ceil( toPick / 2 ) ),
+                    toPickUser = random < userLists.length ? random : userLists.length,
+                    toPickAuto = toPick - toPickUser < autoLists.length ? toPick - toPickUser : autoLists.length;
 
-                    pickedListItem = undefined;
-                    pickedListType = undefined;
+                // pick users
+                while ( toPickUser > 0 ) {
 
-                    // coinflip = 1 -> autoList
-                    if ( ( _.random( 1 ) && usedAutoLists < autoLists.length) || usedUserLists >= userLists.length ) {
-
-                        pickedListItem = autoLists[ _.random( autoLists.length ) ];
-                        pickedListType = pc.view.ListGuessView.QuestionType.AUTO_LIST;
-                        usedAutoLists++;
-
-                    }
-                    else if ( usedUserLists < userLists.length ) {
-
-                        pickedListItem = userLists[ _.random( userLists.length ) ];
-                        pickedListType = pc.view.ListGuessView.QuestionType.USER_LIST;
-                        usedUserLists++;
-
-                    }
+                    pickedListItem = userLists[ _.random( userLists.length ) ];
+                    pickedListType = pc.view.ListGuessView.QuestionType.USER_LIST;
 
                     if ( !_.isUndefined( pickedListItem ) && !_.contains( alreadyUsedLists, pickedListItem ) ) {
                         this.questions.push( {
@@ -234,9 +235,29 @@
                             correct: pickedListItem.get( 'members' ).length
                         } );
                         alreadyUsedLists.push( pickedListItem );
+                        toPickUser--;
                     }
 
                 }
+
+                // pick auto
+                while ( toPickAuto > 0 ) {
+
+                    pickedListItem = autoLists[ _.random( userLists.length ) ];
+                    pickedListType = pc.view.ListGuessView.QuestionType.AUTO_LIST;
+
+                    if ( !_.isUndefined( pickedListItem ) && !_.contains( alreadyUsedLists, pickedListItem ) ) {
+                        this.questions.push( {
+                            item:    pickedListItem,
+                            type:    pickedListType,
+                            correct: pickedListItem.get( 'members' ).length
+                        } );
+                        alreadyUsedLists.push( pickedListItem );
+                        toPickAuto--;
+                    }
+
+                }
+
                 // add status or images from testdata
                 _.each( itemsFromTestData, _.bind( function( item )
                 {
@@ -643,7 +664,7 @@
                     }
                 }, this ) );
 
-                publicResults = _.shuffle( publicResults );
+                //publicResults = _.shuffle( publicResults );
 
                 // make result texts
                 var groupResultText = $.t( pc.view.ListGuessView.LANG_ITEMS_LIST_OVERVIEW_NONE ),
@@ -830,7 +851,9 @@
                 BAD:      0.6
             },
 
-            LANG_BRIEFING: "app.guess.briefing",
+            LANG_BRIEFING:  "app.guess.briefing",
+            LANG_GAME_NAME: "app.guess.name",
+            CB_LINK_ID:     "app.guess",
 
             LANG_FRIENDS:          "app.common.friends",
             LANG_ALL_FRIENDS:      "app.common.all_friends",

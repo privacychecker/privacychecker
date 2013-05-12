@@ -317,14 +317,15 @@
             console.debug( '[TestData] available ' + arr.length + ' to pick ' + i );
 
             while ( i-- > 0 ) {
-                var pic = arr.at( _.random( arr.length ) );
+                var item = arr.at( _.random( arr.length ) );
 
-                if ( !_.isUndefined( pic )
-                    && !_.isUndefined( pic.get( 'privacy' ).get( 'level' ) )
-                    && pic.get( 'privacy' ).get( 'level' ) !== pc.common.PrivacyDefinition.Level.NOBODY
-                    && !_.contains( picked, pic ) ) {
+                if ( !_.isUndefined( item )
+                    && !_.isUndefined( item.get( 'privacy' ).get( 'level' ) )
+                    && item.get( 'privacy' ).get( 'level' ) !== pc.common.PrivacyDefinition.Level.NOBODY
+                    && item.get( 'privacy' ).get( 'level' ) !== pc.common.PrivacyDefinition.Level.ALL
+                    && !_.contains( picked, item ) ) {
 
-                    picked.push( pic );
+                    picked.push( item );
                 }
                 else {
                     ++i;

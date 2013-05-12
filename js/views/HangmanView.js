@@ -33,6 +33,9 @@
                 // generate briefing
                 var briefing = pc.common.GameBriefing.getInstance();
                 briefing.make( $.t( pc.view.HangmanView.LANG_BRIEFING ) );
+                briefing.headline( $.t( pc.view.HangmanView.LANG_GAME_NAME ) );
+                briefing.cbLink( pc.view.HangmanView.CB_LINK_ID );
+
                 try {
                     pc.model.TooltipCollection.getInstance().pin( briefing.getTextContainer() );
                     pc.model.TooltipCollection.getInstance()
@@ -101,6 +104,7 @@
                             .pin( container.find( ".hearts" ), "hangman_hearts" );
                         pc.model.TooltipCollection.getInstance()
                             .pin( container.find( ".points" ), "hangman_points" );
+                        pc.model.TooltipCollection.getInstance().pin( this.$el.find( 'h1' ) );
                     }
                     catch ( e ) {
                         console.error( "[HangmanView] Unable to attach tooltips:", e, "Skipping rest" );
@@ -365,6 +369,13 @@
                         .html( this.templateResult( options ) )
                         .fadeIn();
 
+                    try {
+                        pc.model.TooltipCollection.getInstance().pin( this.$el.find( 'h1' ) );
+                    }
+                    catch ( e ) {
+                        console.error( "[SelectView] Unable to attach tooltips:", e, "Skipping rest" );
+                    }
+
                     this.trigger( 'hangmanview:done' );
                 }, this ) );
 
@@ -524,7 +535,11 @@
             LANG_RATING_VERYGOOD: "app.common.ratings.verygood",
             LANG_RATING_GOOD:     "app.common.ratings.good",
             LANG_RATING_BAD:      "app.common.ratings.bad",
-            LANG_RATING_VERYBAD:  "app.common.ratings.verybad"
+            LANG_RATING_VERYBAD:  "app.common.ratings.verybad",
+
+            CB_LINK_ID: "app.hangman",
+
+            LANG_GAME_NAME: "app.hangman.name"
 
         }
     )

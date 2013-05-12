@@ -1,62 +1,54 @@
 .plain-list {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 .rounded-corners (@radius: 5px) {
-  border-radius: @radius;
-  -webkit-border-radius: @radius;
-  -moz-border-radius: @radius;
+    border-radius: @radius;
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
 }
 
 .count {
-	position: absolute;
-	float: right;
-	top: 0;
-	right: 0;
-	z-index: 10;
-	margin-top: 80px;
-	margin-right: 20px;
-	text-shadow: 1px 1px 0px rgb(30, 30, 30);
+    position: absolute;
+    float: right;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    margin-top: 80px;
+    margin-right: 20px;
+    text-shadow: 1px 1px 0px rgb(30, 30, 30);
 
-	.current {
-		font-size: 80px;
-	}
+    .current {
+        font-size: 80px;
+    }
 
-	.total {
-		font-size: 50px;
+    .total {
+        font-size: 50px;
 
-		&:before {
-			content: " /";
-		}
-	}
-}
-
-.grayitizer {
-	z-index: 1000;
-	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(51,51,51,.3);
-
-	.alert {
-		font-size: 40px;
-		background: url("assets/overlayinfobackground.png") right center rgb(252, 248, 227) no-repeat;
-		padding: 20px;
-		cursor: pointer;
-	}
+        &:before {
+            content: " /";
+        }
+    }
 }
 
 .center-outer {
-	float: right;
+    float: right;
     right: 50%;
     position: relative;
 }
 
 .center-inner {
- 	float: right;
+    float: right;
     right: -50%;
     position: relative;
+}
+
+.popover {
+    text-shadow: none;
+
+    font-size: 14px;
+    font-weight: normal;
+
+    background-color: #fff;
+    color: #333;
 }

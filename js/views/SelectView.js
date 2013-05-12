@@ -18,6 +18,13 @@
         {
             this.$el.html( this.template() );
 
+            try {
+                pc.model.TooltipCollection.getInstance().pin( this.$el.find( 'h1' ) );
+            }
+            catch ( e ) {
+                console.error( "[SelectView] Unable to attach tooltips:", e, "Skipping rest" );
+            }
+
             // show scope view
             this.$el.find( '.scope' ).show();
             // hide playground and result
@@ -107,8 +114,11 @@
                 // generate briefing
                 var briefing = pc.common.GameBriefing.getInstance();
                 briefing.make( $.t( pc.view.SelectView.LANG_BRIEFING ) );
+                briefing.headline( $.t( pc.view.SelectView.LANG_GAME_NAME) );
+                briefing.cbLink( pc.view.SelectView.CB_LINK_ID );
 
                 try {
+                    pc.model.TooltipCollection.getInstance().pin( this.$el.find( 'h1' ) );
                     pc.model.TooltipCollection.getInstance().pin( briefing.getTextContainer() );
                 }
                 catch ( e ) {
@@ -255,9 +265,13 @@
         LANG_BRIEFING:          "app.select.briefing",
         LANG_POINTS:            "app.common.points",
 
+        LANG_GAME_NAME: "app.select.name",
+
         LANG_TOOLTIP_ITEMS:    "app.select.tooltip.item",
         LANG_TOOLTIP_PERSONAL: "app.select.tooltip.personal",
         LANG_TOOLTIP_RANKING:  "app.select.tooltip.ranking",
+
+        CB_LINK_ID: "app.select",
 
         GAME_SCOPE: {
             IMAGES: 0, STATUSES: 1, BOTH: 2

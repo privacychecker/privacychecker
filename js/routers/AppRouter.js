@@ -9,7 +9,8 @@
     ns.AppRouter = Backbone.Router.extend( {
 
         routes: {
-            "tooltip/:id": "tooltipCb"
+            "briefing/:id": "briefingCb",
+            "tooltip/:id":  "tooltipCb"
         },
 
         initialize: function()
@@ -67,7 +68,6 @@
 
         startCollectCb: function( autostart )
         {
-
 
             console.log( '[Controller] Starting to collect data' );
             $( pc.router.AppRouter.CAROUSEL_ID ).unbind();
@@ -195,6 +195,12 @@
         {
             console.log( '[Controller] Showing tooltip with id', tooltipId );
             this.tipsView.renderTooltip( tooltipId );
+        },
+
+        briefingCb: function( briefingId )
+        {
+            console.log( '[Controller] Showing briefing with id', briefingId );
+            this.tipsView.renderBriefing( briefingId );
         },
 
         _animateNextButton: function()
