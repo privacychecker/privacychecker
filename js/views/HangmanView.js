@@ -55,6 +55,9 @@
 
             ask: function()
             {
+                // hide next button
+                $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().hide();
+
                 // reset errors
                 this.errors = 0;
 

@@ -65,6 +65,8 @@
 
             ask: function()
             {
+                // hide next button
+                $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().hide();
 
                 var container = this.$el.find( '.container' ).first();
 
