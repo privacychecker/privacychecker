@@ -9,12 +9,15 @@
         <p class="lead">{{t "app.select.what_to_use"}}</p>
 
         <p class="btn-group">
-            <button class="btn btn-primary images"  {{#if no_pictures}}>disabled{{/if}}
-                >{{t "app.select.play_with_images"}}</button>
-            <button class="btn btn-primary statuses" {{#if no_statuses}}
-                    disabled{{/if}}>{{t "app.select.play_with_statuses"}}</button>
+            <button class="btn btn-primary images" {{#if no_pictures}} disabled{{/if}}>
+                {{t "app.select.play_with_images"}}
+            </button>
+            <button class="btn btn-primary statuses" {{#if no_statuses}} disabled{{/if}}>
+                {{t "app.select.play_with_statuses"}}
+            </button>
             <button class="btn btn-primary both"  {{#if no_one_of_both}}>disabled{{/if}}
-                >{{t "app.select.play_with_both"}}</button>
+                >{{t "app.select.play_with_both"}}
+            </button>
         </p>
     {{/if}}
 

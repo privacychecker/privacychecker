@@ -57,7 +57,7 @@
 
                 briefing.show();
 
-                briefing.on('hidden', _.bind(this.ask, this));
+                briefing.on( 'hidden', _.bind( this.ask, this ) );
             },
 
             ask: function()
@@ -201,7 +201,8 @@
                     pickedListItem = userLists[ _.random( userLists.length ) ];
                     pickedListType = pc.view.ListGuessView.QuestionType.USER_LIST;
 
-                    console.debug("[ListGuessView] Picking userlist ", pickedListItem, !_.contains( alreadyUsedLists, pickedListItem));
+                    console.debug( "[ListGuessView] Picking userlist ", pickedListItem,
+                        !_.contains( alreadyUsedLists, pickedListItem ) );
 
                     if ( !_.isUndefined( pickedListItem ) && !_.contains( alreadyUsedLists, pickedListItem ) ) {
                         this.questions.push( {
@@ -221,7 +222,8 @@
                     pickedListItem = autoLists[ _.random( autoLists.length ) ];
                     pickedListType = pc.view.ListGuessView.QuestionType.AUTO_LIST;
 
-                    console.debug("[ListGuessView] Picking autolist ", pickedListItem, !_.contains( alreadyUsedLists, pickedListItem));
+                    console.debug( "[ListGuessView] Picking autolist ", pickedListItem,
+                        !_.contains( alreadyUsedLists, pickedListItem ) );
 
                     if ( !_.isUndefined( pickedListItem ) && !_.contains( alreadyUsedLists, pickedListItem ) ) {
                         this.questions.push( {

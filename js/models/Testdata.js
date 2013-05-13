@@ -52,15 +52,15 @@
         {
             switch ( scope ) {
                 case pc.model.TestData.Scope.IMAGES:
-                    console.info("[TestData] Scope is IMAGES");
+                    console.info( "[TestData] Scope is IMAGES" );
                     this.set( 'pictures', this._collectPictures() );
                     break;
                 case pc.model.TestData.Scope.STATUSES:
-                    console.info("[TestData] Scope is STATUSES");
+                    console.info( "[TestData] Scope is STATUSES" );
                     this.set( 'statuses', this._collectStatuses() );
                     break;
                 case pc.model.TestData.Scope.BOTH:
-                    console.info("[TestData] Scope is BOTH");
+                    console.info( "[TestData] Scope is BOTH" );
                     this.set( 'pictures', this._collectPictures() );
                     this.set( 'statuses', this._collectStatuses() );
                     break;
@@ -108,7 +108,7 @@
 
             this.ratePtr = this.ratePtr % this.rateSource.length;
 
-            console.debug("[TestData] Selecting rate tupple from ", this.rateSource, "at pointer", this.ratePtr);
+            console.debug( "[TestData] Selecting rate tupple from ", this.rateSource, "at pointer", this.ratePtr );
 
             var one = this.rateSource[ this.ratePtr++ ],
                 two = null,
@@ -118,8 +118,8 @@
 
             while ( alreadyseen || one === two ) {
 
-                two = this.rateSource[ $.randomBetween( 0, this.rateSource.length ) ];
-                if ( !two ) {
+                two = this.rateSource[ _.random( this.rateSource.length ) ];
+                if ( _.isUndefined( two ) ) {
                     continue;
                 }
 
@@ -270,7 +270,7 @@
          */
         hasEnoughPictures: function()
         {
-            return (this._collectPictures().length >= this.TEST_DATA_SIZE);
+            return (this._collectPictures().length >= (this.MAX_INIT_ITEMS));
         },
 
         /**
@@ -281,7 +281,7 @@
          */
         hasEnoughStatuses: function()
         {
-            return (this._collectStatuses().length >= this.TEST_DATA_SIZE);
+            return (this._collectStatuses().length >= (this.MAX_INIT_ITEMS));
         },
 
         /**
@@ -292,7 +292,7 @@
          */
         hasEnoughCombined: function()
         {
-            return ((this._collectStatuses().length + this._collectPictures().length ) >= this.TEST_DATA_SIZE);
+            return ((this._collectStatuses().length + this._collectPictures().length ) >= (this.MAX_INIT_ITEMS));
         },
 
         /**
@@ -351,24 +351,34 @@
 
             var picked = [];
 
+            arr = new Backbone.Collection( _.compact( arr.map( function( el )
+            {
+                if ( !_.isUndefined( el.get( 'privacy' ) ) && !_.isUndefined( el.get( 'privacy' ).get( 'level' ) ) &&
+                    el.get( 'privacy' ).get( 'level' ) !== pc.common.PrivacyDefinition.Level.ALL &&
+                    el.get( 'privacy' ).get( 'level' ) !== pc.common.PrivacyDefinition.Level.NOBODY ) {
+                    return el;
+                }
+                else {
+                    console.debug( "[TestData] Removed invalid item, ", el );
+                    return null;
+                }
+            } ) ) );
+
             var i = arr.length < this.MAX_INIT_ITEMS ? arr.length : this.MAX_INIT_ITEMS;
 
             console.debug( '[TestData] available ' + arr.length + ' to pick ' + i );
 
-            while ( i-- > 0 ) {
-                var item = arr.at( _.random( arr.length ) );
+            while ( i > picked.length ) {
+                var rndm = _.random( arr.length - 1 );
+                var item = arr.at( rndm );
 
-                if ( !_.isUndefined( item )
-                    && !_.isUndefined( item.get( 'privacy' ).get( 'level' ) )
-                    && item.get( 'privacy' ).get( 'level' ) !== pc.common.PrivacyDefinition.Level.NOBODY
-                    && item.get( 'privacy' ).get( 'level' ) !== pc.common.PrivacyDefinition.Level.ALL
-                    && !_.contains( picked, item ) ) {
+                if ( _.isUndefined( item ) || _.isUndefined( item.get( 'privacy' ).get( 'level' ) ) || _.contains( picked,
+                    item ) ) {
+                    continue;
+                }
 
-                    picked.push( item );
-                }
-                else {
-                    ++i;
-                }
+                picked.push( item );
+
             }
 
             return picked;
