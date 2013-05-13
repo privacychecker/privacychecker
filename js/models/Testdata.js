@@ -52,14 +52,14 @@
         {
             switch ( scope ) {
                 case pc.model.TestData.Scope.IMAGES:
-                    this._collectPictures();
+                    this.set( 'pictures', this._collectPictures() );
                     break;
                 case pc.model.TestData.Scope.STATUSES:
-                    this._collectStatuses();
+                    this.set( 'statuses', this._collectStatuses() );
                     break;
                 case pc.model.TestData.Scope.BOTH:
-                    this._collectPictures();
-                    this._collectStatuses();
+                    this.set( 'pictures', this._collectPictures() );
+                    this.set( 'statuses', this._collectStatuses() );
                     break;
                 default:
                     console.error( "[TestData] Unknown game scope:", scope );
@@ -106,9 +106,13 @@
 
             this.ratePtr = this.ratePtr % this.rateSource.length;
 
+            console.debug("[TestData] Selecting rate tupple from ", this.rateSource, "at pointer", this.ratePtr);
+
             var one = this.rateSource[ this.ratePtr++ ],
                 two = null,
                 alreadyseen = true;
+
+            console.debug( '[TestData] (1) Pair is ', one, ' and ', two );
 
             while ( alreadyseen || one === two ) {
 
@@ -122,7 +126,7 @@
 
             this.alreadyComparedTuples.push( parseInt( one.id, 10 ) + parseInt( two.id, 10 ) );
 
-            console.debug( '[TestData] Pair is ', one, ' and ', two );
+            console.debug( '[TestData] (2) Pair is ', one, ' and ', two );
 
             return [one, two];
 
@@ -242,7 +246,6 @@
             var data = [],
                 orderedList = this.getOrderedList();
 
-
             if ( orderedList.length <= this.TEST_DATA_SIZE ) {
                 console.error( "[TestData] Insufficient data", orderedList.length, this.TEST_DATA_SIZE, orderedList );
                 throw "E_INSUFFICIENT_DATA";
@@ -258,12 +261,45 @@
         },
 
         /**
+         * Validate if a player has enough pictures to play
+         *
+         * @returns {boolean} True if player has enough
+         * @method hasEnoughPictures
+         */
+        hasEnoughPictures: function()
+        {
+            return (this._collectPictures().length >= this.TEST_DATA_SIZE);
+        },
+
+        /**
+         * Validate if a player has enough statuses to play
+         *
+         * @returns {boolean} True if player has enough
+         * @method hasEnoughStatuses
+         */
+        hasEnoughStatuses: function()
+        {
+            return (this._collectStatuses().length >= this.TEST_DATA_SIZE);
+        },
+
+        /**
+         * Validate if a player has enough statuses and pictures to play
+         *
+         * @returns {boolean} True if player has enough
+         * @method hasEnoughCombined
+         */
+        hasEnoughCombined: function()
+        {
+            return ((this._collectStatuses().length + this._collectPictures().length ) >= this.TEST_DATA_SIZE);
+        },
+
+        /**
          * Collect a few pictures from the player's collected picture set.<br />
-         * These pictures are later used for comparison.<br />
-         * Sets the pictures attribute
+         * These pictures are later used for comparison.
          *
          * @method _collectPictures
          * @private
+         *  @returns {Array} A arr with MAX_INIT_ITEMS or less pictures
          */
         _collectPictures: function()
         {
@@ -273,15 +309,15 @@
             var pickedPlain = this._genericCollector( availablePics );
             var pickedPics = new pc.model.FacebookPictureCollection( pickedPlain );
 
-            this.set( 'pictures', pickedPics );
             console.info( '[TestData] Using the following ' + this.MAX_INIT_ITEMS + ' pictures for test:',
-                this.get( 'pictures' ) );
+                pickedPics );
+
+            return pickedPics;
         },
 
         /**
          * Collect a few statuses from the player's collected statuses set.<br />
-         * These statuses are later used for comparison.<br />
-         * Sets the statuses attribute
+         * These statuses are later used for comparison.
          *
          * @method _collectStatuses
          * @private
@@ -296,7 +332,9 @@
 
             this.set( 'statuses', pickedStatuses );
             console.info( '[TestData] Using the following ' + this.MAX_INIT_ITEMS + ' statuses for test:',
-                this.get( 'statuses' ) );
+                pickedStatuses );
+
+            return pickedStatuses;
         },
 
         /**

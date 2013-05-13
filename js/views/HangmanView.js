@@ -23,6 +23,9 @@
 
             render: function()
             {
+                // hide next button
+                $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().hide();
+
                 // render template
                 this.$el.html( this.templateGame() );
 

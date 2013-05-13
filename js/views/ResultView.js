@@ -143,7 +143,7 @@
                 $.t( ns.LANG_HANGMAN_VERYBAD, {points: points} );
 
             // recommendations
-            if ( hangmanResult.totals.overall <= results.BAD || hangmanResult.totals.overall <= results.VERYBAD ) {
+            if ( hangmanResult.totals.overall === results.BAD || hangmanResult.totals.overall === results.VERYBAD ) {
                 this.recommendationsHelper.friend = true;
             }
 
@@ -169,11 +169,11 @@
         LANG_LISTS_USER_VERYBAD:  "app.results.lists.user_verybad",
         LANG_LISTS_USER_NONE:     "app.results.lists.user_none",
 
-        LANG_LISTS_AUTO_VERYGOOD: "app.results.lists.user_verygood",
-        LANG_LISTS_AUTO_GOOD:     "app.results.lists.user_good",
-        LANG_LISTS_AUTO_BAD:      "app.results.lists.user_bad",
-        LANG_LISTS_AUTO_VERYBAD:  "app.results.lists.user_verybad",
-        LANG_LISTS_AUTO_NONE:     "app.results.lists.user_none",
+        LANG_LISTS_AUTO_VERYGOOD: "app.results.lists.auto_verygood",
+        LANG_LISTS_AUTO_GOOD:     "app.results.lists.auto_good",
+        LANG_LISTS_AUTO_BAD:      "app.results.lists.auto_bad",
+        LANG_LISTS_AUTO_VERYBAD:  "app.results.lists.auto_verybad",
+        LANG_LISTS_AUTO_NONE:     "app.results.lists.auto_none",
 
         LANG_ITEMS_LISTS_YES: "app.results.items.lists_yes",
         LANG_ITEMS_LISTS_NO:  "app.results.items.lists_no",

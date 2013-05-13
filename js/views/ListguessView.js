@@ -34,6 +34,9 @@
 
             render: function()
             {
+                // hide next button
+                $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().hide();
+
                 // render container
                 this.$el.html( this.templateGame() );
 
@@ -57,8 +60,7 @@
 
                 briefing.show();
 
-                // ask first
-                this.ask();
+                briefing.on('hidden', _.bind(this.ask, this));
             },
 
             ask: function()
@@ -203,6 +205,8 @@
                     pickedListItem = userLists[ _.random( userLists.length ) ];
                     pickedListType = pc.view.ListGuessView.QuestionType.USER_LIST;
 
+                    console.debug("[ListGuessView] Picking userlist ", pickedListItem, !_.contains( alreadyUsedLists, pickedListItem));
+
                     if ( !_.isUndefined( pickedListItem ) && !_.contains( alreadyUsedLists, pickedListItem ) ) {
                         this.questions.push( {
                             item:    pickedListItem,
@@ -218,8 +222,10 @@
                 // pick auto
                 while ( toPickAuto > 0 ) {
 
-                    pickedListItem = autoLists[ _.random( userLists.length ) ];
+                    pickedListItem = autoLists[ _.random( autoLists.length ) ];
                     pickedListType = pc.view.ListGuessView.QuestionType.AUTO_LIST;
+
+                    console.debug("[ListGuessView] Picking autolist ", pickedListItem, !_.contains( alreadyUsedLists, pickedListItem));
 
                     if ( !_.isUndefined( pickedListItem ) && !_.contains( alreadyUsedLists, pickedListItem ) ) {
                         this.questions.push( {

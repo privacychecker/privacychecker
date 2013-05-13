@@ -4,7 +4,7 @@
         margin-top: 200px;
     }
 
-    .body {
+    .game {
         margin-top: 100px;
 
         .item {
@@ -16,6 +16,10 @@
 
             &:hover {
                 z-index: 200;
+            }
+
+            & > .image {
+                background-size: cover;
             }
         }
 
@@ -29,65 +33,47 @@
     .result {
         margin-top: 100px;
 
-        ul {
+        ul.details {
             .plain-list;
 
             margin: 0;
             margin-top: 15px;
+            margin-bottom: 50px;
 
             li {
-                .rounded-corners(5px);
+                .rounded-corners;
 
-                clear: both;
+                width: 220px;
+                height: 140px;
+                display: inline-block;
                 position: relative;
-
-
-                background: #ccc;
-                color: #505050 !important;
-
-                height: 130px;
-                padding: 10px;
-                margin-bottom: 10px;
-
                 overflow: hidden;
+                margin-bottom: 20px;
 
-                div.position {
-                    float: left;
-                    margin-top: 30px;
-                    width: 20px;
-
-                    font-size: 80px;
-
-                    text-shadow: -1px -1px 0px #202020, 1px 1px 0px #fff;
-                }
+                opacity: .8;
 
                 div.item {
                     float: left;
+                    width: 100%;
+                    height: 100%;
+                    min-height: 100%;
 
-                    margin-left: 40px;
-                    margin-right: 20px;
-
-                    width: 200px;
-                    height: 130px;
+                    &.image {
+                        background-size: cover;
+                    }
                 }
 
-                p.description {
-                    display: block;
-
-                    margin-left: 10px;
-                    font-size: 16px;
-
-                    color: #333;
+                &:hover {
+                    opacity: .8 !important;
                 }
 
-                div.points {
-                    position: absolute;
-                    bottom: 20px;
-                    right: 20px;
-                    font-size: 40px;
-                    font-weight: 100;
-                    color: #666;
+                &.winner {
+                    width: 295px !important;
+                    height: 200px !important;
+
+                    opacity: 1 !important;
                 }
+
             }
         }
     }
