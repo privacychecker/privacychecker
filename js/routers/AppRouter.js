@@ -94,6 +94,7 @@
 
         selectEntitiesCb: function()
         {
+            this.collectView.off('collect:done');
             console.log( '[Controller] Starting Setup: Select most sensible entities' );
             $( pc.router.AppRouter.CAROUSEL_ID ).unbind();
             this.selectView.render();
@@ -115,11 +116,13 @@
 
         guessListSizeCb: function()
         {
+            this.selectView.off('select:done');
             console.log( '[Controller] Starting Game #1: List Size Guess' );
             $( pc.router.AppRouter.CAROUSEL_ID ).unbind();
 
             $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().fadeIn( 'fast' ).click( _.bind( function()
             {
+                console.log("[Controller] Going to listguessview");
                 this.listGuessView.render();
                 $( '#container-guess' ).html( this.listGuessView.el );
 
@@ -139,6 +142,7 @@
 
         hangmanStartCb: function()
         {
+            this.listGuessView.off('game:done');
             console.log( '[Controller] Starting Game #3: Hangman' );
             $( pc.router.AppRouter.CAROUSEL_ID ).unbind();
 

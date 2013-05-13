@@ -34,9 +34,6 @@
 
             render: function()
             {
-                // hide next button
-                $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().hide();
-
                 // render container
                 this.$el.html( this.templateGame() );
 
@@ -65,9 +62,6 @@
 
             ask: function()
             {
-                // hide next button
-                $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().hide();
-
                 var container = this.$el.find( '.container' ).first();
 
                 container.fadeOut( 'fast', _.bind( function()

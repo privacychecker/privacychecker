@@ -52,12 +52,15 @@
         {
             switch ( scope ) {
                 case pc.model.TestData.Scope.IMAGES:
+                    console.info("[TestData] Scope is IMAGES");
                     this.set( 'pictures', this._collectPictures() );
                     break;
                 case pc.model.TestData.Scope.STATUSES:
+                    console.info("[TestData] Scope is STATUSES");
                     this.set( 'statuses', this._collectStatuses() );
                     break;
                 case pc.model.TestData.Scope.BOTH:
+                    console.info("[TestData] Scope is BOTH");
                     this.set( 'pictures', this._collectPictures() );
                     this.set( 'statuses', this._collectStatuses() );
                     break;
@@ -66,12 +69,11 @@
                     throw "E_UNKNOWN_SCOPE";
             }
 
-            console.debug( "[TestData] Collected data", this.rateSource, "with scope", scope );
-
             var pointer = this.MAX_INIT_ITEMS;
             this.rateSource = _.union( this.get( 'pictures' ).models, this.get( 'statuses' ).models );
             this.rateSource = _.shuffle( this.rateSource );
-            console.debug( "[TestData] Shuffled rate source array", this.rateSource );
+
+            console.debug( "[TestData] Collected and shuffled data", this.rateSource, "with scope", scope );
 
             // trim the array
             this.rateSource = _.compact( _.map( this.rateSource, function( el )
@@ -330,7 +332,6 @@
             var pickedPlain = this._genericCollector( availableStatuses );
             var pickedStatuses = new pc.model.FacebookStatusCollection( pickedPlain );
 
-            this.set( 'statuses', pickedStatuses );
             console.info( '[TestData] Using the following ' + this.MAX_INIT_ITEMS + ' statuses for test:',
                 pickedStatuses );
 
