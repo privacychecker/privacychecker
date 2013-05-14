@@ -27,20 +27,16 @@
          *
          * @method
          * @constructor
-         * @param { {item: Object, userValue: Object, correctValue: Object, gameType: Number}} result The result
+         * @param { {item: Object, userValue: Object, correctValue: Object}} result The result
          */
         initialize: function( result )
         {
             if ( _.isUndefined( result.item ) || _.isUndefined( result.userValue ) ||
-                _.isUndefined( result.correctValue ) || _.isUndefined( result.gameType ) ) {
+                _.isUndefined( result.correctValue ) ) {
                 throw new Error( 'Testresult missing input data', result );
             }
         }
 
-    }, {
-        Type: {
-            UNKNOWN: 0, LISTGUESS: 1, ENTITYGUESS: 2, HANGMAN: 3
-        }
-    } );
+    });
 
 })();

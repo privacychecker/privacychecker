@@ -13,17 +13,24 @@
             console.log( "[ResultView] Init" );
         },
 
-        render: function( listguessView, hangmanView )
+        render: function()
         {
-            this.listguessView = listguessView;
-            this.hangmanView = hangmanView;
 
             this.recommendationsHelper = {};
 
+            this.hangmanResults = this._buildHangmanHash();
+            this.listsResults = this._buildListHash();
+            this.totalResults = this._buildTotalsHash();
+
             var options = {
-                lists:   this._resultLists(),
-                items:   this._resultItems(),
-                hangman: this._resultHangman()
+                hangman: this.hangmanResults,
+                lists:   this.listsResults,
+                totals:  this.totalResults,
+                points:  {
+                    per_list:   pc.view.ResultView.POINTS_PER_CREATE_LIST,
+                    use_list:   pc.view.ResultView.POINTS_PER_USE_LIST,
+                    per_public: pc.view.ResultView.POINTS_PER_PUBLIC_ITEM
+                }
             };
 
             console.info( "[ResultView] Rendering template with", options );
@@ -43,119 +50,184 @@
                 } );
             } );
 
+            // enable tooltips
+            this.$el.find('ul.wrongs > li' ).tooltip();
+
+            // enable smoothscroll
+            this.$el.smoothScroll();
+
             // show recommendations
             this.trigger( "recommendations" );
+        },
+
+        _buildTotalsHash: function()
+        {
+
+            var points = 0,
+                createListWarning = false,
+                useListWarning = false,
+                publicItemWarning = false;
+
+            // hangman points
+            _.each( this.hangmanResults, function( result )
+            {
+                points += result.points;
+            } );
+
+            // list points
+            points += this.listsResults.number_has_lists * pc.view.ResultView.POINTS_PER_CREATE_LIST;
+            points += this.listsResults.number_uses_lists * pc.view.ResultView.POINTS_PER_USE_LIST;
+            points -= this.listsResults.number_public_items * pc.view.ResultView.POINTS_PER_PUBLIC_ITEM;
+
+            if ( this.listsResults.number_has_lists === 0 ) {
+                createListWarning = true;
+                this.recommendationsHelper.lists_create = true;
+            }
+            if ( this.listsResults.number_uses_lists === 0 ) {
+                useListWarning = true;
+                this.recommendationsHelper.lists_use = true;
+                this.recommendationsHelper.sharing = true;
+            }
+            if ( this.listsResults.number_public_items !== 0 ) {
+                publicItemWarning = true;
+                this.recommendationsHelper.publish_items = true;
+                this.recommendationsHelper.defaults = true;
+            }
+
+            points = points >= 0 ? points : 0;
+
+            return {
+                points:                   points,
+                show_create_list_warning: createListWarning,
+                show_use_list_warning:    useListWarning,
+                show_public_warning:      publicItemWarning
+            };
+
+        },
+
+        _buildListHash: function()
+        {
+
+            var player = pc.model.FacebookPlayer.getInstance(),
+                userLists = player.getFriendLists().where( { type: pc.model.FacebookList.Type.USER } ),
+                numberHasLists = userLists.length,
+                numberUsesLists = 0,
+                numberPublicItems = 0,
+                usedLists = [];
+
+            console.debug( "[ResultView] User has the following user lists", userLists );
+
+            // iterate through all items we selected to see if he uses a list
+            // find all public items (not only testdata)
+            _.each( _.union( player.getPictures().models, player.getStatuses().models ), _.bind( function( item )
+            {
+                if ( !_.isUndefined( item.get( 'privacy' ) )
+                    && !_.isUndefined( item.get( 'privacy' ).get( 'level' ) )
+                    && !_.isUndefined( item.get( 'privacy' ).get( 'includeList' ) )
+                    && !_.isUndefined( item.get( 'privacy' ).get( 'excludeList' ) ) ) {
+
+                    var level = item.get( 'privacy' ).get( 'level' ),
+                        includeList = item.get( 'privacy' ).get( 'includeList' ),
+                        excludeList = item.get( 'privacy' ).get( 'excludeList' );
+
+                    if ( level === pc.common.PrivacyDefinition.Level.ALL ) {
+                        console.info( "[ResultView] Found PUBLIC item", item );
+                        numberPublicItems++;
+                    }
+
+                    // walk through all lists to validate if a item
+                    _.each( userLists, function( list )
+                    {
+                        if ( list.id !== -1 && !_.contains( usedLists, list ) ) {
+                            if ( excludeList.contains( list ) && includeList.contains( list ) ) {
+                                console.info( "[ResultView] Item uses a unused list", item, list );
+                                numberUsesLists++;
+                                usedLists.push( list );
+                            }
+                        }
+                        else {
+                            console.debug( 'item invalid list', item, list );
+                        }
+                    } );
+
+                }
+            }, this ) );
+
+            return {
+                number_has_lists:    numberHasLists,
+                number_uses_lists:   numberUsesLists,
+                number_public_items: numberPublicItems,
+                created_lists:       userLists.map(function( list )
+                {
+                    return list.get( 'name' );
+                } ).join( ', ' ),
+                used_lists:          _.map( usedLists,function( list )
+                {
+                    return list.get( 'name' );
+                } ).join( ', ' )
+            };
+
+        },
+
+        /**
+         * Calculate results for every hangman game suitable for Handlebars
+         *
+         * @returns {Array<{duration: number, errors: number, points: number, item: Object}>}
+         *  Array with results for every hangman game
+         * @method _buildHangmanHash
+         * @private
+         */
+        _buildHangmanHash: function()
+        {
+
+            var hangmanResults = pc.model.FacebookPlayer.getInstance().get( 'results' ),
+                itemInformation;
+
+            return hangmanResults.map( function( result )
+            {
+                itemInformation = {};
+
+                var item = result.get( 'item' ),
+                    wrongs = result.get( 'userValue' );
+
+                if ( item instanceof pc.model.FacebookPicture ) {
+                    itemInformation = {
+                        picture: {
+                            url:     item.get( 'source' ),
+                            caption: item.get( 'caption' )
+                        }
+                    };
+                }
+                else if ( item instanceof pc.model.FacebookStatus ) {
+                    itemInformation = {
+                        status: {
+                            caption:  item.get( 'caption' ),
+                            date:     pc.common.DateFormatHelper.formatShort( item.get( 'date' ) ),
+                            location: item.get( 'location' )
+                        }
+                    };
+                }
+
+                return _.extend( itemInformation, {
+                    duration: result.get( 'optional' ).duration.toFixed(),
+                    errors:   result.get( 'optional' ).errors,
+                    points:   result.get( 'optional' ).points,
+                    wrongs:   _.map( wrongs, function( wrong )
+                    {
+                        return {
+                            id:   wrong.get( 'id' ),
+                            name: wrong.get( 'name' )
+                        };
+                    } )
+                } );
+            } );
+
         },
 
         getRecommendations: function()
         {
             return this.recommendationsHelper;
-        },
-
-        _resultLists: function()
-        {
-
-            var listResult = this.listguessView._resultLists(),
-                results = pc.view.ListGuessView.Result,
-                ns = pc.view.ResultView;
-
-            // result texts
-            var resultForFriends =
-                listResult.friends.rating === results.VERYGOOD ? $.t( ns.LANG_LISTS_FRIENDS_VERYGOOD ) :
-                listResult.friends.rating === results.GOOD ? $.t( ns.LANG_LISTS_FRIENDS_GOOD ) :
-                listResult.friends.rating === results.BAD ? $.t( ns.LANG_LISTS_FRIENDS_BAD ) :
-                $.t( ns.LANG_LISTS_FRIENDS_VERYBAD );
-
-            var resultForUser =
-                listResult.user.rating === results.VERYGOOD ? $.t( ns.LANG_LISTS_USER_VERYGOOD ) :
-                listResult.user.rating === results.GOOD ? $.t( ns.LANG_LISTS_USER_GOOD ) :
-                listResult.user.rating === results.BAD ? $.t( ns.LANG_LISTS_USER_BAD ) :
-                listResult.user.rating === results.VERYBAD ? $.t( ns.LANG_LISTS_USER_VERYBAD ) :
-                $.t( ns.LANG_LISTS_USER_NONE );
-
-            var resultForAuto =
-                listResult.auto.rating === results.VERYGOOD ? $.t( ns.LANG_LISTS_AUTO_VERYGOOD ) :
-                listResult.auto.rating === results.GOOD ? $.t( ns.LANG_LISTS_AUTO_GOOD ) :
-                listResult.auto.rating === results.BAD ? $.t( ns.LANG_LISTS_AUTO_BAD ) :
-                listResult.auto.rating === results.VERYBAD ? $.t( ns.LANG_LISTS_AUTO_VERYBAD ) :
-                $.t( ns.LANG_LISTS_AUTO_NONE );
-
-            // recommendations
-            if ( listResult.friends.rating === results.BAD || listResult.friends.rating === results.VERYBAD ) {
-                this.recommendationsHelper.friend = true;
-            }
-            if ( listResult.user.details.length === 0 ) this.recommendationsHelper.lists_create = true;
-
-            return {
-                result_text: {
-                    friends: resultForFriends,
-                    user:    resultForUser,
-                    auto:    resultForAuto
-                },
-                details:     _.union( listResult.friends.details, listResult.user.details, listResult.auto.details )
-            };
-
-        },
-
-        _resultItems: function()
-        {
-            var itemResult = this.listguessView._resultItems(),
-                ns = pc.view.ResultView;
-
-            // result texts
-            var resultForLists =
-                itemResult.individual.has_lists ? $.t( ns.LANG_ITEMS_LISTS_YES )
-                    : $.t( ns.LANG_ITEMS_LISTS_NO );
-
-            var resultForPublic =
-                itemResult.public.details.length > 0 ? $.t( ns.LANG_ITEMS_PUBLIC_YES )
-                    : $.t( ns.LANG_ITEMS_PUBLIC_NO );
-
-            // recommendations
-            if ( !itemResult.individual.has_lists ) this.recommendationsHelper.lists_use = true;
-            if ( !itemResult.individual.has_lists ) this.recommendationsHelper.sharing = true;
-            if ( itemResult.public.details.length > 0 ) {
-                this.recommendationsHelper.defaults = true;
-                this.recommendationsHelper.hide_past = true;
-            }
-
-            return {
-                result_text: {
-                    lists:   resultForLists,
-                    public:  resultForPublic
-                },
-                details:     _.union( itemResult.individual.details, itemResult.public.details )
-            };
-
-        },
-
-        _resultHangman: function()
-        {
-            var hangmanResult = this.hangmanView._resultHangman(),
-                results = pc.view.HangmanView.Rating,
-                ns = pc.view.ResultView,
-                points = hangmanResult.totals.points;
-
-            var resultText =
-                hangmanResult.totals.overall === results.VERYGOOD ? $.t( ns.LANG_HANGMAN_VERYGOOD, {points: points} ) :
-                hangmanResult.totals.overall === results.GOOD ? $.t( ns.LANG_HANGMAN_GOOD, {points: points} ) :
-                hangmanResult.totals.overall === results.BAD ? $.t( ns.LANG_HANGMAN_BAD, {points: points} ) :
-                $.t( ns.LANG_HANGMAN_VERYBAD, {points: points} );
-
-            // recommendations
-            if ( hangmanResult.totals.overall === results.BAD || hangmanResult.totals.overall === results.VERYBAD ) {
-                this.recommendationsHelper.friend = true;
-            }
-
-            this.recommendationsHelper.publish_items = true;
-
-            return {
-                result_text: resultText,
-                details:     hangmanResult.results
-            };
-
         }
-
     }, {
 
         LANG_LISTS_FRIENDS_VERYGOOD: "app.results.lists.friend_verygood",
@@ -184,7 +256,11 @@
         LANG_HANGMAN_VERYGOOD: "app.results.hangman.verygood",
         LANG_HANGMAN_GOOD:     "app.results.hangman.good",
         LANG_HANGMAN_BAD:      "app.results.hangman.bad",
-        LANG_HANGMAN_VERYBAD:  "app.results.hangman.verybad"
+        LANG_HANGMAN_VERYBAD:  "app.results.hangman.verybad",
+
+        POINTS_PER_CREATE_LIST: 1000,
+        POINTS_PER_USE_LIST:    1000,
+        POINTS_PER_PUBLIC_ITEM: 200
 
     } );
 

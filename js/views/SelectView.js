@@ -8,7 +8,6 @@
             templateScope:     pc.template.SelectScopeTemplate,
             templateGame:      pc.template.SelectGameTemplate,
             templateGameItems: pc.template.SelectGameItemsTemplate,
-            templateResult:    pc.template.SelectResultTemplate,
 
             initialize: function()
             {
@@ -227,58 +226,12 @@
                     }, this ) );
                 }
                 else {
-                    console.log( '[SelectView] Selection done' );
-                    this.result();
-                }
-            },
+                    console.log( '[SelectView] Selection done, sending done trigger' );
 
-            result: function()
-            {
-                this.$el.fadeOut( 'fast', _.bind( function()
-                {
-
-                    var orderedRatingItems = pc.model.TestData.getInstance().getOrderedList(),
-                        testDataSize = pc.model.TestData.getInstance().TEST_DATA_SIZE,
-                        winner = [],
-                        looser = [],
-                        options = {
-                            results: {
-                                looser: looser,
-                                winner: winner
-                            }
-                        };
-
-                    console.info( "[SelectView] Order after rating is", orderedRatingItems );
-
-                    _.each( orderedRatingItems, _.bind( function( item, idx )
-                    {
-                        if ( idx < testDataSize ) {
-                            winner.push( _.extend( this._createItem( item ), {} ) );
-                        }
-                        else {
-                            looser.push( _.extend( this._createItem( item ), {} ) );
-                        }
-
-                    }, this ) );
-
-                    console.info( "[SelectView] Rendering result template with options", options );
-                    this.$el.html( this.templateResult( options ) ).fadeIn( 'fast' );
-
-                    // attach tooltip
-                    try {
-                        pc.model.TooltipCollection.getInstance().pin( this.$el.find( 'h1' ) );
-                    }
-                    catch ( e ) {
-                        console.error( "[SelectView] Unable to attach tooltips:", e, "Skipping rest" );
-                    }
-
-                    // extract test data for the next games
                     pc.model.TestData.getInstance().extractTestData();
 
-                    // ok we are done
-                    this.trigger( 'select:done' );
-
-                }, this ) );
+                    this.trigger( 'done' );
+                }
             }
 
         },
@@ -287,10 +240,6 @@
             SCOPE_IMAGES_ID:   '.scope button.images',
             SCOPE_STATUSES_ID: '.scope button.statuses',
             SCOPE_BOTH_ID:     '.scope button.both',
-
-            RESULT_LIST_ID: '.result ul',
-
-            LOADER_GIF_SRC: 'img/loader.gif',
 
             LANG_INSUFFICIENT_DATA: "app.select.insufficient_data",
             LANG_BRIEFING:          "app.select.briefing",
@@ -309,10 +258,8 @@
             }
 
         }
-    )
-    ;
+    );
 
-})
-    ();
+})();
 
 

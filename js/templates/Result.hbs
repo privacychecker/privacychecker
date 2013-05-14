@@ -1,122 +1,42 @@
 <!-- Result -->
 <div class="result">
 
-    <h1 style="float: left; margin-right: 200px;">{{t "app.results.name"}}</h1>
+    <h1>
+        <e class="large">&#127942;</e>
+        {{totals.points}}
+    </h1>
 
-    <div class="vote" style="font-size: 26px;">
-        <a href="http://privacychecker.wufoo.com/forms/z7x3p3/"
-           onclick="window.open(this.href,  null, 'height=1114, width=680, toolbar=0, location=0, status=1, scrollbars=1, resizable=1'); return false"
-           style="background-color: #fff; padding: 5px 10px; -moz-border-radius: 5px;">
-            Feedbackformular
-        </a>
+    <div class="share">
+        <button id="sharepoints" class="btn btn-primary">
+            Score bei FB posten
+        </button>
+
+        <button id="playagain" class="btn btn-primary">
+            Nochmal spielen
+        </button>
     </div>
 
-    <p style="clear: left;">
-        {{t "app.results.description"}}
-    </p>
+    <ul class="results">
+        <!-- hangman -->
+        {{#each hangman}}
+            <li class="collapsable">
 
-    <ul class="result ">
-        <!-- lists -->
-        <li class="divider collapsable">
-            <div class="head">
-                <h2>{{t "app.results.lists.headline"}}</h2>
+                <div class="head">
+                    <span class="title">
+                        Find your Friends #{{math @index 1}}
+                    </span>
+                    <span class="points">
+                        +{{points}}
+                    </span>
+                    <e class="control">&#59141;</e>
+                </div>
 
-                <p>
-                    {{{lists.result_text.friends}}}<br/>
-                    {{{lists.result_text.user}}}<br/>
-                    {{{lists.result_text.auto}}}<br/>
+                <div class="body">
 
-                    <a class="btn btn-small btn-primary control">
-                        <i>&#8505;</i> <span>{{t "app.common.more_info"}}</span>
-                    </a>
-                </p>
-            </div>
-
-            <ul class="body details">
-                {{#each lists.details}}
-                    <li>
-                        <h3>{{item_name}}</h3>
-
-                        <p class="info">
-                            <span class="title">{{t "app.guess.result.answer"}}</span> {{user_value}}
-                            <br/>
-                            <span class="title">{{t "app.guess.result.correct"}}</span> {{correct_value}}
-                            <br/>
-                            <span class="title">{{t "app.guess.result.difference"}}</span> {{difference}}%<br/>
-                            <span class="title">{{t "app.guess.result.rating"}}</span> {{rating}}
-                        </p>
-                    </li>
-                {{/each}}
-            </ul>
-
-        </li>
-
-        <!-- items -->
-        <li class="divider collapsable">
-            <div class="head">
-                <h2>{{t "app.results.items.headline"}}</h2>
-
-                <p>
-                    {{items.result_text.lists}}<br/>
-                    {{items.result_text.public}}<br/>
-
-                    <a class="btn btn-small btn-primary control">
-                        <i>&#8505;</i> <span>{{t "app.common.more_info"}}</span>
-                    </a>
-                </p>
-            </div>
-
-            <ul class="body details items">
-                {{#each items.details}}
-                    <li>
-                        <p class="info">
-                            <span class="title">{{t "app.guess.result.items.visible_for"}}</span> {{visible_for}}
-                            <br/>
-                            <span class="title">{{t "app.guess.result.items.denied_for"}}</span> {{denied_for}}
-                            <br/>
-                            <span class="title">{{t "app.guess.result.answer"}}</span> {{user_value}}
-                            <br/>
-                            <span class="title">{{t "app.guess.result.correct"}}</span> {{correct_value}}
-                            <br/>
-                            <span class="title">{{t "app.guess.result.difference"}}</span> {{difference}}%<br/>
-                        </p>
-
-                        {{#if picture}}
-                            <div class="item image" style="background-image: url( {{picture.url}} );"
-                                 data-tooltip="{{picture.caption}}"></div>
-                        {{/if}}
-
-                        {{#if status}}
-                            <div class="item status status-container">
-                                <p class="message">{{status.caption}}</p>
-
-                                <p class="date">{{status.date}}</p>
-                            </div>
-                        {{/if}}
-                    </li>
-                {{/each}}
-            </ul>
-
-            <!-- hangman -->
-        <li class="collapsable">
-            <div class="head">
-                <h2>{{t "app.results.hangman.headline"}}</h2>
-
-                <p>
-                    {{{hangman.result_text}}}<br/>
-
-                    <a class="btn btn-small btn-primary control">
-                        <i>&#8505;</i> <span>{{t "app.common.more_info"}}</span>
-                    </a>
-                </p>
-            </div>
-            <ul class="body details items">
-                {{#each hangman.details}}
-                    <li>
+                    <div class="object">
                         <p class="info">
                             <span class="title">{{t "app.hangman.result.duration"}}</span> {{duration}} {{t "app.common.seconds"}}
                             <br/>
-                            <span class="title">{{t "app.hangman.result.errors"}}</span> {{errors}}<br/>
                             <span class="title">{{t "app.common.points"}}</span> {{points}}
                         </p>
 
@@ -132,11 +52,106 @@
                                 <p class="date">{{status.date}}</p>
                             </div>
                         {{/if}}
-                    </li>
-                {{/each}}
-            </ul>
+                    </div>
+                    <ul class="wrongs">
+                        {{#each wrongs}}
+                            <li style="background-image: url( https://graph.facebook.com/{{id}}/picture?width=50&height=50 );"
+                                data-title="{{name}}"
+                                data-id="{{id}}"
+                                data-name="{{name}}"></li>
+                        {{/each}}
+                    </ul>
+
+                </div>
+            </li>
+        {{/each}}
+
+        <!-- has list -->
+        <li class="collapsable divider">
+            <div class="head">
+                    <span class="title">
+                        Selbst Listen erstellt
+                    </span>
+                    <span class="points">
+                        <span class="multi">{{lists.number_has_lists}}</span>
+                        +{{points.per_list}}
+                    </span>
+                <e class="control">&#59141;</e>
+            </div>
+
+            {{#if totals.show_create_list_warning}}
+                <div class="warning">
+                    <e>&#9888;</e>
+                    Du hast bisher keine Listen erstellt.
+                    <a href="#rec-create">Weißt du nicht wie das geht?</a>
+                </div>
+            {{else}}
+                <div class="body">
+                    Deine selbst erstellten Listen: {{lists.created_lists}}
+                </div>
+            {{/if}}
 
         </li>
+
+        <!-- use list -->
+        <li class="collapsable">
+            <div class="head">
+                    <span class="title">
+                        Verwendete Listen
+                    </span>
+                    <span class="points">
+                        <span class="multi">{{lists.number_uses_lists}}</span>
+                        +{{points.use_list}}
+                    </span>
+                <e class="control">&#59141;</e>
+            </div>
+
+            {{#if totals.show_use_list_warning}}
+                <div class="warning">
+                    <e>&#9888;</e>
+                    Du hast bisher keine Listen verwendet.
+                    <a href="#rec-use">Weißt du nicht wie das geht?</a>
+                </div>
+            {{else}}
+                <div class="body">
+                    Folgende Listen hast du mindestens einmal verwendet: {{lists.used_lists}}
+                </div>
+            {{/if}}
+        </li>
+
+        {{#if lists.number_public_items}}
+            <!--  public -->
+            <li class="divider">
+                <div class="head">
+                    <span class="title">
+                        Öffentliche Items
+                    </span>
+                    <span class="points negative">
+                        <span class="multi">{{lists.number_public_items}}</span>
+                        -{{points.per_public}}
+                    </span>
+                    <e class="control">&#59141;</e>
+                </div>
+                <span class="warning">
+                    <e>&#59140;</e>
+                    <a href="#rec-points">Wieso werden mit Punkte abgezogen?</a>
+                </span>
+            </li>
+        {{/if}}
+
+        <!--  public -->
+        <li class="collapsable divider totals">
+            <div class="head">
+                 <span class="title">
+                        Gesamt
+                    </span>
+                    <span class="points">
+                        {{totals.points}}
+                    </span>
+            </div>
+        </li>
+
     </ul>
+
 
 </div>
