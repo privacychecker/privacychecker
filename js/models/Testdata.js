@@ -301,7 +301,7 @@
          *
          * @method _collectPictures
          * @private
-         *  @returns {Array} A arr with MAX_INIT_ITEMS or less pictures
+         * @returns {Array} A arr with MAX_INIT_ITEMS or less pictures
          */
         _collectPictures: function()
         {

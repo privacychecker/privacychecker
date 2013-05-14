@@ -151,7 +151,7 @@
                     if ( _.contains( this.get( 'excludeTemp' ), friendname ) ) {
                         console.log( '[PrivacyDefinition] Exclude id contains friend, replacing.' );
                         this.get( 'exclude' ).add( friend );
-                        this.get( 'excludeFriend' ).add( friend );
+                        this.get( 'excludeUser' ).add( friend );
                     }
 
                     if ( _.contains( this.get( 'includeTemp' ), friendname ) ) {
@@ -189,10 +189,11 @@
                     this.get( 'includeUser' ).add( playerHash );
                 }
 
+                // should not be possible but hey..
                 if ( _.contains( this.get( 'excludeTemp' ), player.get( 'name' ) ) ) {
-                    console.log( '[PrivacyDefinition] Include id contains player, replacing.' );
+                    console.log( '[PrivacyDefinition] Exclude id contains player, replacing.' );
                     this.get( 'exclude' ).add( playerHash );
-                    this.get( 'includeUser' ).add( playerHash );
+                    this.get( 'excludeUser' ).add( playerHash );
                 }
 
             }

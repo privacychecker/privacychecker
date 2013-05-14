@@ -52,7 +52,7 @@
             FB.Event.subscribe( 'auth.authResponseChange', _.bind( this._authResponseChangeCb, this ) );
 
             FB.init( {
-                //appId: '477009922338123',
+                //appId:  '477009922338123',
                 appId:  '508385819190108',
                 status: true,
                 cookie: true
@@ -163,9 +163,9 @@
          */
         getFriends: function()
         {
-            if ( this._friends === undefined ) {
+            if ( _.isUndefined( this._friends ) ) {
                 this._loadFriends();
-                return null;
+                return new pc.model.FacebookUserCollection();
             }
 
             return this._friends;
@@ -209,9 +209,9 @@
          */
         getForeigners: function()
         {
-            if ( this._foreigners === undefined ) {
+            if ( _.isUndefined( this._foreigners ) ) {
                 this._loadForeigners();
-                return null;
+                return new pc.model.FacebookUserCollection();
             }
 
             return this._foreigners;
@@ -238,9 +238,9 @@
          */
         getFriendLists: function()
         {
-            if ( this._friendlists === undefined ) {
+            if ( _.isUndefined( this._friendlists ) ) {
                 this._loadFriendLists();
-                return undefined;
+                return new pc.model.FacebookListCollection();
             }
 
             return this._friendlists;
@@ -309,9 +309,9 @@
          */
         getPictures: function()
         {
-            if ( this._pictures === undefined ) {
+            if ( _.isUndefined( this._pictures ) ) {
                 this._loadPictures();
-                return null;
+                return new pc.model.FacebookPictureCollection();
             }
 
             return this._pictures;
@@ -408,9 +408,9 @@
          */
         getStatuses: function()
         {
-            if ( this._status === undefined ) {
+            if ( _.isUndefined( this._status ) ) {
                 this._loadStatuses();
-                return null;
+                return new pc.model.FacebookStatusCollection();
             }
 
             return this._status;
