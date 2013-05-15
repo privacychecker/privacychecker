@@ -25,6 +25,7 @@
             {
                 // render template
                 this.$el.html( this.templateGame() );
+                this.$el.hide();
 
                 // collect questions
                 this._collect();
@@ -44,10 +45,14 @@
                 }
 
                 briefing.show();
-                briefing.on( 'hidden', _.bind( this.ask, this ) );
+                briefing.on( 'hidden', _.bind( function()
+                {
+                    this.$el.fadeIn( 'fast' );
+                    this.ask();
+                }, this ) );
 
                 // add done event
-                this.on( 'item-done', _.bind( this.doneCb, this ) );
+                this.on( 'item-done', this.doneCb, this );
             },
 
             ask: function()

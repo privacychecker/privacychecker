@@ -69,68 +69,6 @@
             }
         },
 
-        "guess": {
-            "name":     "Guessing",
-            "briefing": "Nun wirst du aufgefordert, zu schätzen, wie viele Freunde du insgesamt auf Facebook hast und wie viele Mitglieder in deinen <span data-tooltip-key=\"list\">Listen</span> jeweils eingeordnet sind. Bei den Listen wird zusätzlich zwischen selbst erstellten und <span data-tooltip-key=\"auto_list\">intelligenten Listen</span> unterschieden.<br/>Anschließend sollst du abschätzen, wie viele deiner Freunde ausgewählte, von dir veröffentlichte <span data-tooltip-key=\"rated_item\">Items</span> sehen können. Dadurch erhältst du einen Überblick darüber, wie öffentlich die Einstellungen deiner Items sind. Deine Antworten und die korrekten Werte werden dir am Ende des Spiels präsentiert.",
-            "game":     {
-                "what_do_you_guess": "Was tippst du?",
-                "input_button":      "Eingeben",
-                "lists":             {
-                    "name":             "Listen schätzen",
-                    "question_friends": "Wie viele Freunde hast du insgesamt?",
-                    "question_list":    "Wie viele Mitglieder hat die Liste <i>__listname__</i>?"
-                },
-                "items":             {
-                    "name":     "Items schätzen",
-                    "question": "Wie viele Leute können das sehen?"
-                }
-            },
-            "result":   {
-                "headline":    "Guessing - Ergebnisse",
-                "answer":      "Antwort",
-                "correct":     "Korrekter Wert",
-                "difference":  "Abweichung",
-                "rating":      "Bewertung",
-                "description": "Hier siehst du zum einen die Auswertung zu den Fragen nach deinen Freunden und deinen Listen. Bei den Listen haben wir nach deinen selbst erstellten und Facebooks intelligenten Listen unterschieden. Zum anderen haben wir analysiert, ob du für die Freigabe deiner Items Listen oder einzelne Freunde verwendet hast, oder ob du Items öffentlich geteilt hast. Falls du deine genauen Ergebnisse für eine bestimmte Kategorie sehen möchtest, klicke auf den Button unter dem Auswertungstext.",
-                "lists":       {
-                    "friends_headline": "Gesamtanzahl an Freunden",
-                    "friends_verygood": "Du hast einen sehr guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug nur __percent__%.",
-                    "friends_good":     "Du hast einen guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug nur __percent__%.",
-                    "friends_bad":      "Du hast einen weniger guten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug __percent__%.",
-                    "friends_verybad":  "Du hast einen schlechten Überblick über die Anzahl deiner Freunde. Die Abweichung deiner Antwort vom korrekten Wert betrug __percent__%.",
-                    "auto_headline":    "Intelligente Listen",
-                    "auto_verygood":    "Du scheinst deine intelligenten Listen sehr gut zu kennen. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt nur __percent__%.",
-                    "auto_good":        "Du scheinst deine intelligenten Listen gut zu kennen. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt nur __percent__%.",
-                    "auto_bad":         "Du scheinst deine intelligenten Listen weniger gut zu kennen. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%.",
-                    "auto_verybad":     "Du scheinst deine intelligenten Listen schlecht zu kennen. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%.",
-                    "auto_none":        "Du besitzt keine intelligenten Listen. Offensichtlich hast du keines der relevanten Attribute in deinem Profil angegeben.",
-                    "user_headline":    "Selbst erstellte Listen",
-                    "user_verygood":    "Du hast selbst bereits eine oder mehrere Listen angelegt. Diese scheinst du auch sehr gut zu kennen, da die Abweichung deiner Antwort vom korrekten Wert im Schnitt nur __percent__% betrug.",
-                    "user_good":        "Du hast selbst bereits eine oder mehrere Listen angelegt. Diese scheinst du auch gut zu kennen, da die Abweichung deiner Antwort vom korrekten Wert im Schnitt nur __percent__% betrug.",
-                    "user_bad":         "Du hast selbst bereits eine oder mehrere Listen angelegt. Diese scheinst du allerdings weniger gut zu kennen, da die Abweichung deiner Antwort vom korrekten Wert im Schnitt __percent__% betrug.",
-                    "user_verybad":     "Du hast selbst bereits eine oder mehrere Listen angelegt. Diese scheinst du allerdings schlecht zu kennen, da die Abweichung deiner Antwort vom korrekten Wert im Schnitt __percent__% betrug.",
-                    "user_none":        "Du hast selbst noch keine Liste angelegt."
-                },
-                "items":       {
-                    "list_headline":      "Freigabe-Einstellungen",
-                    "list_verygood":      "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr gutes Ergebnis darstellt.",
-                    "list_good":          "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein gutes Ergebnis darstellt.",
-                    "list_bad":           "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein weniger gutes Ergebnis darstellt.",
-                    "list_verybad":       "Bei den untersuchten Items hast du mindestens einmal Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein schlechtes Ergebnis darstellt.",
-                    "list_none_verygood": "Bei den untersuchten Items hast du keine Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein sehr gutes Ergebnis darstellt.",
-                    "list_none_good":     "Bei den untersuchten Items hast du keine Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein gutes Ergebnis darstellt.",
-                    "list_none_bad":      "Bei den untersuchten Items hast du keine Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein weniger gutes Ergebnis darstellt.",
-                    "list_none_verybad":  "Bei den untersuchten Items hast du keine Listen oder einzelne Personen zur Freigabe verwendet. Die Abweichung deiner Antwort vom korrekten Wert betrug im Schnitt __percent__%, was ein schlechtes Ergebnis darstellt.",
-                    "public_headline":    "Öffentliche Items",
-                    "public_yes":         "Bei den untersuchten Items haben wir __count__ öffentliche Items gefunden. Du solltest diese überprüfen.",
-                    "public_no":          "Bei den untersuchten Items haben wir keine öffentlichen Items gefunden.",
-                    "visible_for":        "Freigeben für",
-                    "denied_for":         "Verboten für"
-                }
-            }
-
-        },
-
         "hangman": {
             "name":     "Find Your Friends",
             "briefing": "In <i>Find Your Friends</i> wird nun getestet, ob du weißt, wem du im Einzelnen Zugriff auf ein <span data-tooltip-key=\"rated_item\">Item</span> gegeben hast und auch, wie schnell du dies weißt. Dazu werden dir nacheinander Items gezeigt, die du auf Facebook veröffentlicht hast. Deine Aufgabe ist es, in einer Menge von <span data-tooltip-key=\"hangman_users\">zufällig ausgewählten</span> Freunden und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte Item sehen können. Anhand der Korrektheit und der Geschwindigkeit deiner Lösung wird eine <span data-tooltip-key=\"hangman_points\">Punktzahl</span> bestimmt, die dir zeigt, wie gut du die Aufgabe gelöst hast.",
@@ -141,55 +79,26 @@
                 "timeout":         "Zeit abgelaufen! Du hast verloren!",
                 "remaining_lives": "Leben: ",
                 "proceed":         "Weiter"
-            },
-            "result":   {
-                "headline":    "Find Your Friends - Ergebnisse",
-                "overall":     "Gesamtergebnis",
-                "description": "Hier siehst du deine Ergebnisse aus <i>Find Your Friends</i> im Überblick. Für jedes Item zeigen wir dir die benötigte Zeit, die Anzahl der Fehlversuche und die darausresultierende Punktzahl.",
-                "duration":    "Benötigte Zeit",
-                "errors":      "Anzahl Fehler"
             }
         },
 
         "results": {
-            "name":        "Zusammenfassung",
-            "description": "Abschließend erhältst du an dieser Stelle eine zusammenfassende Einschätzung deiner Ergebnisse und damit darüber, wie es um den Schutz deiner Privatsphäre auf Facebook und um dein Bewusstsein diesbezüglich bestellt ist. Auf Basis dieser Erkenntnisse werden dir hilfreiche Tipps und Handlungsempfehlungen vorgeschlagen. Du kannst dir außerdem noch einmal alle Ergebnisse im Detail ansehen.",
-            "lists":       {
-                "headline": "Freunde & Listen",
+            "name":              "Zusammenfassung",
+            "description":       "Abschließend erhältst du an dieser Stelle eine zusammenfassende Einschätzung deiner Ergebnisse und damit darüber, wie es um den Schutz deiner Privatsphäre auf Facebook und um dein Bewusstsein diesbezüglich bestellt ist. Auf Basis dieser Erkenntnisse werden dir hilfreiche Tipps und Handlungsempfehlungen vorgeschlagen. Du kannst dir außerdem noch einmal alle Ergebnisse im Detail ansehen.",
+            "post_fb_score":     "Score bei FB posten",
+            "points":            "Punkte",
+            "play_again":        "Nochmal spielen",
+            "link_to_rec":       "Weißt du nicht wie das geht?",
+            "item":              "Item",
+            "lists_create":      "Selbst Listen erstellt",
+            "lists_create_warn": "Du has bisher keine Listen erstellen",
+            "lists_user":        "Deine selbst etstellten Listen",
+            "lists_use":         "Eigene Listen verwendet",
+            "lists_use_warn":    "Du has bisher keine Listen verwendet",
+            "public_warn":       "Du hast öffentliche Items",
+            "public_link":       "Wieso werden mir Punkte abgezogen?",
+            "total_points":      "Gesamt"
 
-                "friend_verygood": "Du hast einen sehr guten Überblick über die Anzahl deiner Freunde.",
-                "friend_good":     "Du hast einen guten Überblick über die Anzahl deiner Freunde.",
-                "friend_bad":      "Du hast einen weniger guten Überblick über die Anzahl deiner Freunde. Daher möchten wir dich auf die Problematik des Begriffs <i>Freundschaft</i> hinweisen.",
-                "friend_verybad":  "Du hast einen schlechten Überblick über die Anzahl deiner Freunde. Daher möchten wir dich auf die Problematik des Begriffs <i>Freundschaft</i> hinweisen.",
-
-                "user_verygood": "Du scheinst deine selbst erstellten Listen sehr gut zu kennen.",
-                "user_good":     "Du scheinst deine selbst erstellten Listen gut zu kennen.",
-                "user_bad":      "Du scheinst deine selbst erstellten Listen weniger gut zu kennen.",
-                "user_verybad":  "Du scheinst deine selbst erstellten Listen schlecht zu kennen.",
-                "user_none":     "Du hast selbst noch keine Liste angelegt. Daher möchten wir dich kurz darauf hinweisen, wo und wie du dies machen kannst.",
-
-                "auto_verygood": "Du scheinst deine intelligenten Listen sehr gut zu kennen.",
-                "auto_good":     "Du scheinst deine intelligenten Listen gut zu kennen.",
-                "auto_bad":      "Du scheinst deine intelligenten Listen weniger gut zu kennen.",
-                "auto_verybad":  "Du scheinst deine intelligenten Listen schlecht zu kennen.",
-                "auto_none":     "Du besitzt keine intelligenten Listen. Offensichtlich hast du keines der relevanten Attribute in deinem Profil angegeben."
-            },
-            "items":       {
-                "headline": "Freigabe-Einstellungen",
-
-                "lists_yes": "Bei den untersuchten Items hast du Listen oder einzelne Personen zur Freigabe verwendet.",
-                "lists_no":  "Bei den untersuchten Items hast du keine Listen oder einzelne Personen zur Freigabe verwendet. Daher möchten wir dir zeigen, wie das geht.",
-
-                "public_yes": "Dein Profil weist öffentliche Items auf. Daher möchten wir dir zeigen, wie du dies korrigieren und auch in Zukunft vermeiden kannst.",
-                "public_no":  "Dein Profil weist keine öffentlichen Items auf."
-            },
-            "hangman":     {
-                "headline": "Find Your Friends",
-                "verygood": "In <i>Find Your Friends</i> hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass du deine Freunde sehr gut kennst.",
-                "good":     "In <i>Find Your Friends</i> hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass du deine Freunde gut kennst.",
-                "bad":      "In <i>Find Your Friends</i> hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass du deine Freunde weniger gut kennst.",
-                "verybad":  "In <i>Find Your Friends</i> hast du __points__ Punkte erzielt. Dieser Wert zeigt, dass du deine Freunde schlecht kennst."
-            }
         },
 
         "page":            {

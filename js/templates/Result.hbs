@@ -3,32 +3,34 @@
 
     <h1>
         <e class="large">&#127942;</e>
-        {{totals.points}}
+        {{totals.points}} {{t "app.results.points"}}
     </h1>
 
     <div class="share">
         <button id="sharepoints" class="btn btn-primary">
-            Score bei FB posten
+            {{t "app.results.post_fb_score"}}
         </button>
 
         <button id="playagain" class="btn btn-primary">
-            Nochmal spielen
+            {{t "app.results.play_again"}}
         </button>
     </div>
 
     <ul class="results">
         <!-- hangman -->
         {{#each hangman}}
-            <li class="collapsable">
+            <li class="collapsable item">
 
                 <div class="head">
                     <span class="title">
-                        Find your Friends #{{math @index 1}}
+                        {{t "app.results.item"}} #{{math @index 1}}
                     </span>
                     <span class="points">
                         +{{points}}
                     </span>
-                    <e class="control">&#59141;</e>
+                    <button class="btn btn-primary control">
+                        <e>&#8505;</e>
+                    </button>
                 </div>
 
                 <div class="body">
@@ -70,24 +72,36 @@
         <li class="collapsable divider">
             <div class="head">
                     <span class="title">
-                        Selbst Listen erstellt
+                        {{t "app.results.lists_create"}}
                     </span>
                     <span class="points">
                         <span class="multi">{{lists.number_has_lists}}</span>
                         +{{points.per_list}}
                     </span>
-                <e class="control">&#59141;</e>
+
+                {{#if lists.number_has_lists}}
+                    <button class="btn btn-primary control">
+                        <e>&#8505;</e>
+                    </button>
+                {{/if}}
             </div>
 
             {{#if totals.show_create_list_warning}}
                 <div class="warning">
                     <e>&#9888;</e>
-                    Du hast bisher keine Listen erstellt.
-                    <a href="#rec-create">Weißt du nicht wie das geht?</a>
+                    {{t "app.results.lists_create_warn"}}
+                    <a href="#rec-create">{{t "app.results.link_to_rec"}}</a>
                 </div>
             {{else}}
                 <div class="body">
-                    Deine selbst erstellten Listen: {{lists.created_lists}}
+                    {{t "app.result.lists_user"}}
+                    <ul>
+                        {{#each lists.created_lists}}
+                            <li>
+                                {{this}}
+                            </li>
+                        {{/each}}
+                    </ul>
                 </div>
             {{/if}}
 
@@ -96,25 +110,37 @@
         <!-- use list -->
         <li class="collapsable">
             <div class="head">
-                    <span class="title">
-                        Verwendete Listen
+                    <span class="title
+                        {{t "app.results.lists_use"}}
                     </span>
-                    <span class="points">
-                        <span class="multi">{{lists.number_uses_lists}}</span>
-                        +{{points.use_list}}
-                    </span>
-                <e class="control">&#59141;</e>
+                    <span class=" points">
+                <span class="multi">{{lists.number_uses_lists}}</span>
+                +{{points.use_list}}
+                </span>
+
+                {{#if lists.number_uses_lists}}
+                    <button class="btn btn-primary control">
+                        <e>&#8505;</e>
+                    </button>
+                {{/if}}
             </div>
 
             {{#if totals.show_use_list_warning}}
                 <div class="warning">
                     <e>&#9888;</e>
-                    Du hast bisher keine Listen verwendet.
-                    <a href="#rec-use">Weißt du nicht wie das geht?</a>
+                    {{t "app.results.lists_use_warn"}}
+                    <a href="#rec-create">{{t "app.results.link_to_rec"}}</a>
                 </div>
             {{else}}
                 <div class="body">
-                    Folgende Listen hast du mindestens einmal verwendet: {{lists.used_lists}}
+                    {{t "app.results.lists_use_warn"}}
+                    <ul>
+                        {{#each lists.used_lists}}
+                            <li>
+                                {{this}}
+                            </li>
+                        {{/each}}
+                    </ul>
                 </div>
             {{/if}}
         </li>
@@ -124,17 +150,20 @@
             <li class="divider">
                 <div class="head">
                     <span class="title">
-                        Öffentliche Items
+                        {{t "app.results.public_warn"}}
                     </span>
                     <span class="points negative">
                         <span class="multi">{{lists.number_public_items}}</span>
                         -{{points.per_public}}
                     </span>
-                    <e class="control">&#59141;</e>
+                    <button class="btn btn-primary control">
+                        <e>&#8505;</e>
+                    </button>
                 </div>
                 <span class="warning">
                     <e>&#59140;</e>
-                    <a href="#rec-points">Wieso werden mit Punkte abgezogen?</a>
+                    <a href="#rec-points">
+                        {{t "app.results.public_link"}}</a>
                 </span>
             </li>
         {{/if}}
@@ -143,8 +172,8 @@
         <li class="collapsable divider totals">
             <div class="head">
                  <span class="title">
-                        Gesamt
-                    </span>
+                     {{t "app.results.total_points"}}
+                 </span>
                     <span class="points">
                         {{totals.points}}
                     </span>

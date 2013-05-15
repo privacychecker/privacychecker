@@ -8,6 +8,11 @@
 
         template: pc.template.ResultTemplate,
 
+        events: {
+            "click #playagain":   "playAgainCb",
+            "click #sharepoints": "sharePointsCb"
+        },
+
         initialize: function()
         {
             console.log( "[ResultView] Init" );
@@ -51,7 +56,7 @@
             } );
 
             // enable tooltips
-            this.$el.find('ul.wrongs > li' ).tooltip();
+            this.$el.find( 'ul.wrongs > li' ).tooltip();
 
             // enable smoothscroll
             this.$el.smoothScroll();
@@ -110,6 +115,7 @@
 
             var player = pc.model.FacebookPlayer.getInstance(),
                 userLists = player.getFriendLists().where( { type: pc.model.FacebookList.Type.USER } ),
+                autoLists = player.getFriendLists().where( { type: pc.model.FacebookList.Type.USER } ),
                 numberHasLists = userLists.length,
                 numberUsesLists = 0,
                 numberPublicItems = 0,
@@ -136,8 +142,11 @@
                     }
 
                     // walk through all lists to validate if a item
-                    _.each( userLists, function( list )
+                    _.each( _.union( userLists, autoLists ), function( list )
                     {
+                        console.log( list.id !== -1 && !_.contains( usedLists, list ),
+                            excludeList.contains( list ) && includeList.contains( list ) );
+
                         if ( list.id !== -1 && !_.contains( usedLists, list ) ) {
                             if ( excludeList.contains( list ) && includeList.contains( list ) ) {
                                 console.info( "[ResultView] Item uses a unused list", item, list );
@@ -157,14 +166,14 @@
                 number_has_lists:    numberHasLists,
                 number_uses_lists:   numberUsesLists,
                 number_public_items: numberPublicItems,
-                created_lists:       userLists.map(function( list )
+                created_lists:       userLists.map( function( list )
                 {
                     return list.get( 'name' );
-                } ).join( ', ' ),
-                used_lists:          _.map( usedLists,function( list )
+                } ),
+                used_lists:          _.map( usedLists, function( list )
                 {
                     return list.get( 'name' );
-                } ).join( ', ' )
+                } )
             };
 
         },
@@ -227,7 +236,19 @@
         getRecommendations: function()
         {
             return this.recommendationsHelper;
+        },
+
+        playAgainCb: function()
+        {
+            console.log( "[ResultView] Player wants to play again" );
+            document.location.reload();
+        },
+
+        sharePointsCb: function()
+        {
+            alert( "Nein, nein, nein" );
         }
+
     }, {
 
         LANG_LISTS_FRIENDS_VERYGOOD: "app.results.lists.friend_verygood",

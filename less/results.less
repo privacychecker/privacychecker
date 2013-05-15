@@ -5,9 +5,10 @@
 
     h1 {
         margin-bottom: 10px !important;
+        font-size: 60px;
 
         e {
-            font-size: 60px;
+            font-size: 60px !important;
         }
     }
 
@@ -51,16 +52,16 @@
                 display: inline-block;
             }
 
-            e {
-                font-size: 40px;
+            button.control {
+                margin-top: -5px;
 
-                &.control {
-                    cursor: pointer;
+                e {
+                    font-size: 30px;
                 }
             }
 
             span.title {
-                width: 310px;
+                width: 300px;
             }
 
             span.points {
@@ -83,90 +84,99 @@
             margin-bottom: 10px;
         }
 
-        .body {
-            .rounded-corners;
+        li.item {
+            min-height: 10px;
 
-            font-size: 16px;
+            & > .body {
+                height: 250px;
+                padding: 0px;
+            }
 
-            background-color: rgba(220, 220, 220, 0.1);
+            .body {
+                .rounded-corners;
 
-            overflow: hidden;
+                font-size: 16px;
 
-            height: 250px;
+                background-color: rgba(220, 220, 220, 0.1);
 
-            .object {
-                display: inline-block;
-                margin-right: 40px;
-                height: 100%;
                 overflow: hidden;
-            }
 
-            ul.wrongs {
-                .plain-list;
+                padding: 5px 10px;
 
-                position: absolute;
-                top: 17px;
-                right: 10px;
-
-                width: 150px;
-
-                li {
-                    width: 60px;
-                    height: 60px;
-
-                    -moz-border-radius: 60px;
-                    -webkit-border-radius: 60px;
-                    border-radius: 60px;
-
-                    margin: 0 10px 10px 0;
-
+                .object {
                     display: inline-block;
-
-                    -moz-box-shadow: 0 0 5px 5px #e74c3c;
-                    -webkit-box-shadow: 0 0 5px 5px #e74c3c;
-                    box-shadow: 0 0 5px 5px #e74c3c;
+                    margin-right: 40px;
+                    height: 100%;
+                    overflow: hidden;
                 }
-            }
 
-            p.info {
-                position: absolute;
-                bottom: 0px;
+                ul.wrongs {
+                    .plain-list;
 
-                float: left;
+                    position: absolute;
+                    top: 17px;
+                    right: 10px;
 
-                margin-right: 100px;
-                padding: 10px;
-
-                z-index: 101;
-
-                width: 280px;
-                background-color: rgba(127, 140, 141, .7);
-
-                span.title {
                     width: 150px;
 
-                    display: inline-block;
+                    li {
+                        width: 60px;
+                        height: 60px;
 
-                    &:after {
-                        content: ":";
+                        -moz-border-radius: 60px;
+                        -webkit-border-radius: 60px;
+                        border-radius: 60px;
+
+                        margin: 0 10px 10px 0;
+
+                        display: inline-block;
+
+                        -moz-box-shadow: 0 0 5px 5px #e74c3c;
+                        -webkit-box-shadow: 0 0 5px 5px #e74c3c;
+                        box-shadow: 0 0 5px 5px #e74c3c;
                     }
+                }
 
+                p.info {
+                    position: absolute;
+                    bottom: 0px;
+
+                    float: left;
+
+                    margin-right: 100px;
+                    padding: 10px;
+
+                    z-index: 101;
+
+                    width: 280px;
+                    background-color: rgba(127, 140, 141, .7);
+
+                    span.title {
+                        width: 150px;
+
+                        display: inline-block;
+
+                        &:after {
+                            content: ":";
+                        }
+
+                    }
+                }
+
+                div.item {
+                    cursor: pointer;
+                    z-index: 100;
+                    min-height: 100px;
+                    width: 300px;
+                    height: 100%;
+
+                    &.image {
+                        background-size: cover;
+                    }
                 }
             }
 
-            div.item {
-                cursor: pointer;
-                z-index: 100;
-                min-height: 100px;
-                width: 300px;
-                height: 100%;
-
-                &.image {
-                    background-size: cover;
-                }
-            }
         }
 
     }
-
 }
