@@ -42,7 +42,7 @@
             var tooltipShort = tooltip.get( 'short' ),
                 inner = $( "<div>" ).addClass( 'tooltip-container' ).append( tooltipShort );
 
-            if ( tooltip.get( 'long' ) !== null ) {
+            if ( $.t( tooltip.get( 'long' ) ) !== "null" ) {
                 var moreButton = $( "<a>", {
                     html: $.t( ns.LANG_TOOLTIP_MORE ),
                     href: "#/tooltip/" + tooltipId

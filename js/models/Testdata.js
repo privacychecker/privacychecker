@@ -17,7 +17,7 @@
         MAX_INIT_ITEMS: 12,
         TEST_ROUNDS:    20,
         INITIAL_SCORE:  1000,
-        TEST_DATA_SIZE: 5,
+        TEST_DATA_SIZE: 7,
 
         /**
          * Create a new set of testdata
@@ -293,6 +293,17 @@
         hasEnoughCombined: function()
         {
             return ((this._collectStatuses().length + this._collectPictures().length ) >= (this.MAX_INIT_ITEMS));
+        },
+
+        /**
+         * Validate if a palyer has too many public items and therefore cannot play
+         *
+         * @returns {boolean} True if a player has too many public items and no private
+         * @method hasTooManyPublic
+         */
+        hasTooManyPublic: function() {
+            var totalItemsPlayer = this.player.getPictures().length + this.player.getStatuses().length;
+            return (totalItemsPlayer >= this.MAX_INIT_ITEMS && !this.hasEnoughCombined());
         },
 
         /**

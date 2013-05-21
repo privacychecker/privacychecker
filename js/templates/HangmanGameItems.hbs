@@ -41,16 +41,20 @@
             </div>
         {{/if}}
 
-        <button class="proceed btn btn-primary">{{t "app.hangman.game.proceed"}} <e>&#59230;</e></button>
+        <button class="proceed btn btn-primary">{{t "app.hangman.game.proceed"}}
+            <e>&#59230;</e>
+        </button>
     </div>
 
     <div class="span5 offset1">
 
         <ul class="userlist">
             {{#each users}}
-                <li style="background-image: url( https://graph.facebook.com/{{id}}/picture?width=100&height=100 );"
+                <li style="background-image: url( https://graph.facebook.com/{{id}}/picture?width=80&height=80 );"
                     data-title="{{name}}"
-                    data-correct="{{correct}}"></li>
+                    data-correct="{{correct}}"
+                    data-id="{{id}}"
+                    data-name="{{name}}"></li>
             {{/each}}
         </ul>
 

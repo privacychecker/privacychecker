@@ -25,6 +25,7 @@
             {
                 // render template
                 this.$el.html( this.templateGame() );
+                this.$el.hide();
 
                 // collect questions
                 this._collect();
@@ -44,10 +45,14 @@
                 }
 
                 briefing.show();
-                briefing.on( 'hidden', _.bind( this.ask, this ) );
+                briefing.on( 'hidden', _.bind( function()
+                {
+                    this.$el.fadeIn( 'fast' );
+                    this.ask();
+                }, this ) );
 
                 // add done event
-                this.on( 'done', _.bind( this.doneCb, this ) );
+                this.on( 'item-done', this.doneCb, this );
             },
 
             ask: function()
@@ -66,8 +71,8 @@
                     // ask next question by simply shifting
                     this.currentQuestion = this.questions.shift();
                     if ( _.isUndefined( this.currentQuestion ) ) {
-                        console.info( "[HangmanView] No more questions to ask, showing result" );
-                        this.result();
+                        console.info( "[HangmanView] No more questions to ask, sending done trigger" );
+                        this.trigger( 'done' );
                         return;
                     }
 
@@ -313,7 +318,6 @@
                     item:         this.currentQuestion.item,
                     correctValue: this.currentQuestion.users,
                     userValue:    this.currentQuestion.clicked,
-                    gameType:     pc.model.TestResult.Type.HANGMAN,
                     optional:     {
                         errors:   this.errors,
                         duration: this.points.get( 'duration' ),
@@ -348,111 +352,8 @@
                 }, this ) );
             },
 
-            result: function()
-            {
-
-                this.$el.fadeOut( _.bind( function()
-                {
-                    var options = this._resultHangman();
-
-                    console.info( "[HangmanView] Rending result template with", options );
-
-                    this.$el
-                        .html( this.templateResult( options ) )
-                        .fadeIn();
-
-                    try {
-                        pc.model.TooltipCollection.getInstance().pin( this.$el.find( 'h1' ) );
-                    }
-                    catch ( e ) {
-                        console.error( "[SelectView] Unable to attach tooltips:", e, "Skipping rest" );
-                    }
-
-                    this.trigger( 'hangmanview:done' );
-                }, this ) );
-
-            },
-
-            _resultHangman: function()
-            {
-
-                var hangmanResults = pc.model.FacebookPlayer.getInstance()
-                        .get( 'results' )
-                        .where( { gameType: pc.model.TestResult.Type.HANGMAN } ),
-                    totalDuration = 0,
-                    totalErrors = 0,
-                    totalPoints = 0,
-                    itemInformation,
-                    jsonResult,
-                    rating,
-                    overallResult;
-
-                jsonResult = hangmanResults.map( function( result )
-                {
-                    totalDuration += result.get( 'optional' ).duration;
-                    totalErrors += result.get( 'optional' ).errors;
-                    totalPoints += result.get( 'optional' ).points;
-                    itemInformation = {};
-
-                    var item = result.get( 'item' );
-
-                    if ( item instanceof pc.model.FacebookPicture ) {
-                        itemInformation = {
-                            picture: {
-                                url:     item.get( 'source' ),
-                                caption: item.get( 'caption' )
-                            }
-                        };
-                    }
-                    else if ( item instanceof pc.model.FacebookStatus ) {
-                        itemInformation = {
-                            status: {
-                                caption:  item.get( 'caption' ),
-                                date:     pc.common.DateFormatHelper.formatShort( item.get( 'date' ) ),
-                                location: item.get( 'location' )
-                            }
-                        };
-                    }
-
-                    return _.extend( itemInformation, {
-                        duration: result.get( 'optional' ).duration.toFixed(),
-                        errors:   result.get( 'optional' ).errors,
-                        points:   result.get( 'optional' ).points
-                    } );
-                } );
-
-                if ( _.isBetween( totalPoints, 12500 ) ) {
-                    rating = $.t( pc.view.HangmanView.LANG_RATING_VERYBAD );
-                    overallResult = pc.view.HangmanView.Rating.VERYBAD;
-                }
-                else if ( _.isBetween( totalPoints, 12500, 25000 ) ) {
-                    rating = $.t( pc.view.HangmanView.LANG_RATING_BAD );
-                    overallResult = pc.view.HangmanView.Rating.BAD;
-                }
-                else if ( _.isBetween( totalPoints, 25000, 37500 ) ) {
-                    rating = $.t( pc.view.HangmanView.LANG_RATING_GOOD );
-                    overallResult = pc.view.HangmanView.Rating.GOOD;
-                }
-                else if ( _.isBetween( totalPoints, 37500, 50000 ) ) {
-                    rating = $.t( pc.view.HangmanView.LANG_RATING_VERYGOOD );
-                    overallResult = pc.view.HangmanView.Rating.VERYGOOD;
-                }
-
-                return {
-                    results: jsonResult,
-                    totals:  {
-                        duration: totalDuration.toFixed(),
-                        errors:   totalErrors,
-                        points:   totalPoints,
-                        rating:   rating,
-                        overall:  overallResult
-                    }
-                };
-            },
-
             _showResults: function()
             {
-
                 var container = this.$el.find( pc.view.HangmanView.USERLIST_CONTAINER_ID );
 
                 container.children( 'li:not(.done)' ).each( function( idx, el )
@@ -467,7 +368,9 @@
             _validateClickCb: function( $item )
             {
                 var container = this.$el.find( pc.view.HangmanView.USERLIST_CONTAINER_ID ),
-                    correct = $item.data( 'correct' );
+                    correct = $item.data( 'correct' ),
+                    uid = $item.data( 'id' ),
+                    uname = $item.data( 'name' );
 
                 console.log( "[HangmanView] Player selected", correct ? "correct" : "wrong", $item );
 
@@ -483,8 +386,11 @@
                     $item.addClass( 'wrong' );
                     this.$el.find( pc.view.HangmanView.LIVESLIST_CONTAINER_ID + " li:not(.lost):last" ).addClass( 'lost' );
 
+                    // get the wrong user from friends
+                    this.currentQuestion.clicked.push( new pc.model.FacebookUser( {id: uid, name: uname} ) );
+
                     if ( this.errors === pc.view.HangmanView.DIE_AFTER_NUM ) {
-                        this.trigger( 'done', pc.view.HangmanView.RESULT.LOST );
+                        this.trigger( 'item-done', pc.view.HangmanView.RESULT.LOST );
                         return;
                     }
                 }
@@ -503,7 +409,7 @@
 
                 // if there are no remaing items trigger next one
                 if ( !notdone ) {
-                    this.trigger( 'done', pc.view.HangmanView.RESULT.WON );
+                    this.trigger( 'item-done', pc.view.HangmanView.RESULT.WON );
                 }
 
             }

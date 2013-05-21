@@ -10,7 +10,8 @@
 
         routes: {
             "briefing/:id": "briefingCb",
-            "tooltip/:id":  "tooltipCb"
+            "tooltip/:id":  "tooltipCb",
+            "whynogame/":    "whynogameCb"
         },
 
         initialize: function()
@@ -33,7 +34,6 @@
             this.homeView = new pc.view.HomeView();
             this.collectView = new pc.view.CollectView();
             this.selectView = new pc.view.SelectView();
-            this.listGuessView = new pc.view.ListGuessView();
             this.hangmanView = new pc.view.HangmanView();
             this.resultView = new pc.view.ResultView();
 
@@ -45,9 +45,8 @@
             this.player = pc.model.FacebookPlayer.getInstance();
             this.player.on( "profile:loaded", _.bind( this.profileLoadedCb, this ) );
             this.collectView.on( "collect:done", _.bind( this.selectEntitiesCb, this ) );
-            this.selectView.on( "select:done", _.bind( this.guessListSizeCb, this ) );
-            this.listGuessView.on( "game:done", _.bind( this.hangmanStartCb, this ) );
-            this.hangmanView.on( "hangmanview:done", _.bind( this.showResultsCb, this ) );
+            this.selectView.on( "done", _.bind( this.hangmanStartCb, this ) );
+            this.hangmanView.on( "done", _.bind( this.showResultsCb, this ) );
             this.resultView.on( "recommendations", _.bind( this.recommendationCb, this ) );
 
             this.homeView.render();
@@ -83,18 +82,11 @@
 
             $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 1 );
 
-//            $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
-//            {
-//                $( '.carousel .item.active .background' ).transition( {
-//                    "background-color": "rgb(59,89,152)"
-//                } );
-//            } );
-
         },
 
         selectEntitiesCb: function()
         {
-            this.collectView.off('collect:done');
+            this.collectView.off( 'collect:done' );
             console.log( '[Controller] Starting Setup: Select most sensible entities' );
             $( pc.router.AppRouter.CAROUSEL_ID ).unbind();
             this.selectView.render();
@@ -105,64 +97,24 @@
 
             this.selectView.on( "preload:done", _.bind( function()
             {
-                console.log( "[Controller] Preload done" );
-//                $( '.carousel .item.active' ).transition( {
-//                    "height": "580px"
-//                } );
                 this.selectView.start();
             }, this ) );
 
         },
 
-        guessListSizeCb: function()
-        {
-            this.selectView.off('select:done');
-            console.log( '[Controller] Starting Game #1: List Size Guess' );
-            $( pc.router.AppRouter.CAROUSEL_ID ).unbind();
-
-            $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().fadeIn( 'fast' ).click( _.bind( function()
-            {
-                console.log("[Controller] Going to listguessview");
-                this.listGuessView.render();
-                $( '#container-guess' ).html( this.listGuessView.el );
-
-                $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 3 );
-                pc.common.ProgressBar.getInstance().to( 3 );
-                $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().hide();
-
-                $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
-                {
-//                    $( '.carousel .item.active' ).transition( {
-//                        "height": "580px"
-//                    } );
-                } );
-            }, this ) );
-            this._animateNextButton();
-        },
-
         hangmanStartCb: function()
         {
-            this.listGuessView.off('game:done');
-            console.log( '[Controller] Starting Game #3: Hangman' );
+            this.selectView.off( 'done' );
+
+            console.log( '[Controller] Starting Game: Hangman' );
             $( pc.router.AppRouter.CAROUSEL_ID ).unbind();
 
-            $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().fadeIn( 'fast' ).click( _.bind( function()
-            {
-                this.hangmanView.render();
-                $( '#container-hangman' ).html( this.hangmanView.el );
+            this.hangmanView.render();
+            $( '#container-hangman' ).html( this.hangmanView.el );
 
-                $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 4 );
-                pc.common.ProgressBar.getInstance().to( 4 );
-                $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().hide();
+            $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 3 );
+            pc.common.ProgressBar.getInstance().to( 3 );
 
-                $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', function()
-                {
-//                    $( '.carousel .item.active' ).transition( {
-//                        "height": "720px"
-//                    } );
-                } );
-            }, this ) );
-            this._animateNextButton();
         },
 
         showResultsCb: function()
@@ -170,23 +122,12 @@
             console.log( '[Controller] Showing results' );
             $( pc.router.AppRouter.CAROUSEL_ID ).unbind();
 
-            $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().fadeIn( 'fast' ).click( _.bind( function()
-            {
-                this.resultView.render( this.listGuessView, this.hangmanView );
-                $( '#container-results' ).html( this.resultView.el );
+            this.resultView.render();
+            $( '#container-results' ).html( this.resultView.el );
 
-                $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 5 );
-                pc.common.ProgressBar.getInstance().to( 5 );
-                $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).unbind().hide();
+            $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 4 );
+            pc.common.ProgressBar.getInstance().to( 4 );
 
-                $( pc.router.AppRouter.CAROUSEL_ID ).on( 'slid', _.bind( function()
-                {
-//                    $( '.carousel .item.active' ).transition( {
-//                        "height": "600px"
-//                    } );
-                }, this ) );
-            }, this ) );
-            this._animateNextButton();
         },
 
         recommendationCb: function()
@@ -207,17 +148,12 @@
             this.tipsView.renderBriefing( briefingId );
         },
 
-        _animateNextButton: function()
+        whynogameCb: function()
         {
-            $( pc.router.AppRouter.CONTROL_CONTAINER_ID ).transition( {'width': '80px'}, 500, function()
-            {
-                $( this ).transition( {'width': '60px'}, 300, function()
-                {
-                    $( this ).transition( {'width': '80px'}, 500, function()
-                    {
-                        $( this ).transition( {'width': '60px'}, 300 );
-                    } );
-                } );
+            console.log( '[Controller] Showing whynogamehelp' );
+            this.tipsView.renderRecommendation( undefined, {
+                defaults:  true,
+                hide_past: true
             } );
         },
 
@@ -288,7 +224,7 @@
 
         CHANGE_PLAYER_ID: '#changeplayer',
         CAROUSEL_ID:      '#game-carousel',
-        NUM_SLIDES:       5,
+        NUM_SLIDES:       4,
 
         CONTROL_CONTAINER_ID: '.carousel-control.right'
 

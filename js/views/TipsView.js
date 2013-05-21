@@ -82,9 +82,10 @@
 
             },
 
-            renderRecommendation: function( resultView )
+            renderRecommendation: function( resultView, replaceWith )
             {
                 var recommendations = !_.isUndefined( resultView ) ? resultView.getRecommendations() : {};
+                if (!_.isUndefined(replaceWith)) recommendations = replaceWith;
 
                 this.$el.slideUp( _.bind( function()
                 {
