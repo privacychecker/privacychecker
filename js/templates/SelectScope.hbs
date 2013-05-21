@@ -1,0 +1,28 @@
+<!-- SelectScope -->
+<div class="select scope half-width">
+
+    <h1>{{t "app.select.game_usage"}}</h1>
+
+    {{#if not_playable}}
+        {{#if too_many_public}}
+            <p class="lead">{{t "app.select.insufficient_data_public"}}</p>
+        {{else}}
+            <p class="lead">{{t "app.select.insufficient_data"}}</p>
+        {{/if}}
+    {{else}}
+        <p class="lead">{{t "app.select.what_to_use"}}</p>
+
+        <p class="btn-group">
+            <button class="btn btn-primary images" {{#if no_pictures}} disabled{{/if}}>
+                {{t "app.select.play_with_images"}}
+            </button>
+            <button class="btn btn-primary statuses" {{#if no_statuses}} disabled{{/if}}>
+                {{t "app.select.play_with_statuses"}}
+            </button>
+            <button class="btn btn-primary both"  {{#if no_one_of_both}}>disabled{{/if}}
+                >{{t "app.select.play_with_both"}}
+            </button>
+        </p>
+    {{/if}}
+
+</div>

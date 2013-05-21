@@ -1,0 +1,81 @@
+.select {
+
+    .scope {
+        margin-top: 200px;
+    }
+
+    .game {
+        margin-top: 100px;
+
+        .item {
+            cursor: pointer;
+            margin-top: 40px;
+            float: left;
+            z-index: 100;
+            min-height: 100px;
+
+            &:hover {
+                z-index: 200;
+            }
+
+            & > .image {
+                background-size: cover;
+            }
+        }
+
+        .item1 {
+            float: left;
+            margin-right: 15px;
+            margin-top: 50px;
+        }
+    }
+
+    .result {
+        margin-top: 100px;
+
+        ul.details {
+            .plain-list;
+
+            margin: 0;
+            margin-top: 15px;
+            margin-bottom: 50px;
+
+            li {
+                .rounded-corners;
+
+                width: 220px;
+                height: 140px;
+                display: inline-block;
+                position: relative;
+                overflow: hidden;
+                margin-bottom: 20px;
+
+                opacity: .8;
+
+                div.item {
+                    float: left;
+                    width: 100%;
+                    height: 100%;
+                    min-height: 100%;
+
+                    &.image {
+                        background-size: cover;
+                    }
+                }
+
+                &:hover {
+                    opacity: .8 !important;
+                }
+
+                &.winner {
+                    width: 295px !important;
+                    height: 200px !important;
+
+                    opacity: 1 !important;
+                }
+
+            }
+        }
+    }
+
+}

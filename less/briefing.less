@@ -1,0 +1,53 @@
+#briefing {
+    position: absolute;
+    top: 120px;
+
+    text-align: center;
+
+    width: 100%;
+
+    div.briefing-container {
+        .rounded-corners;
+
+        width: 600px;
+
+        display: inline-block;
+
+        border: 1px solid rgba(0, 0, 0, 0.2);
+
+        overlay: auto;
+        z-index: 15;
+        background-color: #fff;
+        color: #333;
+
+        font-size: 16px;
+        line-height: 1.4;
+
+        & > p {
+            margin: 15px;
+
+            text-align: left;
+
+            &:before {
+                float: left;
+
+                content: "?";
+
+                font-size: 200px;
+
+                margin-top: -40px;
+                margin-right: 20px;
+                margin-bottom: -50px;
+
+                color: #DBDBDB;
+                text-shadow: 0 -1px 1px #FFFFFF, 0 1px 1px #666666;
+            }
+        }
+
+        & > a.btn {
+            margin: 10px 15px;
+            width: 100px;
+        }
+
+    }
+}

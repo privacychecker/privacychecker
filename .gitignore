@@ -1,0 +1,6 @@
+vendor/
+node_modules/
+build/
+doc/
+.idea
+www.iml

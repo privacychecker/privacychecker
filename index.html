@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        privacy checker
+    </title>
+
+    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script|Patrick+Hand+SC' rel='stylesheet' type='text/css'>
+    <link href="assets/main.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div id="fb-root"></div>
+<div id="load">...</div>
+<script>
+    (function( d, s, id )
+    {
+        var js, fjs = d.getElementsByTagName( s )[0];
+        if ( d.getElementById( id ) ) return;
+        js = d.createElement( s );
+        js.id = id;
+        js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1&appId=508385819190108";
+        fjs.parentNode.insertBefore( js, fjs );
+    }( document, 'script', 'facebook-jssdk' ));
+</script>
+<header class="navbar-wrapper">
+    <div class="container">
+        <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <span class="brand">Privacy Checker</span>
+
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img class="flag" src=""/>
+                                <span data-i18n="app.header.change_language">_sprache_</span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu pull-right language-menu">
+                                <li>
+                                    <a href="?setLng=de-DE">Deutsch</a>
+                                </li>
+                                <li>
+                                    <a href="?setLng=en-US">English</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="progress progress-striped pull-left">
+                    <div id="progressbar" class="bar">
+                    </div>
+                </div>
+                <div class="pull-right player" data-i18n="app.header.hi_not_loggedin">
+                    _hi_
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="briefing"></div>
+
+<section id="game-carousel" class="carousel slide">
+
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="background" style="background-image: url(assets/bgimage5.jpg);">
+            </div>
+            <div class="container">
+                <div class="carousel-caption home">
+                    <div id="container-home">
+                    </div>
+                    <!-- template container -->
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="background" style="background-image: url(assets/bgimage5.jpg);">
+            </div>
+            <div class="container">
+                <div class="carousel-caption collect">
+                    <div id="container-collect">
+                    </div>
+                    <!-- template container -->
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="background" style="background-image: url(assets/bgimage5.jpg);">
+            </div>
+            <div class="container">
+                <div class="carousel-caption select">
+                    <div id="container-select">
+                    </div>
+                    <!-- template container -->
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="background" style="background-image: url(assets/bgimage5.jpg);">
+            </div>
+            <div class="container">
+                <div class="carousel-caption hangman">
+                    <div id="container-hangman">
+                    </div>
+                    <!-- template container -->
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="background" style="background-image: url(assets/bgimage5.jpg);">
+            </div>
+            <div class="container">
+                <div class="carousel-caption results">
+                    <div id="container-results">
+                    </div>
+                    <!-- template container -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fb-like" data-send="false" data-layout="button_count" data-width="350"
+         data-show-faces="true">
+    </div>
+</section>
+
+<section id="tips" class="page tips container">
+
+</section>
+
+<section class="page container short">
+
+    <!-- upper selection -->
+    <div class="row">
+        <div class="span4 divider">
+            <h2 data-i18n="app.page.learn.headline">
+                _headline_
+            </h2>
+            <img src="assets/learnmore.png">
+
+            <p data-i18n="app.page.learn.short">
+                _body_
+            </p>
+            <a href="#learn" class="btn btn-small btn-primary" data-toggle="collapse" data-target="#learn"
+               data-parent="#body">
+                <e>&#8505;</e> <span data-i18n="app.common.more_info"></span>
+            </a>
+        </div>
+        <div class="span4 divider">
+            <h2 data-i18n="app.page.trust.headline">
+                _headline_
+            </h2>
+            <img src="assets/trust.png">
+
+            <p data-i18n="app.page.trust.short">
+                _body_
+            </p>
+            <a href="#trust" class="btn btn-small btn-primary" data-toggle="collapse" data-target="#trust"
+               data-parent="#body">
+                <e>&#128161;</e> <span data-i18n="app.common.more_info"></span>
+            </a>
+        </div>
+        <div class="span4">
+            <h2 data-i18n="app.page.contact.headline">
+                _headline_
+            </h2>
+            <img src="assets/contact.png">
+
+            <p data-i18n="app.page.contact.short">
+                _body_
+            </p>
+            <a href="#contact" class="btn btn-small btn-primary" data-toggle="collapse" data-target="#contact"
+               data-parent="#body">
+                <e>&#128326;</e> <span data-i18n="app.common.more_info"></span>
+            </a>
+        </div>
+    </div>
+    <!-- end upper selection -->
+
+</section>
+
+<hr class="container"/>
+
+<section id="body" class="page container explain">
+
+    <div class="accordion-group">
+
+        <div id="learn" class="row collapse">
+            <div class="span2">
+                <img src="assets/learnmore_large.png">
+            </div>
+            <div class="span10">
+                <h2 class="featurette-heading" data-i18n="app.page.learn.headline">
+                    _headline_
+                </h2>
+
+                <p data-i18n="app.page.learn.body">
+                    _body_
+                </p>
+            </div>
+        </div>
+
+        <div id="trust" class="row collapse">
+            <div class="span2">
+                <img src="assets/trust_large.png">
+            </div>
+            <div class="span10">
+                <h2 data-i18n="app.page.trust.headline">
+                    _headline_
+                </h2>
+
+                <p data-i18n="app.page.trust.body">
+                    _body_
+                </p>
+
+                <div class="row">
+                    <div class="span3 divider">
+                        <h3 data-i18n="app.page.trust.client.headline">
+                            _headline_
+                        </h3>
+
+                        <p data-i18n="app.page.trust.client.body">
+                            _body_
+                        </p>
+                    </div>
+                    <div class="span3 divider">
+                        <h3 data-i18n="app.page.trust.opensource.headline">
+                            _headline_
+                        </h3>
+
+                        <p data-i18n="app.page.trust.opensource.body">
+                            _body_
+                        </p>
+                    </div>
+                    <div class="span3">
+                        <h3 data-i18n="app.page.trust.download.headline">
+                            _headline_
+                        </h3>
+
+                        <p data-i18n="app.page.trust.download.body">
+                            _body_
+                        </p>
+                        <a href="https://github.com/cr0/privacychecker/archive/develop.zip" target="_blank"
+                           class="btn btn-small btn-primary"><e>&#128229;</e>
+                            <span data-i18n="app.page.trust.download.web">_headline_</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact" class="row collapse">
+            <div class="span2">
+                <img src="assets/contact_large.png">
+            </div>
+            <div class="span10">
+                <h2 class="featurette-heading" data-i18n="app.page.contact.headline">
+                    _headline_
+                </h2>
+
+                <p data-i18n="[html]app.page.contact.short">
+                    _body_
+                </p>
+
+                <div class="row">
+                    <div class="span3 divider">
+                        <h3 data-i18n="app.page.contact.team.team_headline">
+                            _headline_
+                        </h3>
+
+                        <h4 data-i18n="app.page.contact.team.dev.headline">
+                            _headline_
+                        </h4>
+
+                        <p style="margin:0" data-i18n="app.page.contact.team.dev.body">
+                            _body_
+                        </p>
+
+                        <h4 data-i18n="app.page.contact.team.concept.headline">
+                            _headline_
+                        </h4>
+
+                        <p style="margin:0" data-i18n="app.page.contact.team.concept.body">
+                            _body_
+                        </p>
+                        <h4 data-i18n="app.page.contact.team.management.headline">
+                            _headline_
+                        </h4>
+
+                        <p data-i18n="app.page.contact.team.management.body">
+                            _body_
+                        </p>
+
+                        <h3 data-i18n="app.page.contact.team.contact_headline">
+                            _headline_
+                        </h3>
+
+                        <a href="mailto:michael.netter@wiwi.uni-regensburg.de?subject=PrivacyChecker"
+                           style="margin-right: 10px" class="btn btn-small btn-primary">
+                            <e>&#9993;</e> <span data-i18n="app.page.contact.team.contact.mail">_mail_</span></a>
+
+                        <a href="http://www-ifs.uni-regensburg.de/"
+                           target="_blank" class="btn btn-small btn-primary">
+                            <e>&#127758;</e> <span data-i18n="app.page.contact.team.contact.web">_web_</span>
+                        </a>
+                    </div>
+                    <div class="span3 divider">
+                        <h3 data-i18n="app.page.contact.privacy.headline">
+                            _headline_
+                        </h3>
+
+                        <p data-i18n="app.page.contact.privacy.body">
+                            _body_
+                        </p>
+                    </div>
+                    <div class="span3">
+                        <h3 data-i18n="app.page.contact.liability.headline">
+                            _headline_
+                        </h3>
+
+                        <p data-i18n="app.page.contact.liability.body">
+                            _body_
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="container">
+    <p>
+        <img src="assets/logo_ur.jpg" alt="UR"/>
+        Universit&auml;t Regensburg
+        <span>&bull; using <a href="http://www.entypo.com/">entypo icons</a></span>
+    </p>
+</footer>
+
+<div id="loading-container" class="modal hide fade" tabindex="-1" role="dialog" data-backdrop="false"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <h3 id="myModalLabel" data-i18n="app.loading.loading">app.loading.loading</h3>
+    </div>
+    <div class="modal-body">
+        <div class="progress progress-striped active">
+            <div class="bar" style="width: 0%"></div>
+        </div>
+    </div>
+</div>
+
+<script src="//connect.facebook.net/en_US/all.js">
+
+</script>
+<script src="assets/vendor.js"></script>
+<script src="assets/namespace.js"></script>
+<script src="assets/templates.js"></script>
+<script src="assets/common.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/app.js"></script>
+
+<script type="text/javascript">
+    $( window ).ready( function()
+    {
+        $( '#game-carousel' ).carousel( {
+            interval: false
+        } );
+        $( 'a:not(.backbone)' ).smoothScroll();
+    } );
+</script>
+</body>
+
+</html>

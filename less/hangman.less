@@ -1,0 +1,214 @@
+.hangman {
+    margin-top: 100px !important;
+    max-width: 100% !important;
+
+    .game {
+        .sub-template {
+            margin-top: 20px;
+
+            .result {
+                position: absolute;
+
+                top: 30%;
+                left: 50%;
+
+                z-index: 20;
+
+                .label {
+                    position: relative;
+                    right: 50%;
+
+                    font-size: 36px;
+                    line-height: 40px;
+
+                    padding: 0 5px;
+
+                    white-space: normal;
+
+                    text-align: center;
+                }
+            }
+
+            button.proceed {
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 40px;
+                display: block;
+            }
+
+            .info {
+                margin-left: auto;
+                margin-right: auto;
+                width: 300px;
+
+                .points {
+                    font-size: 24px;
+                    float: right;
+                    margin-top: 3px;
+                }
+
+                .hearts {
+                    .plain-list;
+
+                    width: 190px;
+
+                    margin-left: auto;
+                    margin-right: auto;
+
+                    display: inline-block;
+
+                    li {
+                        background: url("heart.png") no-repeat center center;
+                        width: 24px;
+                        height: 24px;
+                        display: inline-block;
+                        margin-right: 10px;
+
+                        &.lost {
+                            background-image: url("heart_gray.png");
+                        }
+                    }
+
+                }
+            }
+
+            .status, .image {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .image {
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            .status {
+                margin-bottom: 80px;
+            }
+
+            .userlist {
+                .plain-list;
+
+                margin-left: auto;
+                margin-right: auto;
+
+                li {
+                    width: 80px;
+                    height: 80px;
+
+                    -moz-border-radius: 80px;
+                    -webkit-border-radius: 80px;
+                    border-radius: 80px;
+
+                    margin: 0 5px 5px 0;
+
+                    display: inline-block;
+
+                    cursor: pointer;
+
+                    -moz-box-shadow: 0 0 5px 5px #333;
+                    -webkit-box-shadow: 0 0 5px 5px #333;
+                    box-shadow: 0 0 5px 5px #333;
+
+                    &.correct {
+                        -moz-box-shadow: 0 0 5px 5px #2ecc71;
+                        -webkit-box-shadow: 0 0 5px 5px #2ecc71;
+                        box-shadow: 0 0 5px 5px #2ecc71;
+                    }
+
+                    &.wrong {
+                        -moz-box-shadow: 0 0 5px 5px #e74c3c;
+                        -webkit-box-shadow: 0 0 5px 5px #e74c3c;
+                        box-shadow: 0 0 5px 5px #e74c3c;
+                    }
+                }
+            }
+
+        }
+    }
+
+    .result {
+
+        h2, h3 {
+            color: #ecf0f1;
+        }
+
+        ul.details {
+            .plain-list;
+
+            margin-top: 20px;
+
+            margin-left: 0;
+
+            li {
+
+                width: 33%;
+                height: 200px;
+                display: inline-block;
+                position: relative;
+                overflow: hidden;
+
+                div.item {
+                    float: left;
+
+                    width: 100%;
+                    height: 100%;
+
+                    background-color: #f0f;
+
+                    &.image {
+                        background-size: cover;
+                        background-position: 50% 50%;
+                        background-repeat: no-repeat no-repeat;
+                    }
+                }
+
+                p.info {
+                    width: 280px;
+                    background-color: rgba(127, 140, 141, .7);
+                }
+            }
+
+        }
+
+        .overall {
+            p.info {
+                position: relative;
+                padding: 0;
+            }
+        }
+
+        p.info {
+            position: absolute;
+            bottom: 0px;
+
+            float: left;
+
+            margin-right: 100px;
+            padding: 10px;
+
+            z-index: 100;
+
+            span.title {
+                width: 150px;
+
+                display: inline-block;
+
+                &:after {
+                    content: ":";
+                }
+
+            }
+        }
+
+        div.item {
+            z-index: 99;
+
+            &.status {
+                padding: 0;
+            }
+        }
+
+    }
+
+}

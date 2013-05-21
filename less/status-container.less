@@ -1,0 +1,104 @@
+div.status-container {
+    font-size: 20px;
+    width: 300px;
+
+    ul.shadow {
+        .plain-list;
+
+        position: absolute;
+        margin-top: 20px;
+        margin-left: 0;
+        width: 100%;
+
+        height: auto;
+
+        li {
+            position: absolute;
+
+            margin-left: 0px;
+
+            display: block;
+
+            background-color: #ecf0f1;
+            border-bottom: 1px solid #bdc3c7;
+
+            width: 100%;
+            height: 10px;
+
+            &:nth-child(1) {
+                z-index: 1003;
+                top: 0px;
+                left: 0px;
+                opacity: 1;
+                width: 300px;
+            }
+
+            &:nth-child(2) {
+                z-index: 1002;
+                top: 3px;
+                left: 0px;
+                opacity: 1;
+                width: 300px;
+            }
+
+            &:nth-child(3) {
+                z-index: 1001;
+                top: 6px;
+                left: 2px;
+                opacity: 1;
+                width: 296px;
+            }
+
+            &:nth-child(4) {
+                z-index: 1000;
+                top: 9px;
+                left: 4px;
+                opacity: 1;
+                width: 292px;
+            }
+        }
+    }
+
+    .message {
+        color: #333;
+        background-color: #ecf0f1;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        line-height: 1.5;
+        min-height: 150px;
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 200px;
+
+        &:before {
+            content: "\201C";
+
+            margin-top: -30px;
+            margin-right: 10px;
+            margin-bottom: -80px;
+
+            float: left;
+            color: #7a7a7a;
+            font-family: Georgia, serif;
+            font-size: 80px;
+        }
+    }
+
+    .date {
+        color: #7f8c8d;
+        float: left;
+        font-size: 14px;
+        width: 100%;
+        dispay: block;
+        background-color: #ecf0f1;
+        //padding-left: 20px;
+
+        &:before {
+            content: "\2014  ";
+            color: #7f8c8d;
+        }
+    }
+}

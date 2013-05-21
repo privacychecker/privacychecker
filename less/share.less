@@ -1,0 +1,58 @@
+.plain-list {
+    list-style-type: none;
+}
+
+.rounded-corners (@radius: 5px) {
+    border-radius: @radius;
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+}
+
+.count {
+    position: absolute;
+    float: right;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    margin-top: 80px;
+    margin-right: 20px;
+    text-shadow: 1px 1px 0px rgb(30, 30, 30);
+
+    .current {
+        font-size: 80px;
+    }
+
+    .total {
+        font-size: 50px;
+
+        &:before {
+            content: " /";
+        }
+    }
+}
+
+.center-outer {
+    float: right;
+    right: 50%;
+    position: relative;
+}
+
+.center-inner {
+    float: right;
+    right: -50%;
+    position: relative;
+}
+
+.popover {
+    text-shadow: none;
+
+    font-size: 14px;
+    font-weight: normal;
+
+    background-color: #fff;
+    color: #333;
+}
+
+.offset1 {
+    margin-left: 100px !important;
+}

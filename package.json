@@ -1,0 +1,63 @@
+{
+  "name": "privacy checker",
+  "description": "analyze facebook privacy knowledge",
+  "version": "0.0.1",
+  "homepage": "http://www-ifs.uni-regensburg.de/",
+  "author": {
+    "name": "Christian Roth",
+    "email": "christian.roth@port17.de",
+    "url": "http://www-ifs.uni-regensburg.de/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cr0/privacychecker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cr0/privacychecker/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/cr0/privacychecker/blob/master/LICENSE-MIT"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-less": "~0.5",
+    "grunt-strip": "0.2.0",
+    "grunt-notify": "0.1.4",
+    "grunt-contrib-nodeunit": "~0.1",
+    "grunt-contrib-uglify": "~0.1",
+    "grunt-contrib-jshint": "~0.1",
+    "grunt-contrib-yuidoc": "~0.3",
+    "grunt-contrib-concat": "~0.1",
+    "grunt-targethtml": "~0.2.0",
+    "grunt-contrib-handlebars": "~0.5",
+    "grunt-contrib-clean": "~0.4",
+    "grunt-ver": "~0.1",
+    "grunt-contrib-copy": "~0.4",
+    "grunt-git-contributors": "~0.1.4",
+    "grunt-css": "~0.5.4",
+    "grunt-contrib-connect": "~0.2.0"
+  },
+  "keywords": [],
+  "volo": {
+    "baseUrl": "vendor",
+    "dependencies": {
+      "jquery": "github:jquery/jquery/1.9.1",
+      "underscore": "github:documentcloud/underscore/1.4.4",
+      "backbone": "github:documentcloud/backbone/1.0.0",
+      "bootstrap": "github:twitter/bootstrap/v2.3.1",
+      "handlebars": "github:wycats/handlebars.js/v1.0.10",
+      "i18next": "github:jamuhl/i18next/1.6.0",
+      "jquery.center": "github:dreamerslab/jquery.center/v1.1.0",
+      "jquery.random": "http://www.rockechris.com/jquery/jquery.random.js",
+      "EloRating-JavaScript": "github:hugodias/EloRating-JavaScript/master",
+      "jquery.transit": "github:rstacruz/jquery.transit/v0.9.9",
+      "jquery-smooth-scroll": "github:kswedberg/jquery-smooth-scroll/1.4.10",
+      "jquery.imgpreload": "github:farinspace/jquery.imgpreload/v1.3.20120217",
+      "imgLiquid": "github:karacas/imgLiquid/0.9.901",
+      "moment": "github:timrwood/moment/2.0.0"
+    }
+  }
+}

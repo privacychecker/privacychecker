@@ -1,0 +1,63 @@
+<!-- GuessGame -->
+<div class="recommendation-long">
+
+    <h2>{{t "app.recommendations.headline"}}</h2>
+
+    <ul class="pairs">
+
+        {{#if recommendations.lists_create}}
+            <li id="rec-create" class="pair">
+                <h3>{{t "app.recommendations.lists_create.headline"}}</h3>
+
+                <p>{{t "app.recommendations.lists_create.body"}}</p>
+            </li>
+        {{/if}}
+
+        {{#if recommendations.lists_use}}
+            <li id="rec-use" class="pair">
+                <h3>{{t "app.recommendations.lists_use.headline"}}</h3>
+
+                <p>{{t "app.recommendations.lists_use.body"}}</p>
+            </li>
+        {{/if}}
+
+        {{#if recommendations.sharing}}
+            <li id="rec-share" class="pair">
+                <h3>{{t "app.recommendations.sharing.headline"}}</h3>
+
+                <p>{{t "app.recommendations.sharing.body"}}</p>
+            </li>
+        {{/if}}
+
+        {{#if recommendations.defaults}}
+            <li id="rec-def" class="pair">
+                <h3>{{t "app.recommendations.defaults.headline"}}</h3>
+
+                <p>{{t "app.recommendations.defaults.body"}}</p>
+            </li>
+        {{/if}}
+
+        {{#if recommendations.hide_past}}
+            <li id="rec-past" class="pair">
+                <h3>{{t "app.recommendations.hide_past.headline"}}</h3>
+
+                <p>{{t "app.recommendations.hide_past.body"}}</p>
+            </li>
+        {{/if}}
+
+        <li id="rec-friend" class="pair">
+            <h3>{{t "app.recommendations.friend.headline"}}</h3>
+
+            <p>{{t "app.recommendations.friend.body"}}</p>
+        </li>
+
+        <li id="rec-publish" class="pair">
+            <h3>{{t "app.recommendations.publish_items.headline"}}</h3>
+
+            <p>{{t "app.recommendations.publish_items.body"}}</p>
+        </li>
+    </ul>
+
+</div>
+
+<hr class="container"/>
