@@ -115,10 +115,9 @@
 
             var player = pc.model.FacebookPlayer.getInstance(),
                 userLists = player.getFriendLists().where( { type: pc.model.FacebookList.Type.USER } ),
-                autoLists = player.getFriendLists().where( { type: pc.model.FacebookList.Type.USER } ),
+                autoLists = player.getFriendLists().where( { type: pc.model.FacebookList.Type.AUTO } ),
                 numberHasLists = userLists.length,
-                numberUsesLists = 0,
-                numberPublicItems = 0,
+                publicItems = [],
                 usedLists = [];
 
             console.debug( "[ResultView] User has the following user lists", userLists );
@@ -134,38 +133,52 @@
 
                     var level = item.get( 'privacy' ).get( 'level' ),
                         includeList = item.get( 'privacy' ).get( 'includeList' ),
-                        excludeList = item.get( 'privacy' ).get( 'excludeList' );
+                        excludeList = item.get( 'privacy' ).get( 'excludeList' ),
+                        bothLists = _.union( excludeList.models, includeList.models );
 
+                    // public item
                     if ( level === pc.common.PrivacyDefinition.Level.ALL ) {
                         console.info( "[ResultView] Found PUBLIC item", item );
-                        numberPublicItems++;
+
+                        if ( item instanceof pc.model.FacebookPicture ) {
+                            publicItems.push( {
+                                picture: {
+                                    url:     item.get( 'source' ),
+                                    caption: item.get( 'caption' )
+                                }
+                            } );
+                        }
+                        else if ( item instanceof pc.model.FacebookStatus ) {
+                            publicItems.push( {
+                                status: {
+                                    caption:  item.get( 'caption' ),
+                                    date:     pc.common.DateFormatHelper.formatShort( item.get( 'date' ) ),
+                                    location: item.get( 'location' )
+                                }
+                            } );
+                        }
                     }
 
                     // walk through all lists to validate if a item
                     _.each( _.union( userLists, autoLists ), function( list )
                     {
-                        console.log( list.id !== -1 && !_.contains( usedLists, list ),
-                            excludeList.contains( list ) && includeList.contains( list ) );
-
                         if ( list.id !== -1 && !_.contains( usedLists, list ) ) {
-                            if ( excludeList.contains( list ) && includeList.contains( list ) ) {
-                                console.info( "[ResultView] Item uses a unused list", item, list );
-                                numberUsesLists++;
-                                usedLists.push( list );
-                            }
-                        }
-                        else {
-                            console.debug( 'item invalid list', item, list );
+                            _.each( bothLists, function( itemList )
+                            {
+                                if ( itemList.id === list.id ) {
+                                    console.info( "[ResultView] Item uses a unused list", item, itemList );
+                                    usedLists.push( list );
+                                }
+                            } );
                         }
                     } );
-
                 }
             }, this ) );
 
             return {
                 number_has_lists:    numberHasLists,
-                number_uses_lists:   numberUsesLists,
-                number_public_items: numberPublicItems,
+                number_uses_lists:   usedLists.length,
+                number_public_items: publicItems.length,
                 created_lists:       userLists.map( function( list )
                 {
                     return list.get( 'name' );
@@ -173,7 +186,8 @@
                 used_lists:          _.map( usedLists, function( list )
                 {
                     return list.get( 'name' );
-                } )
+                } ),
+                public_items:        publicItems
             };
 
         },
@@ -190,14 +204,16 @@
         {
 
             var hangmanResults = pc.model.FacebookPlayer.getInstance().get( 'results' ),
-                itemInformation;
+                itemInformation,
+                duration;
 
             return hangmanResults.map( function( result )
             {
                 itemInformation = {};
 
                 var item = result.get( 'item' ),
-                    wrongs = result.get( 'userValue' );
+                    wrongs = result.get( 'userValue' ),
+                    gameResult = result.get( 'optional' ).result;
 
                 if ( item instanceof pc.model.FacebookPicture ) {
                     itemInformation = {
@@ -217,8 +233,14 @@
                     };
                 }
 
+                //duration is timeout?
+                duration =
+                    gameResult === pc.view.HangmanView.RESULT.TIMEOUT ? $.t( pc.view.ResultView.LANG_HANGMAN_TIMEOUT )
+                        : gameResult === pc.view.HangmanView.RESULT.LOST ? $.t( pc.view.ResultView.LANG_HANGMAN_LOST )
+                        : result.get( 'optional' ).duration.toFixed() + ' ' + $.t( pc.view.ResultView.LANG_SECONDS );
+
                 return _.extend( itemInformation, {
-                    duration: result.get( 'optional' ).duration.toFixed(),
+                    duration: duration,
                     errors:   result.get( 'optional' ).errors,
                     points:   result.get( 'optional' ).points,
                     wrongs:   _.map( wrongs, function( wrong )
@@ -250,34 +272,9 @@
         }
 
     }, {
-
-        LANG_LISTS_FRIENDS_VERYGOOD: "app.results.lists.friend_verygood",
-        LANG_LISTS_FRIENDS_GOOD:     "app.results.lists.friend_good",
-        LANG_LISTS_FRIENDS_BAD:      "app.results.lists.friend_bad",
-        LANG_LISTS_FRIENDS_VERYBAD:  "app.results.lists.friend_verybad",
-
-        LANG_LISTS_USER_VERYGOOD: "app.results.lists.user_verygood",
-        LANG_LISTS_USER_GOOD:     "app.results.lists.user_good",
-        LANG_LISTS_USER_BAD:      "app.results.lists.user_bad",
-        LANG_LISTS_USER_VERYBAD:  "app.results.lists.user_verybad",
-        LANG_LISTS_USER_NONE:     "app.results.lists.user_none",
-
-        LANG_LISTS_AUTO_VERYGOOD: "app.results.lists.auto_verygood",
-        LANG_LISTS_AUTO_GOOD:     "app.results.lists.auto_good",
-        LANG_LISTS_AUTO_BAD:      "app.results.lists.auto_bad",
-        LANG_LISTS_AUTO_VERYBAD:  "app.results.lists.auto_verybad",
-        LANG_LISTS_AUTO_NONE:     "app.results.lists.auto_none",
-
-        LANG_ITEMS_LISTS_YES: "app.results.items.lists_yes",
-        LANG_ITEMS_LISTS_NO:  "app.results.items.lists_no",
-
-        LANG_ITEMS_PUBLIC_YES: "app.results.items.public_yes",
-        LANG_ITEMS_PUBLIC_NO:  "app.results.items.public_no",
-
-        LANG_HANGMAN_VERYGOOD: "app.results.hangman.verygood",
-        LANG_HANGMAN_GOOD:     "app.results.hangman.good",
-        LANG_HANGMAN_BAD:      "app.results.hangman.bad",
-        LANG_HANGMAN_VERYBAD:  "app.results.hangman.verybad",
+        LANG_HANGMAN_TIMEOUT: "app.results.timeout",
+        LANG_HANGMAN_LOST:    "app.results.lost",
+        LANG_SECONDS:         "app.common.seconds",
 
         POINTS_PER_CREATE_LIST: 1000,
         POINTS_PER_USE_LIST:    1000,

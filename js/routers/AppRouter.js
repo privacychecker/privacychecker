@@ -10,7 +10,8 @@
 
         routes: {
             "briefing/:id": "briefingCb",
-            "tooltip/:id":  "tooltipCb"
+            "tooltip/:id":  "tooltipCb",
+            "whynogame/":    "whynogameCb"
         },
 
         initialize: function()
@@ -145,6 +146,15 @@
         {
             console.log( '[Controller] Showing briefing with id', briefingId );
             this.tipsView.renderBriefing( briefingId );
+        },
+
+        whynogameCb: function()
+        {
+            console.log( '[Controller] Showing whynogamehelp' );
+            this.tipsView.renderRecommendation( undefined, {
+                defaults:  true,
+                hide_past: true
+            } );
         },
 
         _initializeTooltips: function()

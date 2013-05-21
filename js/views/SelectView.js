@@ -23,14 +23,16 @@
                     no_pictues = !testdata.hasEnoughPictures(),
                     no_statuses = !testdata.hasEnoughStatuses(),
                     no_one_of_both = (no_pictues || no_statuses) && !testdata.hasEnoughCombined(),
-                    not_playable = no_pictues && no_statuses && no_one_of_both;
+                    not_playable = no_pictues && no_statuses && no_one_of_both,
+                    too_many_public = testdata.hasTooManyPublic();
 
                 // render scope
                 var options = {
-                    no_pictures:    no_pictues,
-                    no_statuses:    no_statuses,
-                    no_one_of_both: no_one_of_both,
-                    not_playable:   not_playable
+                    no_pictures:     no_pictues,
+                    no_statuses:     no_statuses,
+                    no_one_of_both:  no_one_of_both,
+                    not_playable:    not_playable,
+                    too_many_public: too_many_public
                 };
 
                 console.info( "[SelectView] Rendering select scope template with options", options );

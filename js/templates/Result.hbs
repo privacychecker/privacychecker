@@ -1,76 +1,76 @@
 <!-- Result -->
 <div class="result">
 
-    <h1>
-        <e class="large">&#127942;</e>
-        {{totals.points}} {{t "app.results.points"}}
-    </h1>
+<h1>
+    <e class="large">&#127942;</e>
+    {{totals.points}} {{t "app.results.points"}}
+</h1>
 
-    <div class="share">
-        <button id="sharepoints" class="btn btn-primary">
-            {{t "app.results.post_fb_score"}}
-        </button>
+<div class="share">
+    <button id="sharepoints" class="btn btn-primary">
+        {{t "app.results.post_fb_score"}}
+    </button>
 
-        <button id="playagain" class="btn btn-primary">
-            {{t "app.results.play_again"}}
-        </button>
-    </div>
+    <button id="playagain" class="btn btn-primary">
+        {{t "app.results.play_again"}}
+    </button>
+</div>
 
-    <ul class="results">
-        <!-- hangman -->
-        {{#each hangman}}
-            <li class="collapsable item">
+<ul class="results">
+    <!-- hangman -->
+    {{#each hangman}}
+        <li class="collapsable item">
 
-                <div class="head">
+            <div class="head">
                     <span class="title">
                         {{t "app.results.item"}} #{{math @index 1}}
                     </span>
                     <span class="points">
                         +{{points}}
                     </span>
-                    <button class="btn btn-primary control">
-                        <e>&#8505;</e>
-                    </button>
+                <button class="btn btn-primary control">
+                    <e>&#8505;</e>
+                </button>
+            </div>
+
+            <div class="body">
+
+                <div class="object">
+                    <p class="info">
+                        <span class="title">{{t "app.common.duration"}}</span> {{duration}}
+                        <br/>
+                        <span class="title">{{t "app.common.points"}}</span> {{points}}
+                    </p>
+
+                    {{#if picture}}
+                        <div class="item image" style="background-image: url( {{picture.url}} );"
+                             data-tooltip="{{picture.caption}}"></div>
+                    {{/if}}
+
+                    {{#if status}}
+                        <div class="item status status-container">
+                            <p class="message">{{status.caption}}</p>
+
+                            <p class="date">{{status.date}}</p>
+                        </div>
+                    {{/if}}
                 </div>
+                <ul class="wrongs">
+                    {{#each wrongs}}
+                        <li style="background-image: url( https://graph.facebook.com/{{id}}/picture?width=50&height=50 );"
+                            data-title="{{name}}"
+                            data-id="{{id}}"
+                            data-name="{{name}}"></li>
+                    {{/each}}
+                </ul>
 
-                <div class="body">
+            </div>
+        </li>
+    {{/each}}
 
-                    <div class="object">
-                        <p class="info">
-                            <span class="title">{{t "app.hangman.result.duration"}}</span> {{duration}} {{t "app.common.seconds"}}
-                            <br/>
-                            <span class="title">{{t "app.common.points"}}</span> {{points}}
-                        </p>
-
-                        {{#if picture}}
-                            <div class="item image" style="background-image: url( {{picture.url}} );"
-                                 data-tooltip="{{picture.caption}}"></div>
-                        {{/if}}
-
-                        {{#if status}}
-                            <div class="item status status-container">
-                                <p class="message">{{status.caption}}</p>
-
-                                <p class="date">{{status.date}}</p>
-                            </div>
-                        {{/if}}
-                    </div>
-                    <ul class="wrongs">
-                        {{#each wrongs}}
-                            <li style="background-image: url( https://graph.facebook.com/{{id}}/picture?width=50&height=50 );"
-                                data-title="{{name}}"
-                                data-id="{{id}}"
-                                data-name="{{name}}"></li>
-                        {{/each}}
-                    </ul>
-
-                </div>
-            </li>
-        {{/each}}
-
-        <!-- has list -->
-        <li class="collapsable divider">
-            <div class="head">
+    <!-- has list -->
+    <li class="collapsable divider">
+        <div class="head">
                     <span class="title">
                         {{t "app.results.lists_create"}}
                     </span>
@@ -79,76 +79,75 @@
                         +{{points.per_list}}
                     </span>
 
-                {{#if lists.number_has_lists}}
-                    <button class="btn btn-primary control">
-                        <e>&#8505;</e>
-                    </button>
-                {{/if}}
-            </div>
-
-            {{#if totals.show_create_list_warning}}
-                <div class="warning">
-                    <e>&#9888;</e>
-                    {{t "app.results.lists_create_warn"}}
-                    <a href="#rec-create">{{t "app.results.link_to_rec"}}</a>
-                </div>
-            {{else}}
-                <div class="body">
-                    {{t "app.result.lists_user"}}
-                    <ul>
-                        {{#each lists.created_lists}}
-                            <li>
-                                {{this}}
-                            </li>
-                        {{/each}}
-                    </ul>
-                </div>
+            {{#if lists.number_has_lists}}
+                <button class="btn btn-primary control">
+                    <e>&#8505;</e>
+                </button>
             {{/if}}
+        </div>
 
-        </li>
+        {{#if totals.show_create_list_warning}}
+            <div class="warning">
+                <e>&#9888;</e>
+                {{t "app.results.lists_create_warn"}}
+                <a href="#rec-create">{{t "app.results.link_to_rec"}}</a>
+            </div>
+        {{else}}
+            <div class="body">
+                {{t "app.results.lists_user"}}
+                <ul>
+                    {{#each lists.created_lists}}
+                        <li>
+                            {{this}}
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        {{/if}}
 
-        <!-- use list -->
-        <li class="collapsable">
-            <div class="head">
-                    <span class="title
+    </li>
+
+    <!-- use list -->
+    <li class="collapsable">
+        <div class="head">
+                    <span class="title">
                         {{t "app.results.lists_use"}}
                     </span>
-                    <span class=" points">
+                    <span class="points">
                 <span class="multi">{{lists.number_uses_lists}}</span>
                 +{{points.use_list}}
                 </span>
 
-                {{#if lists.number_uses_lists}}
-                    <button class="btn btn-primary control">
-                        <e>&#8505;</e>
-                    </button>
-                {{/if}}
-            </div>
-
-            {{#if totals.show_use_list_warning}}
-                <div class="warning">
-                    <e>&#9888;</e>
-                    {{t "app.results.lists_use_warn"}}
-                    <a href="#rec-create">{{t "app.results.link_to_rec"}}</a>
-                </div>
-            {{else}}
-                <div class="body">
-                    {{t "app.results.lists_use_warn"}}
-                    <ul>
-                        {{#each lists.used_lists}}
-                            <li>
-                                {{this}}
-                            </li>
-                        {{/each}}
-                    </ul>
-                </div>
+            {{#if lists.number_uses_lists}}
+                <button class="btn btn-primary control">
+                    <e>&#8505;</e>
+                </button>
             {{/if}}
-        </li>
+        </div>
 
-        {{#if lists.number_public_items}}
-            <!--  public -->
-            <li class="divider">
-                <div class="head">
+        {{#if totals.show_use_list_warning}}
+            <div class="warning">
+                <e>&#9888;</e>
+                {{t "app.results.lists_use_warn"}}
+                <a href="#rec-create">{{t "app.results.link_to_rec"}}</a>
+            </div>
+        {{else}}
+            <div class="body">
+                <ul>
+                    {{#each lists.used_lists}}
+                        <li>
+                            {{this}}
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        {{/if}}
+    </li>
+
+    {{#if lists.number_public_items}}
+        <!--  public -->
+        <li class="divider item collapsable">
+            <div class="head">
                     <span class="title">
                         {{t "app.results.public_warn"}}
                     </span>
@@ -156,31 +155,53 @@
                         <span class="multi">{{lists.number_public_items}}</span>
                         -{{points.per_public}}
                     </span>
-                    <button class="btn btn-primary control">
-                        <e>&#8505;</e>
-                    </button>
-                </div>
+                <button class="btn btn-primary control">
+                    <e>&#8505;</e>
+                </button>
+            </div>
                 <span class="warning">
                     <e>&#59140;</e>
                     <a href="#rec-points">
                         {{t "app.results.public_link"}}</a>
                 </span>
-            </li>
-        {{/if}}
 
-        <!--  public -->
-        <li class="collapsable divider totals">
-            <div class="head">
+            <div class="body noheight">
+                <ul class="public-items">
+                    {{#each lists.public_items}}
+                        <li>
+                            <div class="object">
+                                {{#if picture}}
+                                    <div class="item image" style="background-image: url( {{picture.url}} );"
+                                         data-tooltip="{{picture.caption}}"></div>
+                                {{/if}}
+
+                                {{#if status}}
+                                    <div class="item status status-container">
+                                        <p class="message">{{status.caption}}</p>
+
+                                        <p class="date">{{status.date}}</p>
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </li>
+    {{/if}}
+
+    <!--  totals -->
+    <li class="collapsable divider totals">
+        <div class="head">
                  <span class="title">
                      {{t "app.results.total_points"}}
                  </span>
                     <span class="points">
                         {{totals.points}}
                     </span>
-            </div>
-        </li>
+        </div>
+    </li>
 
-    </ul>
-
+</ul>
 
 </div>

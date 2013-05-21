@@ -4,7 +4,11 @@
     <h1>{{t "app.select.game_usage"}}</h1>
 
     {{#if not_playable}}
-        <p class="lead">{{t "app.select.insufficient_data"}}</p>
+        {{#if too_many_public}}
+            <p class="lead">{{t "app.select.insufficient_data_public"}}</p>
+        {{else}}
+            <p class="lead">{{t "app.select.insufficient_data"}}</p>
+        {{/if}}
     {{else}}
         <p class="lead">{{t "app.select.what_to_use"}}</p>
 

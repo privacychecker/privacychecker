@@ -6,7 +6,7 @@
             "change_language":  "Sprache wechseln",
             "flag_id":          "assets/de.png",
             "language_confirm": "Willst du die Sprache wirklich wechseln? Das Spiel wird hierbei abgebrochen!",
-            "hi":               "Eingeloggt als: __name__",
+            "hi":               "Eingeloggt als: <span class=\"name\">__name__</span>",
             "hi_not_loggedin":  "",
             "logout":           "Aus Facebook ausloggen"
         },
@@ -19,6 +19,7 @@
         "common": {
             "points":       "Punkte",
             "seconds":      "Sekunden",
+            "duration":     "Dauer",
             "hint":         "Hinweis",
             "only_numbers": "Bitte gib eine positive Zahl ein.",
             "more_info":    "Mehr Infos",
@@ -40,7 +41,7 @@
 
         "home": {
             "name":        "Hallo",
-            "headline":    "Kennst du alle deine Freunde?",
+            "headline":    "Wie gut kennst du dein Profil?",
             "description": "Finde auf spielerische Weise heraus, wer deine Items sehen kann und ob du auch weißt, wer diese Leute sind.",
             "play_button": "Spielen"
         },
@@ -55,23 +56,24 @@
         },
 
         "select": {
-            "name":               "Itembattle",
-            "headline":           "Welches <span data-tooltip-key=\"item\">Item</span> ist für dich <span data-tooltip-key=\"personal\">persönlicher</span>?",
-            "insufficient_data":  "Dein Profil erfüllt leider nicht die Mindestanforderungen an das Spiel.",
-            "game_usage":         "Spielumfang wählen",
-            "what_to_use":        "Du kannst die Spiele mit deinen Fotos, deinen Statusmeldungen oder beidem zusammen spielen.",
-            "play_with_images":   "Nur Bilder",
-            "play_with_statuses": "Nur Statusmeldungen",
-            "play_with_both":     "Beides",
-            "briefing":           "Es treten verschiedene deiner auf Facebook veröffentlichten <span data-tooltip-key=\"item\">Items</span> paarweise gegeneinander an und sollen von dir danach beurteilt werden, wie <span data-tooltip-key=\"personal\">persönlich</span> sie für dich sind. Dadurch wird festgestellt, welche Items dir besonders wichtig sind und deshalb besondere Beachtung beim Schutz deiner Privatsphäre finden müssen. Am Ende des Spiels werden dir deine Einschätzungen mit Hilfe eines <span data-tooltip-key=\"ranking\">Rankings</span> angezeigt.",
-            "result":             {
+            "name":                     "Itembattle",
+            "headline":                 "Welches <span data-tooltip-key=\"item\">Item</span> ist für dich <span data-tooltip-key=\"personal\">persönlicher</span>?",
+            "insufficient_data":        "Dein Profil erfüllt leider nicht die Mindestanforderungen an das Spiel. Du hast zu wenige Items, die wir verwenden können.",
+            "insufficient_data_public": "Dein Profil erfüllt leider nicht die Mindestanforderungen an das Spiel. Du hast hauptsächlich öffentliche Items, die in diesem Spiel nicht verwendet werden können. Da öffentliche Items ein großes Risiko für deine Privatsphäre darstellen, erhältst du <a href='#/whynogame/'>hier</a> Hinweise, wie du deine Einstellungen sicherer gestalten kannst.",
+            "game_usage":               "Spielumfang wählen",
+            "what_to_use":              "Wenn du genügend Items hast, kannst du das Spiel mit deinen Fotos, deinen Statusmeldungen oder beidem zusammen spielen. Ist dies nicht der Fall, ist deine Auswahl eingeschränkt.",
+            "play_with_images":         "Nur Bilder",
+            "play_with_statuses":       "Nur Statusmeldungen",
+            "play_with_both":           "Beides",
+            "briefing":                 "Es treten verschiedene deiner auf Facebook veröffentlichten <span data-tooltip-key=\"item\">Items</span> paarweise gegeneinander an und sollen von dir danach beurteilt werden, wie <span data-tooltip-key=\"personal\">persönlich</span> sie für dich sind. Dadurch wird festgestellt, welche Items dir besonders wichtig sind und deshalb besondere Beachtung beim Schutz deiner Privatsphäre finden müssen.",
+            "result":                   {
                 "final_ranking": "Itembattle - <span data-tooltip-key=\"ranking\">Ranking</span>"
             }
         },
 
         "hangman": {
             "name":     "Find Your Friends",
-            "briefing": "In <i>Find Your Friends</i> wird nun getestet, ob du weißt, wem du im Einzelnen Zugriff auf ein <span data-tooltip-key=\"rated_item\">Item</span> gegeben hast und auch, wie schnell du dies weißt. Dazu werden dir nacheinander Items gezeigt, die du auf Facebook veröffentlicht hast. Deine Aufgabe ist es, in einer Menge von <span data-tooltip-key=\"hangman_users\">zufällig ausgewählten</span> Freunden und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte Item sehen können. Anhand der Korrektheit und der Geschwindigkeit deiner Lösung wird eine <span data-tooltip-key=\"hangman_points\">Punktzahl</span> bestimmt, die dir zeigt, wie gut du die Aufgabe gelöst hast.",
+            "briefing": "In <i>Find Your Friends</i> wird nun getestet, ob du weißt, wem du im Einzelnen Zugriff auf ein <span data-tooltip-key=\"item\">Item</span> gegeben hast und auch, wie schnell du dies weißt. Deine Aufgabe ist es, in einer Menge von <span data-tooltip-key=\"hangman_users\">zufällig ausgewählten</span> Freunden und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte Item sehen können. Anhand der Korrektheit und der Geschwindigkeit deiner Lösung wird eine <span data-tooltip-key=\"hangman_points\">Punktzahl</span> bestimmt, die dir zeigt, wie gut du die Aufgabe gelöst hast.",
             "game":     {
                 "headline":        "Wähle die Personen, die das folgende <span data-tooltip-key=\"rated_item\">Item</span> sehen können!",
                 "lost":            "Du hast verloren!",
@@ -84,19 +86,21 @@
 
         "results": {
             "name":              "Zusammenfassung",
-            "description":       "Abschließend erhältst du an dieser Stelle eine zusammenfassende Einschätzung deiner Ergebnisse und damit darüber, wie es um den Schutz deiner Privatsphäre auf Facebook und um dein Bewusstsein diesbezüglich bestellt ist. Auf Basis dieser Erkenntnisse werden dir hilfreiche Tipps und Handlungsempfehlungen vorgeschlagen. Du kannst dir außerdem noch einmal alle Ergebnisse im Detail ansehen.",
-            "post_fb_score":     "Score bei FB posten",
+            "post_fb_score":     "Score bei Facebook posten",
             "points":            "Punkte",
+            "timeout": "Timeout",
+            "lost":    "Verloren",
             "play_again":        "Nochmal spielen",
-            "link_to_rec":       "Weißt du nicht wie das geht?",
+            "link_to_rec":       "Du weißt nicht, wie das geht?",
             "item":              "Item",
             "lists_create":      "Selbst Listen erstellt",
-            "lists_create_warn": "Du has bisher keine Listen erstellen",
+            "lists_create_warn": "Du hast bisher keine Listen erstellt.",
             "lists_user":        "Deine selbst etstellten Listen",
             "lists_use":         "Eigene Listen verwendet",
-            "lists_use_warn":    "Du has bisher keine Listen verwendet",
-            "public_warn":       "Du hast öffentliche Items",
-            "public_link":       "Wieso werden mir Punkte abgezogen?",
+            "lists_use_warn":    "Du hast bisher keine Listen verwendet.",
+            "public_warn":       "Öffentliche Items",
+            "public_link":       "Welche Gefahren sind mit öffentlichen Items verbunden?",
+            "public_score":      "Dafür werden dir Punkte abgezogen.",
             "total_points":      "Gesamt"
 
         },
@@ -123,14 +127,14 @@
 
             "learn": {
                 "headline": "Worum geht's?",
-                "short":    "Privacy Checker ist eine unabhängige Facebook-App mit der du testen kannst, wie gut du dein Facebook-Profil und vor allem deine Privatsphäre-Einstellungen kennst. Mit verschiedenen Spielen kannst du herausfinden, ob du weißt, wer deine Freunde sind, was sie von deinem Profil sehen können und wie du deine Sicherheits-Einstellungen verbessern kannst.",
-                "body":     "Privacy Checker zeigt dir spielerisch, wie öffentlich deine Items auf Facebook sind bzw. was deine Freunde alles von dir sehen können. Mit verschiedenen Spielen kannst du herausfinden, wie gut du dein eigenes Profil und deine getroffenen Einstellungen kennst. Eine persönliche, auf dein Profil zugeschnittene Auswertung nach jedem Spiel, sowie eine Zusammenfassung mit Verbesserungsmöglichkeiten am Ende der App, zeigen dir dein Ergebnis an und geben dir Tipps, wie du deine Privatsphäre noch besser schützen kannst."
+                "short":    "Privacy Checker ist eine unabhängige Facebook-App mit der du testen kannst, wie gut du dein Facebook-Profil und vor allem deine Privatsphäre-Einstellungen kennst. Spielerisch kannst du herausfinden, ob du weißt, wer deine Freunde sind, was sie von deinem Profil sehen können und wie du deine Sicherheits-Einstellungen verbessern kannst.",
+                "body":     "Privacy Checker zeigt dir spielerisch, wie öffentlich deine Items auf Facebook sind bzw. was deine Freunde alles von dir sehen können. Dadurch kannst du herausfinden, wie gut du dein eigenes Profil und deine getroffenen Einstellungen kennst. Eine persönliche, auf dein Profil zugeschnittene Auswertung mit Verbesserungsmöglichkeiten zeigen dir dein Ergebnis an und geben dir Tipps, wie du deine Privatsphäre noch besser schützen kannst."
             },
 
             "contact": {
                 "headline":  "Über uns",
-                "short":     "Diese App wurde am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen hast, findest du hier die nötigen Kontaktinformationen:",
-                "body":      "Diese App wurde am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen zur App hast, findest du unter <i>Mehr Infos</i> neben weiteren Informationen zur Privacy Policy und dem Haftungsausschluss auch die nötigen Kontaktinformationen.",
+                "short":     "Diese App wurde am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen hast, findest du hier neben weiteren Informationen zur Privacy Policy und dem Haftungsausschluss die nötigen Kontaktinformationen.",
+                "body":      "Diese App wurde am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen hast, findest du hier neben weiteren Informationen zur Privacy Policy und dem Haftungsausschluss die nötigen Kontaktinformationen.",
                 "team":      {
                     "team_headline":    "Team",
                     "contact_headline": "Kontakt",
@@ -168,7 +172,7 @@
             "headline":      "Mögliche Handlungsempfehlungen",
             "friend":        {
                 "headline": "Der Begriff <i>Freundschaft</i>",
-                "body":     "Der Begriff <i>Freundschaft</i> bezeichnet eine positive Beziehung zwischen Menschen, die auf Sympathie, Vertrauen und gegenseitiger Wertschätzung basiert. Nach diesen Kriterien wählt man im realen Leben einen Freund aus. Eine Freundschaft, die lediglich in einem sozialen Netzwerk existiert, ist eine sogenannte <i>Freundschaft per Mausklick</i> und kann die zuvor genannten Kriterien nicht erfüllen.<br/> Vor allem dann, wenn du Facebook-Freundschaften von Menschen bestätigst, die du nicht gut kennst oder die du sogar noch nie persönlich getroffen hast, ist fraglich, ob es nicht vielleicht besser ist, die Freundschaftsanfrage abzulehnen. Denk an all deine veröffentlichten persönlichen Items: Würdest du sie im realen Leben auch mit Personen teilen, die du nicht gut kennst? Ist es nicht besser, wenn du die Items für dich behältst bzw. sie nur mit bestimmten Personen teilst?<br/>Natürlich kannst du deine Items vor entfernteren Facebook-Freunden mit Hilfe von Einstellungen verbergen. Wird die Anzahl an Freunden jedoch unüberschaubar groß, ist es schwer, den Überblick zu behalten. Da deine Schätzung zur Anzahl deiner Facebook-Freunde oder deine Leistung in <i>Find Your Friends</i> nicht sehr gut war, ist bei dir möglicherweise genau das passiert. Aus diesem Grund solltest du dir Gedanken darüber machen, wen du als Facebook-Freund haben möchtest und wen nicht. Freundschaftsanfragen sollten nicht nur angenommen werden, um nicht unhöflich zu erscheinen. Außerdem solltest du nicht davor zurückschrecken, Facebook-Freundschaften zu beenden."
+                "body":     "Der Begriff <i>Freundschaft</i> bezeichnet eine positive Beziehung zwischen Menschen, die auf Sympathie, Vertrauen und gegenseitiger Wertschätzung basiert. Nach diesen Kriterien wählt man im realen Leben einen Freund aus. Eine Freundschaft, die lediglich in einem sozialen Netzwerk existiert, ist eine sogenannte <i>Freundschaft per Mausklick</i> und kann die zuvor genannten Kriterien nicht erfüllen.<br/> Vor allem dann, wenn du Facebook-Freundschaften von Menschen bestätigst, die du nicht gut kennst oder die du sogar noch nie persönlich getroffen hast, ist fraglich, ob es nicht vielleicht besser ist, die Freundschaftsanfrage abzulehnen. Denk an all deine veröffentlichten persönlichen Items: Würdest du sie im realen Leben auch mit Personen teilen, die du nicht gut kennst? Ist es nicht besser, wenn du die Items für dich behältst bzw. sie nur mit bestimmten Personen teilst?<br/>Natürlich kannst du deine Items vor entfernteren Facebook-Freunden mit Hilfe von Einstellungen verbergen. Wird die Anzahl an Freunden jedoch unüberschaubar groß, ist es schwer, den Überblick zu behalten. Aus diesem Grund solltest du dir Gedanken darüber machen, wen du als Facebook-Freund haben möchtest und wen nicht. Freundschaftsanfragen sollten nicht nur angenommen werden, um nicht unhöflich zu erscheinen. Außerdem solltest du nicht davor zurückschrecken, Facebook-Freundschaften zu beenden."
             },
             "lists_create":  {
                 "headline": "Erstellen von Listen",
@@ -176,7 +180,7 @@
             },
             "lists_use":     {
                 "headline": "Verwenden von Listen",
-                "body":     "Für keines der in den Spielen näher untersuchten Items hast du Listen für deren Freigabe-Einstellungen verwendet. Möglicherweise hast du schon selbst Listen erstellt, weißt aber nicht, wie man diese verwendet.<br/>Für Status Posts findest du die Freigabe-Einstellungen bzw. die Möglichkeit zu deren Änderung direkt unter deinem Namen und neben dem Datum, an dem du den Status Post erstellt hast. Bei Fotos kommt es darauf an, wo du sie betrachtest. Siehst du sie dir in deinen Fotoalben an, so kannst du die Freigabe-Einstellungen auf der rechten Seite unterhalb des Fotos bei <i>Teilen mit:</i> ändern. Möchtest du die Freigabe-Einstellungen eines Fotos, das dir gerade auf deiner Pinnwand angezeigt wird, ändern, dann geht das genauso, wie bei einem Status Post.<br/>Hast du die Anzeige der Freigabe-Einstellungen eines Items gefunden, so kannst du mit einem Klick darauf ein Menü öffnen, in dem dir die unterschiedlichen Einstellungen angeboten werden. Hier kannst du beispielsweise direkt eine bestimmte Liste auswählen, für deren Mitglieder das betrachtete Item sichtbar sein soll."
+                "body":     "Für keines deiner Items hast du Listen für deren Freigabe-Einstellungen verwendet. Möglicherweise hast du schon selbst Listen erstellt, weißt aber nicht, wie man diese verwendet.<br/>Für Status Posts findest du die Freigabe-Einstellungen bzw. die Möglichkeit zu deren Änderung direkt unter deinem Namen und neben dem Datum, an dem du den Status Post erstellt hast. Bei Fotos kommt es darauf an, wo du sie betrachtest. Siehst du sie dir in deinen Fotoalben an, so kannst du die Freigabe-Einstellungen auf der rechten Seite unterhalb des Fotos bei <i>Teilen mit:</i> ändern. Möchtest du die Freigabe-Einstellungen eines Fotos, das dir gerade auf deiner Pinnwand angezeigt wird, ändern, dann geht das genauso, wie bei einem Status Post.<br/>Hast du die Anzeige der Freigabe-Einstellungen eines Items gefunden, so kannst du mit einem Klick darauf ein Menü öffnen, in dem dir die unterschiedlichen Einstellungen angeboten werden. Hier kannst du beispielsweise direkt eine bestimmte Liste auswählen, für deren Mitglieder das betrachtete Item sichtbar sein soll."
             },
             "sharing":       {
                 "headline": "Freigeben für einzelne Freunde & Gezieltes Verbergen",
@@ -220,9 +224,8 @@
                 "long":     "Eine Liste (oder auch Freundesliste) dient dir zur Einteilung deiner Facebook-Kontakte in verschiedene Freundeskreise. Nachdem du sie angelegt hast, kannst du sie zur Einstellung der Freigabe deiner Items verwenden.<br/><br/>Wie im realen Leben, unterhältst du auch auf Facebook unterschiedlich starke Kommunikationsbeziehungen zu deinen Freunden und willst nicht jedem das Gleiche mitteilen. Außerdem pflegst du manche Freundschaftsbeziehungen aufgrund gewisser Aktivitäten, Mitgliedschaften oder Zugehörigkeiten. Listen tragen dazu bei, reale Kommunikationsbeziehungen nachzuempfinden, indem sie dir erlauben, Items gezielt nur für einen bestimmten Freundeskreis, der durch die Liste abgebildet wird, freizugeben. Umgekehrt kannst du Items dadurch auch gezielt vor Freunden verbergen."
             },
             "rated_item":     {
-                "headline": "Welche Items werden hier verwendet?",
-                "short":    "Hier siehst du ein Item, das du im ersten Spiel als besonders persönlich eingestuft hast.",
-                "long":     "Hier siehst du ein Item, das du im ersten Spiel als besonders persönlich eingestuft hast.<br/><br/>Genauer gesagt handelt es sich dabei um eines der fünf am höchsten bewerteten Items. Nach dem ersten Spiel haben wir dir ein abschließendes Ranking gezeigt, welches danach sortiert war, wie persönlich ein Item für dich ist. Da besonders persönliche Items eine größere Rolle für den Schutz deiner Privatsphäre spielen, verwenden wir in diesem Spiel die ersten fünf Items des Rankings."
+                "short": "Hier siehst du ein Item, das du im ersten Teil als besonders persönlich eingestuft hast.",
+                "long":  "null"
             },
             "auto_list":      {
                 "headline": "Was ist eine intelligente Liste?",
@@ -234,15 +237,10 @@
                 "short":    "Von den 20 angezeigten Facebook-Nutzern sollst du möglichst schnell jene bestimmen, die das nebenstehende Item sehen können.",
                 "long":     "Von den 20 angezeigten Facebook-Nutzern sollst du möglichst schnell jene bestimmen, die das nebenstehende Item sehen können.<br/><br/>Unter den 20 Personen sind:<ul><li>Freunde, denen du das Item zugänglich gemacht hast</li><li>Freunde, denen du das Item nicht zugänglich gemacht hast</li><li>Fremde Facebook-Nutzer</li></ul>Innerhalb der obenstehenden Kategorien werden die angezeigten Personen immer wieder neu ausgewählt. Das heißt, jede neue Runde ist eine neue Herausforderung."
             },
-            "hangman_hearts": {
-                "headline": "Was bedeuten die Herzen?",
-                "short":    "Hier siehst du, wie viele Fehlversuche dir noch bleiben. Jedes Mal, wenn du eine Person anklickst, die das Item nicht sehen kann, verlierst du ein Herz. Außerdem wird ein Fehler mit Punktabzug bestraft.",
-                "long":     "null"
-            },
             "hangman_points": {
                 "headline": "Wie wird die Punktzahl bestimmt?",
                 "short":    "Mit Hilfe der Punktzahl wird deine Leistung in <i>Find Your Friends</i> gemessen.",
-                "long":     "Mit Hilfe der Punktzahl wird deine Leistung in <i>Find Your Friends</i> gemessen.<br/><br/>Zu Beginn startest du immer mit einem Wert von 10000. Dieser sinkt allerdings nach und nach, und zwar pro Sekunde um 200. Daher solltest du dich besser beeilen und möglichst schnell alle korrekten Profilbilder anklicken. Doch Vorsicht! Klickst du ein falsches an, so werden dir 1000 Punkte abgezogen."
+                "long":     "Mit Hilfe der Punktzahl wird deine Leistung in <i>Find Your Friends</i> gemessen.<br/><br/>Zu Beginn startest du immer mit einem Wert von 10000. Dieser sinkt allerdings nach und nach, und zwar pro Sekunde um 200. Daher solltest du dich besser beeilen und möglichst schnell alle korrekten Profilbilder anklicken. Doch Vorsicht! Klickst du ein falsches an, so werden dir 1000 Punkte abgezogen. Zusätzlich hast du die Möglichkeit, durch die Privatsphäre-Einstellungen deines Facebook-Accounts einen Bonus zu erhalten."
             }
         }
     }

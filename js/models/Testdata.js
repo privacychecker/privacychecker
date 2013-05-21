@@ -296,6 +296,17 @@
         },
 
         /**
+         * Validate if a palyer has too many public items and therefore cannot play
+         *
+         * @returns {boolean} True if a player has too many public items and no private
+         * @method hasTooManyPublic
+         */
+        hasTooManyPublic: function() {
+            var totalItemsPlayer = this.player.getPictures().length + this.player.getStatuses().length;
+            return (totalItemsPlayer >= this.MAX_INIT_ITEMS && !this.hasEnoughCombined());
+        },
+
+        /**
          * Collect a few pictures from the player's collected picture set.<br />
          * These pictures are later used for comparison.
          *
