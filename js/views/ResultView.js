@@ -71,7 +71,10 @@
             var points = 0,
                 createListWarning = false,
                 useListWarning = false,
-                publicItemWarning = false;
+                publicItemWarning = false,
+                scoreGood = false,
+                scoreNeutral = false,
+                scoreBad = false;
 
             // hangman points
             _.each( this.hangmanResults, function( result )
@@ -97,15 +100,29 @@
                 publicItemWarning = true;
                 this.recommendationsHelper.publish_items = true;
                 this.recommendationsHelper.defaults = true;
+                this.recommendationsHelper.hide_past = true;
             }
 
             points = points >= 0 ? points : 0;
+
+            if ( _.isBetween( points, pc.view.ResultView.POINTS_GOOD, 9999999999 ) ) {
+                scoreGood = true;
+            }
+            else if ( _.isBetween( points, pc.view.ResultView.POINTS_NEUTRAL, pc.view.ResultView.POINTS_GOOD ) ) {
+                scoreNeutral = true;
+            }
+            else if ( _.isBetween( points, 0, pc.view.ResultView.POINTS_NEUTRAL ) ) {
+                scoreBad = true;
+            }
 
             return {
                 points:                   points,
                 show_create_list_warning: createListWarning,
                 show_use_list_warning:    useListWarning,
-                show_public_warning:      publicItemWarning
+                show_public_warning:      publicItemWarning,
+                score_good:               scoreGood,
+                score_neutral:            scoreNeutral,
+                score_bad:                scoreBad
             };
 
         },
@@ -278,7 +295,10 @@
 
         POINTS_PER_CREATE_LIST: 1000,
         POINTS_PER_USE_LIST:    1000,
-        POINTS_PER_PUBLIC_ITEM: 200
+        POINTS_PER_PUBLIC_ITEM: 200,
+
+        POINTS_GOOD:    70000,
+        POINTS_NEUTRAL: 40000
 
     } );
 

@@ -197,6 +197,11 @@
                     userlistHash = [],
                     alreadyPicked = [];
 
+                // remove all exclude from include
+                includeComplete.remove(excludeComplete.models);
+                includeUser.remove(excludeComplete.models);
+                includeList.remove(excludeComplete.models);
+
                 console.debug( "[HangmanView] (1) Item", item, "has the following lists to choose users" );
                 console.debug( "[HangmanView] (2) includeComplete", includeComplete, "includeUser", includeUser,
                     "includeList", includeList );

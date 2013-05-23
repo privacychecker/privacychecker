@@ -157,7 +157,7 @@ hr {
         -ms-transition: all 1s;
         -o-transition: all 1s;
         transition: all 1s;
-        background: no-repeat 0 0;
+        background: url("background.jpg") no-repeat 0 0;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -187,57 +187,6 @@ hr {
         .btn {
             margin-top: 10px;
         }
-    }
-
-    @button-width: 60px;
-    .carousel-control {
-        .rounded-corners(0px);
-        position: absolute;
-        top: 250px;
-        left: 0;
-        width: @button-width;
-        height: 40px;
-        margin-top: -20px;
-        font-size: 60px;
-        font-weight: 100;
-        line-height: 30px;
-        color: #0088CC;
-        text-align: center;
-        background: #ffffff;
-        border: 2px solid #fbeed5;
-        opacity: 0.7;
-        filter: alpha(opacity=70);
-        transition: width 0.5s;
-        -moz-transition: width 0.5s ease-in-out; /* Firefox 4 */
-        -webkit-transition: width 0.5s ease-in-out; /* Safari and Chrome */
-        -o-transition: width 0.5s ease-in-out; /* Opera */
-        -webkit-border-top-left-radius: 5px;
-        -webkit-border-bottom-left-radius: 5px;
-        -moz-border-radius-topleft: 5px;
-        -moz-border-radius-bottomleft: 5px;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-
-        &.right {
-            left: auto;
-            right: 0;
-        }
-
-        &:hover {
-            width: @button-width + 20px;
-            color: #c09853;
-            text-decoration: none;
-            opacity: 0.9;
-            filter: alpha(opacity=90);
-        }
-
-    }
-
-    div.zipper {
-        background: url(zipper.png) repeat-x left bottom transparent;
-        width: 100%;
-        height: 22px;
-        margin-top: -22px;
     }
 
 }

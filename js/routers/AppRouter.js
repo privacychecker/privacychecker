@@ -153,6 +153,7 @@
             console.log( '[Controller] Showing whynogamehelp' );
             this.tipsView.renderRecommendation( undefined, {
                 defaults:  true,
+                publish_items: true,
                 hide_past: true
             } );
         },

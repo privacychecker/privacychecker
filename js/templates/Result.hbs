@@ -4,6 +4,15 @@
 <h1>
     <e class="large">&#127942;</e>
     {{totals.points}} {{t "app.results.points"}}
+    {{#if totals.score_good}}
+        <img src="assets/smily-good.png" class="smily" alt=":-)" />
+    {{/if}}
+    {{#if totals.score_neutral}}
+        <img src="assets/smily-neutral.png" class="smily" alt=":-|" />
+    {{/if}}
+    {{#if totals.score_bad}}
+        <img src="assets/smily-bad.png" class="smily" alt=":-(" />
+    {{/if}}
 </h1>
 
 <div class="share">
@@ -59,6 +68,7 @@
                     {{#each wrongs}}
                         <li style="background-image: url( https://graph.facebook.com/{{id}}/picture?width=50&height=50 );"
                             data-title="{{name}}"
+                            data-placement="left"
                             data-id="{{id}}"
                             data-name="{{name}}"></li>
                     {{/each}}
@@ -129,7 +139,7 @@
             <div class="warning">
                 <e>&#9888;</e>
                 {{t "app.results.lists_use_warn"}}
-                <a href="#rec-create">{{t "app.results.link_to_rec"}}</a>
+                <a href="#rec-use">{{t "app.results.link_to_rec"}}</a>
             </div>
         {{else}}
             <div class="body">
@@ -161,7 +171,7 @@
             </div>
                 <span class="warning">
                     <e>&#59140;</e>
-                    <a href="#rec-points">
+                    <a href="#tips">
                         {{t "app.results.public_link"}}</a>
                 </span>
 
