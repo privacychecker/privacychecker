@@ -41,7 +41,7 @@
 
         "home": {
             "name":        "Hello",
-            "headline":    "Do you know all of your friends?",
+            "headline":    "How well do you know your Facebook profile?",
             "description": "Find out through fun and games who can see your items and if you know who these people are.",
             "play_button": "Play"
         },
@@ -64,7 +64,7 @@
             "what_to_use":              "If you have enough items you can play the game with your photos, your status posts or with both of them. Otherwise your options are limited.",
             "play_with_images":         "Photos only",
             "play_with_statuses":       "Status posts only",
-            "play_with_both":           "Both of them",
+            "play_with_both":           "Both",
             "briefing":                 "Several of your <span data-tooltip-key=\"item\">items</span> published on Facebook compete against each other by pairs and you have to assess how <span data-tooltip-key=\"personal\">personal</span> they are for you. For this reason, we determine which items are particularly important to you and thereby need to be protected in particular in terms of your privacy.",
             "result":                   {
                 "final_ranking": "Itembattle - <span data-tooltip-key=\"ranking\">Ranking</span>"
@@ -93,10 +93,10 @@
             "play_again":        "Play again",
             "link_to_rec":       "You do not know how this works?",
             "item":              "Item",
-            "lists_create":      "Created custom lists",
+            "lists_create":      "Custom lists created",
             "lists_create_warn": "You have not created any lists yet.",
             "lists_user":        "Your custom lists",
-            "lists_use":         "Used lists",
+            "lists_use":         "Lists used",
             "lists_use_warn":    "You have not used any lists yet.",
             "public_warn":       "Public items",
             "public_link":       "Which hazards are connected to public items?",
@@ -159,7 +159,7 @@
                     "body":     "No data is transferred to another server. Thereby, all your personal data stays with you. Neither we nor other persons have access to your data."
                 },
                 "liability": {
-                    "headline": "Disclaimer of liability",
+                    "headline": "Legal disclaimer",
                     "body":     "Despite diligent inspection we cannot guarantee that there are no program errors. By using the app you agree that the authors cannot be made responsible for any errors that might arise."
                 }
             },
