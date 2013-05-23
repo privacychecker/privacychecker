@@ -41,7 +41,7 @@
 
         "home": {
             "name":        "Hallo",
-            "headline":    "Wie gut kennst du dein Profil?",
+            "headline":    "Wie gut kennst du dein Facebook-Profil?",
             "description": "Finde auf spielerische Weise heraus, wer deine Items sehen kann und ob du auch weißt, wer diese Leute sind.",
             "play_button": "Spielen"
         },
@@ -93,10 +93,10 @@
             "play_again":        "Nochmal spielen",
             "link_to_rec":       "Du weißt nicht, wie das geht?",
             "item":              "Item",
-            "lists_create":      "Selbst Listen erstellt",
+            "lists_create":      "Selbst erstellte Listen",
             "lists_create_warn": "Du hast bisher keine Listen erstellt.",
-            "lists_user":        "Deine selbst etstellten Listen",
-            "lists_use":         "Listen verwendet",
+            "lists_user":        "Deine selbst erstellten Listen",
+            "lists_use":         "Verwendete Listen",
             "lists_use_warn":    "Du hast bisher keine Listen verwendet.",
             "public_warn":       "Öffentliche Items",
             "public_link":       "Welche Gefahren sind mit öffentlichen Items verbunden?",
