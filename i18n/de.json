@@ -108,7 +108,7 @@
         "page":            {
             "trust": {
                 "headline":   "Vertrauen",
-                "short":      "Privacy Checker läuft ausschließlich in deinem Browser. Deine Daten bleiben daher immer bei dir und werden nicht an Dritte gesendet. Du bist dir trotzdem noch nicht sicher? Dann kannst du jederzeit nachsehen, denn der Quellcode des Privacy Checkers ist öffentlich verfügbar.",
+                "short":      "Face Inspector läuft ausschließlich in deinem Browser. Deine Daten bleiben daher immer bei dir und werden nicht an Dritte gesendet. Du bist dir trotzdem noch nicht sicher? Dann kannst du jederzeit nachsehen, denn der Quellcode des Face Inspector ist öffentlich verfügbar.",
                 "body":       "Diese App wurde mit dem Ziel entworfen, deine Daten möglichst gut zu schützen. Aus diesem Grund wird die App nur in deinem Browser ausgeführt und es werden keine persönlichen Daten an einen Server (auch nicht an unseren eigenen) gesendet. Um das Vertrauen in die App noch weiter zu erhöhen, haben wir den Quellcode der App veröffentlicht.",
                 "client":     {
                     "headline": "Technologie",
@@ -127,8 +127,8 @@
 
             "learn": {
                 "headline": "Worum geht's?",
-                "short":    "Privacy Checker ist eine unabhängige Facebook-App mit der du testen kannst, wie gut du dein Facebook-Profil und vor allem deine Privatsphäre-Einstellungen kennst. Spielerisch kannst du herausfinden, ob du weißt, wer deine Freunde sind, was sie von deinem Profil sehen können und wie du deine Sicherheits-Einstellungen verbessern kannst.",
-                "body":     "Privacy Checker zeigt dir spielerisch, wie öffentlich deine Items auf Facebook sind bzw. was deine Freunde alles von dir sehen können. Dadurch kannst du herausfinden, wie gut du dein eigenes Profil und deine getroffenen Einstellungen kennst. Eine persönliche, auf dein Profil zugeschnittene Auswertung mit Verbesserungsmöglichkeiten zeigen dir dein Ergebnis an und geben dir Tipps, wie du deine Privatsphäre noch besser schützen kannst."
+                "short":    "Face Inspector ist eine unabhängige Facebook-App mit der du testen kannst, wie gut du dein Facebook-Profil und vor allem deine Privatsphäre-Einstellungen kennst. Spielerisch kannst du herausfinden, ob du weißt, wer deine Freunde sind, was sie von deinem Profil sehen können und wie du deine Sicherheits-Einstellungen verbessern kannst.",
+                "body":     "Face Inspector zeigt dir spielerisch, wie öffentlich deine Items auf Facebook sind bzw. was deine Freunde alles von dir sehen können. Dadurch kannst du herausfinden, wie gut du dein eigenes Profil und deine getroffenen Einstellungen kennst. Eine persönliche, auf dein Profil zugeschnittene Auswertung mit Verbesserungsmöglichkeiten zeigen dir dein Ergebnis an und geben dir Tipps, wie du deine Privatsphäre noch besser schützen kannst."
             },
 
             "contact": {
