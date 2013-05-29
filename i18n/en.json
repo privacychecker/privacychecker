@@ -107,7 +107,7 @@
         "page":            {
             "trust": {
                 "headline":   "Trust",
-                "short":      "Privacy Checker runs exclusively in your browser. Thus, your data stays with you and is not sent to others. Anyway you are not sure? You can check anytime you want because the source code of Privacy Checker is publicly available.",
+                "short":      "Face Inspector runs exclusively in your browser. Thus, your data stays with you and is not sent to others. Anyway you are not sure? You can check anytime you want because the source code of Face Inspector is publicly available.",
                 "body":       "This app was developed with the aim to protect your data as good as possible. For this reason, the app is solely executed in your browser and no personal data is sent to another server (not even to ours). To enhance the trust in the app we published the source code which you can download below.",
                 "client":     {
                     "headline": "Technology",
@@ -126,8 +126,8 @@
 
             "learn": {
                 "headline": "What's it all about?",
-                "short":    "Privacy Checker is an independent Facebook application which allows you to test how well you know your Facebook profile and your privacy settings. Through fun and games you can find out if you know who your friends are, what they can see on your profile and how you can improve your security settings.",
-                "body":     "Privacy Checker shows you playfully how public your items are on Facebook and what your friends can see from your profile. Thereby, you can find out how well you know your own profile and your privacy settings. At the end you are given a personal evaluation and we offer you recommendations on how you can protect your privacy even better."
+                "short":    "Face Inspector is an independent Facebook application which allows you to test how well you know your Facebook profile and your privacy settings. Through fun and games you can find out if you know who your friends are, what they can see on your profile and how you can improve your security settings.",
+                "body":     "Face Inspector shows you playfully how public your items are on Facebook and what your friends can see from your profile. Thereby, you can find out how well you know your own profile and your privacy settings. At the end you are given a personal evaluation and we offer you recommendations on how you can protect your privacy even better."
             },
 
             "contact": {
