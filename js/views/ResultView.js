@@ -16,6 +16,7 @@
         initialize: function()
         {
             console.log( "[ResultView] Init" );
+            this.points = 0;
         },
 
         render: function()
@@ -57,6 +58,7 @@
 
             // enable tooltips
             this.$el.find( 'ul.wrongs > li' ).tooltip();
+            this.$el.find( '.multi' ).tooltip();
 
             // enable smoothscroll
             this.$el.smoothScroll();
@@ -115,6 +117,8 @@
                 scoreBad = true;
             }
 
+            this.points = points;
+
             return {
                 points:                   points,
                 show_create_list_warning: createListWarning,
@@ -134,6 +138,7 @@
                 userLists = player.getFriendLists().where( { type: pc.model.FacebookList.Type.USER } ),
                 autoLists = player.getFriendLists().where( { type: pc.model.FacebookList.Type.AUTO } ),
                 numberHasLists = userLists.length,
+                maxListsAllowed = pc.view.ResultView.MAX_LISTS_USED,
                 publicItems = [],
                 usedLists = [];
 
@@ -193,8 +198,8 @@
             }, this ) );
 
             return {
-                number_has_lists:    numberHasLists,
-                number_uses_lists:   usedLists.length,
+                number_has_lists:    numberHasLists < maxListsAllowed ? numberHasLists : maxListsAllowed,
+                number_uses_lists:   usedLists.length < maxListsAllowed ? usedLists.length : maxListsAllowed,
                 number_public_items: publicItems.length,
                 created_lists:       userLists.map( function( list )
                 {
@@ -285,20 +290,33 @@
 
         sharePointsCb: function()
         {
-            alert( "Nein, nein, nein" );
+            var points = this.points;
+
+            FB.ui({
+                method: 'feed',
+                link: 'http://www.faceinspector.de',
+                name: $.t(pc.view.ResultView.LANG_SHARE_TITLE, {points: points}),
+                description: $.t(pc.view.ResultView.LANG_SHARE_BODY)
+            }, function(response) {
+                console.info("Posted to user's wall:", response);
+            });
         }
 
     }, {
         LANG_HANGMAN_TIMEOUT: "app.results.timeout",
         LANG_HANGMAN_LOST:    "app.results.lost",
         LANG_SECONDS:         "app.common.seconds",
+        LANG_SHARE_TITLE: "app.results.share.headline",
+        LANG_SHARE_BODY: "app.results.share.body",
 
         POINTS_PER_CREATE_LIST: 1000,
         POINTS_PER_USE_LIST:    1000,
         POINTS_PER_PUBLIC_ITEM: 200,
 
         POINTS_GOOD:    70000,
-        POINTS_NEUTRAL: 40000
+        POINTS_NEUTRAL: 40000,
+
+        MAX_LISTS_USED: 5
 
     } );
 

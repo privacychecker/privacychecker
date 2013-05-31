@@ -95,13 +95,17 @@
             "item":              "Item",
             "lists_create":      "Custom lists created",
             "lists_create_warn": "You have not created any lists yet.",
-            "lists_user":        "Your custom lists",
             "lists_use":         "Lists used",
             "lists_use_warn":    "You have not used any lists yet.",
+            "lists_max_ignored": "Up to five lists",
             "public_warn":       "Public items",
             "public_link":       "Which hazards are connected to public items?",
             "public_score":      "Therefore, your score is decreased.",
-            "total_points":      "Total"
+            "total_points":      "Total",
+            "share":             {
+                "headline": "I scored __points__ points in Face Inspector!",
+                "body":     "At the same time, I playfully learned something about my privacy settings on Facebook and was provided with helpful tips on how to improve them. Just give it a try!"
+            }
         },
 
         "page":            {
