@@ -73,7 +73,7 @@
 
         "hangman": {
             "name":     "Find Your Friends",
-            "briefing": "In <i>Find Your Friends</i> we test if you know who exactly you have given access to a certain <span data-tooltip-key=\"item\">item</span> and how fast you know that. Your task is to find – in a set of <span data-tooltip-key=\"hangman_users\">randomly selected</span> friends of yours and other Facebook users - all the persons who can see the depicted items as fast as possible. Your <span data-tooltip-key=\"hangman_points\">score</span> is determined based on the correctness and the speed of your answers and shows how well you accomplished your task.",
+            "briefing": "In <i>Find Your Friends</i> we test if you know whom you have given access to a certain <span data-tooltip-key=\"item\">item</span> and how fast you know that. Your task is to find – in a set of <span data-tooltip-key=\"hangman_users\">randomly selected</span> friends of yours and other Facebook users - all the persons who can see the depicted items as fast as possible. Your <span data-tooltip-key=\"hangman_points\">score</span> is determined based on the correctness and the speed of your answers and shows how well you accomplished your task.",
             "game":     {
                 "headline":        "Select the persons that can see the following <span data-tooltip-key=\"rated_item\">item</span>!",
                 "lost":            "You lost!",
@@ -151,7 +151,7 @@
                     },
                     "management":       {
                         "headline": "Project management",
-                        "body":     "Prof. Dr. Günther Pernul"
+                        "body":     "Prof. Dr. Günther Pernul, Alexandra Cetto, Christian Richthammer"
                     },
                     "contact":          {
                         "mail": "Mail",
