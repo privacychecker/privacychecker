@@ -19,7 +19,7 @@
         "common": {
             "points":       "Score",
             "seconds":      "Seconds",
-            "duration":     "Duration",
+            "duration":     "Time",
             "hint":         "Hint",
             "only_numbers": "Please enter a positive number.",
             "more_info":    "More info",

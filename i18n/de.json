@@ -19,7 +19,7 @@
         "common": {
             "points":       "Punkte",
             "seconds":      "Sekunden",
-            "duration":     "Dauer",
+            "duration":     "Zeit",
             "hint":         "Hinweis",
             "only_numbers": "Bitte gib eine positive Zahl ein.",
             "more_info":    "Mehr Infos",
