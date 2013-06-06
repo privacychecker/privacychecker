@@ -17,7 +17,7 @@
         MAX_INIT_ITEMS: 12,
         TEST_ROUNDS:    20,
         INITIAL_SCORE:  1000,
-        TEST_DATA_SIZE: 7,
+        TEST_DATA_SIZE: 5,
 
         /**
          * Create a new set of testdata

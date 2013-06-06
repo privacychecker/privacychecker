@@ -198,8 +198,8 @@
             }, this ) );
 
             return {
-                number_has_lists:    numberHasLists < maxListsAllowed ? numberHasLists : maxListsAllowed,
-                number_uses_lists:   usedLists.length < maxListsAllowed ? usedLists.length : maxListsAllowed,
+                number_has_lists: numberHasLists < maxListsAllowed ? numberHasLists : maxListsAllowed,
+                number_uses_lists: usedLists.length < maxListsAllowed ? usedLists.length : maxListsAllowed,
                 number_public_items: publicItems.length,
                 created_lists:       userLists.map( function( list )
                 {
@@ -292,29 +292,34 @@
         {
             var points = this.points;
 
-            FB.ui({
-                method: 'feed',
-                link: 'http://www.faceinspector.de',
-                name: $.t(pc.view.ResultView.LANG_SHARE_TITLE, {points: points}),
-                description: $.t(pc.view.ResultView.LANG_SHARE_BODY)
-            }, function(response) {
-                console.info("Posted to user's wall:", response);
-            });
+            FB.ui( {
+                method:      'feed',
+                link:        'http://www.faceinspector.org',
+                picture:     'http://pcrw00311.uni-regensburg.de/pc/logo-share.jpg?v=1',
+                name:        $.t( pc.view.ResultView.LANG_SHARE_TITLE, {points: points} ),
+                description: $.t( pc.view.ResultView.LANG_SHARE_BODY ), actions: [
+                    { 'name': $.t( pc.view.ResultView.LANG_SHARE_PLAY ), 'link': 'http://www.faceinspector.org' }
+                ]
+            }, function( response )
+            {
+                console.info( "Posted to user's wall:", response );
+            } );
         }
 
     }, {
         LANG_HANGMAN_TIMEOUT: "app.results.timeout",
         LANG_HANGMAN_LOST:    "app.results.lost",
         LANG_SECONDS:         "app.common.seconds",
-        LANG_SHARE_TITLE: "app.results.share.headline",
-        LANG_SHARE_BODY: "app.results.share.body",
+        LANG_SHARE_TITLE:     "app.results.share.headline",
+        LANG_SHARE_BODY:      "app.results.share.body",
+        LANG_SHARE_PLAY:      "app.results.share.play",
 
         POINTS_PER_CREATE_LIST: 1000,
         POINTS_PER_USE_LIST:    1000,
         POINTS_PER_PUBLIC_ITEM: 200,
 
-        POINTS_GOOD:    70000,
-        POINTS_NEUTRAL: 40000,
+        POINTS_GOOD:    25000,
+        POINTS_NEUTRAL: 12500,
 
         MAX_LISTS_USED: 5
 

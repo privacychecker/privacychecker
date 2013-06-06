@@ -206,7 +206,7 @@
             this.alreadySearched = this.alreadySearched === undefined ? [] : this.alreadySearched;
 
             while ( !randomName || _.contains( this.alreadySearched, randomName ) ) {
-                randomName = pc.common.FacebookRandomCollector.USER_TO_SEARCH[$.randomBetween( 0,
+                randomName = pc.common.FacebookRandomCollector.USER_TO_SEARCH[_.random( 0,
                     pc.common.FacebookRandomCollector.USER_TO_SEARCH.length - 1 )];
             }
             this.alreadySearched.push( randomName );

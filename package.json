@@ -50,13 +50,10 @@
       "bootstrap": "github:twitter/bootstrap/v2.3.1",
       "handlebars": "github:wycats/handlebars.js/v1.0.10",
       "i18next": "github:jamuhl/i18next/1.6.0",
-      "jquery.center": "github:dreamerslab/jquery.center/v1.1.0",
-      "jquery.random": "http://www.rockechris.com/jquery/jquery.random.js",
       "EloRating-JavaScript": "github:hugodias/EloRating-JavaScript/master",
       "jquery.transit": "github:rstacruz/jquery.transit/v0.9.9",
       "jquery-smooth-scroll": "github:kswedberg/jquery-smooth-scroll/1.4.10",
       "jquery.imgpreload": "github:farinspace/jquery.imgpreload/v1.3.20120217",
-      "imgLiquid": "github:karacas/imgLiquid/0.9.901",
       "moment": "github:timrwood/moment/2.0.0"
     }
   }

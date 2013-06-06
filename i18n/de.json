@@ -73,7 +73,7 @@
 
         "hangman": {
             "name":     "Find Your Friends",
-            "briefing": "In <i>Find Your Friends</i> wird getestet, ob du weißt, wem du Zugriff auf ein <span data-tooltip-key=\"item\">Item</span> gegeben hast und auch, wie schnell du dies weißt. Deine Aufgabe ist es, in einer Menge von <span data-tooltip-key=\"hangman_users\">zufällig ausgewählten</span> Freunden und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte Item sehen können. Anhand der Korrektheit und der Geschwindigkeit deiner Lösung wird eine <span data-tooltip-key=\"hangman_points\">Punktzahl</span> bestimmt, die dir zeigt, wie gut du die Aufgabe gelöst hast.",
+            "briefing": "Nun wird getestet, ob du weißt, wem du Zugriff auf ein <span data-tooltip-key=\"item\">Item</span> gegeben hast und auch, wie schnell du dies weißt. Deine Aufgabe ist es, in einer Menge von <span data-tooltip-key=\"hangman_users\">zufällig ausgewählten</span> Freunden und anderen Facebook-Nutzern möglichst schnell alle Personen zu finden, die das gezeigte Item sehen können. Anhand der Korrektheit und der Geschwindigkeit deiner Lösung wird eine <span data-tooltip-key=\"hangman_points\">Punktzahl</span> bestimmt, die dir zeigt, wie gut du die Aufgabe gelöst hast.",
             "game":     {
                 "headline":        "Wähle die Personen, die das folgende <span data-tooltip-key=\"rated_item\">Item</span> sehen können!",
                 "lost":            "Du hast verloren!",
@@ -104,7 +104,8 @@
             "total_points":      "Gesamt",
             "share":             {
                 "headline": "Ich habe __points__ Punkte bei Face Inspector erzielt!",
-                "body":     "Nebenbei habe ich auf spielerische Weise etwas über meine Privatsphäre-Einstellungen auf Facebook erfahren und hilfreiche Tipps erhalten, wie ich diese verbessern kann. Probier es doch auch mal aus!"
+                "body":     "Nebenbei habe ich auf spielerische Weise etwas über meine Privatsphäre-Einstellungen auf Facebook erfahren und hilfreiche Tipps erhalten, wie ich diese verbessern kann. Probier es doch auch mal aus!",
+                "play":     "Schlage diese Punktzahl!"
             }
         },
 
@@ -164,7 +165,7 @@
                 },
                 "liability": {
                     "headline": "Haftungsausschluss",
-                    "body":     "Trotz sorgfältiger Prüfung können Programmfehler nicht ausgeschlossen werden. Mit der Benutzung dieser App stimmst du zu, dass die Autoren nicht für etwaige Schäden verantwortlich gemacht werden."
+                    "body":     "Trotz sorgfältiger Prüfungen können Programmfehler nicht ausgeschlossen werden. Mit der Benutzung dieser App stimmst du zu, dass die Autoren nicht für etwaige Schäden verantwortlich gemacht werden."
                 }
             },
             "footer":  {
