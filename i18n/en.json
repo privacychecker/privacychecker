@@ -132,7 +132,8 @@
             "learn": {
                 "headline": "What's it all about?",
                 "short":    "Face Inspector is an independent Facebook application which allows you to test how well you know your Facebook profile and your privacy settings. Through fun and games you can find out if you know who your friends are, what they can see on your profile and how you can improve your security settings.",
-                "body":     "Face Inspector shows you playfully how public your items are on Facebook and what your friends can see from your profile. Thereby, you can find out how well you know your own profile and your privacy settings. At the end you are given a personal evaluation and we offer you recommendations on how you can protect your privacy even better."
+                "body":     "Face Inspector shows you playfully how public your items are on Facebook and what your friends can see from your profile. Thereby, you can find out how well you know your own profile and your privacy settings. At the end you are given a personal evaluation and we offer you recommendations on how you can protect your privacy even better.",
+                "help":     "Game instructions (german)"
             },
 
             "contact": {
