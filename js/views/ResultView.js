@@ -285,7 +285,7 @@
         playAgainCb: function()
         {
             console.log( "[ResultView] Player wants to play again" );
-            document.location.reload();
+            document.location.href = "http://www.friend-inspector.org";
         },
 
         sharePointsCb: function()
@@ -294,11 +294,11 @@
 
             FB.ui( {
                 method:      'feed',
-                link:        'http://www.faceinspector.org',
-                picture:     'http://pcrw00311.uni-regensburg.de/pc/logo-share.jpg?v=1',
+                link:        'http://www.friend-inspector.org',
+                picture:     'http://www.friend-inspector.org/logo-share.jpg?v=123',
                 name:        $.t( pc.view.ResultView.LANG_SHARE_TITLE, {points: points} ),
                 description: $.t( pc.view.ResultView.LANG_SHARE_BODY ), actions: [
-                    { 'name': $.t( pc.view.ResultView.LANG_SHARE_PLAY ), 'link': 'http://www.faceinspector.org' }
+                    { 'name': $.t( pc.view.ResultView.LANG_SHARE_PLAY ), 'link': 'http://www.friend-inspector.org' }
                 ]
             }, function( response )
             {
@@ -318,8 +318,8 @@
         POINTS_PER_USE_LIST:    1000,
         POINTS_PER_PUBLIC_ITEM: 200,
 
-        POINTS_GOOD:    25000,
-        POINTS_NEUTRAL: 12500,
+        POINTS_GOOD:    32500,
+        POINTS_NEUTRAL: 15000,
 
         MAX_LISTS_USED: 5
 

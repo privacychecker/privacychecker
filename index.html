@@ -3,11 +3,18 @@
 
 <head>
     <title>
-        Face Inspector
+        Friend Inspector
     </title>
 
+    <!-- facebook only allows http://WWW... -->
+    <script type="text/javascript">
+        if (document.location.href.indexOf("http://www.friend-inspector.org") < 0){
+          document.location.href = "http://www.friend-inspector.org/";
+        }
+    </script>
+
     <link href='http://fonts.googleapis.com/css?family=Kaushan+Script|Patrick+Hand+SC' rel='stylesheet' type='text/css'>
-    <link href="assets/main.css" rel="stylesheet">
+    <link href="assets/main.css" rel="stylesheet" type='text/css'>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -36,7 +43,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <span class="brand">Face Inspector</span>
+                <span class="brand">
+                    <img src="assets/logo-mid.png" />
+                    Friend Inspector
+                </span>
 
                 <div class="nav-collapse collapse">
                     <ul class="nav">
@@ -310,7 +320,7 @@
                             _headline_
                         </h3>
 
-                        <a href="mailto:michael.netter@wiwi.uni-regensburg.de?subject=PrivacyChecker"
+                        <a href="mailto:mail@friend-inspector.org"
                            style="margin-right: 10px" class="btn btn-small btn-primary">
                             <e>&#9993;</e> <span data-i18n="app.page.contact.team.contact.mail">_mail_</span></a>
 
