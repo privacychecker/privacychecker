@@ -48,7 +48,7 @@
 
         "collect": {
             "name":                "Sammeln",
-            "headline":            "Friend Inspector brauchen noch ein paar Daten von dir!",
+            "headline":            "Friend Inspector braucht noch ein paar Daten von dir!",
             "description":         "In diesem Schritt werden die Daten von deinem Facebook-Profil, die für die Spiele benötigt werden, lokal auf deinem Rechner gespeichert.",
             "next_button_loading": "Daten werden geladen...",
             "generic_error":       "Beim Abrufen der Daten ist leider ein Fehler aufgetreten. Bitte starte das Spiel neu.",
@@ -162,7 +162,7 @@
                 },
                 "privacy":   {
                     "headline": "Privacy policy",
-                    "body":     "Bei Besuch dieser Webseite werden Daten über den Aufruf (bspw. Protokollinformationen wie IP Adresse sowie Herkunft und Datum des Aufrufs) gespeichert und ausschließlich für statistische Zwecke ausgewertet. Diese Daten werden nicht an Dritte weitergegeben und nicht mit anderen Daten verknüpft. Diese Webseite verwendet Cookies um Daten zu auf ihrem Rechner zwischenzuspeichern. Daten ihres Facebook Accounts werden weder an diesen noch an einen anderen Server übertragen. Diese Daten werden ausschließlich lokal auf ihrem Rechner verarbeitet. Sie haben das Recht Auskunft über die zu Ihnen gespeicherten Daten zu erhalten. Ihre Anfrage richten Sie bitte schriftlich oder per E-Mail an die nebenstehenden Adressen."
+                    "body":     "Bei Besuch dieser Webseite werden Daten über den Aufruf (bspw. Protokollinformationen wie IP Adresse sowie Herkunft und Datum des Aufrufs) gespeichert und ausschließlich für statistische Zwecke ausgewertet. Diese Daten werden nicht an Dritte weitergegeben und nicht mit anderen Daten verknüpft. Diese Webseite verwendet Cookies um Daten auf Ihrem Rechner zwischenzuspeichern. Daten Ihres Facebook-Accounts werden weder an diesen noch an einen anderen Server übertragen. Diese Daten werden ausschließlich lokal auf Ihrem Rechner verarbeitet. Sie haben das Recht Auskunft über die zu Ihnen gespeicherten Daten zu erhalten. Ihre Anfrage richten Sie bitte schriftlich oder per E-Mail an die nebenstehenden Adressen."
                 },
                 "liability": {
                     "headline": "Haftungsausschluss",
