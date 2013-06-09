@@ -295,7 +295,7 @@
             FB.ui( {
                 method:      'feed',
                 link:        'http://www.friend-inspector.org',
-                picture:     'http://www.friend-inspector.org/logo-share.jpg?v=123',
+                picture:     'http://www.friend-inspector.org/assets/logo-share.jpg?v=123',
                 name:        $.t( pc.view.ResultView.LANG_SHARE_TITLE, {points: points} ),
                 description: $.t( pc.view.ResultView.LANG_SHARE_BODY ), actions: [
                     { 'name': $.t( pc.view.ResultView.LANG_SHARE_PLAY ), 'link': 'http://www.friend-inspector.org' }

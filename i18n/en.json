@@ -4,7 +4,7 @@
         "header": {
             "start":            "Start",
             "change_language":  "Change language",
-            "flag_id":          "assets/385e0883b38276c978732d5b98944a40a2ffa0ec4e36c124cd417f4cbb80373b.png",
+            "flag_id":          "assets/us.png",
             "language_confirm": "Willst du die Sprache wirklich wechseln? Das Spiel wird hierbei abgebrochen!\n Do you really want to change the language? The game will be aborted then!",
             "hi":               "Logged in as: __name__",
             "hi_not_loggedin":  "",

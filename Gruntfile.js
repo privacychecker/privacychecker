@@ -62,7 +62,6 @@ module.exports = function( grunt )
                 files: [
                     {
                         src:     [
-                            '<%= dir.img %>/logo-share.jpg',
                             '<%= dir.img %>/favicon.ico'
                         ],
                         dest:    'build/',
