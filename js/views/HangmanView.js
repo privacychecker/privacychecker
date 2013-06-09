@@ -174,6 +174,7 @@
 
                 var player = pc.model.FacebookPlayer.getInstance(),
                     privacy = item.get( 'privacy' ),
+                    friends = player.getFriends(),
                     includeComplete = new pc.model.FacebookUserCollection( _.shuffle( privacy.get( 'include' ).models ) ), // with friends and player!
                     includeUser = new pc.model.FacebookUserCollection( _.shuffle( privacy.get( 'includeUser' ).models ) ),
                     includeList = new pc.model.FacebookUserCollection(
@@ -193,9 +194,18 @@
                             }
                         ) ) )
                     ),
+                    excludedFriends = new pc.model.FacebookUserCollection( friends.filter( function( friend )
+                    {
+                        return !includeComplete.contains( friend );
+                    } ) ),
                     foreigners = new pc.model.FacebookUserCollection( _.shuffle( player.getForeigners().models ) ),
                     userlistHash = [],
                     alreadyPicked = [];
+
+                // remove all exclude from include
+                includeComplete.remove( excludeComplete.models );
+                includeUser.remove( excludeComplete.models );
+                includeList.remove( excludeComplete.models );
 
                 console.debug( "[HangmanView] (1) Item", item, "has the following lists to choose users" );
                 console.debug( "[HangmanView] (2) includeComplete", includeComplete, "includeUser", includeUser,
@@ -257,6 +267,14 @@
                 // excludeComplete
                 userlistHash = _.union( userlistHash, this._pickFromList(
                     excludeComplete,
+                    pc.view.HangmanView.MAX_USERS - userlistHash.length,
+                    alreadyPicked,
+                    false
+                ) );
+
+                // include all friends not in includelist
+                userlistHash = _.union( userlistHash, this._pickFromList(
+                    excludedFriends,
                     pc.view.HangmanView.MAX_USERS - userlistHash.length,
                     alreadyPicked,
                     false

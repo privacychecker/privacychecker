@@ -16,6 +16,7 @@
         initialize: function()
         {
             console.log( "[ResultView] Init" );
+            this.points = 0;
         },
 
         render: function()
@@ -57,6 +58,7 @@
 
             // enable tooltips
             this.$el.find( 'ul.wrongs > li' ).tooltip();
+            this.$el.find( '.multi' ).tooltip();
 
             // enable smoothscroll
             this.$el.smoothScroll();
@@ -71,7 +73,10 @@
             var points = 0,
                 createListWarning = false,
                 useListWarning = false,
-                publicItemWarning = false;
+                publicItemWarning = false,
+                scoreGood = false,
+                scoreNeutral = false,
+                scoreBad = false;
 
             // hangman points
             _.each( this.hangmanResults, function( result )
@@ -97,15 +102,31 @@
                 publicItemWarning = true;
                 this.recommendationsHelper.publish_items = true;
                 this.recommendationsHelper.defaults = true;
+                this.recommendationsHelper.hide_past = true;
             }
 
             points = points >= 0 ? points : 0;
+
+            if ( _.isBetween( points, pc.view.ResultView.POINTS_GOOD, 9999999999 ) ) {
+                scoreGood = true;
+            }
+            else if ( _.isBetween( points, pc.view.ResultView.POINTS_NEUTRAL, pc.view.ResultView.POINTS_GOOD ) ) {
+                scoreNeutral = true;
+            }
+            else if ( _.isBetween( points, 0, pc.view.ResultView.POINTS_NEUTRAL ) ) {
+                scoreBad = true;
+            }
+
+            this.points = points;
 
             return {
                 points:                   points,
                 show_create_list_warning: createListWarning,
                 show_use_list_warning:    useListWarning,
-                show_public_warning:      publicItemWarning
+                show_public_warning:      publicItemWarning,
+                score_good:               scoreGood,
+                score_neutral:            scoreNeutral,
+                score_bad:                scoreBad
             };
 
         },
@@ -117,6 +138,7 @@
                 userLists = player.getFriendLists().where( { type: pc.model.FacebookList.Type.USER } ),
                 autoLists = player.getFriendLists().where( { type: pc.model.FacebookList.Type.AUTO } ),
                 numberHasLists = userLists.length,
+                maxListsAllowed = pc.view.ResultView.MAX_LISTS_USED,
                 publicItems = [],
                 usedLists = [];
 
@@ -176,8 +198,8 @@
             }, this ) );
 
             return {
-                number_has_lists:    numberHasLists,
-                number_uses_lists:   usedLists.length,
+                number_has_lists: numberHasLists < maxListsAllowed ? numberHasLists : maxListsAllowed,
+                number_uses_lists: usedLists.length < maxListsAllowed ? usedLists.length : maxListsAllowed,
                 number_public_items: publicItems.length,
                 created_lists:       userLists.map( function( list )
                 {
@@ -263,22 +285,43 @@
         playAgainCb: function()
         {
             console.log( "[ResultView] Player wants to play again" );
-            document.location.reload();
+            document.location.href = "http://www.friend-inspector.org";
         },
 
         sharePointsCb: function()
         {
-            alert( "Nein, nein, nein" );
+            var points = this.points;
+
+            FB.ui( {
+                method:      'feed',
+                link:        'http://www.friend-inspector.org',
+                picture:     'http://www.friend-inspector.org/assets/logo-share.jpg?v=123',
+                name:        $.t( pc.view.ResultView.LANG_SHARE_TITLE, {points: points} ),
+                description: $.t( pc.view.ResultView.LANG_SHARE_BODY ), actions: [
+                    { 'name': $.t( pc.view.ResultView.LANG_SHARE_PLAY ), 'link': 'http://www.friend-inspector.org' }
+                ]
+            }, function( response )
+            {
+                console.info( "Posted to user's wall:", response );
+            } );
         }
 
     }, {
         LANG_HANGMAN_TIMEOUT: "app.results.timeout",
         LANG_HANGMAN_LOST:    "app.results.lost",
         LANG_SECONDS:         "app.common.seconds",
+        LANG_SHARE_TITLE:     "app.results.share.headline",
+        LANG_SHARE_BODY:      "app.results.share.body",
+        LANG_SHARE_PLAY:      "app.results.share.play",
 
         POINTS_PER_CREATE_LIST: 1000,
         POINTS_PER_USE_LIST:    1000,
-        POINTS_PER_PUBLIC_ITEM: 200
+        POINTS_PER_PUBLIC_ITEM: 200,
+
+        POINTS_GOOD:    32500,
+        POINTS_NEUTRAL: 15000,
+
+        MAX_LISTS_USED: 5
 
     } );
 

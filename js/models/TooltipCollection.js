@@ -14,6 +14,10 @@
     ns.TooltipCollection = Backbone.Collection.extend( {
         model: pc.model.Tooltip,
 
+        initialize: function() {
+            this.openTooltips = [];
+        },
+
         pin: function( $el, tooltipId )
         {
             if ( !($el instanceof jQuery) ) {
@@ -64,19 +68,28 @@
             {
                 if ( $el.data( '__popover' ) ) return;
 
-                var closeCb = function()
+                var closeCb = _.bind(function()
                 {
                     $( document.body ).unbind( 'click', closeCb );
                     $el.next( '.popover' ).first().unbind( 'mouseleave', closeCb );
 
                     $el.data( '__popover', false );
                     $el.popover( 'hide' );
-                };
+
+                    this.openTooltips = _.without(this.openTooltips, $el);
+                }, this);
+
+                _.each(this.openTooltips, function($el) {
+                    $el.trigger('manual-close');
+                });
 
                 $( document.body ).bind( 'click', closeCb );
                 $el.data( '__popover', true );
                 $el.popover( 'show' );
                 $el.next( '.popover' ).first().bind( 'mouseleave', closeCb );
+                $el.on('manual-close', closeCb );
+
+                this.openTooltips.push($el);
             }, this ) );
 
         },

@@ -1,8 +1,8 @@
 {
-  "name": "privacy checker",
-  "description": "analyze facebook privacy knowledge",
-  "version": "0.0.1",
-  "homepage": "http://www-ifs.uni-regensburg.de/",
+  "name": "Face Inspector",
+  "description": "Playfully discover who can see your shared items and get advice to improve your privacy.",
+  "version": "0.1.0",
+  "homepage": "http://www.friend-inspector.org",
   "author": {
     "name": "Christian Roth",
     "email": "christian.roth@port17.de",
@@ -17,8 +17,8 @@
   },
   "licenses": [
     {
-      "type": "MIT",
-      "url": "https://github.com/cr0/privacychecker/blob/master/LICENSE-MIT"
+      "type": "Apache License 2.0",
+      "url": "https://github.com/cr0/privacychecker/blob/master/LICENSE"
     }
   ],
   "devDependencies": {
@@ -50,13 +50,10 @@
       "bootstrap": "github:twitter/bootstrap/v2.3.1",
       "handlebars": "github:wycats/handlebars.js/v1.0.10",
       "i18next": "github:jamuhl/i18next/1.6.0",
-      "jquery.center": "github:dreamerslab/jquery.center/v1.1.0",
-      "jquery.random": "http://www.rockechris.com/jquery/jquery.random.js",
       "EloRating-JavaScript": "github:hugodias/EloRating-JavaScript/master",
       "jquery.transit": "github:rstacruz/jquery.transit/v0.9.9",
       "jquery-smooth-scroll": "github:kswedberg/jquery-smooth-scroll/1.4.10",
       "jquery.imgpreload": "github:farinspace/jquery.imgpreload/v1.3.20120217",
-      "imgLiquid": "github:karacas/imgLiquid/0.9.901",
       "moment": "github:timrwood/moment/2.0.0"
     }
   }

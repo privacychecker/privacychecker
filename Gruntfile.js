@@ -57,7 +57,21 @@ module.exports = function( grunt )
                         expand:  true
                     }
                 ]
+            },
+            logos:  {
+                files: [
+                    {
+                        src:     [
+                            '<%= dir.img %>/favicon.ico'
+                        ],
+                        dest:    'build/',
+                        filter:  'isFile',
+                        flatten: true,
+                        expand:  true
+                    }
+                ]
             }
+
         },
 
         jshint: {
@@ -136,10 +150,9 @@ module.exports = function( grunt )
                 src:  [
                     '<%= dir.vendor %>/underscore.js',
                     // jquery
-                    '<%= dir.vendor %>/jquery.js', '<%= dir.vendor %>/jquery.random.js',
-                    '<%= dir.vendor %>/jquery.center.js', '<%= dir.vendor %>/jquery.transit.js',
+                    '<%= dir.vendor %>/jquery.js', '<%= dir.vendor %>/jquery.transit.js',
                     '<%= dir.vendor %>/jquery-smooth-scroll/jquery.smooth-scroll.js',
-                    '<%= dir.vendor %>/jquery.imgpreload.js', '<%= dir.vendor %>/imgLiquid/src/js/imgLiquid.js',
+                    '<%= dir.vendor %>/jquery.imgpreload.js',
                     // backbone
                     '<%= dir.vendor %>/backbone.js', '<%= dir.vendor %>/backbone-subroute/backbone.subroute.js',
                     // bootstrap
@@ -314,7 +327,7 @@ module.exports = function( grunt )
 
     // build tasks
     grunt.registerTask( 'prod', [
-        'clean', 'jshint', 'copy:assets', 'copy:i18n', 'less:prod', 'nodeunit:models', 'nodeunit:views',
+        'clean', 'jshint', 'copy', 'less:prod', 'nodeunit:models', 'nodeunit:views',
         'nodeunit:base', 'concat',
         'handlebars', 'strip:dist', 'uglify', 'cssmin', 'targethtml', 'ver:prod', 'yuidoc', 'contributors'
     ] );

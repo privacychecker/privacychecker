@@ -29,3 +29,6 @@ pc = {
     router:   {},
     template: {}
 };
+
+// workaround for internet explorer not supporting debug
+if (!window.console.debug) window.console.debug = function() {};

@@ -52,8 +52,8 @@
             FB.Event.subscribe( 'auth.authResponseChange', _.bind( this._authResponseChangeCb, this ) );
 
             FB.init( {
-                //appId:  '477009922338123',
-                appId:  '508385819190108',
+                appId:  '604159452941281',
+                //appId:  '508385819190108',
                 status: true,
                 cookie: true
             } );

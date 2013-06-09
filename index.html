@@ -3,11 +3,24 @@
 
 <head>
     <title>
-        privacy checker
+        Friend Inspector
     </title>
 
+    <!-- facebook only allows http://WWW... -->
+    <script type="text/javascript">
+        if (document.location.href.indexOf("http://www.friend-inspector.org") < 0){
+          document.location.href = "http://www.friend-inspector.org/";
+        }
+    </script>
+
+    <meta property="og:title" content="Friend Inspector"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://www.friend-inspector.org/" />
+    <meta property="og:image" content="http://www.friend-inspector.org/assets/logo-share.jpg?v=123"/>
+    <meta property="fb:app_id" content="604159452941281" />
+
     <link href='http://fonts.googleapis.com/css?family=Kaushan+Script|Patrick+Hand+SC' rel='stylesheet' type='text/css'>
-    <link href="assets/main.css" rel="stylesheet">
+    <link href="assets/main.css" rel="stylesheet" type='text/css'>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -36,7 +49,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <span class="brand">Privacy Checker</span>
+                <span class="brand">
+                    <img src="assets/logo-mid.png" />
+                    Friend Inspector
+                </span>
 
                 <div class="nav-collapse collapse">
                     <ul class="nav">
@@ -75,7 +91,7 @@
 
     <div class="carousel-inner">
         <div class="item active">
-            <div class="background" style="background-image: url(assets/bgimage5.jpg);">
+            <div class="background">
             </div>
             <div class="container">
                 <div class="carousel-caption home">
@@ -86,7 +102,7 @@
             </div>
         </div>
         <div class="item">
-            <div class="background" style="background-image: url(assets/bgimage5.jpg);">
+            <div class="background">
             </div>
             <div class="container">
                 <div class="carousel-caption collect">
@@ -97,7 +113,7 @@
             </div>
         </div>
         <div class="item">
-            <div class="background" style="background-image: url(assets/bgimage5.jpg);">
+            <div class="background">
             </div>
             <div class="container">
                 <div class="carousel-caption select">
@@ -108,7 +124,7 @@
             </div>
         </div>
         <div class="item">
-            <div class="background" style="background-image: url(assets/bgimage5.jpg);">
+            <div class="background">
             </div>
             <div class="container">
                 <div class="carousel-caption hangman">
@@ -119,7 +135,7 @@
             </div>
         </div>
         <div class="item">
-            <div class="background" style="background-image: url(assets/bgimage5.jpg);">
+            <div class="background">
             </div>
             <div class="container">
                 <div class="carousel-caption results">
@@ -131,8 +147,9 @@
         </div>
     </div>
 
-    <div class="fb-like" data-send="false" data-layout="button_count" data-width="350"
-         data-show-faces="true">
+    <div class="ad-image">
+        <div class="fb-like" data-send="false" data-layout="button_count" data-width="350" data-show-faces="true"></div>
+        <img src="assets/unilogo.png" title="Uni Regensburg" alt="Uni Regensburg" />
     </div>
 </section>
 
@@ -209,6 +226,8 @@
                 <p data-i18n="app.page.learn.body">
                     _body_
                 </p>
+
+                <a href="assets/game_instructions.pdf" class="btn btn-small btn-primary" data-i18n="app.page.learn.help"></a>
             </div>
         </div>
 
@@ -307,7 +326,7 @@
                             _headline_
                         </h3>
 
-                        <a href="mailto:michael.netter@wiwi.uni-regensburg.de?subject=PrivacyChecker"
+                        <a href="mailto:mail@friend-inspector.org"
                            style="margin-right: 10px" class="btn btn-small btn-primary">
                             <e>&#9993;</e> <span data-i18n="app.page.contact.team.contact.mail">_mail_</span></a>
 
