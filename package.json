@@ -1,12 +1,12 @@
 {
-  "name": "Face Inspector",
+  "name": "Friend Inspector",
   "description": "Playfully discover who can see your shared items and get advice to improve your privacy.",
   "version": "0.1.0",
   "homepage": "http://www.friend-inspector.org",
   "author": {
-    "name": "Christian Roth",
-    "email": "christian.roth@port17.de",
-    "url": "http://www-ifs.uni-regensburg.de/"
+    "name": "IFS Uni Regensburg",
+    "email": "mail@friend-inspector.org",
+    "url": "http://www-ifs.uni-regensburg.de"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,10 @@
     {
       "type": "Apache License 2.0",
       "url": "https://github.com/cr0/privacychecker/blob/master/LICENSE"
+    },
+    {
+      "type": "NOTICE",
+      "url": "https://github.com/cr0/privacychecker/blob/master/NOTICE"
     }
   ],
   "devDependencies": {

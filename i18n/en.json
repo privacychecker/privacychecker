@@ -156,8 +156,9 @@
                         "body":     "Prof. Dr. Günther Pernul, Alexandra Cetto, Christian Richthammer"
                     },
                     "contact":          {
-                        "mail": "Mail",
-                        "web":  "Web"
+                        "mail":    "Mail",
+                        "web":     "Web",
+                        "address": "Lehrstuhl für Wirtschaftsinformatik I - Prof. Pernul<br/>Universitätsstraße 31<br/>93053 Regensburg"
                     }
                 },
                 "privacy":   {
