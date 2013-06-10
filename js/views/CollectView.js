@@ -62,12 +62,20 @@
         validateCollectionDb: function()
         {
             pc.common.ProgressBar.getInstance().subto( this.collected.length, this._tocollect );
+            var player = pc.model.FacebookPlayer.getInstance();
 
             if ( _.contains( this.collected, "friends" ) && _.contains( this.collected,
                 "lists" ) && _.contains( this.collected, "foreigners" ) &&
                 _.contains( this.collected, "pictures" ) && _.contains( this.collected, "posts" ) ) {
 
                 console.log( "[CollectView] All data collected", this.collected );
+                console.log("[CollectView] User has ",
+                    player.getFriends().length, "friends",
+                    player.getFriendLists().length, "lists",
+                    player.getPictures().length, "pictures",
+                    player.getStatuses().length, "statuses",
+                    player.getForeigners().length, "foreigners"
+                );
 
                 this.readPrivacySettings( {
                     success: _.bind( function()

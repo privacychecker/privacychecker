@@ -53,7 +53,6 @@
 
             FB.init( {
                 appId:  '604159452941281',
-                //appId:  '508385819190108',
                 status: true,
                 cookie: true
             } );
@@ -182,6 +181,13 @@
                     return;
                 }
 
+                if ( response.data.length === 0 ) {
+                    console.warn( "[FacebookPlayer] User has no friends" );
+                    this.trigger( "friends:finished" );
+                    this._friends = new pc.model.FacebookUserCollection();
+                    return;
+                }
+
                 // parse all friends
                 this._friends = new pc.model.FacebookUserCollection( _.map( response.data, function( friend )
                 {
@@ -267,6 +273,8 @@
                 if ( response.data.length === 0 ) {
                     console.warn( "[FacebookPlayer] Users has no lists (perhaps he refused to grant permission)" );
                     this.trigger( "friendlist:error" );
+                    this._friendlists = new pc.model.FacebookListCollection();
+                    return;
                 }
 
                 // parse all friends
@@ -329,12 +337,13 @@
                     return;
                 }
 
+                this._pictures = new pc.model.FacebookPictureCollection();
+
                 if ( response.data.length === 0 ) {
                     console.warn( "[FacebookPlayer] Users has no albums" );
                     this.trigger( "pictures:finished" );
+                    return;
                 }
-
-                this._pictures = new pc.model.FacebookPictureCollection();
 
                 var picturesNum = 0;
                 _.each( response.data, _.bind( function( album )
@@ -432,6 +441,8 @@
                     console.error( "[FacebookPlayer] Error loading statuses response was: ", response );
                     return;
                 }
+
+                this._status = new pc.model.FacebookStatusCollection();
 
                 if ( response.data.length === 0 ) {
                     console.warn( "[FacebookPlayer] Users has no statuses" );
