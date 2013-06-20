@@ -91,7 +91,7 @@
       "points":            "Punkte",
       "timeout":           "Timeout",
       "lost":              "Verloren",
-      "play_again":        "Nochmal spielen",
+      "play_again":        "Nochmal spielen *",
       "link_to_rec":       "Du weißt nicht, wie das geht?",
       "item":              "Item",
       "lists_create":      "Selbst erstellte Listen",
@@ -107,7 +107,8 @@
         "headline": "Ich habe __points__ Punkte bei Friend Inspector erzielt!",
         "body":     "Kennst du deine Privatsphäre-Einstellungen genauso gut wie ich?<br/> Versuch mich zu schlagen!",
         "play":     "Schlage diese Punktzahl"
-      }
+      },
+      "remove_app":        "* Solltest du nicht noch einmal spielen wollen, kannst du die zur Abfrage deiner Daten benötigte Facebook-App <a href=\"https://www.facebook.com/settings?tab=applications\">hier</a> wieder entfernen.<br/>Bei dieser Gelegenheit solltest du auch alle anderen Apps entfernen, die du nicht mehr benötigst."
     },
 
     "page":            {

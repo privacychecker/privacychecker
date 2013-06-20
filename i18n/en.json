@@ -91,7 +91,7 @@
       "points":            "Points",
       "timeout":           "Timeout",
       "lost":              "Lost",
-      "play_again":        "Play again",
+      "play_again":        "Play again *",
       "link_to_rec":       "You do not know how this works?",
       "item":              "Item",
       "lists_create":      "Custom lists created",
@@ -107,7 +107,8 @@
         "headline": "I scored __points__ points in Friend Inspector!",
         "body":     "Do you know your privacy settings better than me? Beat my score!",
         "play":     "Beat this score"
-      }
+      },
+      "remove_app":        "* You can remove the corresponding Facebook app if you do not want to play again. Just follow this <a href=\"https://www.facebook.com/settings?tab=applications\">link</a>.<br/>On this occasion, you should also remove all other apps that you do not need anymore."
     },
 
     "page":            {
