@@ -14,8 +14,8 @@
      */
     ns.TestData = Backbone.Model.extend( {
 
-        MAX_INIT_ITEMS: 12,
-        TEST_ROUNDS:    20,
+        MAX_INIT_ITEMS: 7,
+        TEST_ROUNDS:    10,
         INITIAL_SCORE:  1000,
         TEST_DATA_SIZE: 5,
 
