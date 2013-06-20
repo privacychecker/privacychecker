@@ -2,8 +2,6 @@
 {
     "use strict";
 
-    var DEV = false;
-
     var ns = namespace( "pc.router" );
 
     ns.AppRouter = Backbone.Router.extend( {
@@ -43,7 +41,7 @@
             this.tipsView.hide();
 
             this.player = pc.model.FacebookPlayer.getInstance();
-            this.player.on( "profile:loaded", _.bind( this.profileLoadedCb, this ) );
+            this.homeView.on( "click:proceed", _.bind( this.startCollectCb, this ) );
             this.collectView.on( "collect:done", _.bind( this.selectEntitiesCb, this ) );
             this.selectView.on( "done", _.bind( this.hangmanStartCb, this ) );
             this.hangmanView.on( "done", _.bind( this.showResultsCb, this ) );
@@ -56,16 +54,13 @@
 
         profileLoadedCb: function()
         {
-            console.log( "[Controller] Facebook Player is ready, enabling collect view" );
+            console.log( "[Controller] Facebook Player is ready, enabling next button" );
             $( pc.router.AppRouter.CHANGE_PLAYER_ID ).fadeIn( 'fast' );
-            if ( this.player.loggedin && !DEV ) {
-                this.startCollectCb( true );
-            }
 
             this.homeView.enableButton();
         },
 
-        startCollectCb: function( autostart )
+        startCollectCb: function( )
         {
 
             console.log( '[Controller] Starting to collect data' );
@@ -75,10 +70,7 @@
 
             pc.common.ProgressBar.getInstance().to( 1 );
 
-            if ( autostart ) {
-                console.log( "[Controller] Autostarting because player is logged in" );
-                this.collectView.startCollectCb();
-            }
+            this.collectView.startCollectCb();
 
             $( pc.router.AppRouter.CAROUSEL_ID ).carousel( 1 );
 

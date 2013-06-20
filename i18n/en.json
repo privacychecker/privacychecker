@@ -7,7 +7,7 @@
       "change_language":  "Change language",
       "flag_id":          "assets/us.png",
       "language_confirm": "Willst du die Sprache wirklich wechseln? Das Spiel wird hierbei abgebrochen!\n Do you really want to change the language? The game will be aborted then!",
-      "hi":               "Logged in as: __name__",
+      "hi":               "Logged in as: <span class=\"name\">__name__</span>",
       "hi_not_loggedin":  "",
       "logout":           "Logout from Facebook"
     },
