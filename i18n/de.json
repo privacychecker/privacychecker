@@ -44,7 +44,8 @@
       "name":        "Hallo",
       "headline":    "Wie gut kennst du dein Facebook-Profil?",
       "description": "Finde auf spielerische Weise heraus, wer deine Items sehen kann und ob du auch weißt, wer diese Leute sind.",
-      "play_button": "Spielen"
+      "play_button": "Spielen *",
+      "privacy":     "* Externer Link zur Authentifizierung auf Facebook"
     },
 
     "collect": {
@@ -139,9 +140,9 @@
       },
 
       "contact": {
-        "headline":  "Über uns",
-        "short":     "Diese App wurde am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen hast, findest du hier neben weiteren Informationen zur Privacy Policy und dem Haftungsausschluss die nötigen Kontaktinformationen.",
-        "body":      "Diese App wurde am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen hast, findest du hier neben weiteren Informationen zur Privacy Policy und dem Haftungsausschluss die nötigen Kontaktinformationen.",
+        "headline":  "Impressum",
+        "short":     "Diese App wurde am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen hast, findest du hier neben weiteren Informationen zur Datenschutzerklärung und dem Haftungsausschluss die nötigen Kontaktinformationen.",
+        "body":      "Diese App wurde am Lehrstuhl für Wirtschaftsinformatik I an der Universität Regensburg entwickelt. Falls du Fragen oder Anregungen hast, findest du hier neben weiteren Informationen zur Datenschutzerklärung und dem Haftungsausschluss die nötigen Kontaktinformationen.",
         "team":      {
           "team_headline":    "Team",
           "contact_headline": "Kontakt",
@@ -164,8 +165,8 @@
           }
         },
         "privacy":   {
-          "headline": "Privacy policy",
-          "body":     "Bei Besuch dieser Webseite werden Daten über den Aufruf (bspw. Protokollinformationen wie IP Adresse sowie Herkunft und Datum des Aufrufs) gespeichert und ausschließlich für statistische Zwecke ausgewertet. Diese Daten werden nicht an Dritte weitergegeben und nicht mit anderen Daten verknüpft. Diese Webseite verwendet Cookies um Daten auf Ihrem Rechner zwischenzuspeichern. Daten Ihres Facebook-Accounts werden weder an diesen noch an einen anderen Server übertragen. Diese Daten werden ausschließlich lokal auf Ihrem Rechner verarbeitet. Sie haben das Recht Auskunft über die zu Ihnen gespeicherten Daten zu erhalten. Ihre Anfrage richten Sie bitte schriftlich oder per E-Mail an die nebenstehenden Adressen."
+          "headline": "Datenschutz-erklärung",
+          "body":     "Bei Besuch dieser Webseite werden Daten über den Aufruf (bspw. Protokollinformationen wie IP Adresse sowie Herkunft und Datum des Aufrufs) gespeichert und ausschließlich für statistische Zwecke ausgewertet. Diese Daten werden nicht an Dritte weitergegeben und nicht mit anderen Daten verknüpft und nach sieben Tagen gelöscht. Diese Webseite verwendet Cookies um Daten temporär auf Ihrem Rechner zwischenzuspeichern. Diese Cookies (Session-Cookies) werden beim Schließen des Browsers wieder gelöscht. Es werden keine Informationen von Friend Inspector an Dritte weitergegeben. Daten Ihres Facebook-Accounts werden weder an den Server von Friend Inspector noch an einen anderen Server übertragen. Diese Daten werden ausschließlich lokal auf Ihrem Rechner verarbeitet. Sie haben das Recht, Auskunft über die zu Ihnen gespeicherten Daten zu erhalten. Ihre Anfrage richten Sie bitte schriftlich oder per E-Mail an die nebenstehenden Adressen."
         },
         "liability": {
           "headline": "Haftungsausschluss",

@@ -44,7 +44,8 @@
       "name":        "Hello",
       "headline":    "Do you know who can see your Facebook profile?",
       "description": "Playfully discover who can see your shared items and get advice to improve your privacy.",
-      "play_button": "Play"
+      "play_button": "Play *",
+      "privacy":     "* External link to authenticate on Facebook"
     },
 
     "collect": {
@@ -165,7 +166,7 @@
         },
         "privacy":   {
           "headline": "Privacy policy",
-          "body":     "When you visit this website, data concerning your request (such as protocol information (IP address) and request date) is collected and used for statistical purposes only. This data is not shared with third parties nor linked with other data. This website uses cookies to store personal data on your computer. Data from your Facebook account is never stored on this or any other server. Your Facebook data is only processed on your local computer. If you have questions or comments about our privacy policy, please use the contact details on the left to contact us. Changes in this policy will be posted on this website. By using this website, you consent to our privacy policy."
+          "body":     "When you visit this website, data concerning your request (such as protocol information (IP address) and request date) is collected and used for statistical purposes only. This data is not shared with third parties nor linked with other data and is deleted after seven days. This website uses cookies to store personal data on your computer. These cookies are deleted when you close your browser. Friend Inspector does not provide your data to third parties. Data from your Facebook account is never stored on this or any other server. Your Facebook data is only processed on your local computer. If you have questions or comments about our privacy policy, please use the contact details on the left to contact us. Changes in this policy will be posted on this website. By using this website, you consent to our privacy policy."
         },
         "liability": {
           "headline": "Legal disclaimer",

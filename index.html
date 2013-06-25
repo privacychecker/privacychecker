@@ -10,7 +10,7 @@
 Facebook-App mit der du testen kannst, wie gut du dein Facebook-Profil
 und vor allem deine Privatsphäre-Einstellungen kennst. -- Friend
 Inspector is an independent Facebook application which allows you to
-check if you know who can see your Facebook profile.">
+check if you know who can see your Facebook profile." />
 
   <!-- facebook only allows http://WWW... -->
   <script type = "text/javascript">
@@ -155,8 +155,7 @@ check if you know who can see your Facebook profile.">
   </div>
 
   <div class = "ad-image">
-    <div class = "fb-like" data-href = "http://www.friend-inspector.org/" data-send = "false"
-         data-layout = "button_count" data-width = "350" data-show-faces = "true"></div>
+    <div id="socialshareprivacy"></div>
     <img src = "assets/unilogo.png" title = "Uni Regensburg" alt = "Uni Regensburg" />
   </div>
 </section>
@@ -416,6 +415,17 @@ check if you know who can see your Facebook profile.">
       interval: false
     } );
     $( 'a:not(.backbone)' ).smoothScroll();
+    $('#socialshareprivacy').socialSharePrivacy({
+      uri: 'http://www.friend-inspector.org',
+      css_path: '',
+      path_prefix: 'assets/',
+      services : {
+        facebook: {
+          dummy_line_img: 'dummy_facebook.png',
+          perma_option: false
+        }
+      }
+    });
   } );
 </script>
 </body>
