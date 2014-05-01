@@ -314,7 +314,7 @@
         FB_FQL_TWOLIST_SEPERATOR: /; Except: /,
         FB_FQL_EXCEPT_SEPERATOR:  /Except: /,
 
-        FRIENDS_LIST_NAME: "Friends"
+        FRIENDS_LIST_NAME: "Your friends"
 
     } );
 
