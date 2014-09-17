@@ -288,6 +288,11 @@
                     description.split( pc.common.PrivacyDefinition.FB_FQL_NAME_SEPERATOR );
             }
 
+            // if we're on friends visibility, description field is using 'Your friends', custom uses 'Friends'
+            if (level === pc.common.PrivacyDefinition.Level.FRIENDS) {
+                includeList.push( pc.common.PrivacyDefinition.FRIENDS_LIST_NAME );
+            }
+
             // current player always sees all items
             includeList.push( pc.model.FacebookPlayer.getInstance().get( 'name' ) );
 
@@ -314,7 +319,7 @@
         FB_FQL_TWOLIST_SEPERATOR: /; Except: /,
         FB_FQL_EXCEPT_SEPERATOR:  /Except: /,
 
-        FRIENDS_LIST_NAME: "Your friends"
+        FRIENDS_LIST_NAME: "Friends"
 
     } );
 
