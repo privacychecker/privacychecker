@@ -61,6 +61,7 @@
       "name":                     "Itembattle",
       "headline":                 "Which <span data-tooltip-key=\"item\">item</span> is more <span data-tooltip-key=\"personal\">personal</span> to you?",
       "insufficient_data":        "Unfortunately, your profile does not meet the minimum requirements of this app. You do not have enough shared items to proceed.",
+      "insufficient_friends":     "Unfortunately, your profile does not meet the minimum requirements of this app. You do not have any friends on facebook.",
       "insufficient_data_public": "Unfortunately, your profile does not meet the minimum requirements of this app. You mainly have public items, which can not be used for this app. As public items are likely to threaten your privacy, you are subsequently given advice on how to improve your privacy settings <a href='#/whynogame/'>here</a>.",
       "game_usage":               "Choose game complexity",
       "what_to_use":              "If you have enough items you can play the game with your photos, your status posts or with a combination of both. Otherwise your options are limited.",

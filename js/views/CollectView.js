@@ -115,6 +115,23 @@
 
         fbLoadFriendsErrorCb: function()
         {
+            if ( this.player.getFriends().length === 0) {
+                console.error( "[CollectView] User has no friends" );
+
+                this.player._status = new pc.model.FacebookStatusCollection();
+                this.player._friendlists = new pc.model.FacebookListCollection();
+                this.player._pictures = new pc.model.FacebookPictureCollection();
+                this.player._foreigners = new pc.model.FacebookUserCollection();
+
+                console.debug( "[CollectView] Waiting a few seconds to settle animations" );
+                _.delay( _.bind(function() {
+                    console.debug( "[CollectView] ... now!" );
+                    this.trigger( "collect:done" );
+                }, this ), 2000 );
+
+                return;
+            }
+
             if ( window.confirm( i18n.t( pc.view.CollectView.LANG_ERROR_LOADING ) ) ) {
                 location.reload();
             }
@@ -123,6 +140,7 @@
         fbLoadFriendsFinishedCb: function()
         {
             this.collected.push( "friends" );
+
             this.trigger( "collected:new" );
 
             this.player.getFriendLists();

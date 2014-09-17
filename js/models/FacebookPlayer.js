@@ -173,18 +173,20 @@
         _loadFriends: function()
         {
             this.trigger( "friends:start" );
+            console.log( "[FacebookPlayer] Starting to load friends " );
             FB.api( this.FB_FRIENDS_URL, _.bind( function( response )
             {
                 if ( !response.data ) {
-                    this.trigger( "friends:error" );
                     console.error( "[FacebookPlayer] Error loading friends, response was: ", response );
+                    this._friends = new pc.model.FacebookUserCollection();
+                    this.trigger( "friends:error" );
                     return;
                 }
 
                 if ( response.data.length === 0 ) {
                     console.warn( "[FacebookPlayer] User has no friends" );
-                    this.trigger( "friends:finished" );
                     this._friends = new pc.model.FacebookUserCollection();
+                    this.trigger( "friends:error" );
                     return;
                 }
 
@@ -227,6 +229,8 @@
         {
             var frc = pc.common.FacebookRandomCollector.getInstance();
             this.trigger( "random:start" );
+            console.log( "[FacebookPlayer] Starting to load foreigners" );
+
             frc.on( 'frc:done', _.bind( function( users )
             {
                 this._foreigners = users;
@@ -255,6 +259,8 @@
         _loadFriendLists: function()
         {
             this.trigger( "friendlist:start" );
+            console.log( "[FacebookPlayer] Starting to load friendlists" );
+
             if ( this.getFriends() === undefined ) {
                 this.trigger( "friendlist:error" );
                 console.log( "[FacebookPlayer] Error loading friendlist, friends not loaded" );
@@ -328,6 +334,7 @@
         _loadPictures: function()
         {
             this.trigger( "pictures:start" );
+            console.log( "[FacebookPlayer] Starting to load pictures" );
 
             FB.api( this.FB_PICTURES_URL, _.bind( function( response )
             {
@@ -428,6 +435,8 @@
         _loadStatuses: function()
         {
             this.trigger( "statuses:start" );
+            console.log( "[FacebookPlayer] Starting to load statuses" );
+
             if ( this.getFriends() === undefined ) {
                 this.trigger( "posts:error" );
                 console.log( "[FacebookPlayer] Error loading posts, friends not loaded" );

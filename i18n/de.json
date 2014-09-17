@@ -61,6 +61,7 @@
       "name":                     "Itembattle",
       "headline":                 "Welches <span data-tooltip-key=\"item\">Item</span> ist für dich <span data-tooltip-key=\"personal\">persönlicher</span>?",
       "insufficient_data":        "Dein Profil erfüllt leider nicht die Mindestanforderungen an das Spiel. Du hast zu wenige Items, die für das Spiel verwendet werden können.",
+      "insufficient_friends":     "Dein Profil erfüllt leider nicht die Mindestanforderungen an das Spiel. Du hast leider keine Facebook-Freunde.",
       "insufficient_data_public": "Dein Profil erfüllt leider nicht die Mindestanforderungen an das Spiel. Du hast hauptsächlich öffentliche Items, die in diesem Spiel nicht verwendet werden können. Da öffentliche Items ein großes Risiko für deine Privatsphäre darstellen, erhältst du <a href='#/whynogame/'>hier</a> Hinweise, wie du deine Einstellungen sicherer gestalten kannst.",
       "game_usage":               "Spielumfang wählen",
       "what_to_use":              "Wenn du genügend Items hast, kannst du das Spiel mit deinen Fotos, deinen Statusmeldungen oder beidem zusammen spielen. Ist dies nicht der Fall, ist deine Auswahl eingeschränkt.",

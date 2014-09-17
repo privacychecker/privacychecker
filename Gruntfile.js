@@ -349,13 +349,11 @@ module.exports = function( grunt )
   ] );
 
   grunt.registerTask( 'dev', [
-    'clean', 'copy', 'less:dev', 'concat',
-    'handlebars', 'targethtml', 'ver:dev', 'yuidoc', 'contributors'
+    'clean', 'copy', 'less:dev', 'concat', 'handlebars', 'targethtml', 'ver:dev', 'yuidoc', 'contributors'
   ] );
 
   grunt.registerTask( 'local', [
-    'clean', 'jshint', 'copy', 'less:dev', 'nodeunit:models', 'nodeunit:views', 'nodeunit:base', 'concat',
-    'handlebars', 'targethtml'
+    'clean', 'copy', 'less:dev', 'concat', 'handlebars', 'targethtml'
   ] );
 
 };

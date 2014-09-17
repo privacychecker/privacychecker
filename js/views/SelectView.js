@@ -23,11 +23,13 @@
           no_pictues = !testdata.hasEnoughPictures(),
           no_statuses = !testdata.hasEnoughStatuses(),
           no_one_of_both = (no_pictues || no_statuses) && !testdata.hasEnoughCombined(),
-          not_playable = no_pictues && no_statuses && no_one_of_both,
+          no_friends = pc.model.FacebookPlayer.getInstance().getFriends().length === 0,
+          not_playable = no_pictues && no_statuses && no_one_of_both && no_friends,
           too_many_public = testdata.hasTooManyPublic();
 
         // render scope
         var options = {
+          no_friends:      no_friends, 
           no_pictures:     no_pictues,
           no_statuses:     no_statuses,
           no_one_of_both:  no_one_of_both,
